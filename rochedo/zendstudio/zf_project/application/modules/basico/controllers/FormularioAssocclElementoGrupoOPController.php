@@ -17,7 +17,7 @@ class Basico_OPController_FormularioAssocclElementoGrupoOPController extends Bas
 	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoGrupoOPController
 	 * @var Basico_OPController_FormularioAssocclElementoGrupoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo GrupoFormularioElemento.

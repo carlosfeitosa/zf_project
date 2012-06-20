@@ -17,7 +17,7 @@ class Basico_OPController_DicionarioDadosSchemaOPController extends Basico_Abstr
 	 * Instância do controlador Basico_OPController_DicionarioDadosSchemaOPController.
 	 * @var Basico_OPController_DicionarioDadosSchemaOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_DicionarioDadosSchema
 	 * @var Basico_Model_DicionarioDadosSchema

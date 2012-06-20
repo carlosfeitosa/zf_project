@@ -16,7 +16,7 @@ class Basico_OPController_DadosBiometricosAssocPessoaOPController extends Basico
 	 * 
 	 * @var Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * 

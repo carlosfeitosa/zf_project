@@ -10,16 +10,16 @@ class Basico_OPController_DBCheckOPController
 	 * Instância do controlador Basico_OPController_DBCheckOPController.
 	 * @var Basico_OPController_DBCheckOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
-	private $_categoriaAssocChaveEstrangeiraOPController;
+	protected $_categoriaAssocChaveEstrangeiraOPController;
 	/**
 	 * @var Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 */
-	private $_assocChaveEstrangeiraRelacao;
+	protected $_assocChaveEstrangeiraRelacao;
 	
 	/**
 	 * Construtor do controlador Basico_OPController_DBCheckOPController

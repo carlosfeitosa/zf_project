@@ -16,7 +16,7 @@ class Basico_OPController_AcaoAplicacaoAssocclMetodoValidacaoOPController extend
 	/**
 	 * @var Basico_OPController_AcoesAplicacaoMetodosValidacaoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_AcaosAplicacaoMetodosValidacao object

@@ -16,7 +16,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractOPC
 	 * 
 	 * @var Basico_OPController_ContatoCpgEmailOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * 

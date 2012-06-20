@@ -16,7 +16,7 @@ class Basico_OPController_AssocclPessoaPerfilAssocDadosOPController extends Basi
      * 
      * @var Basico_OPController_AssocclPessoaPerfilAssocDadosOPController
      */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_AssocclPessoaPerfilAssocDados

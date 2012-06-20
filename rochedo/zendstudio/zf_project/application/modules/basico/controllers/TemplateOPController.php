@@ -17,7 +17,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * 
 	 * @var Basico_OPController_TemplateOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Formulario.

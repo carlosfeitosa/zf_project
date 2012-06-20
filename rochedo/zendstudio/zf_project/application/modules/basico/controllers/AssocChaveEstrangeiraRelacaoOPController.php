@@ -16,7 +16,7 @@ class Basico_OPController_AssocChaveEstrangeiraRelacaoOPController extends Basic
 	 * 
 	 * @var Basico_OPController_AssocChaveEstrangeiraRelacaoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * 

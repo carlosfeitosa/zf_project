@@ -14,7 +14,7 @@ class Basico_OPController_MunicipioOPController extends Basico_AbstractOPControl
 	 * Instância do Controlador Municipio.
 	 * @var Basico_OPController_MunicipioOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Municipio.

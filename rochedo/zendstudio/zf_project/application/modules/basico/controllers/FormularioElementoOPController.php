@@ -17,7 +17,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	 * Instância do Controlador FormularioElemento
 	 * @var Basico_OPController_FormularioElementoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo FormularioElemento.

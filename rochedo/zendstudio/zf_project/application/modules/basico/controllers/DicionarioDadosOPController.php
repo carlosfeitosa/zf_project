@@ -15,37 +15,37 @@ class Basico_OPController_DicionarioDadosOPController
 	 *  
 	 * @var Basico_OPController_DicionarioDadosOPController object
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * 
 	 * @var Basico_OPController_ModuloOPController object
 	 */
-	private $_moduloOPController;
+	protected $_moduloOPController;
 	/**
 	 * 
 	 * @var Basico_OPController_CVCOPController object
 	 */
-	private $_cvcOPController;
+	protected $_cvcOPController;
 	/**
 	 * 
 	 * @var Basico_OPController_CategoriaOPController object
 	 */
-	private $_categoriaOPController;
+	protected $_categoriaOPController;
 	/**
 	 * 
 	 * @var Basico_OPController_DicionarioDadosSchemaOPController object
 	 */
-	private $_dicionarioDadosSchemaOPController;
+	protected $_dicionarioDadosSchemaOPController;
 	/**
 	 * 
 	 * @var Basico_OPController_DicionarioDadosAssocTableOPController object
 	 */
-	private $_dicionarioDadosAssocTableOPController;
+	protected $_dicionarioDadosAssocTableOPController;
 	/**
 	 * 
 	 * @var Basico_OPController_DicionarioDadosAssocFieldOPController object
 	 */
-	private $_dicionarioDadosAssocFieldOPController;
+	protected $_dicionarioDadosAssocFieldOPController;
 
 	/**
 	 * Construtor do Controlador DicionarioDados

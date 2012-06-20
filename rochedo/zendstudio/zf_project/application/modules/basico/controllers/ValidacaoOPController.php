@@ -8,7 +8,7 @@ class Basico_OPController_ValidacaoOPController
 	/**
 	 * 
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Request 
 	 * @var Request Object

@@ -16,7 +16,7 @@ class Basico_OPController_SequenciaOPController extends Basico_AbstractOPControl
 	 * 
 	 * @var Basico_OPController_SequenciaFormularioOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * 

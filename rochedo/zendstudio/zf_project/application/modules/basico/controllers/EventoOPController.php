@@ -16,7 +16,7 @@ class Basico_OPController_EventoOPController extends Basico_AbstractOPController
 	 * 
 	 * @var Basico_OPController_EventoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * 

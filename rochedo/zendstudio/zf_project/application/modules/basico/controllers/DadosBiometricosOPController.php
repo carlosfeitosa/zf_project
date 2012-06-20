@@ -16,7 +16,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractOP
 	 * 
 	 * @var Basico_OPController_DadosBiometricosOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * 
@@ -43,7 +43,7 @@ class Basico_OPController_DadosBiometricosOPController extends Basico_AbstractOP
 	 * 
 	 * @var Basico_OPController_DadosBiometricosAssocPessoaOPController
 	 */
-	private $_dadosBiometricosAssocPessoaOPController;
+	protected $_dadosBiometricosAssocPessoaOPController;
 	
 	/**
 	 * Carrega a variavel dadosBiometricos com um novo objeto Basico_Model_DadosBiometricos

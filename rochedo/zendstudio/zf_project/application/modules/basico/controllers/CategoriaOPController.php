@@ -17,7 +17,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 	 * Instância do controlador Basico_OPController_CategoriaOPController.
 	 * @var Basico_OPController_CategoriaOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_Categoria
 	 * @var Basico_Model_Categoria
@@ -27,7 +27,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 	/**
 	 * @var Basico_OPController_TipoCategoriaOPController
 	 */
-	private $_tipoCategoriaOPController;
+	protected $_tipoCategoriaOPController;
 
 	/**
 	 * Nome da tabela categoria

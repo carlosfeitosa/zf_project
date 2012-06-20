@@ -24,7 +24,7 @@ class Basico_OPController_TipoCategoriaOPController extends Basico_AbstractOPCon
 	 * Instância do controlador Basico_OPController_TipoCategoriaOPController.
 	 * @var Basico_OPController_TipoCategoriaOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_TipoCategoria
 	 * @var Basico_Model_TipoCategoria

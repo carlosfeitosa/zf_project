@@ -16,7 +16,7 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 	/**
 	 * @var Basico_OPController_ComponenteOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_Componente

@@ -26,17 +26,17 @@ class Basico_OPController_CpgTokenOPController
 	 * 
 	 * @var Basico_OPController_CpgTokenOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
     
 	/**
 	 * @var Basico_Model_Token
 	 */
-	private $_token;
+	protected $_token;
 	
 	/**
 	 * @var array
 	 */
-	private static $_arrayTokensUrls;
+	protected static $_arrayTokensUrls;
 	
 	/**
 	 * Construtor do Controlador Token

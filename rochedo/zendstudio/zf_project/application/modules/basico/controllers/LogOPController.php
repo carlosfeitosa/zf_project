@@ -37,19 +37,19 @@ class Basico_OPController_LogOPController
 	 * Instância do controlador Log.
 	 * @var Basico_OPController_LogOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo de Log.
 	 * @var Basico_Model_Log
 	 */
-	private $_log;
+	protected $_log;
 
 	/**
 	 * Instância da classe Zend_Log.
 	 * @var Zend_Log
 	 */
-	private $_logFS;
+	protected $_logFS;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_LogOPController.

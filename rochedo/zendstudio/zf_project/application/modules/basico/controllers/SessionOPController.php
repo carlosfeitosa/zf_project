@@ -23,7 +23,7 @@ class Basico_OPController_SessionOPController
     /**
 	 * @var Basico_OPController_SessionOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Construtor do controlador Basico_OPController_SessionOPController

@@ -16,7 +16,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	 * Instância do controlador Basico_OPController_CategoriaAssocChaveEstrangeiraOPController.
 	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_CategoriaAssocChaveEstrangeira
 	 * @var Basico_Model_CategoriaAssocChaveEstrangeira
@@ -40,12 +40,12 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 	/**
 	 * @var Basico_OPController_CategoriaOPController
 	 */
-	private $_categoriaOPController;
+	protected $_categoriaOPController;
 
 	/**
 	 * @var Basico_OPController_ModuloOPController
 	 */
-	private $_moduloOPController;
+	protected $_moduloOPController;
 	
     /**
      * Construtor do Controller

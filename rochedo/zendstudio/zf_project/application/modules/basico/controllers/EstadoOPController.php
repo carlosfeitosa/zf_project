@@ -14,7 +14,7 @@ class Basico_OPController_EstadoOPController extends Basico_AbstractOPController
 	 * Instância do Controlador Estado.
 	 * @var Basico_OPController_EstadoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Estado.

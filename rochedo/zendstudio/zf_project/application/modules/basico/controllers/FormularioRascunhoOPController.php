@@ -16,7 +16,7 @@ class Basico_OPController_FormularioRascunhoOPController extends Basico_Abstract
 	 * 
 	 * @var Basico_OPController_FormularioRascunhoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Nome da tabela basico_formulario.rascunho

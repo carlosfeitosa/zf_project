@@ -16,7 +16,7 @@ class Basico_OPController_DBTransactionOPController
 	 * 
 	 * @var Basico_OPController_DBTransactionOPController
 	 */
-	static private $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Construtor do controlador Basico_OPController_DBTransactionOPController.

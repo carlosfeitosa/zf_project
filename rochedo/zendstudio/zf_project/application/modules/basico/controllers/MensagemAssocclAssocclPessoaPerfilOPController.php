@@ -15,7 +15,7 @@ class Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController extends
 	 * Instância do Controlador MensagemAssocclAssocclPessoaPerfil.
 	 * @var Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo Basico_Model_MensagemAssocclAssocclPessoaPerfil.

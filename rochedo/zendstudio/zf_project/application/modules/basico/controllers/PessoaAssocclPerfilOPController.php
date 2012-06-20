@@ -16,7 +16,7 @@ class Basico_OPController_PessoaAssocclPerfilOPController extends Basico_Abstrac
 	 * Instância do Controlador PessoaPerfil
 	 * @var Basico_OPController_PessoasPerfisOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo PessoaPerfil

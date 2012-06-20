@@ -16,7 +16,7 @@ class Basico_OPController_FormularioRascunhoAssocagGrupoOPController extends Bas
 	 * 
 	 * @var Basico_OPController_GrupoRascunhoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Nome da tabela basico_formulario_rascunho.assocag_grupo

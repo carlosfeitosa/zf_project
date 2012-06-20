@@ -16,7 +16,7 @@ class Basico_OPController_AcaoAplicacaoAssocclPerfilOPController extends Basico_
 	/**
 	 * @var Basico_OPController_AcaoAplicacaoAssocclPerfilOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_AcaoAplicacaoAssocclPerfil object

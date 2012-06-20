@@ -10,12 +10,12 @@ class Basico_OPController_DicionarioExpressaoOPController
 	/**
 	 * @var Basico_OPController_TradutorOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * @var Basico_Model_DicionarioExpressao
 	 */
-	private $_tradutor;
+	protected $_tradutor;
 	
     /**
      * Construtor do controlador Basico_OPController_TradutorOPController

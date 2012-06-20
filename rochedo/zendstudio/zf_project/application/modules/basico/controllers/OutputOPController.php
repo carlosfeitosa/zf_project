@@ -16,7 +16,7 @@ class Basico_OPController_OutputOPController extends Basico_AbstractOPController
 	 * Instância do Controlador Output
 	 * @var Basico_OPController_OutputOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo Output.

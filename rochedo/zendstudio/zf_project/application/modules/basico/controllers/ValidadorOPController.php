@@ -17,13 +17,13 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractOPControl
 	 * Instância do Controlador Basico_OPController_FormularioElementoValidatorOPController
 	 * @var Basico_OPController_FormularioElementoValidatorOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo FormularioElementoValidador.
 	 * @var Basico_Model_FormularioElementoValidador
 	 */
-	private $_model;
+	protected $_model;
 	
 	/**
 	 * Construtor do Controlador FormularioElementoValidador.

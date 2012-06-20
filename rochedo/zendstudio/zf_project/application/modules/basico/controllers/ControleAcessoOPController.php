@@ -16,12 +16,12 @@ class Basico_OPController_ControleAcessoOPController
 	/**
 	 * @var Basico_OPController_ControleAcessoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Zend_Acl
 	 */
-	private $_acl;
+	protected $_acl;
 
 	/**
 	 * Construtor do Controlador Controle Acesso

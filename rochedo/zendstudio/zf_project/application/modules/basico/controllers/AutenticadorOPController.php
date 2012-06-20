@@ -15,17 +15,17 @@ class Basico_OPController_AutenticadorOPController
 	/**
 	 * @var Basico_Controller_AutenticadorController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Zend_Auth_Adapter_DbTable
 	 */
-	private $_authAdapter;
+	protected $_authAdapter;
 
 	/**
 	 * @var Zend_Auth
 	 */
-	private $_auth;
+	protected $_auth;
 
 	/**
 	 * Construtor do controller

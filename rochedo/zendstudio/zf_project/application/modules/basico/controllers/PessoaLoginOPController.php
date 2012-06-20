@@ -14,7 +14,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 	 * Instância do controlador Basico_OPController_PessoaLoginOPController.
 	 * @var Basico_OPController_PessoaLoginOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_PessoaLogin
 	 * @var Basico_Model_PessoaLogin

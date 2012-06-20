@@ -17,7 +17,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 	 *  
 	 * @var Basico_OPController_DicionarioDadosAssocTableOPController object
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * 

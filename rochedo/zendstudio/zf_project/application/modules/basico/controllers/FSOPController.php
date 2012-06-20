@@ -15,10 +15,10 @@ class Basico_OPController_FSOPController
 	/**
 	 * @var Basico_OPController_FSOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	
-	private static $_tipos = array('termos' => '/docs/termos/');
+	protected static $_tipos = array('termos' => '/docs/termos/');
 	
 	
 	/**

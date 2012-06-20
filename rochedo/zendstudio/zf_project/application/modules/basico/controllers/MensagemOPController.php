@@ -89,7 +89,7 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractOPControll
 	 * 
 	 * @var Basico_OPController_MensagemOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * @var Basico_Model_Mensagem
@@ -99,11 +99,11 @@ class Basico_OPController_MensagemOPController extends Basico_AbstractOPControll
 	/**
 	 * @var Basico_OPController_MensagemTemplateOPController
 	 */
-	private $_mensagemTemplateOPController;
+	protected $_mensagemTemplateOPController;
 	/**
 	 * @var Basico_OPController_MensagemAssocclAssocclPessoaPerfilOPController
 	 */
-	private $_mensagemAssocclAssocclPessoaPerfilOPController;
+	protected $_mensagemAssocclAssocclPessoaPerfilOPController;
 	
 	/**
 	 * Construtor do Controlador Mensagem

@@ -19,7 +19,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * Instância do Controlador Formulario
 	 * @var Basico_OPController_FormularioOPController object
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Formulario.
@@ -317,7 +317,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * Retorna o id da categoria do formulario pelo formName passado
 	 * 
 	 * @param String $formName
-	 * @return String|false
+	 * @return Integer|false
 	 */
 	public function retornaIdCategoriaFormularioPorFormName($formName)
 	{
@@ -328,6 +328,36 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		if (is_object($objFormulario))
 			return $objFormulario->idCategoria;
 			
+		return false;
+	}
+
+	/**
+	 * Retorna o id da categoria do formulario que o id passado
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Integer|false
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaIdCategoriaFormularioPorIdCategoria($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados
+		$arrayIdCategoriaFormulario = $this->_retornaArrayDadosObjetoPorId($idFormulario, array('idCategoria'));
+
+		// se retornou um objeto retorna o id da categoria
+		if (is_array(($arrayIdCategoriaFormulario))) {
+			// retornando o id da categoria
+			return (int) $arrayIdCategoriaFormulario['idCategoria'];
+		}
+
 		return false;
 	}
 

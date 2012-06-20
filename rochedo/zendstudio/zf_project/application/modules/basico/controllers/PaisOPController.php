@@ -14,7 +14,7 @@ class Basico_OPController_PaisOPController extends Basico_AbstractOPController_R
 	 * Instância do Controlador Pais.
 	 * @var Basico_OPController_PaisOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Pais.

@@ -17,7 +17,7 @@ class Basico_OPController_LinkOPController extends Basico_AbstractOPController_R
 	 * 
 	 * @var Basico_OPController_LinkOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * 

@@ -28,7 +28,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 18/06/2012
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Controlador de formulários
@@ -38,7 +38,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 18/06/2012
 	 */
-	private $_formularioOPController;
+	protected $_formularioOPController;
 
 	/**
 	 * Controlador de categoria
@@ -48,7 +48,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 19/06/2012
 	 */
-	private $_categoriaOPController;
+	protected $_categoriaOPController;
 
 	/**
 	 * Recupera a instancia do controlador Basico_OPController_GeradorFormularioOPController
@@ -80,7 +80,7 @@ class Basico_OPController_GeradorFormularioOPController
 	private function __construct()
 	{
 		// chamando a inicialização do controlador
-		$this->_init();
+		$this->init();
 
 		return;
 	}
@@ -93,10 +93,10 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
 	 * @since 18/06/2012
 	 */
-	private function _init()
+	private function init()
 	{
 		// chamando inicializacao dos controladores
-		$this->_initControllers();
+		$this->initControllers();
 
 		return;
 	}
@@ -109,7 +109,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 03/05/2012
 	 */
-	private function _initControllers()
+	private function initControllers()
 	{
 		// inicializando os controladores utilizados pelo controlador principal
 		$this->_formularioOPController = Basico_OPController_FormularioOPController::getInstance();
@@ -152,13 +152,32 @@ class Basico_OPController_GeradorFormularioOPController
     	$arrayModulosAssociados = $this->_formularioOPController->retornaArrayIdsNomesModulosFormularioPorIdFormulario($idFormulario);		
 
 		// verificando se o formulário pode ser gerado
-		if (!$this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($arrayAtributosFormulario['idCategoria'])) {
+		if (!$this->verificaPossibilidadeGeracaoFormulario($idFormulario)) {
 			// retornando falso
 			return false;
 		}
 
 		// retornando sucesso
 		return true;
+	}
+
+	/**
+	 * Verifica se um formulário pode ser gerado (se possui as categorias e elementos corretos para geração 
+	 * 
+	 * @param Integer $idFormulario - id do formulário que se deseja verificar
+	 * 
+	 * @return Boolean - true se for possível gerar o formulário e false caso não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	private function verificaPossibilidadeGeracaoFormulario($idFormulario)
+	{
+		// recuperando o id da categoria do formulário
+		$idCategoriaFormulario = $this->_formularioOPController->retornaIdCategoriaFormularioPorIdCategoria($idFormulario);
+
+		// retornando o resultado da verificação
+		return ($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario));
 	}
 
 	private function verificaElementosFormulario($idFormulario)

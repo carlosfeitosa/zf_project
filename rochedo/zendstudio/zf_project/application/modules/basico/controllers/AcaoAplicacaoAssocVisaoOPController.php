@@ -16,7 +16,7 @@ class Basico_OPController_AcaoAplicacaoAssocVisaoOPController extends Basico_Abs
 	/**
 	 * @var Basico_OPController_AcaoAplicacaoAssocVisaoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_AcaoAplicacaoAssocVisao object

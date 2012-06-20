@@ -17,7 +17,7 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractOPControlle
 	 * 
 	 * @var Basico_OPController_IncludeOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo Include.

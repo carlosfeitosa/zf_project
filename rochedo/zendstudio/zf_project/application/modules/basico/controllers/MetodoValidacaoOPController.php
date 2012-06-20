@@ -16,7 +16,7 @@ class Basico_OPController_MetodoValidacaoOPController extends Basico_AbstractOPC
 	/**
 	 * @var Basico_OPController_MetodoValidacaoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Basico_Model_MetodoValidacao object

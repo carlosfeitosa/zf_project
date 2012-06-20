@@ -17,7 +17,7 @@ class Basico_OPController_PessoaOPController extends Basico_AbstractOPController
 	 * Instância do controlador Basico_OPController_PessoaOPController.
 	 * @var Basico_OPController_PessoaOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_Pessoa
 	 * @var Basico_Model_Pessoa

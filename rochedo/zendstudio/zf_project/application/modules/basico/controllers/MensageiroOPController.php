@@ -10,14 +10,14 @@ class Basico_OPController_MensageiroOPController
 	/**
 	 * @var Basico_OPController_MensageiroOPController 
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * @var Zend_Mail 
 	 */
-	private $_mail;
+	protected $_mail;
 	
-	private $_mensagemOPController;
+	protected $_mensagemOPController;
 
 	/**
 	 * Contrutor do controlador Basico_OPController_MensageiroOPController

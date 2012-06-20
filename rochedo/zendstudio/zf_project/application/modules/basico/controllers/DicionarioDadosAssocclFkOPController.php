@@ -31,7 +31,7 @@ class Basico_OPController_DicionarioDadosAssocclFkOPController extends Basico_Ab
 	 *  
 	 * @var Basico_OPController_DicionarioDadosAssocclFkOPController object
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * 

@@ -8,7 +8,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     /**
      * @var Zend_View_Interface
      */
-    private $_view;
+    private $view;
 
     /**
     * Renderiza as views do sistema
@@ -21,7 +21,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     public function renderizar($viewScript = null, $disableLayout = false)  
     {
     	// recuperando o helper view
-    	$this->_view = $this->getActionController()->view;
+    	$this->view = $this->getActionController()->view;
 
     	// Instancia a controlador
     	$controller = $this->_actionController;
@@ -48,9 +48,9 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		// NORMAL REQUEST
     		
     		// adicionando o headerMenu.
-    		$this->_view->placeholder('headerMenu')->set($this->_view->render('headerMenu.phtml'));
+    		$this->view->placeholder('headerMenu')->set($this->view->render('headerMenu.phtml'));
     		// adicionando footer.
-    		$this->_view->placeholder('footer')->set($this->_view->render('footer.phtml'));
+    		$this->view->placeholder('footer')->set($this->view->render('footer.phtml'));
     	}
     	
     	// processando os formulários
@@ -105,54 +105,54 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     private function inicializaContextoHtml()
     {
 		// adicionando Jquery
-		$this->_view->headScript()->prependFile($this->_view->baseUrl(JQUERY_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->prependFile($this->view->baseUrl(JQUERY_JAVASCRIPT_FILE_PATH));
 		
 		// adicionando plugin Jquery Datepicker
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH));
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_SLIDER_ACCESS_JAVASCRIPT_FILE_PATH));
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_SLIDER_ACCESS_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_JAVASCRIPT_FILE_PATH));
 		
-		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_CSS_FILE_PATH));
+		$this->view->headLink()->appendStylesheet($this->view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_CSS_FILE_PATH));
 		
 		// adicionando favicon/shortcut icon da aplicacao
-		$this->_view->headLink()->headLink(array('rel' => 'shortcut icon',
-                              					 'href' => $this->_view->baseUrl('favicon.ico'),
+		$this->view->headLink()->headLink(array('rel' => 'shortcut icon',
+                              					 'href' => $this->view->baseUrl('favicon.ico'),
                              					 'PREPEND'));
 		
 				
 		// setando variaveis
-		$applicationHttpHome = $this->_view->urlEncrypt($this->_view->url(array('controller'=>'index'), null, true));
-		$applicationHttpImagesHome = $this->_view->baseUrl('/images/');
-		$applicationHttpCSSHome = $this->_view->baseUrl('/css/global.css');
-		$applicationHttpBaseUrl = $this->_view->baseUrl();
+		$applicationHttpHome = $this->view->urlEncrypt($this->view->url(array('controller'=>'index'), null, true));
+		$applicationHttpImagesHome = $this->view->baseUrl('/images/');
+		$applicationHttpCSSHome = $this->view->baseUrl('/css/global.css');
+		$applicationHttpBaseUrl = $this->view->baseUrl();
 
 		// sentando css messagePop
-		$this->_view->headLink()->appendStylesheet($this->_view->baseUrl('/js/library/plugins/dojo/messagePop/ui/resources/Error.css'));
+		$this->view->headLink()->appendStylesheet($this->view->baseUrl('/js/library/plugins/dojo/messagePop/ui/resources/Error.css'));
 		
 		// setando cabecalho
-		$this->_view->doctype('XHTML1_STRICT');
-		$this->_view->headTitle(APPLICATION_NAME_AND_VERSION);
+		$this->view->doctype('XHTML1_STRICT');
+		$this->view->headTitle(APPLICATION_NAME_AND_VERSION);
 
 		$headTitle = APPLICATION_NAME_AND_VERSION;
 		// headerTitle separator
 		$headTitleSeparator = ' :: ';
 
-		$this->_view->headTitle()->setSeparator(' :: ');
+		$this->view->headTitle()->setSeparator(' :: ');
 
-		$this->_view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
-		$this->_view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
-		$this->_view->headLink()->appendStylesheet($applicationHttpCSSHome);
+		$this->view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+		$this->view->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=8');
+		$this->view->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 		// adicionando arquivos javascript padrao
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_AJAX_JAVASCRIPT_FILE_PATH));
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
-		$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_AJAX_JAVASCRIPT_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));
+		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH));
 
 		// verificando se o formulario e o sistema permite salvar rascunho
         if ((Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) and (APPLICATION_FORM_DRAFT == true))
 			//inserindo arquivo JS do rascunho			        
-			$this->_view->headScript()->appendFile($this->_view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
+			$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO));
 
 		// verificando ambiente
 		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
@@ -162,17 +162,17 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
 
 				// setando o titulo da janela do navegador
-				$this->_view->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
+				$this->view->headTitle("[ Perfil padrao: {$descricaoPerfilPadrao} ]");
 		    }
 
 			// recuperando o request do usuario
 			$request = Basico_OPController_UtilOPController::retornaUserRequest();
 		    // setando o titulo da janela do navegador
-		    $this->_view->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]"); 
+		    $this->view->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]"); 
 		}
 
 		// setando parametros do dojo
-		$this->_view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
+		$this->view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
 		        			->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
 		                    // registrando path local do dojo
 		        			->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)
@@ -198,7 +198,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     	$nomeOutput = Basico_OPController_OutputOPController::retornaOutputViaContextoView($contexto);
 
     	// percorre as variáveis e objetos contidas na view
-		foreach ($this->_view->getVars() as $key0 => $value0){
+		foreach ($this->view->getVars() as $key0 => $value0){
 
 			// verifica se a variável é do tipo array.
 			if (is_array($value0)) {
@@ -224,22 +224,22 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						$permiteRascunho = false;
 
 						// processando formularios
-						Basico_OPController_TemplateOPController::processaFormularios($this->_view, $arrayFormsSubForms, $permiteRascunho, $nomeOutput);
+						Basico_OPController_TemplateOPController::processaFormularios($this->view, $arrayFormsSubForms, $permiteRascunho, $nomeOutput);
 						
 						// verificando se eh pra inserir o script de inicializacao do rascunho
 						if ($permiteRascunho) {
 							// recuperando a url do metodo de salvar rascunho, tokenizada					
-							$urlSalvarRascunho = $this->_view->urlEncryptModuleControllerAction('basico', 'rascunho', 'salvar');
+							$urlSalvarRascunho = $this->view->urlEncryptModuleControllerAction('basico', 'rascunho', 'salvar');
 							
 							// adicionando script para inicializacao do rascunho
 							$scriptInicializacaoRascunho = "<script type='text/javascript'> $(function() { initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)') });</script>";
 							// verificando se a view não possui scripts
-							if (!isset($this->_view->scripts)) {
+							if (!isset($this->view->scripts)) {
 								// setando scripts da view
-								$this->_view->scripts = array($scriptInicializacaoRascunho);
+								$this->view->scripts = array($scriptInicializacaoRascunho);
 							} else {
 								// adicionando script a view
-								$this->_view->scripts[] = $scriptInicializacaoRascunho;
+								$this->view->scripts[] = $scriptInicializacaoRascunho;
 							}
 						}
 						

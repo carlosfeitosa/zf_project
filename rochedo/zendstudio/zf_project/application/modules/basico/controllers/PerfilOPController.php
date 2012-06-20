@@ -14,7 +14,7 @@ class Basico_OPController_PerfilOPController extends Basico_AbstractOPController
 	 * Instância do controlador Basico_OPController_PerfilOPController.
 	 * @var Basico_OPController_PerfilOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_Perfil
 	 * @var Basico_Model_Perfil

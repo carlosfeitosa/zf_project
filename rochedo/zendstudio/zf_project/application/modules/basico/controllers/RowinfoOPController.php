@@ -16,13 +16,13 @@ class Basico_OPController_RowinfoOPController
 	 * Instância do controlador Rowinfo
 	 * @var Basico_OPController_RowinfoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 
 	/**
 	 * Instância do Modelo RowInfo
 	 * @var Basico_Model_RowInfo
 	 */
-	private $_rowinfo;
+	protected $_rowinfo;
 
 	/**
 	 * Construtor do controlador Basico_OPController_RowinfoOPController

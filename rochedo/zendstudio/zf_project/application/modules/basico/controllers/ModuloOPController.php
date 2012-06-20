@@ -17,7 +17,7 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractOPController
 	 * Instância do controlador Basico_OPController_ModuloOPController.
 	 * @var Basico_OPController_ModuloOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_Modulo
 	 * @var Basico_Model_Modulo

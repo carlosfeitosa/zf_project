@@ -17,7 +17,7 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 	 * Instância do controlador Basico_OPController_AcaoAplicacaoOPController.
 	 * @var Basico_OPController_AcaoAplicacaoOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * Instância do modelo Basico_Model_AcaoAplicacao.
 	 * @var Basico_Model_AcaoAplicacao

@@ -9,7 +9,7 @@ class Basico_OPController_FilterOPController extends Basico_AbstractOPController
 	 * Instância do Controlador Basico_OPController_FilterOPController
 	 * @var Basico_OPController_FilterOPController
 	 */
-	static private $_singleton;
+	static protected $_singleton;
 	/**
 	 * Instância do Modelo Filter.
 	 * @var Basico_Model_Filter

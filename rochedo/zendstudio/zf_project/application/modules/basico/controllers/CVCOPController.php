@@ -15,24 +15,24 @@ class Basico_OPController_CVCOPController
 	/**
 	 * @var Basico_OPController_CVCOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	/**
 	 * @var Basico_OPController_CategoriaAssocChaveEstrangeiraOPController
 	 */
-	private $_categoriaAssocChaveEstrangeiraOPController;
+	protected $_categoriaAssocChaveEstrangeiraOPController;
 	/**
 	 * @var Basico_OPController_RowinfoOPController
 	 */
-	private $_rowinfoOPController;
+	protected $_rowinfoOPController;
 	/**
 	 * @var Basico_Model_CVC
 	 */
-	private $_cvc;
+	protected $_cvc;
 
 	/**
 	 * @var Array
 	 */
-	private $_arrayObjetosManipulados;
+	protected $_arrayObjetosManipulados;
 
 	/**
 	 * Construtor do controller

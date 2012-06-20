@@ -16,7 +16,7 @@ class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController 
 	 * Instância do Controlador Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController
 	 * @var Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * Instância do Modelo Formulario.

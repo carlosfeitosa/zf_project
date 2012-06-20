@@ -16,7 +16,7 @@ class Basico_OPController_MensagemTemplateOPController extends Basico_AbstractOP
 	 * 
 	 * @var Basico_OPController_MensagemTempĺateOPController
 	 */
-	private static $_singleton;
+	protected static $_singleton;
 	
 	/**
 	 * @var Basico_Model_Mensagem
