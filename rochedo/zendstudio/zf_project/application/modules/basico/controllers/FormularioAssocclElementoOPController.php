@@ -255,4 +255,15 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 		// retornando array de objetos
 		return $objsFormularioFormularioElemento;
 	}
+
+	/**
+	 * Retorna todos um array contendo todos os ids dos elementos associados a um formulário, ordenado pelo atributo "ordem"
+	 * 
+	 * @param unknown_type $idFormulario
+	 */
+	public function retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario)
+	{
+		// retornando array de dados
+		return $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", 'ordem');
+	}
 }

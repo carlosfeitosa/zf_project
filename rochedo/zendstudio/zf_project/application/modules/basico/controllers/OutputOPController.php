@@ -112,39 +112,4 @@ class Basico_OPController_OutputOPController extends Basico_AbstractOPController
 				return OUTPUT_DOJO;
 		}
 	}
-
-	/**
-	 * Verifica se um determinado formulário possui algum template com output ajax
-	 * 
-	 * @param String $nomeFormulario
-	 * 
-	 * @return Boolean
-	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 03/04/2012
-	 */
-	public static function verificaFormularioTemplateOutputAjaxViaSQL($nomeFormulario)
-	{
-		// verificando se foi passado o nome do formulário
-		if (!$nomeFormulario) 
-			return false;
-
-		// recuperando valores
-		$outputAjax = FORM_GERADOR_OUTPUT_AJAX;
-
-		// montando query
-		$queryResultado = "SELECT o.id
-						   FROM basico.formulario f
-						   LEFT JOIN basico_formulario.assoccl_template fat ON (f.id = fat.id_formulario)
-						   LEFT JOIN basico_template.assoccl_output tao ON (fat.id_template = tao.id_template)
-						   LEFT JOIN basico.output o ON (tao.id_output = o.id)
-						   WHERE o.nome = '{$outputAjax}'
-						   AND f.form_name = '{$nomeFormulario}'";
-
-		// executando query e recuperando o resultados em um array
-		$arrayResultado = Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($queryResultado);
-
-		// retornando se houve resultado
-		return (count($arrayResultado) > 0);
-	}
 }

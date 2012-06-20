@@ -46,6 +46,16 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @var Basico_OPController_FormularioElementoOPController
 	 */
 	protected $_formularioElementoOPController;
+
+	/**
+	 * Controlador de associações entre formulário e elementos
+	 * 
+	 * @var Basico_OPController_FormularioAssocclElementoOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	protected $_formularioAssocclElementoOPController;
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioOPController.
@@ -83,7 +93,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
-		$this->_formularioElementoOPController = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
 
 		return;
 	}
@@ -405,22 +416,6 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	}
 
 	/**
-	 * Verifica se um determinado formulário possui algum template com output ajax
-	 * 
-	 * @param String $nomeFormulario
-	 * 
-	 * @return Boolean
-	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 03/04/2012
-	 */
-	public static function verificaTemplateOutputAjaxViaSQL($nomeFormulario)
-	{
-		// retornando resultado da chamada ao método de verificação de output ajax do controlador de templates
-		return Basico_OPController_TemplateOPController::verificaFormularioOutputAjaxViaSQL($nomeFormulario);
-	}
-
-	/**
 	 * Manipula os decorators do formulário para permitir submissão AJAX
 	 * 
 	 * @param Zend_Form $formulario
@@ -438,5 +433,56 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		$formulario->removeDecorator('DijitForm');
 		// adicionando decorator AjaxForm
 		$formulario->addDecorators(array('AjaxForm', 'DijitForm'));
+	}
+
+	/**
+	 * Verifica se todos os elementos associados a um formulário (incluindo sub-formulários)
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja verificar
+	 * 
+	 * @return Boolean - true se todos os elementos associados são possíveis e false caso não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function verificaElementosFomularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados da associação de formulario com seus elementos
+		$arrayIdsElementosFormularios = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario);
+		
+		Basico_OPController_UtilOPController::print_debug($arrayIdsElementosFormularios, true, false, true);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

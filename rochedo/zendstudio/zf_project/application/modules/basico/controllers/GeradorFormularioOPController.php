@@ -112,8 +112,10 @@ class Basico_OPController_GeradorFormularioOPController
 	private function initControllers()
 	{
 		// inicializando os controladores utilizados pelo controlador principal
-		$this->_formularioOPController = Basico_OPController_FormularioOPController::getInstance();
-		$this->_categoriaOPController  = Basico_OPController_CategoriaOPController::getInstance();
+		$this->_formularioOPController 				  = Basico_OPController_FormularioOPController::getInstance();
+		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
+		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_categoriaOPController  				  = Basico_OPController_CategoriaOPController::getInstance();
 
 		return;
 	}
@@ -177,7 +179,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$idCategoriaFormulario = $this->_formularioOPController->retornaIdCategoriaFormularioPorIdCategoria($idFormulario);
 
 		// retornando o resultado da verificação
-		return ($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario));
+		return (($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario)) and ($this->_formularioOPController->verificaElementosFomularioPorIdFormulario($idFormulario)));
 	}
 
 	private function verificaElementosFormulario($idFormulario)

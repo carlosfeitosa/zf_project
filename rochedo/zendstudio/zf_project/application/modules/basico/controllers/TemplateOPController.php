@@ -193,12 +193,6 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 				Basico_OPController_IncludeOPController::processaIncludes($view, $arrayIncludesFormulario);
 			}
 
-			// verificando se precisa adicionar decorators AJAX
-			if (Basico_OPController_FormularioOPController::verificaTemplateOutputAjaxViaSQL($nomeForm)) {
-				// adicionando decoratos do AJAX
-				Basico_OPController_FormularioOPController::adicionaAjaxDecorator($form);
-			}
-
 			// processando o elemento hash do formulario, se houver
 			$chaveArrayPool = self::processaHash($form);
 			// localizando e processando os elementos ocultos
@@ -213,22 +207,6 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 			// verificando se existe rascunho no form
 			Basico_OPController_TemplateOPController::getInstance()->processaRascunho($view, $form, $permiteRascunho);
 		}
-	}
-
-	/**
-	 * Verifica se um determinado formulário possui algum template com output ajax
-	 * 
-	 * @param String $nomeFormulario
-	 * 
-	 * @return Boolean
-	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 03/04/2012
-	 */
-	public static function verificaFormularioOutputAjaxViaSQL($nomeFormulario)
-	{
-		// retornando resultado da chamada ao método de verificação de output ajax do controlador de outputs
-		return Basico_OPController_OutputOPController::verificaFormularioTemplateOutputAjaxViaSQL($nomeFormulario);
 	}
 
 	/**

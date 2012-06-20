@@ -140,7 +140,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	/**
 	 * Retorna o elemento cujo nome foi passado por parametro
 	 * 
-	 * @param unknown_type $nomeElemento
+	 * @param String $nomeElemento
 	 * 
 	 * @return Basico_Model_FormularioElemento|null
 	 */
