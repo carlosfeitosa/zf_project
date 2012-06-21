@@ -33,7 +33,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @var String
 	 */
 	const nomeTabelaModelo  = 'basico.formulario';
-	
+
 	/**
 	 * Nome do campo id da tabela basico.formulario
 	 * 
@@ -56,7 +56,27 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @since 20/06/2012
 	 */
 	protected $_formularioAssocclElementoOPController;
-	
+
+	/**
+	 * Controlador de componentes dos formulários e elementos
+	 * 
+	 * @var Basico_OPController_ComponenteOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	protected $_componenteOPController;
+
+	/**
+	 * Controlador de categproas
+	 * 
+	 * @var Basico_OPController_CategoriaOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	protected $_categoriaOPController;
+
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioOPController.
 	 * 
@@ -95,6 +115,8 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		// inicializando controladores utilizados por este controlador
 		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
 		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
+		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
+		$this->_categoriaOPController                 = Basico_OPController_CategoriaOPController::getInstance();
 
 		return;
 	}
@@ -293,10 +315,10 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function retornaArrayIncludesFormulario($nomeFormulario, $nomeOutput)
+	public static function retornaArrayIncludesFormulario($nomeFormulario)
 	{
 		// chamando metodo de recuperação de includes de formulários
-		return Basico_OPController_IncludeOPController::retornaArrayIncludesFormulario($nomeFormulario, $nomeOutput);
+		return Basico_OPController_IncludeOPController::retornaArrayIncludesFormulario($nomeFormulario);
 	}
 
 	/**
@@ -352,7 +374,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 20/06/2012
 	 */
-	public function retornaIdCategoriaFormularioPorIdCategoria($idFormulario)
+	public function retornaIdCategoriaFormularioPorIdFormulario($idFormulario)
 	{
 		// verificando se foi passado o id do formulário
 		if ((!$idFormulario) or (!is_int($idFormulario))) {
@@ -370,6 +392,88 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		}
 
 		return false;
+	}
+
+	/**
+	 * Retorna o id do componente do formulario
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Integer|false
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaIdComponenteFormularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados
+		$arrayIdComponenteFormulario = $this->_retornaArrayDadosObjetoPorId($idFormulario, array('idComponente'));
+
+		// se retornou um objeto retorna o id da categoria
+		if (is_array(($arrayIdComponenteFormulario))) {
+			// retornando o id da categoria
+			return (int) $arrayIdComponenteFormulario['idComponente'];
+		}
+
+		return false;
+	}
+
+	/**
+	 * Retorna um array contendo os ids dos componentes de formulários
+	 * 
+	 * @param array $arrayIdsFormulario - array contendo os ids dos formulários que deseja recuperar os ids dos componentes
+	 * 
+	 * @return Array|false - array contendo os ids dos componentes dos formulários ou falso caso não consiga
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaArrayIdsComponentesFormulariosPorArrayIdsFormulario(array $arrayIdsFormulario)
+	{
+		// verificando se foram passados elementos no array de ids de formulários
+		if (!count($arrayIdsFormulario)) {
+			// retornando falso
+			return false;
+		}
+
+		// tranformando o array em string
+		$stringIdsFormuarios = implode(',', $arrayIdsFormulario);
+
+		// recuperando array com os ids dos componentes
+		$arrayIdsComponentes = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsFormuarios})", null, null, null, array('idComponente'));
+
+		// limpando memória
+		unset($stringIdsFormuarios);
+
+		// verificando se foram recuperados os dados
+		if (!count($arrayIdsComponentes)) {
+			// retornando falso
+			return false;
+		}
+
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// loop para popular o array de retorno
+		foreach ($arrayIdsComponentes as $arrayValor) {
+			// setando o valor no array
+			$arrayRetorno[] = $arrayValor['idComponente'];
+
+			// limpando memória
+			unset($arrayValor);
+		}
+
+		// limpando memória
+		unset($arrayIdsComponentes);
+
+		// retornando array
+		return $arrayRetorno;
 	}
 
 	/**
@@ -416,6 +520,58 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	}
 
 	/**
+	 * Retorna um array contendo os ids dos sub-formulários de um formulário
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja recuperar os ids dos sub-formulários
+	 * 
+	 * @return Array - array contendo os ids dos sub-formulários de um formulário ou false se não haver nenhum sub-formulário
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaArrayIdsSubFormulariosPorIdFormulario($idFormulario)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando array vazio
+			return $arrayRetorno;
+		}
+
+		// recuperando o objeto formulario
+	 	$arrayIdsFormulariosFilhos = $this->_retornaArrayDadosObjetosPorParametros("id_formulario_pai = {$idFormulario}", 'ordem', null, null, array('id'));
+
+	 	// verificando o resultado da recuperação
+	 	if (!is_array($arrayIdsFormulariosFilhos)) {
+	 		// retornando array vazio
+	 		return $arrayRetorno;
+	 	}
+
+	 	// loop para montar a array de resposta
+	 	foreach ($arrayIdsFormulariosFilhos as $arrayValor) {
+	 		// montando array de resultados
+	 		$arrayRetorno[] = $arrayValor['id'];
+
+	 		// verificando se o sub-formulário possui sub-formulários
+	 		if ($this->existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)) {
+	 			// recuperando os ids dos sub-formulários e mesclando com o array de retorno
+	 			$arrayRetorno = array_merge($arrayRetorno, $this->retornaArrayIdsSubFormulariosPorIdFormulario($arrayValor['id']));
+	 		}
+
+	 		// limpando memória
+	 		unset($arrayValor);
+	 	}
+
+	 	// limpando memória
+	 	unset($arrayIdsFormulariosFilhos);
+
+	 	// retornando array de resultados
+	 	return $arrayRetorno;
+	}
+
+	/**
 	 * Manipula os decorators do formulário para permitir submissão AJAX
 	 * 
 	 * @param Zend_Form $formulario
@@ -436,7 +592,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	}
 
 	/**
-	 * Verifica se todos os elementos associados a um formulário (incluindo sub-formulários)
+	 * Verifica se todos os elementos associados a um formulário (incluindo sub-formulários) podem ser utilizados (não possuem problemas de compatibilidade)
 	 * 
 	 * @param Integer $idFormulario - id do formulário que deseja verificar
 	 * 
@@ -445,7 +601,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 20/06/2012
 	 */
-	public function verificaElementosFomularioPorIdFormulario($idFormulario)
+	public function verificaCompatibilidadeElementosFomularioPorIdFormulario($idFormulario)
 	{
 		// verificando se foi passado o id do formulário
 		if ((!$idFormulario) or (!is_int($idFormulario))) {
@@ -453,36 +609,46 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 			return false;
 		}
 
-		// recuperando array de dados da associação de formulario com seus elementos
-		$arrayIdsElementosFormularios = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario);
-		
-		Basico_OPController_UtilOPController::print_debug($arrayIdsElementosFormularios, true, false, true);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// inicializando variáveis
+		$arrayIdsSubFormularios = array();
+
+		// recuperando a categoria do componente do formulário
+		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaCompoentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
+
+		// verificando se o formulário possui sub-formulários
+		if ($this->existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)) {
+			// recuperando os ids dos formulários filhos
+			$arrayIdsSubFormularios = $this->retornaArrayIdsSubFormulariosPorIdFormulario($idFormulario);
+
+			// recuperando as categorias dos componentes dos sub-formulários
+			$arrayIdsCategoriasComponentesSubFormulario = $this->_componenteOPController->retornaArrayIdsCategoriasCompoentesPorArrayIdsComponentes($this->retornaArrayIdsComponentesFormulariosPorArrayIdsFormulario($arrayIdsSubFormularios));
+		}
+
+		// recuperando os ids dos elementos do formulário e sub-formulários (caso existam)
+		$arrayIdsElementosFormularios = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorIdFormularioOrdemPorArrayIdsFormularios(array_merge(array($idFormulario), $arrayIdsSubFormularios));
+
+		// verificando o resultado da recuperação dos ids dos elementos e subforms e elementos de subforms
+		if ((!is_array($arrayIdsElementosFormularios)) or (!count($arrayIdsElementosFormularios))) {
+			// retornando falso
+			return false;
+		}
+
+		// verificando se, caso haja sub-formulários, as categorias dos componentes deles são compatíveis
+		if ((isset($arrayIdsCategoriasComponentesSubFormulario)) and (!$this->_categoriaOPController->verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesSubFormularios($idCategoriaComponenteFormulario, $arrayIdsCategoriasComponentesSubFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando os ids das categorias dos componentes dos elementos dos formulários
+		$arrayIdsCategoriasComponentesElementos = $this->_componenteOPController->retornaArrayIdsCategoriasCompoentesPorArrayIdsComponentes($this->_formularioElementoOPController->retornaArrayIdsComponentesElementosPorArrayIdsElementos($arrayIdsElementosFormularios));
+
+		// verificando se a categoria dos componentes dos elementos é compatível com a categoria do componente do formulário
+		if (!$this->_categoriaOPController->verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesElementos($idCategoriaComponenteFormulario, $arrayIdsCategoriasComponentesElementos)) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando sucesso
+		return true;	
 	}
 }

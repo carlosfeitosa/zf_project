@@ -171,7 +171,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function processaFormularios(Zend_View $view, array $arrayFormularios, &$permiteRascunho, $nomeOutput)
+	public static function processaFormularios(Zend_View $view, array $arrayFormularios, &$permiteRascunho)
 	{
 		// limpando o pool de elementos ocultos
 		Basico_OPController_SessionOPController::limpaTodasChavesPoolElementosOcultos();
@@ -185,7 +185,7 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 			$nomeForm = str_replace($nomeModulo, "", $form->getName());
 
 			// recuperando includes do formulário
-			$arrayIncludesFormulario = Basico_OPController_FormularioOPController::retornaArrayIncludesFormulario($nomeForm, $nomeOutput);
+			$arrayIncludesFormulario = Basico_OPController_FormularioOPController::retornaArrayIncludesFormulario($nomeForm);
 
 			// verificando é necessário incluir arquivos
 			if (count($arrayIncludesFormulario)) {

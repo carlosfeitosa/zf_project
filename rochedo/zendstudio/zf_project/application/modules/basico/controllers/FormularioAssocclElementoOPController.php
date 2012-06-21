@@ -257,13 +257,76 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 	}
 
 	/**
+	 * Retorna todos um array contendo todos os ids dos elementos associados a um conjunto de formulários, ordenado pelo atributo "ordem"
+	 * 
+	 * @param Array $ArrayIdsFormularios
+	 * 
+	 * @return Array|false - array contendo os ids dos elementos associados ou false caso não haja elementos
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaArrayIdsElementosFormularioOrdenadoPorIdFormularioOrdemPorArrayIdsFormularios(array $arrayIdsFormularios)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se foi passado o parametro do id do formulario
+		if (!count($arrayIdsFormularios)) {
+			// limpando memória
+			unset($arrayRetorno);
+
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsFormularios = implode(',', $arrayIdsFormularios);
+
+		// recuperando array de dados
+		$arrayIdsElemenetos = $this->_retornaArrayDadosObjetosPorParametros("id_formulario in ({$stringIdsFormularios})", array('id_formulario','ordem'), null, null, array('idElemento'));
+
+		// verificando o resultado da recuperação
+		if (!count($arrayIdsElemenetos)) {
+			// retornando falso
+			return false;
+		}
+
+		// loop para montar array de resposta
+		foreach ($arrayIdsElemenetos as $valor) {
+			// adicionado elemento no array de resposta
+			$arrayRetorno[] = $valor['idElemento'];
+
+			// limpando memória
+			unset($valor);
+		}
+
+		// limpando memória
+		unset($arrayIdsElemenetos);
+
+		// retornando array
+		return $arrayRetorno;
+	}
+
+	/**
 	 * Retorna todos um array contendo todos os ids dos elementos associados a um formulário, ordenado pelo atributo "ordem"
 	 * 
-	 * @param unknown_type $idFormulario
+	 * @param Integer $idFormulario
+	 * 
+	 * @return Array|false - array contendo os ids dos elementos associados ou false caso não haja elementos
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
 	 */
 	public function retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario)
 	{
-		// retornando array de dados
-		return $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", 'ordem');
+		// verificando se foi passado o parametro do id do formulario
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando array
+		return $this->retornaArrayIdsElementosFormularioOrdenadoPorIdFormularioOrdemPorArrayIdsFormularios(array($idFormulario));
 	}
 }

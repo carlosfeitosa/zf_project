@@ -14,6 +14,61 @@
 class Basico_OPController_CategoriaOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
 	/**
+	 * Constante que representa a categoria COMPONENTE_HTML
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_HTML = 'COMPONENTE_HTML';
+	/**
+	 * Constante que representa a categoria COMPONENTE_HTML_JAVASCRIPT
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_HTML_JAVASCRIPT = 'COMPONENTE_HTML_JAVASCRIPT';
+	/**
+	 * Constante que representa a categoria COMPONENTE_DOJO
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_DOJO = 'COMPONENTE_DOJO';
+	/**
+	 * Constante que representa a categoria COMPONENTE_ZF
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_ZF = 'COMPONENTE_ZF';
+	/**
+	 * Constante que representa a categoria COMPONENTE_ROCHEDO
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_ROCHEDO = 'COMPONENTE_ROCHEDO';
+	/**
+	 * Constante que representa a categoria COMPONENTE_AJAXTERCEIROS
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	const CATEGORIA_COMPONENTE_AJAXTERCEIROS = 'COMPONENTE_AJAXTERCEIROS';
+
+	/**
 	 * Instância do controlador Basico_OPController_CategoriaOPController.
 	 * @var Basico_OPController_CategoriaOPController
 	 */
@@ -934,9 +989,293 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 		return ((Basico_OPController_TipoCategoriaOPController::TIPO_CATEGORIA_FORMULARIO === $objetoCategoria->getTipoCategoriaObject()->nome) and (Basico_OPController_TipoCategoriaOPController::TIPO_CATEGORIA_FORMULARIO === $objetoCategoria->getTipoCategoriaRootCategoriaPaiObject()->nome));
 	}
 
-	
-	public static function retornaOperacaoValidacaoTokenPorIdCategoria($idCategoria)
+	/**
+	 * Retorna o nome de uma categoria através de seu id
+	 * 
+	 * @param Integer $idCategoria - id da categoria que deseja recuperar o nome
+	 * 
+	 * @return String - nome da categoria
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaNomeCategoriaPorIdCategoria($idCategoria)
 	{
-		
+		// verificando se foi passado o id da categoria
+		Basico_OPController_UtilOPController::retornaValorTipado($idCategoria, TIPO_INTEIRO);
+
+		// recuperando o nome da categoria
+		$arrayNomeCategoria = $this->_retornaArrayDadosObjetoPorId($idCategoria, array('nome'));
+
+		// verificando se foi recuperado o array com os dados da categoria
+		if (!count($arrayNomeCategoria)) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando o nome da categoria
+		return $arrayNomeCategoria['nome'];
+	}
+
+	/**
+	 * Verifica se os ids das categorias de componentes de sub-formulários são compatíveis com formulário HTML básico, sem uso de javascript
+	 * 
+	 * @param Array $arrayIdsCategoriasComponentesSubFormularios - ids das categorias dos componentes dos sub-formulários
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes de sub-formulários forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesSubFormulariosHTML(array $arrayIdsCategoriasComponentesSubFormularios)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if (!count($arrayIdsCategoriasComponentesSubFormularios)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesSubFormularios = implode(',', $arrayIdsCategoriasComponentesSubFormularios);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesSubFormularios = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesSubFormularios})");
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesSubFormularios as $objetoCategoriaComponenteSubFormulario) {
+			// verificando a categoria
+			if (self::CATEGORIA_COMPONENTE_HTML !== $objetoCategoriaComponenteSubFormulario->getRootCategoriaPaiObject()->nome) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Verifica se os ids das categorias de componentes de sub-formulários são compatíveis com formulário HTML com javascript
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
+	 * @param Array $arrayIdsCategoriasComponentesSubFormularios - ids das categorias dos componentes dos sub-formulários
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes de sub-formulários forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesSubFormulariosHTMLJavascript($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesSubFormularios)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesSubFormularios))) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesSubFormularios = implode(',', $arrayIdsCategoriasComponentesSubFormularios);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesSubFormularios = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesSubFormularios})");
+
+		// recuperando o objeto categoria do id da categoria do componente do formulário pai
+		$objetoCategoriaComponenteFormularioPai = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// verificando o resultado da recuperação do array de objetos categoria dos componentes dos formulários
+		if (!is_array($arrayObjetosCategoriaComponentesSubFormularios)) {
+			// transformando o resultado em array
+			$arrayObjetosCategoriaComponentesSubFormularios = array($arrayObjetosCategoriaComponentesSubFormularios);
+		}
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesSubFormularios as $objetoCategoriaComponenteSubFormulario) {
+			// verificando a categoria
+			if ((self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT !== $objetoCategoriaComponenteSubFormulario->getRootCategoriaPaiObject()->nome) or ($objetoCategoriaComponenteFormularioPai->nome !== $objetoCategoriaComponenteSubFormulario->nome)) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Verifica a compatibilidade entre as categorias de um formulário e seus sub-formulários
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
+	 * @param array $arrayIdsCategoriasComponentesSubFormularios - array com os ids das categorias dos componentes dos sub-formulários
+	 * 
+	 * @return Boolean - true se as categorias forem compatíveis e false caso não sejam compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com
+	 * @since 20/06/2012
+	 */
+	public function verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesSubFormularios($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesSubFormularios)
+	{
+		// verificando se foram passados os ids do formulário pai e ids dos sub-formulários
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesSubFormularios))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando o objeto categoria pai da categoria do componente do formulário
+		$objetoCategoriaComponenteFormulario = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// switch para verificar se as categorias dos sub-formulários
+		switch ($objetoCategoriaComponenteFormulario->getRootCategoriaPaiObject()->nome) {
+			case self::CATEGORIA_COMPONENTE_HTML:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesSubFormulariosHTML($arrayIdsCategoriasComponentesSubFormularios);
+			break;
+			case self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesSubFormulariosHTMLJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesSubFormularios);
+			break;
+			default:
+				// retornando falso
+				return false;
+			break;
+		}
+	}
+
+	/**
+	 * Verifica se os ids das categorias de componentes de elementos são compatíveis com formulário HTML básico, sem uso de javascript
+	 * 
+	 * @param Array $arrayIdsCategoriasComponentesElementos - ids das categorias dos componentes dos elementos
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes de elementos forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesElementosHTML(array $arrayIdsCategoriasComponentesElementos)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if (!count($arrayIdsCategoriasComponentesElementos)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesElementos = implode(',', $arrayIdsCategoriasComponentesElementos);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesElementos = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesElementos})");
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesElementos as $objetoCategoriaComponenteElemento) {
+			// verificando a categoria
+			if (self::CATEGORIA_COMPONENTE_HTML !== $objetoCategoriaComponenteElemento->getRootCategoriaPaiObject()->nome) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Verifica se os ids das categorias de componentes de sub-formulários são compatíveis com formulário HTML com javascript
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
+	 * @param Array $arrayIdsCategoriasComponentesElementos - ids das categorias dos componentes dos elementos
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes dos elementos forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesElementosHTMLJavascript($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesElementos)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesElementos))) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesElementos = implode(',', $arrayIdsCategoriasComponentesElementos);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesElementos = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesElementos})");
+
+		// recuperando o objeto categoria do id da categoria do componente do formulário pai
+		$objetoCategoriaComponenteFormularioPai = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// verificando o resultado da recuperação do array de objetos categoria dos componentes dos formulários
+		if (!is_array($arrayObjetosCategoriaComponentesElementos)) {
+			// transformando o resultado em array
+			$arrayObjetosCategoriaComponentesElementos = array($arrayObjetosCategoriaComponentesElementos);
+		}
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesElementos as $objetoCategoriaComponenteElemento) {
+			// verificando a categoria
+			if (((self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT !== $objetoCategoriaComponenteElemento->getRootCategoriaPaiObject()->nome) or ($objetoCategoriaComponenteFormularioPai->nome !== $objetoCategoriaComponenteElemento->nome)) and ((!$this->verificaExcessaoCompatibilidadeCategoriaComponenteElementoFormularioHTMLJavascript($objetoCategoriaComponenteElemento->nome)))) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+
+	/**
+	 * Verifica a excessão de compatibilidade entre a categoria de um componente de um elemento dentro de um formulario HTML Javascript  
+	 * 
+	 * @param String $nomeCategoriaComponenteElemento
+	 * 
+	 * @return Boolean - true se a excessão for permitida, false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	private function verificaExcessaoCompatibilidadeCategoriaComponenteElementoFormularioHTMLJavascript($nomeCategoriaComponenteElemento)
+	{
+		// retorando verificação de excessão
+		return ((self::CATEGORIA_COMPONENTE_ZF === $nomeCategoriaComponenteElemento) or (self::CATEGORIA_COMPONENTE_ROCHEDO === $nomeCategoriaComponenteElemento) or (self::CATEGORIA_COMPONENTE_AJAXTERCEIROS === $nomeCategoriaComponenteElemento));
+	}
+
+	/**
+	 * Verifica a compatibilidade entre as categorias de um formulário e seus elementos
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
+	 * @param array $arrayIdsCategoriasComponentesElementos - array com os ids das categorias dos componentes dos elementos
+	 * 
+	 * @return Boolean - true se as categorias forem compatíveis e false caso não sejam compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com
+	 * @since 21/06/2012
+	 */
+	public function verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesElementos($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesElementos)
+	{
+		// verificando se foram passados os ids do formulário pai e ids dos elementos
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesElementos))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando o objeto categoria pai da categoria do componente do formulário
+		$objetoCategoriaComponenteFormulario = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// switch para verificar se as categorias dos sub-formulários
+		switch ($objetoCategoriaComponenteFormulario->getRootCategoriaPaiObject()->nome) {
+			case self::CATEGORIA_COMPONENTE_HTML:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesElementosHTML($arrayIdsCategoriasComponentesElementos);
+			break;
+			case self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesElementosHTMLJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesElementos);
+			break;
+			default:
+				// retornando falso
+				return false;
+			break;
+		}
 	}
 }

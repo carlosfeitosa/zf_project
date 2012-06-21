@@ -104,10 +104,10 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractOPControlle
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function retornaArrayIncludesFormulario($nomeFormulario, $nomeOutput)
+	public static function retornaArrayIncludesFormulario($nomeFormulario)
 	{
 		// verificando se foi passado o nome do form
-		if ((!$nomeFormulario) or (!$nomeOutput)) {
+		if (!$nomeFormulario) {
 			// retornando nulo
 			return null;
 		}
@@ -119,35 +119,26 @@ class Basico_OPController_IncludeOPController extends Basico_AbstractOPControlle
 		// montando query com as categorias e includes de um formulario/output
 		$queryIncludesFormulario = "SELECT COUNT(i.id) AS quantidade,
 									       c.nome AS nome_categoria, i.uri,
-									       {$isnull}(fi.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(faeai.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(cai.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(tai.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(oai.ordem, '0') AS ordem
+									       {$isnull}(fi.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(faeai.ordem, '0') {$concatenador} '-' {$concatenador} {$isnull}(cai.ordem, '0') AS ordem
 									
 									FROM basico.formulario f
 									LEFT JOIN basico.formulario ff ON (f.id = ff.id_formulario_pai)
 									LEFT JOIN basico_formulario.assoccl_elemento fae ON (f.id = fae.id_formulario)
 									LEFT JOIN basico_formulario.elemento e ON (fae.id_elemento = e.id)
 									LEFT JOIN basico.componente co ON (e.id_componente = co.id)
-									LEFT JOIN basico_formulario.assoccl_template fat ON (f.id = fat.id_formulario)
-									LEFT JOIN basico.template tp ON (fat.id_template = tp.id)
-									LEFT JOIN basico_template.assoccl_output tao ON (tp.id = tao.id_template)
-									LEFT JOIN basico.output o ON (tao.id_output = o.id)
 									LEFT JOIN basico_formulario.assoccl_include fi ON (f.id = fi.id_formulario)
 									LEFT JOIN basico_form_assoccl_elemento.assoccl_include faeai ON (fae.id = faeai.id_assoccl_elemento)
 									LEFT JOIN basico_componente.assoccl_include cai ON (co.id = cai.id_componente)
-									LEFT JOIN basico_template.assoccl_include tai ON (tp.id = tai.id_template)
-									LEFT JOIN basico_output.assoccl_include oai ON (o.id = oai.id_output)
 									LEFT JOIN basico.include i ON (fi.id_include    = i.id OR
 									                               faeai.id_include = i.id OR
-									                               cai.id_include   = i.id OR
-									                               tai.id_include   = i.id OR
-									                               oai.id_include   = i.id)
+									                               cai.id_include   = i.id)
 									LEFT JOIN basico.categoria c ON (i.id_categoria = c.id)
 									
 									WHERE f.form_name = '{$nomeFormulario}'
-									AND o.nome = '{$nomeOutput}'
 									AND i.ativo = true
 									AND i.id IS NOT NULL
 									
-									GROUP BY c.nome, i.uri, fi.ordem, faeai.ordem, cai.ordem, tai.ordem, oai.ordem
+									GROUP BY c.nome, i.uri, fi.ordem, faeai.ordem, cai.ordem
 									
 									ORDER BY ordem";
 

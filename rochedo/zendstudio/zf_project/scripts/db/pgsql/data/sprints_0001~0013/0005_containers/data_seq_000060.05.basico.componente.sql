@@ -28,8 +28,28 @@ AND cpai.nome = 'COMPONENTE_HTML'
 AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Form_SubForm' AS nome, 'NOME_ZF_FORM_SUBFORM' AS constante_textual, 'DESCRICAO_ZF_FORM_SUBFORM' AS constante_textual_descricao,
+	   '''Zend_Form_SubForm''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_HTML'
+AND c.nome = 'COMPONENTE_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_Form' AS nome, 'NOME_DOJO_FORM' AS constante_textual, 'DESCRICAO_DOJO_FORM' AS constante_textual_descricao,
 	   '''Zend_Dojo_Form''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DOJO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Form_SubForm' AS nome, 'NOME_DOJO_FORM_SUBFORM' AS constante_textual, 'DESCRICAO_DOJO_FORM_SUBFORM' AS constante_textual_descricao,
+	   '''Zend_Dojo_Form_SubForm''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)

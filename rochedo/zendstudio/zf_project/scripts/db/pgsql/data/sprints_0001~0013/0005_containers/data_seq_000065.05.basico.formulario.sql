@@ -137,7 +137,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -218,7 +218,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -249,7 +249,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -279,7 +279,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -644,7 +644,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -793,7 +793,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -822,7 +822,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,
@@ -876,7 +876,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, id_formulario_pai, 
 				 LEFT JOIN basico.categoria c ON (comp.id_categoria = c.id)
 				 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 				 LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
-				 WHERE comp.nome = 'DOJO_Form'
+				 WHERE comp.nome = 'DOJO_Form_SubForm'
 				 AND c.nome = 'COMPONENTE_DOJO'
 				 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 				 AND t.nome = 'COMPONENTE') AS id_componente,

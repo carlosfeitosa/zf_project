@@ -194,9 +194,6 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
      */
     private function processaFormularios($contexto)
     {
-    	// recuperando o output da view
-    	$nomeOutput = Basico_OPController_OutputOPController::retornaOutputViaContextoView($contexto);
-
     	// percorre as variáveis e objetos contidas na view
 		foreach ($this->view->getVars() as $key0 => $value0){
 
@@ -224,7 +221,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 						$permiteRascunho = false;
 
 						// processando formularios
-						Basico_OPController_TemplateOPController::processaFormularios($this->view, $arrayFormsSubForms, $permiteRascunho, $nomeOutput);
+						Basico_OPController_TemplateOPController::processaFormularios($this->view, $arrayFormsSubForms, $permiteRascunho);
 						
 						// verificando se eh pra inserir o script de inicializacao do rascunho
 						if ($permiteRascunho) {

@@ -120,4 +120,83 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 		// retornando array de resultados
 		return $arrayRetorno;
 	}
+
+	/**
+	 * Retorna o id da categoria de um componente
+	 * 
+	 * @param Integer $idComponente - id do componente que deseja recuperar a categoria
+	 * 
+	 * @return Integer|false - id da categoria ou false caso não encontre
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaIdCategoriaCompoentePorIdComponente($idComponente)
+	{
+		// verificando se foi passado o id do componente
+		if ((!$idComponente) or (!is_int($idComponente))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados
+		$arrayIdCategoriaComponente = $this->_retornaArrayDadosObjetoPorId($idComponente, array('idCategoria'));
+
+		// se retornou um objeto retorna o id da categoria
+		if (is_array(($arrayIdCategoriaComponente))) {
+			// retornando o id da categoria
+			return (int) $arrayIdCategoriaComponente['idCategoria'];
+		}
+
+		return false;
+	}
+
+	/**
+	 * Retorna um array com os ids das categorias de componentes
+	 * 
+	 * @param Array $arrayIdsComponentes - id do componente que deseja recuperar a categoria
+	 * 
+	 * @return Array|false - array de ids das categorias ou false caso não encontre
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 20/06/2012
+	 */
+	public function retornaArrayIdsCategoriasCompoentesPorArrayIdsComponentes(array $arrayIdsComponentes)
+	{
+		// verificando se foi passado o id do componente
+		if (!count($arrayIdsComponentes)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsComponentes = implode(',', $arrayIdsComponentes);
+
+		// recuperando array de dados
+		$arrayIdCategoriaComponente = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsComponentes})", null, null, null, array('idCategoria'));
+
+		// se retornou um objeto retorna o id da categoria
+		if ((!is_array(($arrayIdCategoriaComponente))) or (!count($arrayIdCategoriaComponente))) {
+			// retornando falso
+			return false;
+		}
+
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// loop para montar array de resultados
+		foreach ($arrayIdCategoriaComponente as $arrayValor) {
+			// adicionado elemento ao array de resultados
+			$arrayRetorno[] = $arrayValor['idCategoria'];
+
+			// limpando memória
+			unset($arrayValor);
+		}
+
+		// limpando memória
+		unset($arrayIdCategoriaComponente);
+
+		// retornando array de resultados
+		return $arrayRetorno;
+	}
 }

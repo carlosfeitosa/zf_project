@@ -184,4 +184,56 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 			return $objetoFormularioFormularioElemento->elementRequired;
 		}
 	}
+
+	/**
+	 * Retorna um array contendo os ids dos componentes dos elementos passados por parametro
+	 * 
+	 * @param Array $arrayIdsElementos - ids dos elementos que deseja recuperar os ids dos componentes
+	 * 
+	 * @return Array|false - array contendo os ids dos componentes dos elementos ou false se não conseguir
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public function retornaArrayIdsComponentesElementosPorArrayIdsElementos($arrayIdsElementos)
+	{
+		// verificando se foram passados elementos no array de ids de elementos
+		if (!count($arrayIdsElementos)) {
+			// retornando falso
+			return false;
+		}
+
+		// tranformando o array em string
+		$stringIdsElementos = implode(',', $arrayIdsElementos);
+
+		// recuperando array com os ids dos componentes
+		$arrayIdsComponentes = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsElementos})", null, null, null, array('idComponente'));
+
+		// limpando memória
+		unset($stringIdsElementos);
+
+		// verificando se foram recuperados os dados
+		if (!count($arrayIdsComponentes)) {
+			// retornando falso
+			return false;
+		}
+
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// loop para popular o array de retorno
+		foreach ($arrayIdsComponentes as $arrayValor) {
+			// setando o valor no array
+			$arrayRetorno[] = $arrayValor['idComponente'];
+
+			// limpando memória
+			unset($arrayValor);
+		}
+
+		// limpando memória
+		unset($arrayIdsComponentes);
+
+		// retornando array
+		return $arrayRetorno;
+	}
 }

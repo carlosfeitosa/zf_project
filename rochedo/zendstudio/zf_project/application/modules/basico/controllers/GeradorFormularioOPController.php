@@ -176,10 +176,10 @@ class Basico_OPController_GeradorFormularioOPController
 	private function verificaPossibilidadeGeracaoFormulario($idFormulario)
 	{
 		// recuperando o id da categoria do formulário
-		$idCategoriaFormulario = $this->_formularioOPController->retornaIdCategoriaFormularioPorIdCategoria($idFormulario);
+		$idCategoriaFormulario = $this->_formularioOPController->retornaIdCategoriaFormularioPorIdFormulario($idFormulario);
 
 		// retornando o resultado da verificação
-		return (($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario)) and ($this->_formularioOPController->verificaElementosFomularioPorIdFormulario($idFormulario)));
+		return (($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario)) and ($this->_formularioOPController->verificaCompatibilidadeElementosFomularioPorIdFormulario($idFormulario)));
 	}
 
 	private function verificaElementosFormulario($idFormulario)
