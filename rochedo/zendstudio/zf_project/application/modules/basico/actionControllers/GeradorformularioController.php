@@ -130,11 +130,14 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
             	$arrayExcludeModulesIds = $postFormulario['modulosFormulario'];
             }else{
             	// setando os modulos selecionado para exclusão para nulo
-                $arrayExcludeModulesIds = null;            	
+                $arrayExcludeModulesIds = array();            	
             }
 
             // gerando os formulários
-            if (Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($idFormulario, $arrayExcludeModulesIds)) {
+            $respostaGerador = Basico_OPController_GeradorOPController::geradorFormularioGerarFormulario($idFormulario, $arrayExcludeModulesIds);
+
+            // verificando resultado da geração do formulário
+            if (true === $respostaGerador) {
 
                 // carregando o titulo e subtitulo da view
                 $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO'));
@@ -147,6 +150,8 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
                 $this->_helper->Renderizar->renderizar();
 
 				return;
+            } else if (is_array($respostaGerador)) { // verificando se o resultado da geracao do formário é um array contendo as mensagens de erro 
+            	// processando as mensagens de erro
             }
         }
         

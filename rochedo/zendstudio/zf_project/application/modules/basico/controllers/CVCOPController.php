@@ -115,7 +115,7 @@ class Basico_OPController_CVCOPController
      * @param Integer $idCategoriaChaveEstrangeira
      * @param Integer $idGenerico
      * 
-     * @return null|Basico_Model_CVC
+     * @return Basico_Model_CvcCvc|null
      */
     private function retornaObjUltimaVersao($idCategoriaChaveEstrangeira, $idGenerico)
     {
@@ -678,5 +678,54 @@ class Basico_OPController_CVCOPController
 
 		// retornando sucesso
 		return true;
+	}
+
+	/**
+	 * Retorna um array com os dados sobre a versão de um objeto
+	 * 
+	 * @param Object $objeto - objeto que deseja recuperar informações sobre a versão
+	 * 
+	 * @return Array|false - array contendo as informações sobre a versão ou false caso não consiga recuperar a versão
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public function retornaArrayDadosUltimaVersaoObjeto($objeto)
+	{
+		// verificando se foi passado um objeto como parametro
+		if (!is_object($objeto)) {
+			// retoranndo falso
+			return false;
+		}
+
+	    // recuperando o valor do id generico vindo do objeto
+		$idGenerico = Basico_OPController_PersistenceOPController::bdRetornaValorIdGenericoObjeto($objeto);
+
+		// verificando se o valor de id generico existe
+		if (!$idGenerico) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando a relacao categoria chave estrangeira
+		$objCategoriaChaveEstrangeira = $this->_categoriaAssocChaveEstrangeiraOPController->retornaObjetoCategoriaChaveEstrangeiraCVC($objeto, true);
+
+		// verificando se existe a relacao com categoria chave estrangeira
+		if (isset($objCategoriaChaveEstrangeira)) {
+			// recuperando objeto CVC
+			$objCVC = $this->retornaObjUltimaVersao($objCategoriaChaveEstrangeira->id, $idGenerico);
+
+			// limpando variáveis
+			unset($objCategoriaChaveEstrangeira);
+
+			// verificando a tupla existe
+			if (isset($objCVC)) {
+				// retornando informações sobre a versão
+				return array('versao' => (int) $objCVC->versao, 'dataVersao' => $objCVC->datahoraUltimaAtualizacao);
+			}
+		} else {
+			// retornando falso
+			return false;
+		}
 	}
 }

@@ -11,7 +11,7 @@ class Basico_OPController_GeradorTokenOPController
 	 * 
 	 * @return String
 	 */
-	public static function gerarToken($blacklist)
+	public static function gerarToken(array $blacklist = array())
 	{
 		// gera o token inicial
 	    $token = md5(uniqid(rand(), true));

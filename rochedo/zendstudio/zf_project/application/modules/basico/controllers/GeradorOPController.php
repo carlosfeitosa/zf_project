@@ -12,7 +12,7 @@ class Basico_OPController_GeradorOPController
 	 * 
 	 * @return String
 	 */
-	public static function geradorTokenGerarToken($blacklist)
+	public static function geradorTokenGerarToken(array $blacklist = array())
 	{
 		// retorna o resultado do metodo "gerarToken" na classe "Basico_OPController_GeradorTokenOPController"
 		return Basico_OPController_GeradorTokenOPController::gerarToken($blacklist);
@@ -62,7 +62,7 @@ class Basico_OPController_GeradorOPController
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframewoek.com)
 	 * @since 18/06/2012
 	 */
-	public static function geradorFormularioGerarFormulario($idFormulario, array $arrayExcludeIdModules = null)
+	public static function geradorFormularioGerarFormulario($idFormulario, array $arrayExcludeIdModules = array())
 	{
 		// retorna o resultado do metodo "gerar" da classe "Basico_OPController_GeradorFormularioOPController"
 		return Basico_OPController_GeradorFormularioOPController::getInstance()->gerarFormulario($idFormulario, $arrayExcludeIdModules);

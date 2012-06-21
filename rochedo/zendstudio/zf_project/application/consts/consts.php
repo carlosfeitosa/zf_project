@@ -16,3 +16,4 @@ require_once "language/consts_lang.php";
 require_once "error/consts_error.php";
 require_once "system/consts_log.php";
 require_once "system/consts_system.php";
+require_once "system/consts_forms.php";

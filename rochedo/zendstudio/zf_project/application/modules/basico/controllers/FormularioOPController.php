@@ -68,7 +68,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	protected $_componenteOPController;
 
 	/**
-	 * Controlador de categproas
+	 * Controlador de categorias
 	 * 
 	 * @var Basico_OPController_CategoriaOPController object
 	 * 
@@ -76,6 +76,16 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * @since 20/06/2012
 	 */
 	protected $_categoriaOPController;
+
+	/**
+	 * Controlador de controle de versão de objetos
+	 * 
+	 * @var Basico_OPController_CVCOPController object
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	protected $_CVCOPController;
 
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioOPController.
@@ -117,6 +127,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
 		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
 		$this->_categoriaOPController                 = Basico_OPController_CategoriaOPController::getInstance();
+		$this->_CVCOPController                       = Basico_OPController_CVCOPController::getInstance();
 
 		return;
 	}
@@ -239,6 +250,37 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 
 		// retornando os atributos do objeto
 		return $this->_retornaArrayDadosObjetoPorId($idFormulario);
+	}
+
+	/**
+	 * Retorna um array contendo informações sobre a versão de um formulário
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja recuperar informações sobre a versão
+	 * 
+	 * @return Array|false - array contendo informações sobre a versão ou falso caso não consiga recuperar as informações
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public function retornaArrayDadosVersaoFormularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando objeto formulario
+		$objetoFormulario = $this->_retornaObjetosPorParametros("id = {$idFormulario}", null, 1, 0);
+
+		// verificando se o objeto não foi recuperado
+		if (!is_object($objetoFormulario)) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando os dados sobre a versão do objeto
+		return $this->_CVCOPController->retornaArrayDadosUltimaVersaoObjeto($objetoFormulario);
 	}
 
 	/**

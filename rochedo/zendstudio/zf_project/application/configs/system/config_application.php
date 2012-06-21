@@ -67,6 +67,9 @@ define("HTACCESS_FULLFILENAME", PUBLIC_PATH . "/.htaccess");
 // definições de módulos
 define("APPLICATION_MODULES_PATH", APPLICATION_PATH . "/modules");
 
+// definições sobre formulários
+define("APPLICATION_TEMP_FORM_PATH", APPLICATION_MODULES_PATH . "/basico/forms/temp/");
+
 // definições do e-mail de suporte
 define("SUPPORT_EMAIL", "agil@facepe.br");
 

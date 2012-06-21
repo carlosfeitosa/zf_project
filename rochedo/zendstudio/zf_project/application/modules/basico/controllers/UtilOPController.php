@@ -536,19 +536,45 @@ class Basico_OPController_UtilOPController
 		// retornando o resource de um arquivo aberto
 		return fopen($fullFileName, 'w+');
 	}
-	
+
+	/**
+	 * Exclui um arquivo do sistema de arquivos
+	 * 
+	 * @param String $fullFileName - nome do arquivo que deseja excluir
+	 * 
+	 * @return Boolean - true se conseguir excluir, false se não
+	 * 
+	 * @author Carlos Feitosa / João Vaconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public static function excluiArquivo($fullFileName)
+	{
+		// retornando o resultado da exclusão de um arquivo, se o arquivo existir
+		return ((file_exists($fullFileName)) and (unlink($fullFileName)));
+	}
+
 	/**
 	 * Retorna se conseguir escrever no arquivo
 	 * 
-	 * @param Resource $fileResource
-	 * @param String $linha
+	 * @param Resource $fileResource - resource stream para o arquivo que deseja incluir uma linha
+	 * @param String $linha - string que será incluída no arquivo
+	 * @param Boolean $quebraLinhaAutomaticamente - true se desejar incluir uma quebra de linha no final de $linha (default false)
 	 * 
 	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 26/06/2012
 	 */
-	public static function escreveLinhaFileResource($fileResource, $linha)
+	public static function escreveLinhaFileResource($fileResource, $linha, $quebraLinhaAutomaticamente = false)
 	{
 		// inicializando variaveis
 		$tempReturn = false;
+
+		// verificando se deve incluir a quebra de linha a string que será incluída no arquivo
+		if ($quebraLinhaAutomaticamente) {
+			// adicionado quebra de linha ao final da string
+			$linha .= QUEBRA_DE_LINHA;
+		}
 
 		// escrevendo no arquivo e recuperando a quantidade de bytes escritos
 		$bytesEscritos = fputs($fileResource, $linha);
@@ -572,6 +598,22 @@ class Basico_OPController_UtilOPController
 	{
 		// retorna se conseguiu fechar o arquivo
 		return fclose($fileResource);
+	}
+
+	/**
+	 * Verifica se o parametro passado é um resource do tipo 'stream'
+	 * 
+	 * @param Stream Resource $streamResource
+	 * 
+	 * @return Boolean - true se o parametro for um resource stream ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public static function verificaStreamResource($streamResource)
+	{
+		// retornando resultado da verificação
+		return ((is_resource($streamResource)) and (get_resource_type($streamResource) === 'stream'));
 	}
 
 	/**

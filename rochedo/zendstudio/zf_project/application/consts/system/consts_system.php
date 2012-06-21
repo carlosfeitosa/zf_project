@@ -10,6 +10,8 @@
  * @since 05/06/2012
  */
 
+// definições de licença
+define('TIPO_LICENCA_USO_MODULO_BASICO', '(ainda não implementado)');
 
 // definições de constantes de aplicação
 define("TAG_LINK", "@link");
@@ -318,30 +320,6 @@ define("FORM_ELEMENTO_NAME_VALIDAR_URL", "validarUrl");
 define("OUTPUT_HTML", "OUTPUT_HTML");
 define("OUTPUT_DOJO", "OUTPUT_DOJO");
 define("OUTPUT_AJAX", "OUTPUT_AJAX");
-
-$header = <<<TEXT
-/**
-* Rochedo Framework
-*
-* Formulário gerado automáticamente pelo Gerador rochedo
-* em: @data_criacao
-*
-* LICENÇA DE USO
-*
-* (implementar licença)
-*
-*
-* @category   RochedoProject
-* @package    @modulo
-* @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
-* @license    (implementar)
-* @version    @versao: @data_versao
-*/
-TEXT;
-define("FORM_GERADOR_HEADER", $header);
-
-define("FORM_BEGIN_TAG", "<?php");
-define("FORM_END_TAG", "?>");
 
 $header = <<<TEXT
 @identacao/**
