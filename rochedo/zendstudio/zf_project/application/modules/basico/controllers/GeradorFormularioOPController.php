@@ -41,6 +41,16 @@ class Basico_OPController_GeradorFormularioOPController
 	const CABECALHO_ARQUIVO_FORMULARIO = FORM_GERADOR_FORM_FILE_HEADER;
 
 	/**
+	 * Cabeçalho da assinatura da classe do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const CABECALHO_ASSINATURA_CLASSE_FORMULARIO = FORM_GERADOR_FORM_CLASS_HEADER;
+
+	/**
 	 * Tag de abertura de script php
 	 * 
 	 * @var String
@@ -59,6 +69,46 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 21/06/2012
 	 */
 	const TAG_FECHAMENTO_PHP = FORM_END_TAG;
+	
+	/**
+	 * Chave de abertura de bloco de código
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const CHAVE_ABERTURA_CODIGO = CODE_BEGIN_TAG;
+
+	/**
+	 * Chave de fechamento de bloco de código
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const CHAVE_FECHAMENTO_CODIGO = CODE_END_TAG;
+
+	/**
+	 * Keyword 'class'
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const KEYWORD_CLASS = FORM_GERADOR_CLASS_KEYWORD;
+
+	/**
+	 * Keyword 'extends'
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const KEYWORD_EXTENDS = FORM_GERADOR_CLASS_EXTENDS_KEYWORD;
 
 	/**
 	 * Tag de substituicao da classe do formulário
@@ -79,6 +129,26 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 21/06/2012
 	 */
 	const TAG_SUBSTITUICAO_NOME_FORMULARIO = TAG_NOME_FORMULARIO;
+
+	/**
+	 * Tag de substituicao da descrição do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const TAG_SUBSTITUICAO_DESCRICAO_FORMULARIO = TAG_DESCRICAO_FORMULARIO;
+
+	/**
+	 * Tag de substituicao do autor do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const TAG_SUBSTITUICAO_AUTOR_FORMULARIO = TAG_AUTOR;
 
 	/**
 	 * Tag de substituicao da data de criação do formulário
@@ -149,6 +219,26 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 21/06/2012
 	 */
 	const TAG_SUBSTITUICAO_ANO_ATUAL = TAG_ANO_ATUAL_FORMULARIO;
+	
+	/**
+	 * Tag de substituicao do cabecalho da classe do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const CABECALHO_CLASSE_FORMULARIO = FORM_GERADOR_FORM_CLASS_HEADER;
+	
+	/**
+	 * Tag de substituicao do comentario do construtor da classe do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	const COMENTARIO_CONSTRUTOR_CLASSE_FORMULARIO = FORM_GERADOR_CONSTRUTOR_FORMULARIO_HEADER;
 
 	/**
 	 * Instancia do controlador
@@ -179,6 +269,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 19/06/2012
 	 */
 	protected $_categoriaOPController;
+
+	/**
+	 * Controlador de componente
+	 * 
+	 * @var Basico_OPController_ComponenteOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	protected $_componenteOPController;
 
 	/**
 	 * Recupera a instancia do controlador Basico_OPController_GeradorFormularioOPController
@@ -246,6 +346,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
 		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
 		$this->_categoriaOPController  				  = Basico_OPController_CategoriaOPController::getInstance();
+		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
 
 		return;
 	}
@@ -331,6 +432,24 @@ class Basico_OPController_GeradorFormularioOPController
 				return array('Não foi possível escrever o cabeçalho do arquivo.');
 			}
 
+			// escrevendo a assinatura da classe e verificando o resultado da operação
+			if (!$this->escreveCabecalhoAssinaturaEAssinaturaClasseFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'], $this->_componenteOPController->retornaComponentePorIdComponente($arrayDadosFormulario['idComponente']), Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayDadosFormulario['constanteTextual']), Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayDadosFormulario['constanteTextualDescricao']))) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever o cabeçalho e assinatura do formulário.');
+			}
+			
+			// escrevendo a tag de abertura do bloco de codigo principal da classe
+			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever a tag de abertura do bloco de codigo principal da classe.');
+			}
+			
+			// escrevendo a assinatura da classe e verificando o resultado da operação
+			if (!$this->escreveComentarioConstrutorClasseFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'])) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever o comentario do construtor da classe do formulário.');
+			}
+
 			// escrevendo a tag de fechamento do arquivo e verificando o resultado da operação
 			if (!$this->escreveTagFechamentoArquivo($resourceArquivoTemporario)) {
 				// retornando mensagens de erro
@@ -370,6 +489,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando o parametro
 		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
 			// retornando falso
+			return false;
 		}
 
 		// retornando resultado da inclusão da linha no arquivo
@@ -391,10 +511,27 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando o parametro
 		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
 			// retornando falso
+			return false;
 		}
 
 		// retornando resultado da inclusão da linha no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::TAG_FECHAMENTO_PHP);
+	}
+	
+	/**
+	 * Escreve a chave de abertura ou fechamento de um bloco de código php
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a tag de fechamento php
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	private function escreveTagInicioOuFimBlocoCodigo($resourceArquivo, $fim = false, $nivelIdentacao = 0, $quebrarLinha = true)
+	{
+		// retornando resultado da inclusão da linha no arquivo
+		return Basico_OPController_UtilOPController::escreveTagInicioOuFimBlocoCodigo($resourceArquivo);
 	}
 
 	/**
@@ -427,14 +564,98 @@ class Basico_OPController_GeradorFormularioOPController
 		// manipulando o cabeçalho
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, $cabecalhoArquivo);
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(), $cabecalhoArquivo);
-		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_TEXTO_LICENCA_USO_FORMULARIO, '(ainda não implementado)', $cabecalhoArquivo);
+		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_TEXTO_LICENCA_USO_FORMULARIO, Basico_OPController_UtilOPController::retornaConteudoArquivo(PUBLIC_PATH . "/docs/termos/termo.txt"), $cabecalhoArquivo);
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_TIPO_LICENCA_USO_FORMULARIO, self::TIPO_LICENCA_USO, $cabecalhoArquivo);
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_VERSAO_FORMULARIO, $versaoFormulario, $cabecalhoArquivo);
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_DATA_VERSAO_FORMULARIO, $datahoraVersao, $cabecalhoArquivo);
 		$cabecalhoArquivo = str_replace(self::TAG_SUBSTITUICAO_ANO_ATUAL, Zend_Date::now()->toString('YYYY'), $cabecalhoArquivo);
 
 		// escrevendo cabeçalho no arquivo
-		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoArquivo, true);
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoArquivo . QUEBRA_DE_LINHA, true);
+	}
+
+	/**
+	 * Escreve a assinatura da classe do formulário
+	 * 
+	 * @param String $nomeClasse - resource do arquivo que recebera a assinatura da classe
+	 * @param String $nomeClasse - nome da classe que será utilizada na assinatura
+	 * @param String $componenteExtends - nome do componente que a classe do formulário será extendido
+	 * @param String $nomeFormulario - nome do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * @param String $descricaoFormulario - descrição do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se cosneguir escrever a assinatura do formulário, false se não
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 22/06/2012
+	 */
+	private function escreveCabecalhoAssinaturaEAssinaturaClasseFormulario($resourceArquivo, $nomeClasse, $componenteExtends, $nomeFormulario, $descricaoFormulario = null, $autor = "Sistema")
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+			(!$nomeClasse) or (!is_string($nomeClasse)) or 
+			(!$componenteExtends) or (!class_exists($componenteExtends)) or 
+			(!$nomeFormulario) or (!is_string($nomeFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando cabecalho
+		$cabecalhoAssinturaClasseFormulario = self::CABECALHO_CLASSE_FORMULARIO;
+
+		// manipulando o cabeçalho da assinatura da classe formulario
+		$cabecalhoAssinturaClasseFormulario = str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, $cabecalhoAssinturaClasseFormulario);
+		$cabecalhoAssinturaClasseFormulario = str_replace(self::TAG_SUBSTITUICAO_DESCRICAO_FORMULARIO, $descricaoFormulario, $cabecalhoAssinturaClasseFormulario);
+		$cabecalhoAssinturaClasseFormulario = str_replace(self::TAG_SUBSTITUICAO_AUTOR_FORMULARIO, $autor, $cabecalhoAssinturaClasseFormulario);
+		$cabecalhoAssinturaClasseFormulario = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(), $cabecalhoAssinturaClasseFormulario);
+
+		// montando assinatura da classe
+		$assinaturaClasseFormulario = $this->retornaAssinaturaClasseFormulario($nomeClasse, $componenteExtends);
+
+		// escrevendo cabeçalho e assinatura da classe formulário
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoAssinturaClasseFormulario . QUEBRA_DE_LINHA . $assinaturaClasseFormulario, true);
+	}
+
+	private function retornaAssinaturaClasseFormulario($nomeClasse, $componenteExtends)
+	{
+		// verificando os parametros
+		if ((!$nomeClasse) or (!is_string($nomeClasse)) or (!$componenteExtends) or (!class_exists($componenteExtends))) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando assinatura da classe formulário
+		return self::KEYWORD_CLASS . ' ' . self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . "_Form_{$nomeClasse}" . ' ' . self::KEYWORD_EXTENDS . ' ' . $componenteExtends;
+	}
+	
+	/**
+	 * Escreve o comentario do construtor da classe do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $nomeFormulario - nome do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	private function escreveComentarioConstrutorClasseFormulario($resourceArquivo, $nomeFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$nomeFormulario) or (!is_string($nomeFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$comentarioConstrutor = self::COMENTARIO_CONSTRUTOR_CLASSE_FORMULARIO;
+
+		// manipulando o cabeçalho
+		$comentarioConstrutor = str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, $comentarioConstrutor);
+
+		// escrevendo cabeçalho no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $comentarioConstrutor . QUEBRA_DE_LINHA, true);
 	}
 
 	/**

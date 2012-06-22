@@ -151,6 +151,26 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 		return false;
 	}
 
+	public function retornaComponentePorIdComponente($idComponente)
+	{
+		// verificando se foi passado o id do componente
+		if ((!$idComponente) or (!is_int($idComponente))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados
+		$arrayComponenteComponente = $this->_retornaArrayDadosObjetoPorId($idComponente, array('componente'));
+
+		// se retornou um objeto retorna o id da categoria
+		if (is_array(($arrayComponenteComponente))) {
+			// retornando o id da categoria
+			return $arrayComponenteComponente['componente'];
+		}
+
+		return false;
+	}
+
 	/**
 	 * Retorna um array com os ids das categorias de componentes
 	 * 

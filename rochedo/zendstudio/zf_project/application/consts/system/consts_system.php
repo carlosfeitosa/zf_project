@@ -354,7 +354,6 @@ TEXT;
 define("FORM_GERADOR_SUB_FORM_INIT_COMMENT", $header);
 
 define("FORM_GERADOR_ELEMENTS", '$elements');
-define("FORM_GERADOR_CLASS_EXTENDS_ELEMENT", "extends");
 define("FORM_CLASS_EXTENDS_DOJO_FORM", "Zend_Dojo_Form");
 define("FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM", "Zend_Dojo_Form_SubForm");
 define("FORM_CLASS_EXTENDS_ZEND_FORM", "Zend_Form");

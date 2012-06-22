@@ -3231,4 +3231,40 @@ class Basico_OPController_UtilOPController
 		// retornando o cabeçalho
 		return $cabecalho;
 	}
+	
+	/**
+	 * Escreve a chave de abertura ou fechamento de um bloco de código php
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a tag de fechamento php
+	 * @param Boolean $fim - determina se é para escrever a tag de inicio ou de fim do bloco de código (default false)
+	 * @param Boolean $quebrarLinha - determina se a tag vai ser seguida de quebra de linha ou não (default true)
+	 * @param Int $nivelIdentacao - determina o nivel de identacao que a tag vai sofrer (default 0)
+	 * 
+	 * @return Boolean - true se conseguir escrever a tag no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/06/2012
+	 */
+	public static function escreveTagInicioOuFimBlocoCodigo($resourceArquivo, $fim = false, $quebrarLinha = true, $nivelIdentacao = 0)
+	{
+		// verificando o parametro
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+			// retornando falso
+			return false;
+		}
+		
+		// inicializando variavel
+		$tag = CODE_BEGIN_TAG;
+		
+		// se o parametro $fim for true a tag de end e setada na variavel
+		if ($fim)
+			// carregando variavel com a tag de fechamento de bloco de codigo
+			$tag = CODE_END_TAG;
+			
+		if ($quebrarLinha)
+			$tag .= QUEBRA_DE_LINHA;
+			
+		// retornando resultado da inclusão da linha no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao) . $tag);
+	}
 }
