@@ -19,7 +19,7 @@
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_Form' AS nome, 'NOME_ZF_FORM' AS constante_textual, 'DESCRICAO_ZF_FORM' AS constante_textual_descricao,
-	   '''Zend_Form''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Zend_Form' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -29,7 +29,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_Form_SubForm' AS nome, 'NOME_ZF_FORM_SUBFORM' AS constante_textual, 'DESCRICAO_ZF_FORM_SUBFORM' AS constante_textual_descricao,
-	   '''Zend_Form_SubForm''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Zend_Form_SubForm' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -39,7 +39,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_Form' AS nome, 'NOME_DOJO_FORM' AS constante_textual, 'DESCRICAO_DOJO_FORM' AS constante_textual_descricao,
-	   '''Zend_Dojo_Form''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Zend_Dojo_Form' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -49,7 +49,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_Form_SubForm' AS nome, 'NOME_DOJO_FORM_SUBFORM' AS constante_textual, 'DESCRICAO_DOJO_FORM_SUBFORM' AS constante_textual_descricao,
-	   '''Zend_Dojo_Form_SubForm''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Zend_Dojo_Form_SubForm' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -59,7 +59,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_PasswordTextBox' AS nome, 'NOME_DOJO_PASSWORD_TEXTBOX' AS constante_textual, 'DESCRICAO_DOJO_PASSWORD_TEXTBOX' AS constante_textual_descricao,
-	   '''PasswordTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'PasswordTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -75,7 +75,7 @@ SELECT c.id AS id_categoria,
  WHERE ct.nome = 'FORMULARIO_TEMPLATE'
  AND tp.nome = 'TEMPLATE_PASSWORD_STRENGTH_CHECKER') AS id_template,
 'DOJO_PasswordTextBox_With_Checker' AS nome, 'NOME_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual, 'DESCRICAO_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual_descricao,
-'''PasswordTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+'PasswordTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -85,7 +85,7 @@ AND c.nome = 'COMPONENTE_AJAXTERCEIROS';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_RadioButton' AS nome, 'NOME_DOJO_RADIOBUTTON' AS constante_textual, 'DESCRICAO_DOJO_RADIOBUTTON' AS constante_textual_descricao,
-	   '''RadioButton''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'RadioButton' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -95,7 +95,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_Hidden' AS nome, 'NOME_ZF_HIDDEN' AS constante_textual, 'DESCRICAO_ZF_HIDDEN' AS constante_textual_descricao,
-	   '''Hidden''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Hidden' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -105,7 +105,7 @@ AND c.nome = 'COMPONENTE_ZF';
 		
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_ValidationTextBox' AS nome, 'NOME_DOJO_VALIDATION_TEXTBOX' AS constante_textual, 'DESCRICAO_DOJO_VALIDATION_TEXTBOX' AS constante_textual_descricao,
-	   '''ValidationTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'ValidationTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -115,7 +115,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'DOJO_submitButton' AS nome, 'NOME_DOJO_SUBMIT_BUTTON' AS constante_textual, 'DESCRICAO_DOJO_SUBMIT_BUTTON' AS constante_textual_descricao,
-	   '''SubmitButton''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'SubmitButton' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -125,7 +125,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_button' AS nome, 'NOME_ZF_BUTTON' AS constante_textual, 'DESCRICAO_ZF_BUTTON' AS constante_textual_descricao,
-	   '''Button''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Button' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -135,7 +135,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_FilteringSelect' AS nome, 'NOME_DOJO_FILTERING_SELECT' AS constante_textual, 'DESCRICAO_DOJO_FILTERING_SELECT' AS constante_textual_descricao, 
-		'''FilteringSelect''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'FilteringSelect' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -145,7 +145,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 		
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'ZF_MultiCheckbox' AS nome, 'NOME_ZF_MULTI_CHECKBOX' AS constante_textual, 'DESCRICAO_ZF_MULTI_CHECKBOX' AS constante_textual_descricao, 
-		'''MultiCheckbox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'MultiCheckbox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -155,7 +155,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_CheckBox' AS nome, 'NOME_DOJO_CHECKBOX' AS constante_textual, 'DESCRICAO_DOJO_CHECKBOX' AS constante_textual_descricao, 
-		'''CheckBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'CheckBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -165,7 +165,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_Textarea' AS nome, 'NOME_DOJO_TEXTAREA' AS constante_textual, 'DESCRICAO_DOJO_TEXTAREA' AS constante_textual_descricao, 
-		'''Textarea''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'Textarea' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -175,7 +175,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_SimpleTextarea' AS nome, 'NOME_DOJO_SIMPLE_TEXTAREA' AS constante_textual, 'DESCRICAO_DOJO_SIMPLE_TEXTAREA' AS constante_textual_descricao, 
-		'''SimpleTextarea''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'SimpleTextarea' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -185,7 +185,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_DateTextBox' AS nome, 'NOME_DOJO_DATE_TEXTBOX' AS constante_textual, 'DESCRICAO_DOJO_DATE_TEXTBOX' AS constante_textual_descricao, 
-		'''DateTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'DateTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -195,7 +195,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_NumberTextBox' AS nome, 'NOME_DOJO_NUMBER_TEXTBOX' AS constante_textual, 'DESCRICAO_DOJO_NUMBER_TEXTBOX' AS constante_textual_descricao, 
-		'''NumberTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'NumberTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -205,7 +205,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente(id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id, 'DOJO_CurrencyTextBox' AS nome, 'NOME_DOJO_CURRENCY_TEXTBOX' AS constante_textual, 'DESCRICAO_DOJO_CURRENCY_TEXTBOX' AS constante_textual_descricao, 
-		'''CurrencyTextBox''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+		'CurrencyTextBox' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -215,7 +215,7 @@ AND c.nome = 'COMPONENTE_DOJO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_captcha' AS nome, 'NOME_ZF_CAPTCHA' AS constante_textual, 'DESCRICAO_ZF_CAPTCHA' AS constante_textual_descricao,
-	   '''Captcha''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Captcha' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -225,7 +225,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ZF_hash' AS nome, 'NOME_ZF_HASH' AS constante_textual, 'DESCRICAO_ZF_HASH' AS constante_textual_descricao,
-	   '''Hash''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Hash' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -235,7 +235,7 @@ AND c.nome = 'COMPONENTE_ZF';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ROCHEDO_html' AS nome, 'NOME_ROCHEDO_HTML' AS constante_textual, 'DESCRICAO_ROCHEDO_HTML' AS constante_textual_descricao,
-	   '''Html''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'Html' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
@@ -245,7 +245,7 @@ AND c.nome = 'COMPONENTE_ROCHEDO';
 
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ROCHEDO_javascript' AS nome, 'NOME_ROCHEDO_JAVASCRIPT' AS constante_textual, 'DESCRICAO_ROCHEDO_JAVASCRIPT' AS constante_textual_descricao,
-	   '''JavaScript''' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+	   'JavaScript' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
