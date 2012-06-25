@@ -13,6 +13,9 @@
 // definições de licença
 define('TIPO_LICENCA_USO_MODULO_BASICO', '(ainda não implementado)');
 
+// constantes de LOCALE
+define('LOCALE_PT_BR', 'pt_BR');
+
 // definições de constantes de aplicação
 define("TAG_LINK", "@link");
 define("JAVASCRIPT_HISTORY_GO_BACK", "javascript: history.go(-2);");
@@ -329,9 +332,6 @@ $header = <<<TEXT
 @identacao*/
 TEXT;
 define("FORM_GERADOR_CONSTRUCTOR_HEADER", $header);
-
-define("FORM_GERADOR_CONSTRUCTOR_CALL", 'public function __construct($options = null)');
-define("FORM_GERADOR_CONSTRUCTOR_INHERITS", 'parent::__construct($options);');
 
 $header = <<<TEXT
 @identacao// Inicializando o formulário.

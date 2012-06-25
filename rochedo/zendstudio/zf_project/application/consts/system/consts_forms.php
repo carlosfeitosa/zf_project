@@ -10,6 +10,9 @@
  * @since 21/06/2012
  */
 
+// constante que define o autor padrão dos formulários
+define('FORM_AUTOR_PADRAO', 'Sistema');
+
 // constantes de abertura e fechamento de tags php
 define("FORM_BEGIN_TAG", "<?php");
 define("FORM_END_TAG", "?>");
@@ -20,6 +23,10 @@ define("CODE_END_TAG", "}");
 // constantes de assinatura de classe
 define('FORM_GERADOR_CLASS_KEYWORD', 'class');
 define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
+
+// constantes de assinatura de metodos
+define("FORM_GERADOR_CONSTRUCTOR_CALL", '    public function __construct($options = null)');
+define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '    parent::__construct($options);');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -32,6 +39,7 @@ define('TAG_DATA_VERSAO_FORMULARIO', '@dataVersao');
 define('TAG_ANO_ATUAL_FORMULARIO', '@anoAtual');
 define('TAG_DESCRICAO_FORMULARIO', '@descricaoFormulario');
 define('TAG_AUTOR', '@autor');
+
 
 // constantes de cabeçalho
 // cabeçalho de arquivo contendo classe de formulário
@@ -53,6 +61,9 @@ $header = <<<TEXT
 * @copyright  Copyright (c) 2010~@anoAtual Rochedo Project. (http://www.rochedoframework.com)
 * @license    @tipoLicencaUso
 * @version    @versao: @dataVersao
+*
+* @author @autor
+* @since @dataCriacao
 */
 TEXT;
 define("FORM_GERADOR_FORM_FILE_HEADER", $header);
@@ -88,17 +99,23 @@ $header = <<<TEXT
 * @copyright  Copyright (c) 2010~@anoAtual Rochedo Project. (http://www.rochedoframework.com)
 * @license    (implementar)
 * @version    @versao: @dataVersao
+*
+* @author @autor
+* @since @dataCriacao
 */
 TEXT;
 define("FORM_GERADOR_SUBFORM_FILE_HEADER", $header);
 
 $header = <<<TEXT
-	/**
-	* Construtor do Formulário
-	* 
-	* @param array \$options
-	*
-	* @return @nomeModulo_Form_@nomeFormulario
-	*/
+    /**
+    * Construtor do Formulário
+    * 
+    * @param array \$options
+    *
+    * @return void
+    *
+    * @author @autor
+    * @since @dataCriacao
+    */
 TEXT;
 define("FORM_GERADOR_CONSTRUTOR_FORMULARIO_HEADER", $header);

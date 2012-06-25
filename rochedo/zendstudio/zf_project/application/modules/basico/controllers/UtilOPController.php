@@ -3245,7 +3245,7 @@ class Basico_OPController_UtilOPController
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 21/06/2012
 	 */
-	public static function escreveTagInicioOuFimBlocoCodigo($resourceArquivo, $fim = false, $quebrarLinha = true, $nivelIdentacao = 0)
+	public static function escreveTagInicioOuFimBlocoCodigo($resourceArquivo, $fim = false, $nivelIdentacao = 0, $quebrarLinha = true)
 	{
 		// verificando o parametro
 		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
