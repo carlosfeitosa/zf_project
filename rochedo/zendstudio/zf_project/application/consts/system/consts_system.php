@@ -334,11 +334,6 @@ TEXT;
 define("FORM_GERADOR_CONSTRUCTOR_HEADER", $header);
 
 $header = <<<TEXT
-@identacao// Inicializando o formulário.
-TEXT;
-define("FORM_GERADOR_CONSTRUCTOR_COMMENT", $header);
-
-$header = <<<TEXT
 @identacao// Adicionando paths para localizacao de componentes nao ZF.
 TEXT;
 define("FORM_GERADOR_ADDPREFIXPATH_COMMENT", $header);
@@ -385,9 +380,6 @@ TEXT;
 define("FORM_GERADOR_INCLUDE_SUB_FORM_TO_FORM_COMMENT", $header);
 
 define("FORM_GERADOR_THIS_INSTANCE", '$this');
-define("FORM_GERADOR_FORM_SETNAME", '$this->setName');
-define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod');
-define("FORM_GERADOR_FORM_SETACTION", '$this->setAction');
 define("FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION", '$this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl');
 define("FORM_GERADOR_FORM_ADDATTRIBS", '$this->addAttribs');
 define("FORM_GERADOR_FORM_SETDECORATORS", '$this->setDecorators');

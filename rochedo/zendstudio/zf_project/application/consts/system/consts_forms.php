@@ -24,9 +24,13 @@ define("CODE_END_TAG", "}");
 define('FORM_GERADOR_CLASS_KEYWORD', 'class');
 define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
 
-// constantes de assinatura de metodos
+// constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '    public function __construct($options = null)');
-define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '    parent::__construct($options);');
+define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '        parent::__construct($options);');
+define("FORM_GERADOR_FORM_INIT_CALL", '        $this->init();');
+define("FORM_GERADOR_FORM_SETNAME", '$this->setName(\'@nomeFormulario\');');
+define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod(\'@metodoFormulario\');');
+define("FORM_GERADOR_FORM_SETACTION", '$this->setAction(\'@acaoFormulario\');');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -40,6 +44,11 @@ define('TAG_ANO_ATUAL_FORMULARIO', '@anoAtual');
 define('TAG_DESCRICAO_FORMULARIO', '@descricaoFormulario');
 define('TAG_AUTOR', '@autor');
 
+
+// constantes de comentarios de metodos ou chamadas de metodos
+define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '        // Chamando o construtor parent do formulário');
+define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '        // Chamando método de inicialização do formulário');
+define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '        // Setando o nome do formulário');
 
 // constantes de cabeçalho
 // cabeçalho de arquivo contendo classe de formulário

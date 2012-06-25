@@ -261,6 +261,66 @@ class Basico_OPController_GeradorFormularioOPController
 	const ASSINATURA_CONSTRUTOR_CLASSE_FORMULARIO = FORM_GERADOR_CONSTRUCTOR_CALL;
 
 	/**
+	 * Comentario da chamada construtor parent da classe do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const COMENTARIO_CHAMADA_PARENT_CONSTRUCT = FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT;
+	
+	/**
+	 * Chamada construtor parent da classe do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const CHAMADA_PARENT_CONSTRUCT = FORM_GERADOR_CONSTRUCTOR_INHERITS;
+	
+	/**
+	 * Comentario da chamada ao metodo setName do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_SET_NAME = FORM_GERADOR_SET_NAME_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setName do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const CHAMADA_FORMULARIO_SET_NAME = FORM_GERADOR_FORM_SETNAME;
+	
+	/**
+	 * Comentario da chamada ao metodo init do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_INIT = FORM_GERADOR_FORM_INIT_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setName do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	const CHAMADA_FORMULARIO_INIT = FORM_GERADOR_FORM_INIT_CALL;
+	
+	/**
 	 * Instancia do controlador
 	 * 
 	 * @var Basico_OPController_GeradorFormularioOPController object
@@ -479,7 +539,25 @@ class Basico_OPController_GeradorFormularioOPController
 			// escrevendo a tag de abertura do bloco de codigo principal da classe
 			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, null, 1)) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever a tag de abertura do bloco de codigo principal da classe.');
+				return array('Não foi possível escrever a tag de abertura do bloco de codigo do construtor da classe.');
+			}
+			
+			// escrevendo a tag de abertura do bloco de codigo principal da classe
+			if (!$this->escreveComentarioEChamadaConstrutorParent($resourceArquivoTemporario)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever o construtor parent.');
+			}
+			
+			// escrevendo a tag de abertura do bloco de codigo principal da classe
+			if (!$this->escreveComentarioEChamadaInitFormulario($resourceArquivoTemporario)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever o construtor parent.');
+			}
+			
+			// escrevendo a tag de abertura do bloco de codigo principal da classe
+			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, true, 1)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever a tag de fechamento do bloco de codigo do construtor da classe.');
 			}
 
 			// escrevendo a tag de fechamento do arquivo e verificando o resultado da operação
@@ -671,6 +749,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
 	 * @param String $nomeFormulario - nome do formulário
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe 
 	 * 
 	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
 	 * 
@@ -682,9 +761,9 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
 		    (!$nomeFormulario) or (!is_string($nomeFormulario))) {
-		    	// retornando falso
-		    	return false;
-		    }
+	    	// retornando falso
+	    	return false;
+		}
 
 		// recuperando cabeçalho do arquivo
 		$comentarioConstrutor = self::COMENTARIO_CONSTRUTOR_CLASSE_FORMULARIO;
@@ -712,12 +791,183 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// verificando os parametros
 		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::ASSINATURA_CONSTRUTOR_CLASSE_FORMULARIO, true);
+	}
+	
+	/**
+	 * Escreve o comentario e chamada do construtor parent do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveComentarioEChamadaConstrutorParent($resourceArquivo)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioConstrutorParent($resourceArquivo) && $this->escreveChamadaConstrutorParent($resourceArquivo));		
+	}
+	
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo construtor do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o comentario no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveComentarioConstrutorParent($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::COMENTARIO_CHAMADA_PARENT_CONSTRUCT, true);
+	}
+	
+	/**
+	 * Escreve comentário e chamada para o construtor do parent
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentário e chamada para o construtor do parent
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveChamadaConstrutorParent($resourceArquivo)
+	{
+		// verificando os parametros
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::CHAMADA_PARENT_CONSTRUCT . QUEBRA_DE_LINHA, true);
+	}
+	
+	/**
+	 * Escreve a chamada do metodo init do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveComentarioEChamadaInitFormulario($resourceArquivo)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioChamadaInitFormulario($resourceArquivo) && $this->escreveChamadaInitFormulario($resourceArquivo));		
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo init() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveComentarioChamadaInitFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+		}
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::COMENTARIO_CHAMADA_FORMULARIO_INIT, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo init() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveChamadaInitFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::CHAMADA_FORMULARIO_INIT, true);
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo setName() do formulario substituindo uma flag pelo nome do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveComentarioChamadaSetNameFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
 		    	// retornando falso
 		    	return false;
 		    }
 
-		// escrevendo a assinatura do construtor do formulario no arquivo
-		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::ASSINATURA_CONSTRUTOR_CLASSE_FORMULARIO, true);
+		// recuperando cabeçalho do arquivo
+		$chamadaSetName = self::COMENTARIO_CHAMADA_FORMULARIO_SET_NAME;
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetName, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo setName() do formulario substituindo uma flag pelo nome do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $nomeFormulario - nome do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/06/2012
+	 */
+	private function escreveChamadaSetNameFormulario($resourceArquivo, $nomeFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$nomeFormulario) or (!is_string($nomeFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaSetName = self::CHAMADA_FORMULARIO_SET_NAME;
+
+		// manipulando o cabeçalho
+		$chamadaSetName = str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, $chamadaSetName);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetName, true);
 	}
 
 	/**
