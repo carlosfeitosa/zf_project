@@ -321,6 +321,66 @@ class Basico_OPController_GeradorFormularioOPController
 	const CHAMADA_FORMULARIO_INIT = FORM_GERADOR_FORM_INIT_CALL;
 	
 	/**
+	 * Comentario da declaração do método init do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const COMENTARIO_DECLARACAO_FORMULARIO_INIT = FORM_GERADOR_INIT_FORMULARIO_HEADER;
+	
+	/**
+	 * Declaração do método init do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const ASSINATURA_FORMULARIO_INIT = FORM_GERADOR_FORM_INIT_DECLARATION;
+	
+	/**
+	 * Comentario da chamada do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const COMENTARIO_CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT;
+	
+	/**
+	 * chamada do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL;
+	
+	/**
+	 * Comentário da declaração do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const COMENTARIO_DECLARACAO_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_ADICIONA_ELEMENTOS_FORMULARIO_HEADER;
+	
+	/**
+	 * Assinatura do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const ASSINATURA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION;
+	
+	/**
 	 * Instancia do controlador
 	 * 
 	 * @var Basico_OPController_GeradorFormularioOPController object
@@ -512,7 +572,7 @@ class Basico_OPController_GeradorFormularioOPController
 				return array('Não foi possível escrever o cabeçalho do arquivo.');
 			}
 
-			// escrevendo a assinatura da classe e verificando o resultado da operação
+			// escrevendo o cabeçalho e a assinatura da classe e verificando o resultado da operação
 			if (!$this->escreveCabecalhoAssinaturaEAssinaturaClasseFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'], $this->_componenteOPController->retornaComponentePorIdComponente($arrayDadosFormulario['idComponente']), Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayDadosFormulario['constanteTextual']), Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL($arrayDadosFormulario['constanteTextualDescricao']))) {
 				// retornando mensagens de erro
 				return array('Não foi possível escrever o cabeçalho e assinatura do formulário.');
@@ -524,40 +584,28 @@ class Basico_OPController_GeradorFormularioOPController
 				return array('Não foi possível escrever a tag de abertura do bloco de codigo principal da classe.');
 			}
 			
-			// escrevendo os comentários do método construtor da classe formulario, verificando o resultado da operação
-			if (!$this->escreveComentarioConstrutorClasseFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'])) {
+			// escrevendo o construtor da classe formulario, verificando o resultado da operação
+			if (!$this->escreveConstrutorFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'])) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever o comentario do construtor da classe do formulário.');
+				return array('Não foi possível escrever o construtor da classe do formulário.');
 			}
 			
-			// escrevendo a assinatura do método construtor da classe formulario, verificando o resultado da operação
-			if (!$this->escreveAssinaturaConstrutorClasseFormulario($resourceArquivoTemporario)) {
+			// escrevendo o método init do formulário e verificando o resultado da operação
+			if (!$this->escreveInitFormulario($resourceArquivoTemporario, $arrayDadosFormulario['formName'])) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever a assinatura do método construtor da classe do formulário.');
+				return array('Não foi possível escrever o construtor da classe do formulário.');
 			}
 			
-			// escrevendo a tag de abertura do bloco de codigo principal da classe
-			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, null, 1)) {
+			// escrevendo o método adicionaElementos e verificando o resultado da operação
+			if (!$this->escreveAdicionaELementosFormulario($resourceArquivoTemporario)) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever a tag de abertura do bloco de codigo do construtor da classe.');
+				return array('Não foi possível escrever o método adicionaElementos no formulário.');
 			}
 			
-			// escrevendo a tag de abertura do bloco de codigo principal da classe
-			if (!$this->escreveComentarioEChamadaConstrutorParent($resourceArquivoTemporario)) {
+			// escrevendo a tag de fechamento do bloco de codigo principal da classe
+			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, true)) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever o construtor parent.');
-			}
-			
-			// escrevendo a tag de abertura do bloco de codigo principal da classe
-			if (!$this->escreveComentarioEChamadaInitFormulario($resourceArquivoTemporario)) {
-				// retornando mensagens de erro
-				return array('Não foi possível escrever o construtor parent.');
-			}
-			
-			// escrevendo a tag de abertura do bloco de codigo principal da classe
-			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, true, 1)) {
-				// retornando mensagens de erro
-				return array('Não foi possível escrever a tag de fechamento do bloco de codigo do construtor da classe.');
+				return array('Não foi possível escrever a tag de fechamento do bloco de codigo principal da classe.');
 			}
 
 			// escrevendo a tag de fechamento do arquivo e verificando o resultado da operação
@@ -800,6 +848,29 @@ class Basico_OPController_GeradorFormularioOPController
 	}
 	
 	/**
+	 * Escreve o construtor da classe do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $nomeFormulario - nome do formulário
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe 
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveConstrutorFormulario($resourceArquivo, $nomeFormulario, $autor = self::AUTOR_PADRAO)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioConstrutorClasseFormulario($resourceArquivo, $nomeFormulario, $autor) 
+				&& $this->escreveAssinaturaConstrutorClasseFormulario($resourceArquivo)
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, null, 1)
+				&& $this->escreveComentarioEChamadaConstrutorParent($resourceArquivo)
+				&& $this->escreveComentarioEChamadaInitFormulario($resourceArquivo)
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
+	}
+	
+	/**
 	 * Escreve o comentario e chamada do construtor parent do formulario
 	 * 
 	 * @param Stream Resource $resourceArquivo
@@ -968,6 +1039,218 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetName, true);
+	}
+	
+	/**
+	 * Escreve o comentario da declaração do método init do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveComentarioDeclaracaoInitFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$comentarioInit = self::COMENTARIO_DECLARACAO_FORMULARIO_INIT;
+		$comentarioInit = str_replace(self::TAG_SUBSTITUICAO_AUTOR_FORMULARIO, $autor, $comentarioInit);
+		$comentarioInit = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(LOCALE_PT_BR, DEFAULT_DATETIME_FORMAT_PT_BR), $comentarioInit);
+		
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, QUEBRA_DE_LINHA . $comentarioInit, true);
+	}
+	
+	/**
+	 * Escreve a assinatura do método init do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveAssinaturaInitFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::ASSINATURA_FORMULARIO_INIT, true);
+	}
+	
+	/**
+	 * Escreve o comentário e a assinatura do metodo init do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveComentarioEAssinaturaInitFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioDeclaracaoInitFormulario($resourceArquivo, $autor) && $this->escreveAssinaturaInitFormulario($resourceArquivo));		
+	}
+	
+	/**
+	 * Escreve o método init do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveInitFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{	
+		// escrevendo o método init do formulario e retornando resultado
+		return ($this->escreveComentarioEAssinaturaInitFormulario($resourceArquivo, $autor)
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, null, 1)
+				&& $this->escreveComentarioEChamadaAdicionaELementosFormulario($resourceArquivo)
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo adicionaElementos() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveComentarioChamadaAdicionaElementosFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::COMENTARIO_CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo adicionaElementos() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveChamadaAdicionaElementosFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO, true);
+	}
+	
+	/**
+	 * Escreve o comentário e a chamada do metodo adicionaElementos do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveComentarioEChamadaAdicionaELementosFormulario($resourceArquivo)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioChamadaAdicionaElementosFormulario($resourceArquivo) && $this->escreveChamadaAdicionaElementosFormulario($resourceArquivo));		
+	}
+	
+	/**
+	 * Escreve o comentario da declaração do método adicionaElementos do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveComentarioDeclaracaoAdicionaElementosFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// recuperando cabeçalho do arquivo
+		$comentarioAdicionaElementos = self::COMENTARIO_DECLARACAO_ADICIONA_ELEMENTOS_FORMULARIO;
+		$comentarioAdicionaElementos = str_replace(self::TAG_SUBSTITUICAO_AUTOR_FORMULARIO, $autor, $comentarioAdicionaElementos);
+		$comentarioAdicionaElementos = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(LOCALE_PT_BR, DEFAULT_DATETIME_FORMAT_PT_BR), $comentarioAdicionaElementos);
+		
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, QUEBRA_DE_LINHA . $comentarioAdicionaElementos, true);
+	}
+	
+	/**
+	 * Escreve a assinatura do método adicionaElementos do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveAssinaturaAdicionaElementosFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, self::ASSINATURA_ADICIONA_ELEMENTOS_FORMULARIO, true);
+	}
+	
+	/**
+	 * Escreve o metodo adicionaElementos do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	private function escreveAdicionaELementosFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioDeclaracaoAdicionaElementosFormulario($resourceArquivo, $autor) 
+				&& $this->escreveAssinaturaAdicionaElementosFormulario($resourceArquivo)
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, false, 1)
+				
+				&& $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));		
 	}
 
 	/**

@@ -27,7 +27,10 @@ define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
 // constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '    public function __construct($options = null)');
 define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '        parent::__construct($options);');
+define("FORM_GERADOR_FORM_INIT_DECLARATION", '    private function init()');
 define("FORM_GERADOR_FORM_INIT_CALL", '        $this->init();');
+define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION", '    private function adicionaElementos()');
+define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '        $this->adicionaElementos();');
 define("FORM_GERADOR_FORM_SETNAME", '$this->setName(\'@nomeFormulario\');');
 define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod(\'@metodoFormulario\');');
 define("FORM_GERADOR_FORM_SETACTION", '$this->setAction(\'@acaoFormulario\');');
@@ -49,6 +52,7 @@ define('TAG_AUTOR', '@autor');
 define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '        // Chamando o construtor parent do formulário');
 define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '        // Chamando método de inicialização do formulário');
 define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '        // Setando o nome do formulário');
+define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '        // adicionando elementos ao formulário');
 
 // constantes de cabeçalho
 // cabeçalho de arquivo contendo classe de formulário
@@ -119,12 +123,36 @@ $header = <<<TEXT
     /**
     * Construtor do Formulário
     * 
-    * @param array \$options
+    * @param array \$options - array com opções para construção do formulário
     *
-    * @return void
+    * @return void - não espera retorno
     *
     * @author @autor
     * @since @dataCriacao
     */
 TEXT;
 define("FORM_GERADOR_CONSTRUTOR_FORMULARIO_HEADER", $header);
+
+$header = <<<TEXT
+    /**
+    * Inicializa o Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author @autor
+    * @since @dataCriacao
+    */
+TEXT;
+define("FORM_GERADOR_INIT_FORMULARIO_HEADER", $header);
+
+$header = <<<TEXT
+    /**
+    * Adiciona elementos ao Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author @autor
+    * @since @dataCriacao
+    */
+TEXT;
+define("FORM_GERADOR_ADICIONA_ELEMENTOS_FORMULARIO_HEADER", $header);
