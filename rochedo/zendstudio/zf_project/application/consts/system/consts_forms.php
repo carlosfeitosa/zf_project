@@ -11,7 +11,7 @@
  */
 
 // constante que define o autor padrão dos formulários
-define('FORM_AUTOR_PADRAO', 'Sistema');
+define('FORM_AUTOR_PADRAO', 'SYSTEM');
 
 // constantes de abertura e fechamento de tags php
 define("FORM_BEGIN_TAG", "<?php");
@@ -25,15 +25,15 @@ define('FORM_GERADOR_CLASS_KEYWORD', 'class');
 define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
 
 // constantes de assinatura e chamada de metodos
-define("FORM_GERADOR_CONSTRUCTOR_CALL", '    public function __construct($options = null)');
-define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '        parent::__construct($options);');
-define("FORM_GERADOR_FORM_INIT_DECLARATION", '    private function init()');
-define("FORM_GERADOR_FORM_INIT_CALL", '        $this->init();');
-define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION", '    private function adicionaElementos()');
-define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '        $this->adicionaElementos();');
-define("FORM_GERADOR_FORM_SETNAME", '$this->setName(\'@nomeFormulario\');');
-define("FORM_GERADOR_FORM_SETMETHOD", '$this->setMethod(\'@metodoFormulario\');');
-define("FORM_GERADOR_FORM_SETACTION", '$this->setAction(\'@acaoFormulario\');');
+define("FORM_GERADOR_CONSTRUCTOR_CALL", '@identacaopublic function __construct($options = null)');
+define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '@identacaoparent::__construct($options);');
+define("FORM_GERADOR_FORM_INIT_DECLARATION", '@identacaoprivate function init()');
+define("FORM_GERADOR_FORM_INIT_CALL", '@identacao$this->init();');
+define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION", '@identacaoprivate function adicionaElementos()');
+define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '@identacao$this->adicionaElementos();');
+define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\');');
+define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
+define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -46,13 +46,14 @@ define('TAG_DATA_VERSAO_FORMULARIO', '@dataVersao');
 define('TAG_ANO_ATUAL_FORMULARIO', '@anoAtual');
 define('TAG_DESCRICAO_FORMULARIO', '@descricaoFormulario');
 define('TAG_AUTOR', '@autor');
+define('TAG_IDENTACAO', '@identacao');
 
 
 // constantes de comentarios de metodos ou chamadas de metodos
-define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '        // Chamando o construtor parent do formulário');
-define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '        // Chamando método de inicialização do formulário');
-define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '        // Setando o nome do formulário');
-define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '        // adicionando elementos ao formulário');
+define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '@identacao// Chamando o construtor parent do formulário');
+define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '@identacao// Chamando método de inicialização do formulário');
+define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '@identacao// Setando o nome do formulário');
+define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// adicionando elementos ao formulário');
 
 // constantes de cabeçalho
 // cabeçalho de arquivo contendo classe de formulário
@@ -120,39 +121,39 @@ TEXT;
 define("FORM_GERADOR_SUBFORM_FILE_HEADER", $header);
 
 $header = <<<TEXT
-    /**
-    * Construtor do Formulário
-    * 
-    * @param array \$options - array com opções para construção do formulário
-    *
-    * @return void - não espera retorno
-    *
-    * @author @autor
-    * @since @dataCriacao
-    */
+@identacao/**
+@identacao* Construtor do Formulário
+@identacao* 
+@identacao* @param array \$options - array com opções para construção do formulário
+@identacao*
+@identacao* @return void - não espera retorno
+@identacao*
+@identacao* @author @autor
+@identacao* @since @dataCriacao
+@identacao*/
 TEXT;
 define("FORM_GERADOR_CONSTRUTOR_FORMULARIO_HEADER", $header);
 
 $header = <<<TEXT
-    /**
-    * Inicializa o Formulário
-    *
-    * @return void - não espera retorno
-    *
-    * @author @autor
-    * @since @dataCriacao
-    */
+@identacao/**
+@identacao* Inicializa o Formulário
+@identacao*
+@identacao* @return void - não espera retorno
+@identacao*
+@identacao* @author @autor
+@identacao* @since @dataCriacao
+@identacao*/
 TEXT;
 define("FORM_GERADOR_INIT_FORMULARIO_HEADER", $header);
 
 $header = <<<TEXT
-    /**
-    * Adiciona elementos ao Formulário
-    *
-    * @return void - não espera retorno
-    *
-    * @author @autor
-    * @since @dataCriacao
-    */
+@identacao/**
+@identacao* Adiciona elementos ao Formulário
+@identacao*
+@identacao* @return void - não espera retorno
+@identacao*
+@identacao* @author @autor
+@identacao* @since @dataCriacao
+@identacao*/
 TEXT;
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_FORMULARIO_HEADER", $header);
