@@ -309,6 +309,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 25/06/2012
 	 */
 	const CHAMADA_FORMULARIO_SET_NAME = FORM_GERADOR_FORM_SETNAME;
+
+	/**
+	 * Comentario da chamada ao metodo setMethod do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_SET_METHOD = FORM_GERADOR_SET_METHOD_CALL_COMMENT;
 	
 	/**
 	 * Comentario da chamada ao metodo init do formulario
@@ -1066,6 +1076,31 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetName, true);
 	}
+
+	/**
+	 * Escreve o comentario da chamada para o metodo setMethod() do formulario substituindo uma flag pelo nome do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos,feitosa@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveComentarioChamadaSetMethodFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaSetMethod = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_METHOD);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetMethod, true);
+	}
 	
 	/**
 	 * Escreve o comentario da declaração do método init do formulário
@@ -1174,9 +1209,6 @@ class Basico_OPController_GeradorFormularioOPController
 	 */
 	private function escreveInicializacaoFormulario($resourceArquivo, array $arrayAtributosFormulario)
 	{
-		// inicializando variáeis
-		$tempReturn = false;
-
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) 
 		    or (!count($arrayAtributosFormulario))
@@ -1185,31 +1217,29 @@ class Basico_OPController_GeradorFormularioOPController
 	    	return false;
 	    }
 
-	    // escrevendo o comentário para o método de setar o nome do formulário
-	    $tempReturn = $this->escreveComentarioChamadaSetNameFormulario($resourceArquivo);
-
-	    // verificando o resultado da esrita do comentário
-	    if (!$tempReturn) {
+	    // escrevendo o comentário para o método de setar o nome do formulário e verificando o resultado
+	    if (!$this->escreveComentarioChamadaSetNameFormulario($resourceArquivo)) {
 	    	// retornando falso
 	    	return false;
 	    }
 
-	    // escrevendo a chamada para o método de setar o nome do formulário
-	    $tempReturn = $this->escreveChamadaSetNameFormulario($resourceArquivo, $arrayAtributosFormulario['formName']);
-
-	    // verificando o resultado da esrita do comentário
-	    if (!$tempReturn) {
+	    // escrevendo a chamada para o método de setar o nome do formulário e verificando o resultado
+	    if (!$this->escreveChamadaSetNameFormulario($resourceArquivo, $arrayAtributosFormulario['formName'])) {
 	    	// retornando falso
 	    	return false;
 	    }
 
 	    // verificando se o formulário possui método de envio de dados
 	    if (isset($arrayAtributosFormulario['formMethod'])) {
-	    	// implementando
+	    	// escrevendo o comentário sobre o método de envio de dados e verificando o resultado
+	    	if (!$this->escreveComentarioChamadaSetMethodFormulario($resourceArquivo)) {
+	    		// retornando falso
+	    		return false;
+	    	}
 	    }
 
 	    // retornando o resultado
-	    return $tempReturn;
+	    return true;
 	}
 
 	/**

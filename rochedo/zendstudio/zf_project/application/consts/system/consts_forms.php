@@ -53,6 +53,7 @@ define('TAG_IDENTACAO', '@identacao');
 define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '@identacao// Chamando o construtor parent do formulário');
 define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '@identacao// Chamando método de inicialização do formulário');
 define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '@identacao// Setando o nome do formulário');
+define("FORM_GERADOR_SET_METHOD_CALL_COMMENT", '@identacao// Setando o método do formulário');
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// adicionando elementos ao formulário');
 
 // constantes de cabeçalho
