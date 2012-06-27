@@ -141,6 +141,46 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_NOME_FORMULARIO = TAG_NOME_FORMULARIO;
 
 	/**
+	 * Tag de substituicao do método do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const TAG_SUBSTITUICAO_METODO_FORMULARIO = TAG_METODO_FORMULARIO;
+	
+	/**
+	 * Tag de substituicao da ação do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const TAG_SUBSTITUICAO_ACAO_FORMULARIO = TAG_ACAO_FORMULARIO;
+	
+	/**
+	 * Tag de substituicao dos atributos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const TAG_SUBSTITUICAO_ATRIBUTOS_FORMULARIO = TAG_ATRIBUTOS_FORMULARIO;
+	
+	/**
+	 * Tag de substituicao dos decorators do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const TAG_SUBSTITUICAO_DECORATORS_FORMULARIO = TAG_DECORATORS_FORMULARIO;
+	
+	/**
 	 * Tag de substituicao da descrição do formulário
 	 * 
 	 * @var String
@@ -319,6 +359,76 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 27/06/2012
 	 */
 	const COMENTARIO_CHAMADA_FORMULARIO_SET_METHOD = FORM_GERADOR_SET_METHOD_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setMethod do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const CHAMADA_FORMULARIO_SET_METHOD = FORM_GERADOR_FORM_SETMETHOD;
+	
+	/**
+	 * Comentario da chamada ao metodo setAction do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_SET_ACTION = FORM_GERADOR_SET_ACTION_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setAction do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const CHAMADA_FORMULARIO_SET_ACTION = FORM_GERADOR_FORM_SETACTION;
+	
+	/**
+	 * Comentario da chamada ao metodo setAttribs do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_ADD_ATTRIBS = FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setAttribs do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const CHAMADA_FORMULARIO_ADD_ATTRIBS = FORM_GERADOR_FORM_ADDATTRIBS;
+	
+	/**
+	 * Comentario da chamada ao metodo setDecorators do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_SET_DECORATORS = FORM_GERADOR_SET_DECORATORS_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo setDecorators do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	const CHAMADA_FORMULARIO_SET_DECORATORS = FORM_GERADOR_FORM_SETDECORATORS;
 	
 	/**
 	 * Comentario da chamada ao metodo init do formulario
@@ -1078,7 +1188,7 @@ class Basico_OPController_GeradorFormularioOPController
 	}
 
 	/**
-	 * Escreve o comentario da chamada para o metodo setMethod() do formulario substituindo uma flag pelo nome do formulario
+	 * Escreve o comentario da chamada para o metodo setMethod() do formulario
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
 	 * 
@@ -1100,6 +1210,201 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetMethod, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo setMethod() do formulario substituindo uma flag pelo método do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $metodoFormulario - método do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveChamadaSetMethodFormulario($resourceArquivo, $metodoFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$metodoFormulario) or (!is_string($metodoFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaSetMethod = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_METHOD);
+
+		// manipulando o cabeçalho
+		$chamadaSetMethod = str_replace(self::TAG_SUBSTITUICAO_METODO_FORMULARIO, $metodoFormulario, $chamadaSetMethod);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetMethod, true);
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo setAction() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveComentarioChamadaSetActionFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaSetAction = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_ACTION);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetAction, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo setAction() do formulario substituindo uma flag pela ação do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * @param String $acaoFormulario - ação do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveChamadaSetActionFormulario($resourceArquivo, $acaoFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$acaoFormulario) or (!is_string($acaoFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaSetAction = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_ACTION);
+
+		// manipulando o cabeçalho
+		$chamadaSetAction = str_replace(self::TAG_SUBSTITUICAO_ACAO_FORMULARIO, $acaoFormulario, $chamadaSetAction);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetAction, true);
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo addAttribs() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveComentarioChamadaAddAttribsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_ADD_ATTRIBS);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaAddAttribs, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo addAttribs() do formulario substituindo uma flag pelos atributos do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a chamada
+	 * @param String $atributosFormulario - atributos do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveChamadaAddAttribsFormulario($resourceArquivo, $atributosFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$atributosFormulario) or (!is_string($atributosFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_ADD_ATTRIBS);
+
+		// manipulando o cabeçalho
+		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_ATRIBUTOS_FORMULARIO, $atributosFormulario, $chamadaAddAttribs);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddAttribs, true);
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo setDecorators() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentario
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveComentarioChamadaSetDecoratorsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_DECORATORS);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetDecorators, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo setDecorators() do formulario substituindo uma flag pelos decorators do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a chamada
+	 * @param Array $decoratorsFormulario - atributos do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/06/2012
+	 */
+	private function escreveChamadaSetDecoratorsFormulario($resourceArquivo, $decoratorsFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$atributosFormulario) or (!is_string($atributosFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_DECORATORS);
+
+		// manipulando o cabeçalho
+		$chamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_DECORATORS_FORMULARIO, $atributosFormulario, $chamadaSetDecorators);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetDecorators, true);
 	}
 	
 	/**
@@ -1236,8 +1541,44 @@ class Basico_OPController_GeradorFormularioOPController
 	    		// retornando falso
 	    		return false;
 	    	}
+	    	
+	    	// escrevendo a chamada do setMethod para configurar o tipo de envio de dados e verificando o resultado
+	    	if (!$this->escreveChamadaSetMethodFormulario($resourceArquivo, $arrayAtributosFormulario['formMethod'])) {
+	    		// retornando falso
+	    		return false;
+	    	}
 	    }
 
+		// verificando se o formulário possui ação (url para envio dos dados)
+	    if (isset($arrayAtributosFormulario['formAction'])) {
+	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
+	    	if (!$this->escreveComentarioChamadaSetActionFormulario($resourceArquivo)) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    	
+	    	// escrevendo a chamada do setAction para setar a url de envio de dados e verificando o resultado
+	    	if (!$this->escreveChamadaSetActionFormulario($resourceArquivo, $arrayAtributosFormulario['formAction'])) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    }
+	    
+		// verificando se o formulário possui ação (url para envio dos dados)
+	    if (isset($arrayAtributosFormulario['formAttribs'])) {
+	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
+	    	if (!$this->escreveComentarioChamadaAddAttribsFormulario($resourceArquivo)) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    	
+	    	// escrevendo a chamada do setAction para setar a url de envio de dados e verificando o resultado
+	    	if (!$this->escreveChamadaAddAttribsFormulario($resourceArquivo, $arrayAtributosFormulario['formAttribs'])) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    }
+	    
 	    // retornando o resultado
 	    return true;
 	}

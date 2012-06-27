@@ -34,9 +34,15 @@ define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '@identacao$this->adicionaEl
 define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\');');
 define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
 define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
+define("FORM_GERADOR_FORM_ADDATTRIBS", '@identacao$this->addAttribs(array(@atributosFormulario));');
+define("FORM_GERADOR_FORM_SETDECORATORS", '$this->setDecorators(array(@decoratorsFormularios))');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
+define('TAG_METODO_FORMULARIO', '@metodoFormulario');
+define('TAG_ACAO_FORMULARIO', '@acaoFormulario');
+define('TAG_ATRIBUTOS_FORMULARIO', '@atributosFormulario');
+define('TAG_DECORATORS_FORMULARIO', '@decoratorsFormulario');
 define('TAG_NOME_MODULO', '@nomeModulo');
 define('TAG_DATA_CRIACAO_FORMULARIO', '@dataCriacao');
 define('TAG_TEXTO_LICENCA_USO', '@textoLicencaUso');
@@ -54,6 +60,9 @@ define("FORM_GERADOR_PARENT_CONSTRUCTOR_CALL_COMMENT", '@identacao// Chamando o 
 define("FORM_GERADOR_FORM_INIT_CALL_COMMENT", '@identacao// Chamando método de inicialização do formulário');
 define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '@identacao// Setando o nome do formulário');
 define("FORM_GERADOR_SET_METHOD_CALL_COMMENT", '@identacao// Setando o método do formulário');
+define("FORM_GERADOR_SET_ACTION_CALL_COMMENT", '@identacao// Setando a ação do formulário');
+define("FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT", '@identacao// Adicionando atributos ao formulário');
+define("FORM_GERADOR_SET_DECORATORS_CALL_COMMENT", '@identacao// Setando decorators do formulário');
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// adicionando elementos ao formulário');
 
 // constantes de cabeçalho
