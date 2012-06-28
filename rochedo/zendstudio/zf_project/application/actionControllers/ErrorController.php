@@ -78,7 +78,7 @@ TEXT;
 		$localContent = <<<TEXT
 <h1>Infelizmente aconteceu um erro.</h1>
 <h2>{$message}</h2>
-<pre>Informe ao <a href="mailto:<?php echo {$supportEmail} ?>">suporte</a> seu <b>login</b>, data/hora do erro (<b>{$dataHoraAtual}</b>) e este token: <b>{$token}</b></pre>
+<pre>Informe ao <a href="mailto:{$supportEmail}">suporte</a> seu <b>login</b>, data/hora do erro (<b>{$dataHoraAtual}</b>) e este token: <b>{$token}</b></pre>
 {$debugInfo}
 TEXT;
 
