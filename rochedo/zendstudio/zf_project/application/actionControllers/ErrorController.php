@@ -40,8 +40,10 @@ class ErrorController extends Zend_Controller_Action
 		$applicationHttpImagesHomeTemp = $this->view->baseUrl('/images/temp/');
 		$nomeArquivoAleatorioErrorImage = Basico_OPController_UtilOPController::retornaNomeArquivoAleatorio($searchImageLocalPath);
 		$nomeCompletoArquivoAleatorioErrorImage = $applicationHttpImagesHomeTemp . $nomeArquivoAleatorioErrorImage;
-		$supportEmail = SUPPORT_EMAIL;
 		$dataHoraAtual = date('d/m/Y H:i:s');
+		$supportEmail = SUPPORT_EMAIL;
+		$assuntoEmail = SUPPORT_EMAIL_SUBJECT;
+		$corpoEmail = "data e hora do erro: {$dataHoraAtual} | token: {$token}";
 		// iniciando output buffer
 		ob_start();
 		var_dump($errors->request->getParams());
@@ -78,7 +80,7 @@ TEXT;
 		$localContent = <<<TEXT
 <h1>Infelizmente aconteceu um erro.</h1>
 <h2>{$message}</h2>
-<pre>Informe ao <a href="mailto:{$supportEmail}">suporte</a> seu <b>login</b>, data/hora do erro (<b>{$dataHoraAtual}</b>) e este token: <b>{$token}</b></pre>
+<pre>Informe ao <a href="mailto:{$supportEmail}?subject={$assuntoEmail}&body={$corpoEmail}">suporte</a> seu <b>login</b>, data/hora do erro (<b>{$dataHoraAtual}</b>) e este token: <b>{$token}</b></pre>
 {$debugInfo}
 TEXT;
 

@@ -72,6 +72,7 @@ define("APPLICATION_TEMP_FORM_PATH", APPLICATION_MODULES_PATH . "/basico/forms/t
 
 // definições do e-mail de suporte
 define("SUPPORT_EMAIL", "agil@facepe.br");
+define("SUPPORT_EMAIL_SUBJECT", 'Solicitação de suporte');
 
 // definições de configuração de e-mail
 define("SMTP_SERVER_AUTH_METHOD", "login");
