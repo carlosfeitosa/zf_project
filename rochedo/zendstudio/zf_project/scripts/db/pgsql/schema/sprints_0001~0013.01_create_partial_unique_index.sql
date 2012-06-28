@@ -47,6 +47,24 @@ WHERE id_formulario_pai IS NULL;
 CREATE UNIQUE INDEX unp_assoccl_elemento_sem_element_name ON basico_formulario.assoccl_elemento (id_formulario , id_elemento)
 WHERE element_name IS NULL;
 
+CREATE UNIQUE INDEX unp_asocag_grupo_decorator_sem_grupo_assoc ON basico_formulario.assoccl_elemento (id_grupo , id_formulario_decorator)
+WHERE id_grupo_assoc IS NULL;
+
+CREATE UNIQUE INDEX unp_asocag_grupo_decorator_sem_form_decorator ON basico_formulario.assoccl_elemento (id_grupo , id_grupo_assoc)
+WHERE id_formulario_decorator IS NULL;
+
+CREATE UNIQUE INDEX unp_asocag_grupo_filter_sem_grupo_assoc ON basico_formulario.assoccl_elemento (id_grupo , id_filter)
+WHERE id_grupo_assoc IS NULL;
+
+CREATE UNIQUE INDEX unp_asocag_grupo_filter_sem_filter ON basico_formulario.assoccl_elemento (id_grupo , id_grupo_assoc)
+WHERE id_filter IS NULL;
+
+CREATE UNIQUE INDEX unp_asocag_grupo_validator_sem_grupo_assoc ON basico_formulario.assoccl_elemento (id_grupo , id_validator)
+WHERE id_grupo_assoc IS NULL;
+
+CREATE UNIQUE INDEX unp_asocag_grupo_validator_sem_validator ON basico_formulario.assoccl_elemento (id_grupo , id_grupo_assoc)
+WHERE id_validator IS NULL;
+
 CREATE UNIQUE INDEX unp_assocag_parceria_sem_parceria ON basico_pessoa_juridica.assocag_parceria (id_categoria, id_pessoa_juridica, id_pessoa_juridica_parceira)
 WHERE id_assocag_parceria IS NULL;
 
