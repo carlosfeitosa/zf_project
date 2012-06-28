@@ -12,11 +12,13 @@ class ErrorController extends Zend_Controller_Action
 	 */
     public function errorAction()
     {
+    	// gerando token para erro
+    	$token = Basico_OPController_GeradorTokenOPController::gerarToken();
         $errors = $this->_getParam('error_handler');
         
         $bootstrap = $this->getInvokeArg('bootstrap');
         $requestString = var_export($errors->request->getParams(), true);
-        $bootstrap->logger->salvaLogFS("EXCEPTION: {$errors->exception} | " . PHP_EOL . "REQUEST: {$requestString}", LOG_PRIORITY_ERRO);
+        $bootstrap->logger->salvaLogFS("EXCEPTION[{$token}]: {$errors->exception} | " . PHP_EOL . "REQUEST: {$requestString}", LOG_PRIORITY_ERRO);
         
         switch ($errors->type) { 
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
@@ -76,7 +78,7 @@ TEXT;
 		$localContent = <<<TEXT
 <h1>Infelizmente aconteceu um erro.</h1>
 <h2>{$message}</h2>
-<pre>Informe ao <a href="mailto:<?php echo {$supportEmail} ?>">suporte</a> seu login e data/hora do erro (<b>{$dataHoraAtual}</b>)</pre>
+<pre>Informe ao <a href="mailto:<?php echo {$supportEmail} ?>">suporte</a> seu <b>login</b>, data/hora do erro (<b>{$dataHoraAtual}</b>) e este token: <b>{$token}</b></pre>
 {$debugInfo}
 TEXT;
 
