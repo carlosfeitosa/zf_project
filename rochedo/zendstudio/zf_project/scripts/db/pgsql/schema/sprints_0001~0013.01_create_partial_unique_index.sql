@@ -53,6 +53,24 @@ WHERE id_decorator IS NULL;
 CREATE UNIQUE INDEX unp_form_assoccl_decorator_sem_grupo ON basico_formulario.assoccl_decorator (id_formulario , ordem , exclude , id_decorator)
 WHERE id_decorator_grupo IS NULL;
 
+CREATE UNIQUE INDEX unp_form_elem_assoccl_decorator_sem_decorator ON basico_formulario_elemento.assoccl_decorator (id_elemento , ordem , exclude , id_decorator_grupo)
+WHERE id_decorator IS NULL;
+
+CREATE UNIQUE INDEX unp_form_elem_assoccl_decorator_sem_grupo ON basico_formulario_elemento.assoccl_decorator (id_elemento , ordem , exclude , id_decorator)
+WHERE id_decorator_grupo IS NULL;
+
+CREATE UNIQUE INDEX unp_form_elem_assoccl_validator_sem_validator ON basico_formulario_elemento.assoccl_validator (id_elemento , exclude , id_validator_grupo)
+WHERE id_validator IS NULL;
+
+CREATE UNIQUE INDEX unp_form_elem_assoccl_validator_sem_grupo ON basico_formulario_elemento.assoccl_validator (id_elemento , exclude , id_validator)
+WHERE id_validator_grupo IS NULL;
+
+CREATE UNIQUE INDEX unp_form_elem_assoccl_filter_sem_filter ON basico_formulario_elemento.assoccl_filter (id_elemento , ordem , exclude , id_filter_grupo)
+WHERE id_filter IS NULL;
+
+CREATE UNIQUE INDEX unp_form_elem_assoccl_filter_sem_grupo ON basico_formulario_elemento.assoccl_filter (id_elemento , ordem , exclude , id_filter)
+WHERE id_filter_grupo IS NULL;
+
 CREATE UNIQUE INDEX unp_assocag_grupo_decorator_sem_grupo_assoc ON basico_form_decorator_grupo.assocag_grupo (id_grupo , id_formulario_decorator)
 WHERE id_grupo_assoc IS NULL;
 
