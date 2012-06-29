@@ -333,17 +333,72 @@ WHERE t.nome = 'COMPONENTE'
 AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
 AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
 
-
-
-
-
-
 INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
-SELECT c.id AS id_categoria, 'DOJO_Decorator_ContentPane' AS nome, 'NOME_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual_descricao,
-	   'ContentPane' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id AS id_categoria, 'ZF_Validator_Regex' AS nome, 'NOME_ZF_VALIDATOR_REGEX' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_REGEX' AS constante_textual_descricao,
+	   'Regex' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'COMPONENTE'
-AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
-AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_Alnum' AS nome, 'NOME_ZF_VALIDATOR_ALNUM' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_ALNUM' AS constante_textual_descricao,
+	   'Alnum' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_Identical' AS nome, 'NOME_ZF_VALIDATOR_IDENTICAL' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_IDENTICAL' AS constante_textual_descricao,
+	   'Identical' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_StringLength' AS nome, 'NOME_ZF_VALIDATOR_STRING_LENGTH' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_STRING_LENGTH' AS constante_textual_descricao,
+	   'StringLength' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_NotEmpty' AS nome, 'NOME_ZF_VALIDATOR_NOT_EMPTY' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_NOT_EMPTY' AS constante_textual_descricao,
+	   'NotEmpty' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_Int' AS nome, 'NOME_ZF_VALIDATOR_INT' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_INT' AS constante_textual_descricao,
+	   'Int' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Validator_EmailAddress' AS nome, 'NOME_ZF_VALIDATOR_EMAIL_ADDRESS' AS constante_textual, 'DESCRICAO_ZF_VALIDATOR_EMAIL_ADDRESS' AS constante_textual_descricao,
+	   'EmailAddress' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_VALIDATOR'
+AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
