@@ -252,3 +252,98 @@ LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'COMPONENTE'
 AND cpai.nome = 'COMPONENTE_HTML_JAVASCRIPT'
 AND c.nome = 'COMPONENTE_ROCHEDO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ROCHEDO_Decorator_AjaxForm' AS nome, 'NOME_ROCHEDO_DECORATOR_AJAX_FORM' AS constante_textual, 'DESCRICAO_ROCHEDO_DECORATOR_AJAX_FORM' AS constante_textual_descricao,
+	   'AjaxForm' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_ROCHEDO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Decorator_FormElements' AS nome, 'NOME_ZF_DECORATOR_FORM_ELEMENTS' AS constante_textual, 'DESCRICAO_ZF_DECORATOR_FORM_ELEMENTS' AS constante_textual_descricao,
+	   'FormElements' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_HTML'
+AND c.nome = 'COMPONENTE_DECORATOR_HTML_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Decorator_HtmlTag' AS nome, 'NOME_ZF_DECORATOR_HTML_TAG' AS constante_textual, 'DESCRICAO_ZF_DECORATOR_HTML_TAG' AS constante_textual_descricao,
+	   'HtmlTag' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_HTML'
+AND c.nome = 'COMPONENTE_DECORATOR_HTML_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Decorator_DijitForm' AS nome, 'NOME_DOJO_DECORATOR_DIJIT_FORM' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_DIJIT_FORM' AS constante_textual_descricao,
+	   'DijitForm' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Decorator_Label' AS nome, 'NOME_ZF_DECORATOR_LABEL' AS constante_textual, 'DESCRICAO_ZF_DECORATOR_LABEL' AS constante_textual_descricao,
+	   'Label' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_HTML'
+AND c.nome = 'COMPONENTE_DECORATOR_HTML_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Decorator_TabContainer' AS nome, 'NOME_DOJO_DECORATOR_TAB_CONTAINER' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_TAB_CONTAINER' AS constante_textual_descricao,
+	   'TabContainer' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Decorator_AccordionContainer' AS nome, 'NOME_DOJO_DECORATOR_ACCORDION_CONTAINER' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_ACCORDION_CONTAINER' AS constante_textual_descricao,
+	   'AccordionContainer' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Decorator_ContentPane' AS nome, 'NOME_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual_descricao,
+	   'ContentPane' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';
+
+
+
+
+
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'DOJO_Decorator_ContentPane' AS nome, 'NOME_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual, 'DESCRICAO_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual_descricao,
+	   'ContentPane' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO';

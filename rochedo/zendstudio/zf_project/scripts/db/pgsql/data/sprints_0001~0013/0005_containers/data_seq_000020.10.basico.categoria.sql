@@ -398,6 +398,13 @@ SELECT id AS id_tipo_categoria, 'FORMULARIO_DECORATOR' AS nome, true AS ativo, '
 FROM basico.tipo_categoria
 WHERE nome = 'FORMULARIO';
 
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_DECORATOR_HTML' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DECORATOR';
+
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_ELEMENTO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria
@@ -577,6 +584,52 @@ FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_HTML_JAVASCRIPT';
+
+INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'COMPONENTE_DECORATOR' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'COMPONENTE';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DECORATOR_HTML' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DECORATOR_HTML_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria c2 ON (c.id_categoria_pai = c2.id)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DECORATOR_HTML'
+AND c2.nome = 'COMPONENTE_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DECORATOR_JAVASCRIPT' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria c2 ON (c.id_categoria_pai = c2.id)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c2.nome = 'COMPONENTE_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_DECORATOR_JAVASCRIPT_ROCHEDO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria c2 ON (c.id_categoria_pai = c2.id)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT'
+AND c2.nome = 'COMPONENTE_DECORATOR';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'CVC' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
