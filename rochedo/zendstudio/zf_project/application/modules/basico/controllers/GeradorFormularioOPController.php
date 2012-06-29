@@ -178,7 +178,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	const TAG_SUBSTITUICAO_DECORATORS_FORMULARIO = TAG_DECORATORS_FORMULARIO;
+	const TAG_SUBSTITUICAO_DECORATOR_FORMULARIO = TAG_DECORATOR_FORMULARIO;
 	
 	/**
 	 * Tag de substituicao da descrição do formulário
@@ -411,24 +411,44 @@ class Basico_OPController_GeradorFormularioOPController
 	const CHAMADA_FORMULARIO_ADD_ATTRIBS = FORM_GERADOR_FORM_ADDATTRIBS;
 	
 	/**
-	 * Comentario da chamada ao metodo setDecorators do formulario
+	 * Comentario da chamada ao metodo addDecorator do formulario
 	 * 
 	 * @var String
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	const COMENTARIO_CHAMADA_FORMULARIO_SET_DECORATORS = FORM_GERADOR_SET_DECORATORS_CALL_COMMENT;
+	const COMENTARIO_CHAMADA_FORMULARIO_ADD_DECORATOR = FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT;
 	
 	/**
-	 * Chamada ao metodo setDecorators do formulario
+	 * Chamada ao metodo addDecorators do formulario
 	 * 
 	 * @var String
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	const CHAMADA_FORMULARIO_SET_DECORATORS = FORM_GERADOR_FORM_SETDECORATORS;
+	const CHAMADA_FORMULARIO_ADD_DECORATOR = FORM_GERADOR_FORM_ADDDECORATOR;
+	
+	/**
+	 * Comentario da chamada ao metodo removeDecorator do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 28/06/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_REMOVE_DECORATOR = FORM_GERADOR_REMOVE_DECORATOR_CALL_COMMENT;
+	
+	/**
+	 * Chamada ao metodo removeDecorators do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 28/06/2012
+	 */
+	const CHAMADA_FORMULARIO_REMOVE_DECORATOR = FORM_GERADOR_FORM_REMOVEDECORATOR;
 	
 	/**
 	 * Comentario da chamada ao metodo init do formulario
@@ -1353,7 +1373,7 @@ class Basico_OPController_GeradorFormularioOPController
 	}
 	
 	/**
-	 * Escreve o comentario da chamada para o metodo setDecorators() do formulario
+	 * Escreve o comentario da chamada para o metodo addDecorator() do formulario
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentario
 	 * 
@@ -1362,7 +1382,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	private function escreveComentarioChamadaSetDecoratorsFormulario($resourceArquivo)
+	private function escreveComentarioChamadaAddDecoratorFormulario($resourceArquivo)
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
@@ -1371,40 +1391,95 @@ class Basico_OPController_GeradorFormularioOPController
 		    }
 
 		// recuperando cabeçalho da chamada
-		$cabecalhoChamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_DECORATORS);
+		$cabecalhoChamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_ADD_DECORATOR);
 
 		// escrevendo o comentario do construtor da classe no arquivo
-		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetDecorators, true);
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaAddDecorator, true);
 	}
 	
 	/**
-	 * Escreve a chamada para o metodo setDecorators() do formulario substituindo uma flag pelos decorators do formulario
+	 * Escreve a chamada para o metodo addDecorator() do formulario substituindo uma flag pelo decorator do formulario
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a chamada
-	 * @param Array $decoratorsFormulario - atributos do formulário
+	 * @param String $decoratorFormulario - decorator pra ser adicionado ao formulário
 	 * 
 	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
 	 * 
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	private function escreveChamadaSetDecoratorsFormulario($resourceArquivo, $decoratorsFormulario)
+	private function escreveChamadaAddDecoratorFormulario($resourceArquivo, $decoratorFormulario)
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
-		    (!$atributosFormulario) or (!is_string($atributosFormulario))) {
+		    (!$decoratorFormulario) or (!is_string($decoratorFormulario))) {
 		    	// retornando falso
 		    	return false;
 		    }
 
 		// recuperando cabeçalho do arquivo
-		$chamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_DECORATORS);
+		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_ADD_DECORATOR);
 
 		// manipulando o cabeçalho
-		$chamadaSetDecorators = str_replace(self::TAG_SUBSTITUICAO_DECORATORS_FORMULARIO, $atributosFormulario, $chamadaSetDecorators);
+		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR_FORMULARIO, $atributosFormulario, $chamadaAddDecorator);
 
 		// escrevendo o comentario do construtor da classe no arquivo
-		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetDecorators, true);
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddDecorator, true);
+	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo removeDecorator() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentario
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 28/06/2012
+	 */
+	private function escreveComentarioChamadaRemoveDecoratorFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_REMOVE_DECORATOR);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaRemoveDecorator, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo removeDecorator() do formulario substituindo uma flag pelo decorator do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a chamada
+	 * @param String $decoratorFormulario - decorator pra ser removido do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 28/06/2012
+	 */
+	private function escreveChamadaRemoveDecoratorFormulario($resourceArquivo, $decoratorFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$decoratorFormulario) or (!is_string($decoratorFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho do arquivo
+		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_REMOVE_DECORATOR);
+
+		// manipulando o cabeçalho
+		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR_FORMULARIO, $atributosFormulario, $chamadaRemoveDecorator);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaRemoveDecorator, true);
 	}
 	
 	/**

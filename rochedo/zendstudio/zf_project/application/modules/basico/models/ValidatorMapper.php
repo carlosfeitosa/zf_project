@@ -29,10 +29,11 @@ class Basico_Model_ValidatorMapper extends Basico_AbstractMapper_RochedoMapper i
 		// montando array de mapeamento
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
+		$this->_arrayMapper['idComponente']				 = 'id_componente';
 		$this->_arrayMapper['nome']						 = 'nome';
 		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['validator']				 = 'validator';
+		$this->_arrayMapper['attribs']				 	 = 'attribs';
 		$this->_arrayMapper['ativo']					 = 'ativo';
 		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';

@@ -14,6 +14,11 @@ class Basico_Model_Filter extends Basico_AbstractModel_RochedoPersistentModeloDa
      * @var Int
      */
     protected $_idCategoria;
+    /**
+	 * Referencia a classe Basico_Model_Componente
+     * @var Integer
+     */
+    protected $_idComponente;
 	/**
 	 * @var String
 	 */
@@ -29,7 +34,7 @@ class Basico_Model_Filter extends Basico_AbstractModel_RochedoPersistentModeloDa
 	/**
 	 * @var String
 	 */
-	protected $_filter;
+	protected $_attribs;
     /**
      * @var Boolean
      */
@@ -65,6 +70,39 @@ class Basico_Model_Filter extends Basico_AbstractModel_RochedoPersistentModeloDa
     {
         $model = new Basico_Model_Categoria();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+    
+	/**
+	* Set id componente
+	* 
+	* @param int $idComponente 
+	* @return Basico_Model_FormularioFilter
+	*/
+	public function setIdComponente($idComponente)
+	{
+		$this->_idComponente = Basico_OPController_UtilOPController::retornaValorTipado($idComponente, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get id componente
+	* 
+	* @return null|int
+	*/
+	public function getIdComponente()
+	{
+		return $this->_idComponente;
+	}
+ 
+	/**
+     * Get Componente object
+     * @return null|Basico_Model_Componente
+     */
+    public function getComponenteObject()
+    {
+        $model = new Basico_Model_Componente();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idComponente);
         return $object;
     }
     
@@ -135,25 +173,25 @@ class Basico_Model_Filter extends Basico_AbstractModel_RochedoPersistentModeloDa
 	}
      
 	/**
-	* Set filter
+	* Set attribs
 	* 
-	* @param String $filter 
-	* @return Basico_Model_Filter
+	* @param String $attribs 
+	* @return Basico_Model_FormularioFilter
 	*/
-	public function setFilter($filter)
+	public function setAttribs($attribs)
 	{
-		$this->_filter = Basico_OPController_UtilOPController::retornaValorTipado($filter, TIPO_STRING, true);
+		$this->_attribs = Basico_OPController_UtilOPController::retornaValorTipado($attribs,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get filter
+	* Get attribs
 	* 
 	* @return null|String
 	*/
-	public function getFilter()
+	public function getAttribs()
 	{
-		return $this->_filter;
+		return $this->_attribs;
 	}
      
 	/**

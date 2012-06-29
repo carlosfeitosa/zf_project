@@ -15,6 +15,11 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
      */
     protected $_idCategoria;
     /**
+	 * Referencia a classe Basico_Model_Componente
+     * @var Integer
+     */
+    protected $_idComponente;
+    /**
 	 * @var String
 	 */
 	protected $_nome;
@@ -29,7 +34,11 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
 	/**
 	 * @var String
 	 */
-	protected $_decorator;
+	protected $_attribs;
+	/**
+	 * @var String
+	 */
+	protected $_alias;
 	/**
 	 * @var Boolean
 	 */
@@ -56,8 +65,8 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
 	{
 		return $this->_idCategoria;
 	}
- 
-    /**
+	
+	/**
      * Get categoria object
      * @return null|Basico_Model_Categoria
      */
@@ -65,6 +74,39 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
     {
         $model = new Basico_Model_Categoria();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idCategoria);
+        return $object;
+    }
+	
+	/**
+	* Set id componente
+	* 
+	* @param int $idComponente 
+	* @return Basico_Model_FormularioDecorator
+	*/
+	public function setIdComponente($idComponente)
+	{
+		$this->_idComponente = Basico_OPController_UtilOPController::retornaValorTipado($idComponente, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get id componente
+	* 
+	* @return null|int
+	*/
+	public function getIdComponente()
+	{
+		return $this->_idComponente;
+	}
+ 
+	/**
+     * Get Componente object
+     * @return null|Basico_Model_Componente
+     */
+    public function getComponenteObject()
+    {
+        $model = new Basico_Model_Componente();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idComponente);
         return $object;
     }
 	
@@ -135,25 +177,47 @@ class Basico_Model_FormularioDecorator extends Basico_AbstractModel_RochedoPersi
 	}
 
 	/**
-	* Set decorator
+	* Set attribs
 	* 
-	* @param String $decorator 
+	* @param String $attribs 
 	* @return Basico_Model_FormularioDecorator
 	*/
-	public function setDecorator($decorator)
+	public function setAttribs($attribs)
 	{
-		$this->_decorator = Basico_OPController_UtilOPController::retornaValorTipado($decorator,TIPO_STRING,true);
+		$this->_attribs = Basico_OPController_UtilOPController::retornaValorTipado($attribs,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get decorator
+	* Get attribs
 	* 
 	* @return null|String
 	*/
-	public function getDecorator()
+	public function getAttribs()
 	{
-		return $this->_decorator;
+		return $this->_attribs;
+	}
+	
+	/**
+	* Set alias
+	* 
+	* @param String $alias 
+	* @return Basico_Model_FormularioDecorator
+	*/
+	public function setAlias($alias)
+	{
+		$this->_alias = Basico_OPController_UtilOPController::retornaValorTipado($alias,TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get alias
+	* 
+	* @return null|String
+	*/
+	public function getAlias()
+	{
+		return $this->_alias;
 	}
 
 	/**

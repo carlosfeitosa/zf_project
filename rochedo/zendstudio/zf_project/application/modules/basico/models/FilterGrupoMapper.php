@@ -1,19 +1,19 @@
 <?php
 /**
- * Filter data mapper
+ * FilterGrupo data mapper
  *
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Filter
+ * @uses       Basico_Model_DbTable_FormDecoratorGrupo
  * @subpackage Model
  */
-class Basico_Model_FilterMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
+class Basico_Model_FilterGrupoMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
 {
 	/**
 	 * Mapeamento da classe
 	 * 
-	 * @var Array'
+	 * @var Array
 	 */
 	public $_arrayMapper = array();
 
@@ -29,12 +29,10 @@ class Basico_Model_FilterMapper extends Basico_AbstractMapper_RochedoMapper impl
 		// montando array de mapeamento
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idCategoria']				 = 'id_categoria';
-		$this->_arrayMapper['idComponente']				 = 'id_componente';
 		$this->_arrayMapper['nome']				 		 = 'nome';
-		$this->_arrayMapper['constanteTextual'] 		 = 'constante_textual';
+		$this->_arrayMapper['constanteTextual'] 	 	 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['attribs'] 	 				 = 'attribs';
-		$this->_arrayMapper['ativo'] 				 	 = 'ativo';
+		$this->_arrayMapper['ativo'] 	 				 = 'ativo';
 		$this->_arrayMapper['datahoraCriacao']           = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
 		$this->_arrayMapper['rowinfo']                   = 'rowinfo'; 
@@ -43,21 +41,21 @@ class Basico_Model_FilterMapper extends Basico_AbstractMapper_RochedoMapper impl
    	/**
      * Get registered Zend_Db_Table instance
      *
-     * Lazy loads Basico_Model_DbTable_Filter if no instance registered
+     * Lazy loads Basico_Model_DbTable_FilterGrupo if no instance registered
      * 
      * @return Zend_Db_Table_Abstract
     */ 
-    public function getDbTable($dbTable = 'Basico_Model_DbTable_Filter')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FilterGrupo')
     {
     	// chamando método do pai
         return parent::getDbTable($dbTable);
     }
     
 	/**
-     * Find a Filter entry by id
+     * Find a FilterGrupo entry by id
      * 
      * @param  int $id
-     * @param  Basico_Model_Filter $object 
+     * @param  Basico_Model_FilterGrupo $object 
      * 
      * @return void
      */
@@ -68,31 +66,31 @@ class Basico_Model_FilterMapper extends Basico_AbstractMapper_RochedoMapper impl
     }
 
 	/**
-	 * Fetch all Filter entries
+	 * Fetch all FilterGrupo entries
 	 * 
 	 * @return array
 	 */
 	public function fetchAll()
 	{
 		// chamando método pai
-		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Filter');
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FilterGrupo');
 	}
 	
 	/**
-	 * Fetch all Filter entries
+	 * Fetch all FilterGrupo entries
 	 * 
 	 * @return array
 	 */
 	public function fetchList($where=null, $order=null, $count=null, $offset=null)
 	{
 		// chamando método pai
-		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_Filter', $where, $order, $count, $offset);
+		return $this->fetchListAbstrato($this->_arrayMapper, 'Basico_Model_FilterGrupo', $where, $order, $count, $offset);
 	}
     
     /**
-     * Save a Filter entry
+     * Save a FilterGrupo entry
      * 
-     * @param  Basico_Model_Filter $object
+     * @param  Basico_Model_FilterGrupo $object
      * 
      * @return void
      */
@@ -103,9 +101,9 @@ class Basico_Model_FilterMapper extends Basico_AbstractMapper_RochedoMapper impl
     }
     
 	/**
-	* Delete a Filter entry
+	* Delete a FilterGrupo entry
 	* 
-	* @param Basico_Model_Filter $object
+	* @param Basico_Model_FilterGrupo $object
 	* 
 	* @return void
 	*/

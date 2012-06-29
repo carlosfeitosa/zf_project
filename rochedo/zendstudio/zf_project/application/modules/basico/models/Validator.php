@@ -14,6 +14,11 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	 */
 	protected $_idCategoria;
 	/**
+	 * Referencia a classe Basico_Model_Componente
+     * @var Integer
+     */
+    protected $_idComponente;
+	/**
 	 * @var String
 	 */
 	protected $_nome;
@@ -28,7 +33,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	/**
 	 * @var String
 	 */
-	protected $_validator;
+	protected $_attribs;
 	/**
 	 * @var Boolean
 	 */
@@ -70,6 +75,39 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
         // retornando o objeto
         return $object;
 	}
+	
+	/**
+	* Set id componente
+	* 
+	* @param int $idComponente 
+	* @return Basico_Model_FormularioValidator
+	*/
+	public function setIdComponente($idComponente)
+	{
+		$this->_idComponente = Basico_OPController_UtilOPController::retornaValorTipado($idComponente, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get id componente
+	* 
+	* @return null|int
+	*/
+	public function getIdComponente()
+	{
+		return $this->_idComponente;
+	}
+ 
+	/**
+     * Get Componente object
+     * @return null|Basico_Model_Componente
+     */
+    public function getComponenteObject()
+    {
+        $model = new Basico_Model_Componente();
+        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idComponente);
+        return $object;
+    }
 
 	/**
 	* Set nome
@@ -139,25 +177,25 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	}
 
 	/**
-	* Set validator
+	* Set attribs
 	* 
-	* @param String $validator 
-	* @return Default_Model_Validator
+	* @param String $attribs 
+	* @return Basico_Model_FormularioValidator
 	*/
-	public function setValidator($validator)
+	public function setAttribs($attribs)
 	{
-		$this->_validator = Basico_OPController_UtilOPController::retornaValorTipado($validator, TIPO_STRING, true);
+		$this->_attribs = Basico_OPController_UtilOPController::retornaValorTipado($attribs,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get validator
+	* Get attribs
 	* 
 	* @return null|String
 	*/
-	public function getValidator()
+	public function getAttribs()
 	{
-		return $this->_validator;
+		return $this->_attribs;
 	}
 
 	/**
