@@ -77,10 +77,10 @@ WHERE id_form_decorator_grupo_assoc IS NULL;
 CREATE UNIQUE INDEX unp_assocag_grupo_decorator_sem_form_decorator ON basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo , id_form_decorator_grupo_assoc)
 WHERE id_formulario_decorator IS NULL;
 
-CREATE UNIQUE INDEX unp_asocag_grupo_filter_sem_grupo_assoc ON basico_filter_grupo.assocag_grupo (id_fiter_grupo , id_filter)
+CREATE UNIQUE INDEX unp_asocag_grupo_filter_sem_grupo_assoc ON basico_filter_grupo.assocag_grupo (id_filter_grupo , id_filter)
 WHERE id_filter_grupo_assoc IS NULL;
 
-CREATE UNIQUE INDEX unp_assocag_grupo_filter_sem_filter ON basico_filter_grupo.assocag_grupo (id_fiter_grupo , id_filter_grupo_assoc)
+CREATE UNIQUE INDEX unp_assocag_grupo_filter_sem_filter ON basico_filter_grupo.assocag_grupo (id_filter_grupo , id_filter_grupo_assoc)
 WHERE id_filter IS NULL;
 
 CREATE UNIQUE INDEX unp_assocag_grupo_validator_sem_grupo_assoc ON basico_validator_grupo.assocag_grupo (id_validator_grupo , id_validator)
