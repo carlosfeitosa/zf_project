@@ -72,21 +72,21 @@ CREATE UNIQUE INDEX unp_form_elem_assoccl_filter_sem_grupo ON basico_formulario_
 WHERE id_filter_grupo IS NULL;
 
 CREATE UNIQUE INDEX unp_assocag_grupo_decorator_sem_grupo_assoc ON basico_form_decorator_grupo.assocag_grupo (id_grupo , id_formulario_decorator)
-WHERE id_grupo_assoc IS NULL;
+WHERE id_form_decorator_grupo_assoc IS NULL;
 
-CREATE UNIQUE INDEX unp_assocag_grupo_decorator_sem_form_decorator ON basico_form_decorator_grupo.assocag_grupo (id_grupo , id_grupo_assoc)
+CREATE UNIQUE INDEX unp_assocag_grupo_decorator_sem_form_decorator ON basico_form_decorator_grupo.assocag_grupo (id_grupo , id_form_decorator_grupo_assoc)
 WHERE id_formulario_decorator IS NULL;
 
 CREATE UNIQUE INDEX unp_asocag_grupo_filter_sem_grupo_assoc ON basico_filter_grupo.assocag_grupo (id_grupo , id_filter)
-WHERE id_grupo_assoc IS NULL;
+WHERE id_filter_grupo_assoc IS NULL;
 
-CREATE UNIQUE INDEX unp_assocag_grupo_filter_sem_filter ON basico_filter_grupo.assocag_grupo (id_grupo , id_grupo_assoc)
+CREATE UNIQUE INDEX unp_assocag_grupo_filter_sem_filter ON basico_filter_grupo.assocag_grupo (id_grupo , id_filter_grupo_assoc)
 WHERE id_filter IS NULL;
 
 CREATE UNIQUE INDEX unp_assocag_grupo_validator_sem_grupo_assoc ON basico_validator_grupo.assocag_grupo (id_grupo , id_validator)
-WHERE id_grupo_assoc IS NULL;
+WHERE id_validator_grupo_assoc IS NULL;
 
-CREATE UNIQUE INDEX unp_assocag_grupo_validator_sem_validator ON basico_validator_grupo.assocag_grupo (id_grupo , id_grupo_assoc)
+CREATE UNIQUE INDEX unp_assocag_grupo_validator_sem_validator ON basico_validator_grupo.assocag_grupo (id_grupo , id_validator_grupo_assoc)
 WHERE id_validator IS NULL;
 
 CREATE UNIQUE INDEX unp_assocag_parceria_sem_parceria ON basico_pessoa_juridica.assocag_parceria (id_categoria, id_pessoa_juridica, id_pessoa_juridica_parceira)
