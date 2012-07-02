@@ -402,3 +402,23 @@ LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'COMPONENTE'
 AND cpai.nome = 'COMPONENTE_VALIDATOR'
 AND c.nome = 'COMPONENTE_VALIDATOR_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Filter_StringTrim' AS nome, 'NOME_ZF_FILTER_STRING_TRIM' AS constante_textual, 'DESCRICAO_ZF_FILTER_STRING_TRIM' AS constante_textual_descricao,
+	   'StringTrim' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_FILTER'
+AND c.nome = 'COMPONENTE_FILTER_ZF';
+
+INSERT INTO basico.componente (id_categoria, nome, constante_textual, constante_textual_descricao, componente, ativo, rowinfo)
+SELECT c.id AS id_categoria, 'ZF_Filter_StripTags' AS nome, 'NOME_ZF_FILTER_STRIP_TAGS' AS constante_textual, 'DESCRICAO_ZF_FILTER_STRIP_TAGS' AS constante_textual_descricao,
+	   'StripTags' AS componente, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'COMPONENTE'
+AND cpai.nome = 'COMPONENTE_FILTER'
+AND c.nome = 'COMPONENTE_FILTER_ZF';

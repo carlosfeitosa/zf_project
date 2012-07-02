@@ -644,6 +644,18 @@ WHERE t.nome = 'COMPONENTE'
 AND c.nome = 'COMPONENTE_VALIDATOR';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 'COMPONENTE_FILTER' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'COMPONENTE';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 'COMPONENTE_FILTER_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'COMPONENTE'
+AND c.nome = 'COMPONENTE_FILTER';
+
+INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
 SELECT t.id AS id_tipo_categoria, 'CVC' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'CVC';
