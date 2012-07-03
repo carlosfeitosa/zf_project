@@ -1645,63 +1645,63 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_REGEX_/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/' AS constante_textual, 'Validator regex para o campo login' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_REGEX_LOGIN' AS constante_textual, 'Validator regex para o campo login' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_ALNUM_WITHOUT_WHITESPACES' AS constante_textual, 'Validator para alfanumericos sem espaços em branco' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_ALFANUMERICO' AS constante_textual, 'Validator alfanumericos' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_IDENTICAL' AS constante_textual, 'Validator para campos que precisam ser identicos' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_IDENTICO' AS constante_textual, 'Validator identico' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_STRING_LENGTH_6_TO_100' AS constante_textual, 'Validator para campos que aceitam no minimo 6 e no maximo 100 caracteres' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_STRING_ENTRE_6_E_100_CARACTERES' AS constante_textual, 'Validator tamanho de string (6~100)' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_STRING_LENGTH_3_TO_100' AS constante_textual, 'Validator para campos que aceitam no minimo 3 e no maximo 100 caracteres' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_STRING_ENTRE_3_E_100_CARACTERES' AS constante_textual, 'Validator tamanho de string (3~100)' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_NOT_EMPTY' AS constante_textual, 'Validator para campos que não podem ser vazios' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_NAO_VAZIO' AS constante_textual, 'Validator não vazio' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_INT' AS constante_textual, 'Validator para campos inteiros' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_INTEIRO' AS constante_textual, 'Validator números inteiros' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_EMAIL_ADDRESS' AS constante_textual, 'Validator para emails' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_ENDERECO_EMAIL' AS constante_textual, 'Validator endereço de e-mail' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_VALIDATOR_EMAIL_ADDRESS_DEEP_MX' AS constante_textual, 'Validator para emails com teste MX' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_VALIDATOR_ENDERECO_EMAIL_COM_VERIFICACAO_MX' AS constante_textual, 'Validator endereço de e-mail MX record' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7403,6 +7403,69 @@ AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'NOME_ZF_FILTER_STRIP_TAGS' AS constante_textual, 'Componente ZF filter strip tags.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_REGEX_LOGIN' AS constante_textual, 'Validador de expressões regulares determinísticas para criação de login.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_ALFANUMERICO' AS constante_textual, 'Validador de alfanuméricos.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_IDENTICO' AS constante_textual, 'Validador de identicos.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_STRING_ENTRE_6_E_100_CARACTERES' AS constante_textual, 'Validador para tamanho de textos entre 6 e 100 caracteres.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_STRING_ENTRE_3_E_100_CARACTERES' AS constante_textual, 'Validador para tamanho de textos entre 3 e 100 caracteres.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_NAO_VAZIO' AS constante_textual, 'Validador para não vazio.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_INTEIRO' AS constante_textual, 'Validador para números inteiros.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_ENDERECO_EMAIL' AS constante_textual, 'Validador para endereços de e-mail.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_VALIDATOR_ENDERECO_EMAIL_COM_VERIFICACAO_MX' AS constante_textual, 'Validador para endereços de e-mail com validação do endereço nos registros MX do host.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
