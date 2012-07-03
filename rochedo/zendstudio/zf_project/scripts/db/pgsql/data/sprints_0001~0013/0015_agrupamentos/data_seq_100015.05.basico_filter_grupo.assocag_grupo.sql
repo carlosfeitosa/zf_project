@@ -24,9 +24,9 @@ SELECT (SELECT gf.id
 		 LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
 		 LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
 		 WHERE f.nome = 'STRINGTRIM'
-		 AND cat.nome = 'FORMULARIO_ELEMENTO_FILTER'
+		 AND cat.nome = 'FORMULARIO_ELEMENTO_FILTER_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_ELEMENTO') AS id_filter,
+		 AND catpai.nome = 'FORMULARIO_ELEMENTO_FILTER') AS id_filter,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_filter_grupo.assocag_grupo (id_filter_grupo, id_filter, ordem, rowinfo)
@@ -45,7 +45,7 @@ SELECT (SELECT gf.id
 		 LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
 		 LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
 		 WHERE f.nome = 'STRIPTAGS'
-		 AND cat.nome = 'FORMULARIO_ELEMENTO_FILTER'
+		 AND cat.nome = 'FORMULARIO_ELEMENTO_FILTER_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_ELEMENTO') AS id_filter,
+		 AND catpai.nome = 'FORMULARIO_ELEMENTO_FILTER') AS id_filter,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;

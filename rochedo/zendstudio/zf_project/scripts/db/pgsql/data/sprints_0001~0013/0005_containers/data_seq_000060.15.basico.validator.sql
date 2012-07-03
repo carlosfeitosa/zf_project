@@ -6,10 +6,11 @@
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 22/03/2012
-* ultimas modificacoes:
+* ultimas modificacoes:		03/07/2012 - adaptação dos scripts para utilização de componentes;
+* 				
 */
 
-INSERT INTO basico.validator (id_categoria, nome, constante_textual, validator, ativo, rowinfo)
+INSERT INTO basico.validator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'REGEX_/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/' AS nome,
 		'NOME_VALIDATOR_REGEX_/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/' AS constante_textual,
        'Regex'', true, array(''pattern'' => ''/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/'', ''messages'' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'')))' AS validator, true AS ativo, 
@@ -18,6 +19,10 @@ FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR';
+
+
+
+
 
 INSERT INTO basico.validator (id_categoria, nome, constante_textual, validator, ativo, rowinfo)
 SELECT c.id AS id_categoria, 'ALNUM_WITHOUT_WHITESPACES' AS nome,

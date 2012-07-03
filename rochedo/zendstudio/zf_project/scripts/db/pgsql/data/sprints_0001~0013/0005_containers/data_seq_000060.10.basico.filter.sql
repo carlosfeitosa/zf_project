@@ -23,9 +23,11 @@ SELECT c.id AS id_categoria,
 	    'STRINGTRIM' AS nome, 'NOME_FILTER_STRINGTRIM' AS constante_textual, 'DESCRICAO_FILTER_STRINGTRIM' AS constante_textual_descricao,
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';
+AND c.nome = 'FORMULARIO_ELEMENTO_FILTER_ZF'
+AND cpai.nome = 'FORMULARIO_ELEMENTO_FILTER';
 
 INSERT INTO basico.filter (id_categoria, id_componente, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria, 
@@ -41,6 +43,8 @@ SELECT c.id AS id_categoria,
 		'STRIPTAGS' AS nome, 'NOME_FILTER_STRIPTAGS' AS constante_textual, 'DESCRICAO_FILTER_STRIPTAGS' AS constante_textual_descricao,
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
-LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'FORMULARIO'
-AND c.nome = 'FORMULARIO_ELEMENTO_FILTER';
+AND c.nome = 'FORMULARIO_ELEMENTO_FILTER_ZF'
+AND cpai.nome = 'FORMULARIO_ELEMENTO_FILTER';
