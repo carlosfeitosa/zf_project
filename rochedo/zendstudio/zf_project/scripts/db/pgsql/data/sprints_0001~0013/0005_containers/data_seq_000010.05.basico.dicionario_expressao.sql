@@ -9,14 +9,14 @@
 */
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_DIJITELEMENT' AS constante_textual, 'Decorator Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_DIJITELEMENT' AS constante_textual, 'Decorator Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_DIJIT_ELEMENT' AS constante_textual, 'Decorator Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DOJO_DECORATOR_DIJIT_ELEMENT' AS constante_textual, 'Componente para decorators Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -30,56 +30,56 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_ACCORDION_CONTAINER1' AS constante_textual, 'Decorator Dojo AccordionContainer 1.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_ACCORDION_CONTAINER1' AS constante_textual, 'Decorator Dojo AccordionContainer 1.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_TABCONTAINER1' AS constante_textual, 'Decorator Dojo TabContainer.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_TABCONTAINER1' AS constante_textual, 'Decorator Dojo TabContainer.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS constante_textual, 'Decorator Label sem escape, desabilita for e posiciona a direita.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS constante_textual, 'Decorator Label sem escape, desabilita for e posiciona a direita.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS constante_textual, 'Decorator Label escape false e disablefor true para elementos.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS constante_textual, 'Decorator Label escape false e disablefor true para elementos.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_DIJITFORM' AS constante_textual, 'Decorator DijitForm para formulários.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_DIJITFORM' AS constante_textual, 'Decorator DijitForm para formulários.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_ZF_HTMLTAG_DL' AS constante_textual, 'Decorator HtmlTag dl para formulários e elementos.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ZF_HTMLTAG_DL' AS constante_textual, 'Decorator HtmlTag dl para formulários e elementos.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_ZF_FORM_ELEMENTS' AS constante_textual, 'Decorator ZF para elementos de formulário.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual, 'Decorator ZF para elementos de formulário.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_AJAX_FORM' AS constante_textual, 'Decorator para submissao ajax do formulário.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Decorator para submissao ajax do formulário.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -1024,98 +1024,98 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_CONTENT_PANE1' AS constante_textual, 'Decorator Content Pane 1' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_CONTENT_PANE1' AS constante_textual, 'Decorator Content Pane 1' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_JAVASCRIPT_DOJO_SUBFORM_CONTENT_PANE1' AS constante_textual, 'Decorator Content Pane para subForms' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_DOJO_SUBFORM_CONTENT_PANE1' AS constante_textual, 'Decorator Content Pane para subForms' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV' AS constante_textual, 'Decorator para colocar o elemento em um Div' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV' AS constante_textual, 'Decorator para colocar o elemento em um Div' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Margin Right 10 pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Margin Right 10 pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Width 100 Percent Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Width 100 Percent Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT' AS constante_textual, 'Decorator Form Field Div Float Right' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT' AS constante_textual, 'Decorator Form Field Div Float Right' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Float Right Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Float Right Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Right Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Right Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Left Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Left Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT' AS constante_textual, 'Decorator Form Field Div Float Left' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT' AS constante_textual, 'Decorator Form Field Div Float Left' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Left Clear Both Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS constante_textual, 'Decorator Form Field Div Float Left Clear Both Margin Right 10 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Float Left Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Float Left Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS constante_textual, 'Decorator Form Field Div Clear Both' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_300PX' AS constante_textual, 'Decorator Form Field Div Width 300 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_FORM_FIELD_DIV_WIDTH_300PX' AS constante_textual, 'Decorator Form Field Div Width 300 Pixels' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7290,13 +7290,6 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ROCHEDO_DECORATOR_AJAX_FORM' AS constante_textual, 'Componente rochedo decorator AjaxForm.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
-FROM basico.tipo_categoria t
-LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
-WHERE t.nome = 'LINGUAGEM'
-AND c.nome = 'pt-br';
-
-INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'NOME_ZF_DECORATOR_FORM_ELEMENTS' AS constante_textual, 'Componente ZF decorator FormElements.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -7605,14 +7598,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ROCHEDO_DECORATOR_AJAX_FORM' AS constante_textual, 'Componente Rochedo de manipulação AJAX.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Componente Rochedo de manipulação AJAX.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_DECORATOR_FORM_ELEMENTS' AS constante_textual, 'Componente ZF de renderização de elementos de formulário.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual, 'Componente ZF de renderização de elementos de formulário.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -8282,7 +8275,7 @@ AND c.nome = 'pt-br';
 */
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DECORATOR_AJAX_FORM' AS constante_textual, 'Decorator to ajax form subimissions.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Decorator to ajax form subimissions.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

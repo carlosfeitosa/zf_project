@@ -11,7 +11,7 @@
 * 								
 */
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
 	   (SELECT com.id 
 		FROM basico.componente com
@@ -20,8 +20,9 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_ROCHEDO'
 		AND com.nome = 'ROCHEDO_Decorator_AjaxForm') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_ROCHEDO_AJAX_FORM' AS nome, 
-	   'DECORATOR_AJAX_FORM' AS constante_textual,
+	   'ROCHEDO_AJAX_FORM' AS nome, 
+	   'NOME_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual,
+	   'DESCRICAO_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual_descricao,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -38,8 +39,9 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_FormElements') AS id_componente,
-	   'DECORATOR_HTML_ZF_FORM_ELEMENTS' AS nome, 
-	   'DECORATOR_HTML_ZF_FORM_ELEMENTS' AS constante_textual,
+	   'ZF_FORM_ELEMENTS' AS nome, 
+	   'NOME_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual,
+	   'DESCRICAO_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -56,8 +58,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_ZF_HTMLTAG_DL' AS nome, 
-	   'DECORATOR_HTML_ZF_HTMLTAG_DL' AS constante_textual,
+	   'ZF_HTMLTAG_DL' AS nome, 
+	   'NOME_DECORATOR_ZF_HTMLTAG_DL' AS constante_textual,
 	   'array(''tag'' => ''dl'')' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -75,8 +77,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_DijitForm') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_DIJITFORM' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_DIJITFORM' AS constante_textual,
+	   'DOJO_DIJITFORM' AS nome, 
+	   'NOME_DECORATOR_DOJO_DIJITFORM' AS constante_textual,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -93,8 +95,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_DijitElement') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_DIJITELEMENT' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_DIJITELEMENT' AS constante_textual,
+	   'DOJO_DIJITELEMENT' AS nome, 
+	   'NOME_DECORATOR_DOJO_DIJITELEMENT' AS constante_textual,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -111,8 +113,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_Label') AS id_componente,
-	   'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS nome, 
-	   'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS constante_textual,
+	   'ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS nome, 
+	   'NOME_DECORATOR_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO' AS constante_textual,
 	   'array(''escape'' => false, ''disableFor'' => true)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -130,8 +132,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_Label') AS id_componente,
-	   'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS nome, 
-	   'DECORATOR_HTML_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS constante_textual,
+	   'ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS nome, 
+	   'NOME_DECORATOR_ZF_LABEL_SEM_ESCAPE_SEM_LINK_ELEMENTO_A_DIREITA' AS constante_textual,
 	   'array(''escape'' => false, ''disableFor'' => true, ''placement'' => ''append'')' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -149,8 +151,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_TabContainer') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_TABCONTAINER_850_x_430_TOP' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_TABCONTAINER1' AS constante_textual,
+	   'DOJO_TABCONTAINER_850_x_430_TOP' AS nome, 
+	   'NOME_DECORATOR_DOJO_TABCONTAINER1' AS constante_textual,
 	   'array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;'', ''dijitParams'' => array(''tabPosition'' => ''top''))' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -169,8 +171,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_AccordionContainer') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_ACCORDION_CONTAINER1' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_ACCORDION_CONTAINER1' AS constante_textual,
+	   'DOJO_ACCORDION_CONTAINER1' AS nome, 
+	   'NOME_DECORATOR_DOJO_ACCORDION_CONTAINER1' AS constante_textual,
 	   'array(''id'' => ''AccordionContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -188,8 +190,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_CONTENT_PANE1' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_CONTENT_PANE1' AS constante_textual,
+	   'DOJO_CONTENT_PANE1' AS nome, 
+	   'NOME_DECORATOR_DOJO_CONTENT_PANE1' AS constante_textual,
 	   'array(''id'' => ''ContentPane'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -207,8 +209,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
-	   'DECORATOR_JAVASCRIPT_DOJO_SUBFORM_CONTENT_PANE1' AS nome, 
-	   'DECORATOR_JAVASCRIPT_DOJO_SUBFORM_CONTENT_PANE1' AS constante_textual,
+	   'DOJO_SUBFORM_CONTENT_PANE1' AS nome, 
+	   'NOME_DECORATOR_DOJO_SUBFORM_CONTENT_PANE1' AS constante_textual,
 	   'array(''id'' => ''@nomeElemento'', ''title'' => ''@tituloContentPane'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -226,8 +228,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV' AS constante_textual,
+	   'FORM_FIELD_DIV' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV' AS constante_textual,
 	   'array(''tag'' => ''div'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -246,8 +248,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS constante_textual,
+	   'FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_MARGIN_RIGHT_10PX' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''margin-right10px'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -266,8 +268,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS constante_textual,
+	   'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''width100percent-clear-both'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -286,8 +288,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_RIGHT' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-right'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -306,8 +308,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-right-clear-both'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -326,8 +328,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10PX' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-right-margin-right10px'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -346,8 +348,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-left-margin-right10px'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -366,8 +368,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_LEFT' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-left'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -386,8 +388,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-left-clear-both-margin-right10px'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -406,8 +408,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS constante_textual,
+	   'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''float-left-clear-both'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -426,8 +428,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_CLEAR_BOTH' AS constante_textual,
+	   'FORM_FIELD_DIV_CLEAR_BOTH' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_CLEAR_BOTH' AS constante_textual,
 	   'array(''tag'' => ''div'', ''id'' => ''clear-both'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
@@ -446,8 +448,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
-	   'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_300PX' AS nome, 
-	   'DECORATOR_HTML_FORM_FIELD_DIV_WIDTH_300PX' AS constante_textual,
+	   'FORM_FIELD_DIV_WIDTH_300PX' AS nome, 
+	   'NOME_DECORATOR_FORM_FIELD_DIV_WIDTH_300PX' AS constante_textual,
 	   'array(''tag'' => ''div'', ''style'' => ''width: 300px;'')' AS attribs,
 	   'row' AS alias,
 	   true AS ativo, 
