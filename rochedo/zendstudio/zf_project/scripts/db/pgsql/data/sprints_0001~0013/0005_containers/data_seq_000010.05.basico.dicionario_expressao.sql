@@ -7598,7 +7598,7 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Componente Rochedo de manipulação AJAX.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Decorator Rochedo para submissão AJAX de formulários.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
