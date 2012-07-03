@@ -16,14 +16,14 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_DIJIT_ELEMENT' AS constante_textual, 'Componente para decorators Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_DOJO_DIJIT_ELEMENT' AS constante_textual, 'Componente para decorators Dojo DijitElement.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DECORATOR_DIJIT_ELEMENT' AS constante_textual, 'Decorator Dojo para elementos do tipo Dijit.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_DOJO_DIJIT_ELEMENT' AS constante_textual, 'Decorator Dojo para elementos do tipo Dijit.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7101,301 +7101,308 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_FORM' AS constante_textual, 'Formulário HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_FORM' AS constante_textual, 'Formulário HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_FORM' AS constante_textual, 'Componente HTML formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_FORM' AS constante_textual, 'Componente HTML formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_FORM_SUBFORM' AS constante_textual, 'Sub-formulário HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_FORM_SUBFORM' AS constante_textual, 'Sub-formulário HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_FORM_SUBFORM' AS constante_textual, 'Componente HTML sub-formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_FORM_SUBFORM' AS constante_textual, 'Componente HTML sub-formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_FORM' AS constante_textual, 'Formulário DOJO.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_FORM' AS constante_textual, 'Formulário DOJO.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_FORM' AS constante_textual, 'Componente DOJO formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_FORM' AS constante_textual, 'Componente DOJO formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_FORM_SUBFORM' AS constante_textual, 'Sub-formulário DOJO.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_FORM_SUBFORM' AS constante_textual, 'Sub-formulário DOJO.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_FORM_SUBFORM' AS constante_textual, 'Componente DOJO sub-formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_FORM_SUBFORM' AS constante_textual, 'Componente DOJO sub-formulário para submissão de dados.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_PASSWORD_TEXTBOX' AS constante_textual, 'Nome componente dojo password textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_PASSWORD_TEXTBOX' AS constante_textual, 'Nome componente dojo password textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual, 'Nome componente dojo password textbox with checker.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual, 'Nome componente dojo password textbox with checker.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_RADIOBUTTON' AS constante_textual, 'Nome componente dojo radiobutton.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_RADIOBUTTON' AS constante_textual, 'Nome componente dojo radiobutton.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_HIDDEN' AS constante_textual, 'Nome componente ZF hidden.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_HIDDEN' AS constante_textual, 'Nome componente ZF hidden.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_VALIDATION_TEXTBOX' AS constante_textual, 'Nome componente dojo validation textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_VALIDATION_TEXTBOX' AS constante_textual, 'Nome componente dojo validation textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_SUBMIT_BUTTON' AS constante_textual, 'Nome componente dojo submit button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_SUBMIT_BUTTON' AS constante_textual, 'Nome componente dojo submit button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_BUTTON' AS constante_textual, 'Nome componente ZF button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_BUTTON' AS constante_textual, 'Nome componente ZF button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_FILTERING_SELECT' AS constante_textual, 'Nome componente dojo filteringSelect button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_FILTERING_SELECT' AS constante_textual, 'Nome componente dojo filteringSelect button.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_MULTI_CHECKBOX' AS constante_textual, 'Nome componente ZF multi checkbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_MULTI_CHECKBOX' AS constante_textual, 'Nome componente ZF multi checkbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_CHECKBOX' AS constante_textual, 'Nome componente dojo checkbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_CHECKBOX' AS constante_textual, 'Nome componente dojo checkbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_TEXTAREA' AS constante_textual, 'Nome componente dojo textarea.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_TEXTAREA' AS constante_textual, 'Nome componente dojo textarea.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_SIMPLE_TEXTAREA' AS constante_textual, 'Nome componente dojo simple textarea.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_SIMPLE_TEXTAREA' AS constante_textual, 'Nome componente dojo simple textarea.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DATE_TEXTBOX' AS constante_textual, 'Nome componente dojo date textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_DATE_TEXTBOX' AS constante_textual, 'Nome componente dojo date textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_NUMBER_TEXTBOX' AS constante_textual, 'Nome componente dojo number textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_NUMBER_TEXTBOX' AS constante_textual, 'Nome componente dojo number textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_CURRENCY_TEXTBOX' AS constante_textual, 'Nome componente dojo currency textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DOJO_CURRENCY_TEXTBOX' AS constante_textual, 'Nome componente dojo currency textbox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_CAPTCHA' AS constante_textual, 'Nome componente ZF captcha.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_CAPTCHA' AS constante_textual, 'Nome componente ZF captcha.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_HASH' AS constante_textual, 'Nome componente ZF hash.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ZF_HASH' AS constante_textual, 'Nome componente ZF hash.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ROCHEDO_HTML' AS constante_textual, 'Nome componente rochedo html.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ROCHEDO_HTML' AS constante_textual, 'Nome componente rochedo html.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ROCHEDO_JAVASCRIPT' AS constante_textual, 'Nome componente rochedo javascript.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_ROCHEDO_JAVASCRIPT' AS constante_textual, 'Nome componente rochedo javascript.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_DECORATOR_FORM_ELEMENTS' AS constante_textual, 'Componente ZF decorator FormElements.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Componente para RF ajaxForm.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_DECORATOR_HTML_TAG' AS constante_textual, 'Componente ZF decorator HtmlTag.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual, 'Componente ZF decorator FormElements.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_DIJIT_FORM' AS constante_textual, 'Componente DOJO decorator DijitForm.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_ZF_HTML_TAG' AS constante_textual, 'Componente ZF decorator HtmlTag.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_DECORATOR_LABEL' AS constante_textual, 'Componente ZF decorator Label.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_DOJO_DIJIT_FORM' AS constante_textual, 'Componente DOJO decorator DijitForm.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_TAB_CONTAINER' AS constante_textual, 'Componente DOJO decorator TabContainer.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_ZF_LABEL' AS constante_textual, 'Componente ZF decorator Label.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_ACCORDION_CONTAINER' AS constante_textual, 'Componente DOJO decorator AccordionContainer.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_DOJO_TAB_CONTAINER' AS constante_textual, 'Componente DOJO decorator TabContainer.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual, 'Componente DOJO decorator ContentPane.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_DOJO_ACCORDION_CONTAINER' AS constante_textual, 'Componente DOJO decorator AccordionContainer.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_REGEX' AS constante_textual, 'Componente ZF validator regular expressions (regex).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_DECORATOR_DOJO_CONTENT_PANE' AS constante_textual, 'Componente DOJO decorator ContentPane.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_ALNUM' AS constante_textual, 'Componente ZF validator alphanumeric (alnum).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_REGEX' AS constante_textual, 'Componente ZF validator regular expressions (regex).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_IDENTICAL' AS constante_textual, 'Componente ZF validator identical.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_ALNUM' AS constante_textual, 'Componente ZF validator alphanumeric (alnum).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_STRING_LENGTH' AS constante_textual, 'Componente ZF validator string length.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_IDENTICAL' AS constante_textual, 'Componente ZF validator identical.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_NOT_EMPTY' AS constante_textual, 'Componente ZF validator not empty.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_STRING_LENGTH' AS constante_textual, 'Componente ZF validator string length.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_INT' AS constante_textual, 'Componente ZF validator integer (int).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_NOT_EMPTY' AS constante_textual, 'Componente ZF validator not empty.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_VALIDATOR_EMAIL_ADDRESS' AS constante_textual, 'Componente ZF validator e-mail address.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_INT' AS constante_textual, 'Componente ZF validator integer (int).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_FILTER_STRING_TRIM' AS constante_textual, 'Componente ZF filter string trim.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_VALIDATOR_ZF_EMAIL_ADDRESS' AS constante_textual, 'Componente ZF validator e-mail address.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'NOME_ZF_FILTER_STRIP_TAGS' AS constante_textual, 'Componente ZF filter strip tags.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'NOME_COMPONENTE_FILTER_ZF_STRING_TRIM' AS constante_textual, 'Componente ZF filter string trim.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_COMPONENTE_FILTER_ZF_STRIP_TAGS' AS constante_textual, 'Componente ZF filter strip tags.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7465,133 +7472,147 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_PASSWORD_TEXTBOX' AS constante_textual, 'Componente DOJO para caixas de texto do tipo Password.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_PASSWORD_TEXTBOX' AS constante_textual, 'Componente DOJO para caixas de texto do tipo Password.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual, 'Componente DOJO para caixas de texto do tipo Password com o componente Password strength checker acoplado.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_PASSWORD_TEXTBOX_WITH_CHECKER' AS constante_textual, 'Componente DOJO para caixas de texto do tipo Password com o componente Password strength checker acoplado.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_RADIOBUTTON' AS constante_textual, 'Componente DOJO para RadioButtons.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_RADIOBUTTON' AS constante_textual, 'Componente DOJO para RadioButtons.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_HIDDEN' AS constante_textual, 'Componente ZF para campos ocultos.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_HIDDEN' AS constante_textual, 'Componente ZF para campos ocultos.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_VALIDATION_TEXTBOX' AS constante_textual, 'Componente DOJO para caixas de texto com validação.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_VALIDATION_TEXTBOX' AS constante_textual, 'Componente DOJO para caixas de texto com validação.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_SUBMIT_BUTTON' AS constante_textual, 'Componente DOJO para botões de submissão.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_SUBMIT_BUTTON' AS constante_textual, 'Componente DOJO para botões de submissão.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_BUTTON' AS constante_textual, 'Componente ZendFramework de botões.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_BUTTON' AS constante_textual, 'Componente ZendFramework de botões.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_FILTERING_SELECT' AS constante_textual, 'Componente DOJO para ComboBox com filtragem.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_FILTERING_SELECT' AS constante_textual, 'Componente DOJO para ComboBox com filtragem.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_MULTI_CHECKBOX' AS constante_textual, 'Componente ZF para multiplos CheckBoxs.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_MULTI_CHECKBOX' AS constante_textual, 'Componente ZF para multiplos CheckBoxs.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_CHECKBOX' AS constante_textual, 'Componente DOJO para CheckBox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_CHECKBOX' AS constante_textual, 'Componente DOJO para CheckBox.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_TEXTAREA' AS constante_textual, 'Componente DOJO para campos do tipo texto (auto ajustavel).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_TEXTAREA' AS constante_textual, 'Componente DOJO para campos do tipo texto (auto ajustavel).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_SIMPLE_TEXTAREA' AS constante_textual, 'Componente DOJO para campos do tipo texto (dimensoes fixas).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_SIMPLE_TEXTAREA' AS constante_textual, 'Componente DOJO para campos do tipo texto (dimensoes fixas).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DATE_TEXTBOX' AS constante_textual, 'Componente DOJO para campos do tipo data.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_DATE_TEXTBOX' AS constante_textual, 'Componente DOJO para campos do tipo data.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_NUMBER_TEXTBOX' AS constante_textual, 'Componente DOJO para digitação de números.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_NUMBER_TEXTBOX' AS constante_textual, 'Componente DOJO para digitação de números.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_CURRENCY_TEXTBOX' AS constante_textual, 'Componente DOJO para digitação de valores numéricos (moeda).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DOJO_CURRENCY_TEXTBOX' AS constante_textual, 'Componente DOJO para digitação de valores numéricos (moeda).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_CAPTCHA' AS constante_textual, 'Componente ZendFramework para validação anti-robo.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_CAPTCHA' AS constante_textual, 'Componente ZendFramework para validação anti-robo.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_HASH' AS constante_textual, 'Componente ZendFramework de hash para validação anti-cross-site script.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ZF_HASH' AS constante_textual, 'Componente ZendFramework de hash para validação anti-cross-site script.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ROCHEDO_HTML' AS constante_textual, 'Componente Rochedo de conteudo HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ROCHEDO_HTML' AS constante_textual, 'Componente Rochedo de conteudo HTML.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ROCHEDO_JAVASCRIPT' AS constante_textual, 'Componente Rochedo de conteudo JavaScript.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_ROCHEDO_JAVASCRIPT' AS constante_textual, 'Componente Rochedo de conteudo JavaScript.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_ROCHEDO_AJAX_FORM' AS constante_textual, 'Componente Rochedo para submissão de dados em background (AJAX).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual, 'Componente Zend para renderização de elementos de formulário.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
@@ -7612,105 +7633,105 @@ WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_DECORATOR_HTML_TAG' AS constante_textual, 'Componente ZF de renderização tags html em formulários.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_ZF_HTML_TAG' AS constante_textual, 'Componente ZF de renderização tags html em formulários.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DECORATOR_DIJIT_FORM' AS constante_textual, 'Componente DOJO de renderização de tag form.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_DOJO_DIJIT_FORM' AS constante_textual, 'Componente DOJO de renderização de tag form.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_DECORATOR_LABEL' AS constante_textual, 'Componente ZF de renderização de label.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_ZF_LABEL' AS constante_textual, 'Componente ZF de renderização de label.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DECORATOR_TAB_CONTAINER' AS constante_textual, 'Componente DOJO de renderização de abas.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_DOJO_TAB_CONTAINER' AS constante_textual, 'Componente DOJO de renderização de abas.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DECORATOR_ACCORDION_CONTAINER' AS constante_textual, 'Componente DOJO de renderização de abas estilo acordeon.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_DOJO_ACCORDION_CONTAINER' AS constante_textual, 'Componente DOJO de renderização de abas estilo acordeon.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_DOJO_DECORATOR_CONTENT_PANE' AS constante_textual, 'Componente DOJO de renderização painel de conteúdo.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_DECORATOR_DOJO_CONTENT_PANE' AS constante_textual, 'Componente DOJO de renderização painel de conteúdo.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_REGEX' AS constante_textual, 'Componente ZF para validação de string através de expressões regulares (regex).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_REGEX' AS constante_textual, 'Componente ZF para validação de string através de expressões regulares (regex).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_ALNUM' AS constante_textual, 'Componente ZF para validação de string alfa-numéricas (alnum).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_ALNUM' AS constante_textual, 'Componente ZF para validação de string alfa-numéricas (alnum).' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_IDENTICAL' AS constante_textual, 'Componente ZF para validação de string identicas.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_IDENTICAL' AS constante_textual, 'Componente ZF para validação de string identicas.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_STRING_LENGTH' AS constante_textual, 'Componente ZF para validação de tamanho de strings.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_STRING_LENGTH' AS constante_textual, 'Componente ZF para validação de tamanho de strings.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_NOT_EMPTY' AS constante_textual, 'Componente ZF para validação string não vazia.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_NOT_EMPTY' AS constante_textual, 'Componente ZF para validação string não vazia.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_INT' AS constante_textual, 'Componente ZF para validação de números inteiros.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_INT' AS constante_textual, 'Componente ZF para validação de números inteiros.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_VALIDATOR_EMAIL_ADDRESS' AS constante_textual, 'Componente ZF para validação endereços de e-mail.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_VALIDATOR_ZF_EMAIL_ADDRESS' AS constante_textual, 'Componente ZF para validação endereços de e-mail.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_FILTER_STRING_TRIM' AS constante_textual, 'Componente ZF para limpeza de espaços em branco no início e final de um texto.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_FILTER_ZF_STRING_TRIM' AS constante_textual, 'Componente ZF para limpeza de espaços em branco no início e final de um texto.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'
 AND c.nome = 'pt-br';
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
-SELECT c.id, 'DESCRICAO_ZF_FILTER_STRIP_TAGS' AS constante_textual, 'Componente ZF para limpeza código (tags) dentro de um texto.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT c.id, 'DESCRICAO_COMPONENTE_FILTER_ZF_STRIP_TAGS' AS constante_textual, 'Componente ZF para limpeza código (tags) dentro de um texto.' AS traducao, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'LINGUAGEM'

@@ -30,7 +30,7 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_ROCHEDO';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
 	   (SELECT com.id 
 		FROM basico.componente com
@@ -41,7 +41,7 @@ SELECT c.id AS id_categoria,
 		AND com.nome = 'ZF_Decorator_FormElements') AS id_componente,
 	   'ZF_FORM_ELEMENTS' AS nome, 
 	   'NOME_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual,
-	   'DESCRICAO_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual,
+	   'DESCRICAO_DECORATOR_ZF_FORM_ELEMENTS' AS constante_textual_descricao,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t

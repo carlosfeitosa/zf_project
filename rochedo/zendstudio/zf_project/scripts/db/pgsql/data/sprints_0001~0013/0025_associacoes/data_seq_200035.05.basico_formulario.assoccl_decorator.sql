@@ -4,7 +4,8 @@
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: Igor Pinho (igor.pinho.souza@rochedoframework.com)
 * criacao: 06/02/2012
-* ultimas modificacoes: 20/06/2012 - Adição do decorator AjaxForm para todos os formularios (João Vasconcelos)
+* ultimas modificacoes: 20/06/2012 - Adição do decorator AjaxForm para todos os formularios (João Vasconcelos);
+* 						03/07/2012 - adaptação para uso dos novos decorators (Carlos Feitosa);
 */
 
 INSERT INTO basico_formulario.assoccl_decorator (id_formulario, id_decorator, ordem, rowinfo)
