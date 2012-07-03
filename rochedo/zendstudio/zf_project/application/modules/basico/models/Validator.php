@@ -31,6 +31,10 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	 */
 	protected $_constanteTextualDescricao;
 	/**
+	 * @var Boolean
+	 */
+	protected $_pararValidacaoAposFalha;
+	/**
 	 * @var String
 	 */
 	protected $_attribs;
@@ -43,7 +47,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	* Set idCategoria
 	* 
 	* @param Integer $idCategoria 
-	* @return Basico_Model_Categoria
+	* @return Basico_Model_Validator
 	*/
 	public function setIdCategoria($idCategoria)
 	{
@@ -80,7 +84,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	* Set id componente
 	* 
 	* @param int $idComponente 
-	* @return Basico_Model_FormularioValidator
+	* @return Basico_Model_Validator
 	*/
 	public function setIdComponente($idComponente)
 	{
@@ -136,7 +140,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	* Set constanteTextual
 	* 
 	* @param String $constanteTextual 
-	* @return Default_Model_Validator
+	* @return Basico_Model_Validator
 	*/
 	public function setConstanteTextual($constanteTextual)
 	{
@@ -158,7 +162,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	* Set constanteTextualDescricao
 	* 
 	* @param String $constanteTextualDescricao
-	* @return Default_Model_Validator
+	* @return Basico_Model_Validator
 	*/
 	public function setConstanteTextualDescricao($constanteTextualDescricao)
 	{
@@ -175,12 +179,34 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	{
 		return $this->_constanteTextualDescricao;
 	}
+	
+	/**
+	* Set pararValidacaoAposFalha
+	* 
+	* @param Boolean $pararValidacaoAposFalha 
+	* @return Basico_Model_Validator
+	*/
+	public function setPararValidacaoAposFalha($pararValidacaoAposFalha)
+	{
+		$this->_pararValidacaoAposFalha = Basico_OPController_UtilOPController::retornaValorTipado($pararValidacaoAposFalha, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get pararValidacaoAposFalha
+	* 
+	* @return null|Boolean
+	*/
+	public function getPararValidacaoAposFalha()
+	{
+		return $this->_pararValidacaoAposFalha;
+	}
 
 	/**
 	* Set attribs
 	* 
 	* @param String $attribs 
-	* @return Basico_Model_FormularioValidator
+	* @return Basico_Model_Validator
 	*/
 	public function setAttribs($attribs)
 	{
@@ -202,11 +228,11 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	* Set ativo
 	* 
 	* @param Boolean $ativo 
-	* @return Default_Model_Validator
+	* @return Basico_Model_Validator
 	*/
 	public function setAtivo($ativo)
 	{
-		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_STRING, true);
+		$this->_ativo = Basico_OPController_UtilOPController::retornaValorTipado($ativo, TIPO_BOOLEAN, true);
 		return $this;
 	}
 
