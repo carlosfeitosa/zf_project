@@ -13,10 +13,10 @@
 
 INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_ROCHEDO'
 		AND com.nome = 'ROCHEDO_Decorator_AjaxForm') AS id_componente,
@@ -31,10 +31,10 @@ AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_ROCHEDO';
 
 INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_FormElements') AS id_componente,
@@ -49,10 +49,10 @@ AND c.nome = 'FORMULARIO_DECORATOR_HTML_ZF';
 
 INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -68,10 +68,10 @@ AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
 INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_DijitForm') AS id_componente,
@@ -86,10 +86,10 @@ AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
 INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_DijitElement') AS id_componente,
@@ -102,12 +102,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_Label') AS id_componente,
@@ -121,12 +121,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_Label') AS id_componente,
@@ -140,12 +140,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_TabContainer') AS id_componente,
@@ -160,12 +160,12 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_AccordionContainer') AS id_componente,
@@ -179,12 +179,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
@@ -198,12 +198,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
@@ -217,12 +217,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT_DOJO';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -237,12 +237,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -257,12 +257,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -277,12 +277,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -297,12 +297,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -317,12 +317,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -337,12 +337,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -357,12 +357,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -377,12 +377,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -397,12 +397,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -417,12 +417,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
@@ -437,12 +437,12 @@ LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF';
 
-INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, ativo, rowinfo)
+INSERT INTO basico_formulario.decorator (id_categoria, id_componente, nome, constante_textual, attribs, alias, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   (SELECT id 
+	   (SELECT com.id 
 		FROM basico.componente com
 		LEFT JOIN basico.categoria c2 ON (com.id_categoria = c2.id)
-		LEFT JOIN basico.tipo_categoria t2 ON (c.id_tipo_categoria = t2.id)
+		LEFT JOIN basico.tipo_categoria t2 ON (c2.id_tipo_categoria = t2.id)
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_HTML_ZF'
 		AND com.nome = 'ZF_Decorator_HtmlTag') AS id_componente,
