@@ -41,7 +41,8 @@ class Basico_OPController_PersistenceOPController
      * @return Boolean
      */
     public static function bdControlaTransacao($tipoTransacao = DB_BEGIN_TRANSACTION)
-    {  	
+    {
+    	return true;
     	// retornando o resultado do metodo "controlaTransacaoBD" do controlador "Basico_OPController_DBTransactionOPController"
     	return Basico_OPController_DBTransactionOPController::getInstance()->controlaTransacaoBD($tipoTransacao);
     }

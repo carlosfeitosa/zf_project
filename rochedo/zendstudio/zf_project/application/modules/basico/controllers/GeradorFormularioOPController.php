@@ -1231,7 +1231,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetMethod, true);
 	}
-	
+
 	/**
 	 * Escreve a chamada para o metodo setMethod() do formulario substituindo uma flag pelo método do formulario
 	 * 
@@ -1261,7 +1261,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetMethod, true);
 	}
-	
+
 	/**
 	 * Escreve o comentario da chamada para o metodo setAction() do formulario
 	 * 
@@ -1286,7 +1286,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetAction, true);
 	}
-	
+
 	/**
 	 * Escreve a chamada para o metodo setAction() do formulario substituindo uma flag pela ação do formulario
 	 * 

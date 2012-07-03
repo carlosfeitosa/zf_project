@@ -457,10 +457,12 @@ class Basico_OPController_DBUtilOPController
 	    	$files = self::retornaArrayFileNamesDbDataScriptsFiles($caminhoArquivos);
 
 	    	//executando scripts dos arquivos sql do diretorio passado
-	    	foreach ($files as $file) { 
-	    		//if (is_file($file)) {
+	    	foreach ($files as $file) {
+	    		// verificando se a variável $file faz referencia a um arquivo existente no sistema de arquivos 
+	    		if (is_file($caminhoArquivos . "/" .  $file)) {
+	    			// executando o script
 	    			self::executaScriptSQL(Basico_OPController_UtilOPController::retornaConteudoArquivo($caminhoArquivos . "/" .  $file));
-	    		//}
+	    		}
 	    	}
 
 	    	//recuperando pastas do diretorio passado
@@ -521,7 +523,7 @@ class Basico_OPController_DBUtilOPController
     		return false;
     	} catch(Exception $e) {
     		// salvando log do erro
-    		Basico_OPController_LogOPController::getInstance()->salvaLogFS(LOG_MSG_ERRO_DB_EXECUCAO_SCRIPT);
+    		Basico_OPController_LogOPController::getInstance()->salvaLogFS('Erro ao tentar executar o script.');
     		// lançando o erro
     		throw new Exception(MSG_ERRO_DB_EXECUCAO_SCRIPT . $e->getMessage());
 
