@@ -9,6 +9,20 @@
 */
 
 INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'NOME_GRUPO_DECORATOR_SUBFORM_CONTENT_PANE' AS constante_textual, 'Grupo de decorators para sub-formulários ContentPane.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
+SELECT c.id, 'DESCRICAO_GRUPO_DECORATOR_SUBFORM_CONTENT_PANE' AS constante_textual, 'Grupo de decorators para sub-formulários ContentPane com dimensões.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'LINGUAGEM'
+AND c.nome = 'pt-br';
+
+INSERT INTO basico.dicionario_expressao (id_categoria, constante_textual, traducao, ativo, rowinfo)
 SELECT c.id, 'NOME_GRUPO_DECORATOR_FORMULARIO_CONTENT_PANE_850_x_430' AS constante_textual, 'Grupo de decorators para formularios ContentPane 850x430.' AS traducao, true AS ativo, 'SYSTEM STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
