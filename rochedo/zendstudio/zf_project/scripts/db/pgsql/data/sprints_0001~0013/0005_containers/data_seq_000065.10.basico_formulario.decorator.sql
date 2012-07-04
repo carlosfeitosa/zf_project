@@ -152,7 +152,7 @@ SELECT c.id AS id_categoria,
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_TabContainer') AS id_componente,
 	   'DOJO_TABCONTAINER_850_x_430_TOP' AS nome, 
-	   'NOME_DECORATOR_DOJO_TABCONTAINER1' AS constante_textual,
+	   'NOME_DECORATOR_DOJO_TABCONTAINER_850_x_430_TOP' AS constante_textual,
 	   'array(''id'' => ''TabContainer'', ''style'' => ''width: 850px; height: 430px; top: 10px; position: relative; z-index: 3;'', ''dijitParams'' => array(''tabPosition'' => ''top''))' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -171,8 +171,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_AccordionContainer') AS id_componente,
-	   'DOJO_ACCORDION_CONTAINER1' AS nome, 
-	   'NOME_DECORATOR_DOJO_ACCORDION_CONTAINER1' AS constante_textual,
+	   'DOJO_ACCORDION_CONTAINER_850_x_430' AS nome, 
+	   'NOME_DECORATOR_DOJO_ACCORDION_CONTAINER_850_x_430' AS constante_textual,
 	   'array(''id'' => ''AccordionContainer'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -190,8 +190,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
-	   'DOJO_CONTENT_PANE1' AS nome, 
-	   'NOME_DECORATOR_DOJO_CONTENT_PANE1' AS constante_textual,
+	   'DOJO_CONTENT_PANE_850_x_430' AS nome, 
+	   'NOME_DECORATOR_DOJO_CONTENT_PANE_850_x_430' AS constante_textual,
 	   'array(''id'' => ''ContentPane'', ''style'' => ''width: 850px; height: 430px; position: relative; z-index: 3;'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo
@@ -209,8 +209,8 @@ SELECT c.id AS id_categoria,
 		WHERE t2.nome = 'COMPONENTE'
 		AND c2.nome = 'COMPONENTE_DECORATOR_JAVASCRIPT_DOJO'
 		AND com.nome = 'DOJO_Decorator_ContentPane') AS id_componente,
-	   'DOJO_SUBFORM_CONTENT_PANE1' AS nome, 
-	   'NOME_DECORATOR_DOJO_SUBFORM_CONTENT_PANE1' AS constante_textual,
+	   'DOJO_SUBFORM_CONTENT_PANE' AS nome, 
+	   'NOME_DECORATOR_DOJO_SUBFORM_CONTENT_PANE' AS constante_textual,
 	   'array(''id'' => ''@nomeElemento'', ''title'' => ''@tituloContentPane'',)' AS attribs,
 	   true AS ativo, 
 	   'SYSTEM_STARTUP' AS rowinfo

@@ -346,6 +346,11 @@ SELECT id AS id_tipo_categoria, 'FORMULARIO_SUB_FORMULARIO' AS nome, true AS ati
 FROM basico.tipo_categoria
 WHERE nome = 'FORMULARIO';
 
+INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
+SELECT id AS id_tipo_categoria, 'FORMULARIO_FORMULARIO_ELEMENTO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria
+WHERE nome = 'FORMULARIO';
+
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_INPUT_CADASTRO_USUARIO_DADOS_USUARIO_DADOS_PESSOAIS' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -971,3 +976,28 @@ SELECT t.id AS id_tipo_categoria, 1 AS nivel,
     'VISAO_DADOS_USUARIO' AS nome, 'VISAO_DADOS_USUARIO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 WHERE t.nome = 'VISAO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_DECORATOR_GRUPO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_ELEMENTO_DECORATOR_GRUPO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR'
+AND cpai.nome = 'FORMULARIO_ELEMENTO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_GRUPO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
+LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR'
+AND cpai.nome = 'FORMULARIO_DECORATOR';
