@@ -7,6 +7,7 @@
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 08/02/2012
 * ultimas modificacoes:  
+* 							04/07/2012 - adaptacao dos scripts para uso dos novos decorators (Carlos Feitosa)
 * 						
 */
 
@@ -22,12 +23,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -40,12 +42,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -58,12 +61,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -76,12 +80,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -94,12 +99,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -112,12 +118,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -130,11 +137,12 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
@@ -148,12 +156,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -166,12 +175,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -184,12 +194,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -202,12 +213,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -220,12 +232,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -238,12 +251,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -256,12 +270,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -274,12 +289,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -292,12 +308,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -310,12 +327,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -328,12 +346,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -346,12 +365,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -364,12 +384,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -382,12 +403,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -400,12 +422,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -418,12 +441,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -436,12 +460,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -454,12 +479,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -472,12 +498,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -490,12 +517,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -508,12 +536,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -526,12 +555,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -544,12 +574,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -562,12 +593,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -580,12 +612,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -598,12 +631,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -616,12 +650,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -634,12 +669,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -652,12 +688,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -670,12 +707,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -688,12 +726,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -706,12 +745,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -724,12 +764,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -742,12 +783,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -760,12 +802,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -778,12 +821,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -796,12 +840,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -814,12 +859,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -832,12 +878,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -850,12 +897,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -868,12 +916,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -886,12 +935,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -904,12 +954,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -922,12 +973,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -940,12 +992,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -958,12 +1011,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -976,12 +1030,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -994,12 +1049,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1012,12 +1068,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1030,12 +1087,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1048,12 +1106,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1066,12 +1125,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1084,12 +1144,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1102,12 +1163,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1120,12 +1182,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1138,12 +1201,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1156,12 +1220,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1174,12 +1239,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1192,12 +1258,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1210,12 +1277,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1228,12 +1296,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1246,12 +1315,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1264,12 +1334,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1282,12 +1353,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1300,12 +1372,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1318,12 +1391,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1336,12 +1410,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1354,12 +1429,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1372,12 +1448,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1390,12 +1467,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1408,12 +1486,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1426,12 +1505,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1444,12 +1524,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1462,12 +1543,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1480,12 +1562,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1498,12 +1581,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1516,12 +1600,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1534,12 +1619,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1552,12 +1638,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1570,12 +1657,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH_MARGIN_RIGHT_10PX') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1588,12 +1676,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1606,12 +1695,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1624,12 +1714,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1642,12 +1733,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1660,12 +1752,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1678,12 +1771,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1696,12 +1790,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1714,12 +1809,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1732,12 +1828,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1750,12 +1847,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1768,12 +1866,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1786,12 +1885,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1804,12 +1904,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1822,12 +1923,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1840,12 +1942,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1858,12 +1961,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1876,12 +1980,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1894,12 +1999,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1912,12 +2018,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1930,12 +2037,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1948,12 +2056,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1966,12 +2075,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -1984,12 +2094,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2002,12 +2113,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2020,12 +2132,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2038,12 +2151,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2056,12 +2170,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2074,12 +2189,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2092,12 +2208,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2110,12 +2227,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2128,12 +2246,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2146,12 +2265,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2164,12 +2284,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2182,12 +2303,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2200,12 +2322,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2218,12 +2341,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2236,12 +2360,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2254,12 +2379,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2272,12 +2398,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2290,12 +2417,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2308,12 +2436,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2326,12 +2455,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2344,12 +2474,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2362,12 +2493,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2380,12 +2512,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2398,12 +2531,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2416,12 +2550,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2434,12 +2569,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2452,12 +2588,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2470,12 +2607,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2488,12 +2626,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2506,12 +2645,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2524,12 +2664,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2542,12 +2683,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2560,12 +2702,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2578,12 +2721,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2596,12 +2740,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2614,12 +2759,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2632,12 +2778,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2650,12 +2797,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2668,12 +2816,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2686,12 +2835,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2704,12 +2854,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2722,12 +2873,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2740,12 +2892,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2758,12 +2911,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2776,12 +2930,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2794,12 +2949,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2812,12 +2968,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2830,12 +2987,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2848,12 +3006,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2866,12 +3025,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2884,12 +3044,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2902,12 +3063,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2920,12 +3082,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2938,12 +3101,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2956,12 +3120,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2974,12 +3139,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -2992,12 +3158,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3010,12 +3177,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3028,12 +3196,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3046,12 +3215,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_LEFT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3064,12 +3234,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_WIDTH_100PERCENT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_WIDTH_100PERCENT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3082,12 +3253,13 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_CLEAR_BOTH_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
-       
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT_CLEAR_BOTH'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
+
 INSERT INTO basico_form_assoccl_elemento.assoccl_decorator (id_assoccl_elemento, id_decorator, ordem, rowinfo)
 SELECT (SELECT fcle.id
         FROM basico_formulario.assoccl_elemento fcle
@@ -3100,8 +3272,9 @@ SELECT (SELECT fcle.id
         FROM basico_formulario.decorator d
         LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_DIV_FLOAT_RIGHT_DECORATOR'
-        AND d.nome = 'DECORATOR_FORM_FIELD_DIV_FLOAT_RIGHT_MARGIN_RIGHT_10px') AS id_decorator,
-        1 AS ordem,
-       'SYSTEM_STARTUP' AS rowinfo;
+        AND c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
+        AND d.nome = 'FORM_FIELD_DIV_FLOAT_RIGHT'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_decorator,
+        1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
