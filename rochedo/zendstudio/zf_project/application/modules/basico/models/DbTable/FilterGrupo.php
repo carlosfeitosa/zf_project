@@ -11,6 +11,6 @@ class Basico_Model_DbTable_FilterGrupo extends Basico_AbstractDbTable_RochedoDbT
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'basico.filter_grupo';
+    protected $_name = 'basico_filter.grupo';
 }
 ?>

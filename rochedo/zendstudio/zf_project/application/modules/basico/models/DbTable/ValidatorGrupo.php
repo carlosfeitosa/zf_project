@@ -10,5 +10,5 @@ class Basico_Model_DbTable_ValidatorGrupo extends Basico_AbstractDbTable_Rochedo
     /**
      * @var string Name of the database table
      */
-    protected $_name = 'basico.validator_grupo';
+    protected $_name = 'basico_validator.grupo';
 }
