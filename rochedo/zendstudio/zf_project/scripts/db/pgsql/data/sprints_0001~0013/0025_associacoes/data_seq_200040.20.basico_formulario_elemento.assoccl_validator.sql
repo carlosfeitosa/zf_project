@@ -8,6 +8,7 @@
 * por: ADRIANO LEMOS (adriano.lemos@rochedoframework.com)
 * criacao: 07/02/2012
 * ultimas modificacoes:
+* 							04/07/2012 - Adaptação do script para os novos validators;
 * 								
 */
 
@@ -23,11 +24,13 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'STRING_LENGTH_6_TO_100') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'STRING_ENTRE_6_E_100_CARACTERES') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
-
+       
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
 SELECT (SELECT fe.id
         FROM basico_formulario.elemento fe
@@ -40,11 +43,13 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'INT') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'INTEIRO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
-       
+
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
 SELECT (SELECT fe.id
         FROM basico_formulario.elemento fe
@@ -57,9 +62,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -74,9 +81,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -91,9 +100,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'STRING_LENGTH_3_TO_100') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'STRING_ENTRE_3_E_100_CARACTERES') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -108,9 +119,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'REGEX_/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'REGEX_LOGIN') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -125,9 +138,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
       
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -142,9 +157,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -159,9 +176,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -176,9 +195,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'IDENTICAL') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'IDENTICO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -193,9 +214,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -210,9 +233,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'EMAIL_ADDRESS_DEEP_MX') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'ENDERECO_EMAIL_COM_VERIFICACAO_MX') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -227,9 +252,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'IDENTICAL') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'IDENTICO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -244,9 +271,11 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'STRING_LENGTH_6_TO_100') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'STRING_ENTRE_6_E_100_CARACTERES') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
@@ -261,7 +290,9 @@ SELECT (SELECT fe.id
         FROM basico.validator fev
         LEFT JOIN basico.categoria c ON (fev.id_categoria = c.id)
         LEFT JOIN basico.tipo_categoria t ON (c.id_tipo_categoria = t.id)
+        LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)
         WHERE t.nome = 'FORMULARIO'
-        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
-        AND fev.nome = 'NOT_EMPTY') AS id_formulario_elemento_validator,
+        AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
+        AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
+        AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
