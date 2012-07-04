@@ -8,7 +8,7 @@
 *  
 */
 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -24,10 +24,10 @@ SELECT (SELECT dg.id
 		 WHERE d.nome = 'ZF_FORM_ELEMENTS'
 		 AND cat.nome = 'FORMULARIO_DECORATOR_HTML_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_DECORATOR_HTML') AS id_formulario_decorator,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -43,10 +43,10 @@ SELECT (SELECT dg.id
 		 WHERE d.nome = 'ZF_HTMLTAG_DL'
 		 AND cat.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML') AS id_formulario_decorator,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -65,7 +65,7 @@ SELECT (SELECT dg.id
 		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 3 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -81,10 +81,10 @@ SELECT (SELECT dg.id
 		 WHERE d.nome = 'ZF_FORM_ELEMENTS'
 		 AND cat.nome = 'FORMULARIO_DECORATOR_HTML_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_DECORATOR_HTML') AS id_formulario_decorator,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -103,7 +103,7 @@ SELECT (SELECT dg.id
 		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -119,10 +119,10 @@ SELECT (SELECT dg.id
 		 WHERE d.nome = 'ZF_FORM_ELEMENTS'
 		 AND cat.nome = 'FORMULARIO_DECORATOR_HTML_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_DECORATOR_HTML') AS id_formulario_decorator,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -141,7 +141,7 @@ SELECT (SELECT dg.id
 		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;	
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -157,10 +157,10 @@ SELECT (SELECT dg.id
 		 WHERE d.nome = 'ZF_FORM_ELEMENTS'
 		 AND cat.nome = 'FORMULARIO_DECORATOR_HTML_ZF'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_DECORATOR_HTML') AS id_formulario_decorator,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -179,7 +179,7 @@ SELECT (SELECT dg.id
 		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -198,7 +198,7 @@ SELECT (SELECT dg.id
 		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 1 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;
 		 
-INSERT INTO basico_formulario_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
+INSERT INTO basico_form_decorator_grupo.assocag_grupo (id_form_decorator_grupo, id_formulario_decorator, ordem, rowinfo)
 SELECT (SELECT dg.id
 		 FROM basico_formulario_decorator.grupo dg
 		 LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
@@ -212,8 +212,8 @@ SELECT (SELECT dg.id
 		 LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
 		 LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
 		 WHERE d.nome = 'DOJO_SUBFORM_CONTENT_PANE'
-		 AND cat.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT_DOJO'
+		 AND cat.nome = 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT_DOJO'
 		 AND tcat.nome = 'FORMULARIO'
-		 AND catpai.nome = 'FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
+		 AND catpai.nome = 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT') AS id_formulario_decorator,
 		 2 AS ordem, 'SYSTEM_STARTUP' AS rowinfo;		 
 		 

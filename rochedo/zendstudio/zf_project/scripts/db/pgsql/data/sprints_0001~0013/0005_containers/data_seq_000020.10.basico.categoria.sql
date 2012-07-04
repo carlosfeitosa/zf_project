@@ -346,6 +346,27 @@ SELECT id AS id_tipo_categoria, 'FORMULARIO_SUB_FORMULARIO' AS nome, true AS ati
 FROM basico.tipo_categoria
 WHERE nome = 'FORMULARIO';
 
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_SUB_FORMULARIO_DECORATOR' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT_DOJO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_SUB_FORMULARIO_DECORATOR_JAVASCRIPT';
+
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_FORMULARIO_ELEMENTO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria
@@ -411,7 +432,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_DECORATOR_HTML_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_DECORATOR_HTML_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -446,11 +467,18 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_DECORATOR';
 
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
-SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 3 AS nivel, 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 4 AS nivel, 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'FORMULARIO'
+AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR_HTML';
 
 INSERT into basico.categoria (id_tipo_categoria, nome, ativo, rowinfo)
 SELECT id AS id_tipo_categoria, 'FORMULARIO_ELEMENTO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
