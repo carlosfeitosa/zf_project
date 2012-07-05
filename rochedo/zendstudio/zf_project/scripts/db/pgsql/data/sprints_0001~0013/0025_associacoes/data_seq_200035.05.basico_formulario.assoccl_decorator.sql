@@ -21,7 +21,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -40,7 +40,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -59,7 +59,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_TABCONTAINER_850_x_430_TOP'
+        WHERE dg.nome = 'FORMULARIO_TABCONTAINER_850_x_430_TOP'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -78,7 +78,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -97,7 +97,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -116,7 +116,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -135,7 +135,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -154,7 +154,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -173,7 +173,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -192,7 +192,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -211,7 +211,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -230,7 +230,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -249,7 +249,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -268,7 +268,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,
@@ -287,7 +287,7 @@ SELECT (SELECT f.id
         LEFT JOIN basico.categoria cat ON (dg.id_categoria = cat.id)
         LEFT JOIN basico.tipo_categoria tcat ON (cat.id_tipo_categoria = tcat.id)
         LEFT JOIN basico.categoria catpai ON (cat.id_categoria_pai = catpai.id)
-        WHERE dg.nome = 'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL'
+        WHERE dg.nome = 'FORMULARIO_DIJITFORM_DL'
         AND cat.nome = 'FORMULARIO_DECORATOR_GRUPO'
         AND tcat.nome = 'FORMULARIO'
         AND catpai.nome = 'FORMULARIO_DECORATOR') AS id_decorator_grupo,

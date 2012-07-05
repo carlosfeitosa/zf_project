@@ -12,7 +12,7 @@
 
 INSERT INTO basico_formulario_decorator.grupo (id_categoria, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL' AS nome,
+	   'FORMULARIO_DIJITFORM_DL' AS nome,
 	   'NOME_GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL' AS constante_textual,
 	   'DESCRICAO_GRUPO_DECORATOR_FORMULARIO_DIJITFORM_DL' AS constante_textual_descricao,
 	   true AS ativo,
@@ -24,7 +24,7 @@ AND tc.nome = 'FORMULARIO';
 
 INSERT INTO basico_formulario_decorator.grupo (id_categoria, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'GRUPO_DECORATOR_FORMULARIO_TABCONTAINER_850_x_430_TOP' AS nome,
+	   'FORMULARIO_TABCONTAINER_850_x_430_TOP' AS nome,
 	   'NOME_GRUPO_DECORATOR_FORMULARIO_TABCONTAINER_850_x_430_TOP' AS constante_textual,
 	   'DESCRICAO_GRUPO_DECORATOR_FORMULARIO_TABCONTAINER_850_x_430_TOP' AS constante_textual_descricao,
 	   true AS ativo,
@@ -36,7 +36,7 @@ AND tc.nome = 'FORMULARIO';
 
 INSERT INTO basico_formulario_decorator.grupo (id_categoria, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'GRUPO_DECORATOR_FORMULARIO_ACCORDION_CONTAINER_850_x_430' AS nome,
+	   'FORMULARIO_ACCORDION_CONTAINER_850_x_430' AS nome,
 	   'NOME_GRUPO_DECORATOR_FORMULARIO_ACCORDION_CONTAINER_850_x_430' AS constante_textual,
 	   'DESCRICAO_GRUPO_DECORATOR_FORMULARIO_ACCORDION_CONTAINER_850_x_430' AS constante_textual_descricao,
 	   true AS ativo,
@@ -48,7 +48,7 @@ AND tc.nome = 'FORMULARIO';
 
 INSERT INTO basico_formulario_decorator.grupo (id_categoria, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'GRUPO_DECORATOR_FORMULARIO_CONTENT_PANE_850_x_430' AS nome,
+	   'FORMULARIO_CONTENT_PANE_850_x_430' AS nome,
 	   'NOME_GRUPO_DECORATOR_FORMULARIO_CONTENT_PANE_850_x_430' AS constante_textual,
 	   'DESCRICAO_GRUPO_DECORATOR_FORMULARIO_CONTENT_PANE_850_x_430' AS constante_textual_descricao,
 	   true AS ativo,
@@ -60,7 +60,7 @@ AND tc.nome = 'FORMULARIO';
 
 INSERT INTO basico_formulario_decorator.grupo (id_categoria, nome, constante_textual, constante_textual_descricao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'GRUPO_DECORATOR_SUBFORM_CONTENT_PANE' AS nome,
+	   'SUBFORM_CONTENT_PANE' AS nome,
 	   'NOME_GRUPO_DECORATOR_SUBFORM_CONTENT_PANE' AS constante_textual,
 	   'DESCRICAO_GRUPO_DECORATOR_SUBFORM_CONTENT_PANE' AS constante_textual_descricao,
 	   true AS ativo,
