@@ -10,15 +10,19 @@
 class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
 	/**
-     * @var idElemento
+     * @var Int
      */
     protected $_idElemento;
     /**
-     * @var idFilter
+     * @var Int
      */
     protected $_idFilter;
     /**
-     * @var ordem
+     * @var Int
+     */
+    protected $_idFilterGrupo;
+    /**
+     * @var Int
      */
     protected $_ordem;
 
@@ -87,6 +91,39 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
     {
         $model = new Basico_Model_Filter();
         $object = $model->find($this->_idFilter);
+        return $object;
+    }
+    
+	/**
+    * Set idFilterGrupo
+    * 
+    * @param int $idFilterGrupo
+    * @return Basico_Model_FormularioElementoAssocclFilter
+    */
+    public function setIdFilterGrupo($idFilterGrupo)
+    {
+        $this->_idFilterGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idFilterGrupo, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get idFilterGrupo
+    * 
+    * @return null|int
+    */
+    public function getIdFilterGrupo()
+    {
+        return $this->_idFilterGrupo;
+    }
+ 
+    /**
+     * Get FilterGrupo object
+     * @return null|Basico_Model_FilterGrupo
+     */
+    public function getFilterGrupoObject()
+    {
+        $model = new Basico_Model_FilterGrupo();
+        $object = $model->find($this->_idFilterGrupo);
         return $object;
     }
 

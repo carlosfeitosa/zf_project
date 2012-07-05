@@ -5,7 +5,7 @@
  * Implements the Data Mapper design pattern:
  * http://www.martinfowler.com/eaaCatalog/dataMapper.html
  * 
- * @uses       Basico_Model_DbTable_Rascunho
+ * @uses       Basico_Model_DbTable_FormularioAssocclDecorator
  * @subpackage Model
  */
 class Basico_Model_FormularioAssocclDecoratorMapper extends Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMapper_RochedoMapperPesquisa, Basico_InterfaceMapper_RochedoMapperPersistencia
@@ -27,12 +27,13 @@ class Basico_Model_FormularioAssocclDecoratorMapper extends Basico_AbstractMappe
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id']			   = 'id';
-		$this->_arrayMapper['idFormulario']	   = 'id_formulario';
-		$this->_arrayMapper['idDecorator']	   = 'id_decorator';
-		$this->_arrayMapper['ordem']           = 'ordem';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo']         = 'rowinfo'; 
+		$this->_arrayMapper['id']			    = 'id';
+		$this->_arrayMapper['idFormulario']	    = 'id_formulario';
+		$this->_arrayMapper['idDecorator']	    = 'id_decorator';
+		$this->_arrayMapper['idDecoratorGrupo'] = 'id_decorator_grupo';
+		$this->_arrayMapper['ordem']            = 'ordem';
+		$this->_arrayMapper['datahoraCriacao']  = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo']          = 'rowinfo'; 
 	}
 	
    	/**

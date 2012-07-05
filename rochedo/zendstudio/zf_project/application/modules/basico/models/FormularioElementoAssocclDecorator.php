@@ -16,7 +16,11 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     /**
      * @var Integer
      */
-    protected $_idDecorator; 
+    protected $_idDecorator;
+    /**
+	 * @var Integer
+	 */
+	protected $_idDecoratorGrupo; 
     /**
      * @var Integer
      */
@@ -84,7 +88,7 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     }
  
 	/**
-	 * Get pessoaPerfil object
+	 * Get Decorator object
 	 * 
      * @return null|Basico_Model_FormularioDecorator
      */
@@ -92,6 +96,41 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     {
         $model = new Basico_Model_FormularioDecorator();
         $object = $model->find($this->_idDecorator);
+        return $object;
+    }
+    
+	/**
+	* Set idDecoratorGrupo
+	* 
+	* @param Integer $idDecoratorGrupo
+	*  
+	* @return Basico_Model_FormularioElementoAssocclDecorator
+	*/
+	public function setIdDecoratorGrupo($idDecoratorGrupo)
+	{
+		$this->_idDecoratorGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idDecoratorGrupo, TIPO_INTEIRO, true);
+		return $this;
+	}
+
+	/**
+	* Get idDecoratorGrupo
+	* 
+	* @return null|int
+	*/
+	public function getIdDecoratorGrupo()
+	{
+		return $this->_idDecoratorGrupo;
+	}
+    
+    /**
+     * Get DecoratorGrupo object
+     * 
+     * @return null|Basico_Model_FormularioDecoratorGrupo
+     */
+    public function getDecoratorGrupoObject()
+    {
+        $model = new Basico_Model_FormularioDecoratorGrupo();
+        $object = $model->find($this->_idDecoratorGrupo);
         return $object;
     }
 
