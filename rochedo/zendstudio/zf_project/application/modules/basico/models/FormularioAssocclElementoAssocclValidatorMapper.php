@@ -30,6 +30,7 @@ class Basico_Model_FormularioAssocclElementoAssocclValidatorMapper extends Basic
 		$this->_arrayMapper['id']						 = 'id';
 		$this->_arrayMapper['idAssocclElemento']		 = 'id_assoccl_elemento';
 		$this->_arrayMapper['idValidator']				 = 'id_validator';
+		$this->_arrayMapper['idValidatorGrupo']			 = 'id_validator_grupo';
 		$this->_arrayMapper['removeFlag'] 			     = 'remove_flag';
 		$this->_arrayMapper['datahoraCriacao']           = 'datahora_criacao';
 		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';

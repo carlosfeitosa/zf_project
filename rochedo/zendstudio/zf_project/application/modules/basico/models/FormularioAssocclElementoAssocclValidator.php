@@ -19,6 +19,11 @@ class Basico_Model_FormularioAssocclElementoAssocclValidator extends Basico_Abst
      * @var int
      */
     protected $_idValidator;
+    /**
+     * Referência a classe Basico_Model_ValidatorGrupo
+     * @var int
+     */
+    protected $_idValidatorGrupo;
 	/**
      * @var int
      */
@@ -87,6 +92,39 @@ class Basico_Model_FormularioAssocclElementoAssocclValidator extends Basico_Abst
     {
         $model = new Basico_Model_Validator();
         $object = $model->find($this->_idValidator);
+        return $object;
+    }
+    
+	/**
+    * Set idValidatorGrupo
+    * 
+    * @param int $idValidatorGrupo 
+    * @return Basico_Model_FormularioAssocclElementoAssocclValidator
+    */
+    public function setIdValidatorGrupo($idValidatorGrupo)
+    {
+        $this->_idValidatorGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idValidatorGrupo, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get idValidatorGrupo
+    * 
+    * @return null|int
+    */
+    public function getIdValidatorGrupo()
+    {
+        return $this->_idValidatorGrupo;
+    }
+ 
+    /**
+     * Get ValidatorGrupo object
+     * @return null|Basico_Model_ValidatorGrupo
+     */
+    public function getValidatorGrupoObject()
+    {
+        $model = new Basico_Model_ValidatorGrupo();
+        $object = $model->find($this->_idValidatorGrupo);
         return $object;
     }
 

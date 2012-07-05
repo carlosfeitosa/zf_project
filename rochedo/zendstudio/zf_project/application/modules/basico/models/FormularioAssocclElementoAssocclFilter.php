@@ -20,6 +20,11 @@ class Basico_Model_FormularioAssocclElementoAssocclFilter extends Basico_Abstrac
      */
     protected $_idFilter;
     /**
+     * Referencia a classe Basico_Model_FilterGrupo
+     * @var int
+     */
+    protected $_idFilterGrupo;
+    /**
      * @var int
      */
     protected $_ordem;
@@ -91,6 +96,39 @@ class Basico_Model_FormularioAssocclElementoAssocclFilter extends Basico_Abstrac
     {
         $model = new Basico_Model_Filter();
         $object = $model->find($this->_idFilter);
+        return $object;
+    }
+    
+	/**
+    * Set idFilterGrupo
+    * 
+    * @param int $idFilterGrupo
+    * @return Basico_Model_FormularioAssocclElementoAssocclFilter
+    */
+    public function setIdFilterGrupo($idFilterGrupo)
+    {
+        $this->_idFilterGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idFilterGrupo, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get idFilterGrupo
+    * 
+    * @return int
+    */
+    public function getIdFilterGrupo()
+    {
+        return $this->_idFilterGrupo;
+    }
+ 
+    /**
+     * Get FilterGrupo object
+     * @return null|Basico_Model_FilterGrupo
+     */
+    public function getFilterGrupoObject()
+    {
+        $model = new Basico_Model_FilterGrupo();
+        $object = $model->find($this->_idFilterGrupo);
         return $object;
     }
     

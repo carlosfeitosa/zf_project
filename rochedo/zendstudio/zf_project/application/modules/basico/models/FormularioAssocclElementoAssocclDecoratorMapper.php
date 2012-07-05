@@ -30,6 +30,7 @@ class Basico_Model_FormularioAssocclElementoAssocclDecoratorMapper extends Basic
 		$this->_arrayMapper['id']				 = 'id';
 		$this->_arrayMapper['idAssocclElemento'] = 'id_assoccl_elemento';
 		$this->_arrayMapper['idDecorator']		 = 'id_decorator';
+		$this->_arrayMapper['idDecoratorGrupo']  = 'id_decorator_grupo';
 		$this->_arrayMapper['removeFlag'] 		 = 'remove_flag';
 		$this->_arrayMapper['ordem']             = 'ordem';
 		$this->_arrayMapper['datahoraCriacao']   = 'datahora_criacao';

@@ -20,6 +20,11 @@ class Basico_Model_FormularioAssocclElementoAssocclDecorator extends Basico_Abst
      */
     protected $_idDecorator;
     /**
+     * Referencia a classe Basico_Model_FormularioDecoratorGrupo
+     * @var int
+     */
+    protected $_idDecoratorGrupo;
+    /**
      * @var Boolean
      */
     protected $_removeFlag;
@@ -91,6 +96,39 @@ class Basico_Model_FormularioAssocclElementoAssocclDecorator extends Basico_Abst
     {
         $model = new Basico_Model_FormularioDecorator();
         $object = $model->find($this->_idDecorator);
+        return $object;
+    }
+    
+	/**
+    * Set entry idDecoratorGrupo
+    * 
+    * @param  int $idDecoratorGrupo 
+    * @return Basico_Model_FormularioAssocclElementoAssocclDecorator
+    */
+    public function setIdDecoratorGrupo($idDecoratorGrupo)
+    {
+        $this->_idDecoratorGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idDecoratorGrupo, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Retrieve entry idDecoratorGrupo
+    * 
+    * @return null|int
+    */
+    public function getIdDecoratorGrupo()
+    {
+        return $this->_idDecoratorGrupo;
+    }
+ 
+    /**
+     * Get DecoratorGrupo object
+     * @return null|DecoratorGrupo
+     */
+    public function getDecoratorGrupoObject()
+    {
+        $model = new Basico_Model_FormularioDecoratorGrupo();
+        $object = $model->find($this->_idDecoratorGrupo);
         return $object;
     }
     
