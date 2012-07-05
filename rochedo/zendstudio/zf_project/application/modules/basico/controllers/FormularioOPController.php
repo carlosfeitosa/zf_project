@@ -58,6 +58,26 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	protected $_formularioAssocclElementoOPController;
 
 	/**
+	 * Controlador de associações entre formulário e decorators
+	 * 
+	 * @var Basico_OPController_FormularioAssocclDecorator object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	protected $_formularioAssocclDecoratorOPController;
+
+	/**
+	 * Controlador de decorators
+	 * 
+	 * @var Basico_OPController_FormularioDecoratorOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	protected $_formularioDecoratorOPController;
+
+	/**
 	 * Controlador de componentes dos formulários e elementos
 	 * 
 	 * @var Basico_OPController_ComponenteOPController object
@@ -123,11 +143,13 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
-		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
-		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
-		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
-		$this->_categoriaOPController                 = Basico_OPController_CategoriaOPController::getInstance();
-		$this->_CVCOPController                       = Basico_OPController_CVCOPController::getInstance();
+		$this->_formularioElementoOPController 		   = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_formularioAssocclElementoOPController  = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
+		$this->_formularioAssocclDecoratorOPController = Basico_OPController_FormularioAssocclDecorator::getInstance();
+		$this->_formularioDecoratorOPController        = Basico_OPController_FormularioDecoratorOPController::getInstance();
+		$this->_componenteOPController                 = Basico_OPController_ComponenteOPController::getInstance();
+		$this->_categoriaOPController                  = Basico_OPController_CategoriaOPController::getInstance();
+		$this->_CVCOPController                        = Basico_OPController_CVCOPController::getInstance();
 
 		return;
 	}
@@ -638,7 +660,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	 * 
 	 * @param Integer $idFormulario - id do formulário que deseja verificar
 	 * 
-	 * @return Boolean - true se todos os elementos associados são possíveis e false caso não
+	 * @return Boolean - true se todos os elementos associados são compatíveis e false caso não
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 20/06/2012
@@ -692,5 +714,62 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 
 		// retornando sucesso
 		return true;	
+	}
+
+	/**
+	 * Verifica se todos os decorators associados a um formulário (incluíndo sub-formulários) podem ser utilizados (não possuem problemas de compatibilidade)
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja verificar
+	 * 
+	 * @return Boolean - true se todos os decorators associados são compatíveis e false caso não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 * 
+	 * @todo adicionar verificação sobre os decorators dos elementos do formulário
+	 */
+	public function verificaCompatibilidadeDecoratorsFomularioPorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o id do formulário
+		if ((!$idFormulario) or (!is_int($idFormulario))) {
+			// retornando falso
+			return false;
+		}
+
+		// inicializando variáveis
+		$arrayIdsSubFormularios = array();
+
+		// recuperando a categoria do componente do formulário
+		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaCompoentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
+
+		// verificando se o formulário possui sub-formulários
+		if ($this->existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)) {
+			// recuperando os ids dos formulários filhos
+			$arrayIdsSubFormularios = $this->retornaArrayIdsSubFormulariosPorIdFormulario($idFormulario);
+
+			// recuperando as categorias dos componentes dos sub-formulários
+			$arrayIdsCategoriasComponentesSubFormulario = $this->_componenteOPController->retornaArrayIdsCategoriasCompoentesPorArrayIdsComponentes($this->retornaArrayIdsComponentesFormulariosPorArrayIdsFormulario($arrayIdsSubFormularios));
+		}
+
+		// recuperando os ids dos decorators do formulário e sub-formulários (caso existam)
+		$arrayIdsDecoratorsFormularios = $this->_formularioAssocclDecoratorOPController->retornaArrayIdsDecoratorsPorArrayIdsFormularios(array_merge(array($idFormulario), $arrayIdsSubFormularios));
+
+		// verificando o resultado da recuperação dos ids dos elementos e subforms e elementos de subforms
+		if ((!is_array($arrayIdsDecoratorsFormularios)) or (!count($arrayIdsDecoratorsFormularios))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando os ids das categorias dos componentes dos decorators dos formulários
+		$arrayIdsCategoriasComponentesDecorators = $this->_componenteOPController->retornaArrayIdsCategoriasCompoentesPorArrayIdsComponentes($this->_formularioDecoratorOPController->retornaArrayIdsComponentesDecoratorsPorArrayIdsDecorators($arrayIdsDecoratorsFormularios));
+
+		// verificando se a categoria dos componentes dos decorators é compatível com a categoria do formulário
+		if (!$this->_categoriaOPController->verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesDecorators($idCategoriaComponenteFormulario, $arrayIdsCategoriasComponentesDecorators)) {
+			// retornando falso
+			return false;
+		}
+
+		// retornando sucesso
+		return true;
 	}
 }

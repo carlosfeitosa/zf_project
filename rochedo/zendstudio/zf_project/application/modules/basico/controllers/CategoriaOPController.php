@@ -67,6 +67,24 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 	 * @since 21/06/2012
 	 */
 	const CATEGORIA_COMPONENTE_AJAXTERCEIROS = 'COMPONENTE_AJAXTERCEIROS';
+	/**
+	 * Constante que representa a categoria COMPONENTE_DECORATOR_JAVASCRIPT
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	const CATEGORIA_COMPONENTE_DECORATOR_JAVASCRIPT = 'COMPONENTE_DECORATOR_JAVASCRIPT';
+	/**
+	 * Constante que representa a categoria COMPONENTE_DECORATOR_HTML
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	const CATEGORIA_COMPONENTE_DECORATOR_HTML = 'COMPONENTE_DECORATOR_HTML';
 
 	/**
 	 * Instância do controlador Basico_OPController_CategoriaOPController.
@@ -1241,7 +1259,7 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 	}
 
 	/**
-	 * Verifica a compatibilidade entre as categorias de um formulário e seus elementos
+	 * Verifica a compatibilidade entre as categorias do componente de um formulário e as categorias de componentes de seus elementos
 	 * 
 	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
 	 * @param array $arrayIdsCategoriasComponentesElementos - array com os ids das categorias dos componentes dos elementos
@@ -1259,10 +1277,10 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 			return false;
 		}
 
-		// recuperando o objeto categoria pai da categoria do componente do formulário
+		// recuperando o objeto categoria do componente do formulário
 		$objetoCategoriaComponenteFormulario = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
 
-		// switch para verificar se as categorias dos sub-formulários
+		// switch para verificar as categorias
 		switch ($objetoCategoriaComponenteFormulario->getRootCategoriaPaiObject()->nome) {
 			case self::CATEGORIA_COMPONENTE_HTML:
 				// retornando o resultado da verificação
@@ -1271,6 +1289,45 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 			case self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT:
 				// retornando o resultado da verificação
 				return $this->verificaCompatibildadeCategoriasComponentesElementosHTMLJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesElementos);
+			break;
+			default:
+				// retornando falso
+				return false;
+			break;
+		}
+	}
+
+	/**
+	 * Verifica a compatibilidade entre as categorias do componente de um formulário e as categorias de componentes de seus decorators
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário
+	 * @param array $arrayIdsCategoriasComponentesDecorators - array contendo os ids das categorias dos componentes dos decorators do formulário
+	 * 
+	 * @return Boolean - true se as categorias forem compatíveis e false caso não sejam compatíveis
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com
+	 * @since 05/07/2012
+	 */
+	public function verificaCompatibilidadeCategoriaComponenteFormularioCategoriasComponentesDecorators($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesDecorators)
+	{
+		// verificando se foram passados os ids da categoria do componente do formulário pai e ids das categorias dos componentes dos decorators
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesDecorators))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando o objeto categoria da categoria do componente do formulário
+		$objetoCategoriaComponenteFormulario = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// switch para verificar as categorias
+		switch ($objetoCategoriaComponenteFormulario->getRootCategoriaPaiObject()->nome) {
+			case self::CATEGORIA_COMPONENTE_DECORATOR_HTML:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesElementosHTML($arrayIdsCategoriasComponentesDecorators);
+			break;
+			case self::CATEGORIA_COMPONENTE_DECORATOR_JAVASCRIPT:
+				// retornando o resultado da verificação
+				return $this->verificaCompatibildadeCategoriasComponentesElementosHTMLJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesDecorators);
 			break;
 			default:
 				// retornando falso

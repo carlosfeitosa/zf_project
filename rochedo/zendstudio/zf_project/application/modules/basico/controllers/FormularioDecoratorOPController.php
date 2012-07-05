@@ -24,14 +24,14 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 	protected $_model;
 	
 	/**
-	 * Nome da tabela basico_formulario.decorator
+	 * Nome da tabela
 	 * 
 	 * @var String
 	 */
 	const nomeTabelaModelo  = 'basico_formulario.decorator';
 
 	/**
-	 * Nome do campo id da tabela basico_formulario.decorator
+	 * Nome do campo id da tabela
 	 * 
 	 * @var Array
 	 */
@@ -90,5 +90,85 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 		}
 		// retornando instancia
 		return self::$_singleton;
+	}
+
+	/**
+	 * Retorna um array contendo os dados necessários para montagem de um decorator através de ids passados por parametros
+	 * 
+	 * @param Array $arrayIdsDecorators - array contendo os ids dos decorators que deseja recuperar os dados para montagem
+	 * 
+	 * @return Array|false - array contendo os dados para montagem dos decorators ou false se não conseguir
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	public function retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators(array $arrayIdsDecorators)
+	{
+		// verificando se foram passados ids para recuperação
+		if (!count($arrayIdsDecorators)) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando os componentes dos decorators
+		$arrayIdsComponentesDecorators = $this->retornaArrayIdsComponentesDecoratorsPorArrayIdsDecorators($arrayIdsDecorators);
+
+		// transformando o array de ids em string
+		$stringIdsDecorators = implode(',', $arrayIdsDecorators);
+
+		// recuperando os dados dos decorators
+		$arrayDadosDecorators = $this->_retornaArrayDadosObjetosPorParametros("id IN ({$stringIdsDecorators})", null, null, null, array('id', 'alias', 'attribs'));
+	}
+
+	/**
+	 * Retorna os ids dos componentes associados aos decorators passados por parametro
+	 * 
+	 * @param array $arrayIdsDecorators - array contendo os ids dos decorators que se deseja recuperar os ids dos componentes
+	 * 
+	 * @return array|false - array contendo os ids dos componentes associados aos decorators como valor e ids dos decorators como chaves ou false se não conseguir recuperar
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	public function retornaArrayIdsComponentesDecoratorsPorArrayIdsDecorators(array $arrayIdsDecorators)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se foram passados ids para recuperação
+		if (!count($arrayIdsDecorators)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsDecorators = implode(',', $arrayIdsDecorators);
+
+		// recuperando array de resultados
+		$arrayIdsComponentesDecorators = $this->_retornaArrayDadosObjetosPorParametros("id IN ({$stringIdsDecorators})", null, null, null, array('id', 'idComponente'));
+
+		// limpando memória
+		unset($stringIdsDecorators);
+
+		// verificando o resultado da recuperação
+		if (!count($arrayIdsComponentesDecorators)) {
+			// retornando falso
+			return false;
+		}
+
+		// loop para recuperar os ids
+		foreach ($arrayIdsComponentesDecorators as $arrayDados) {
+			// adicionando elementos ao resultado
+			$arrayRetorno[$arrayDados['id']] = $arrayDados['idComponente'];
+
+			// limpando memória
+			unset($arrayDados);
+		}
+
+		// limpando memória
+		unset($arrayIdsComponentesDecorators);
+
+		// retornando array de resultados
+		return $arrayRetorno;
 	}
 }

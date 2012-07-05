@@ -408,7 +408,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	const CHAMADA_FORMULARIO_ADD_ATTRIBS = FORM_GERADOR_FORM_ADDATTRIBS;
+	const CHAMADA_FORMULARIO_SET_ATTRIBS = FORM_GERADOR_FORM_SETATTRIBS;
 	
 	/**
 	 * Comentario da chamada ao metodo addDecorator do formulario
@@ -499,6 +499,36 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 26/06/2012
 	 */
 	const COMENTARIO_CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT;
+
+	/**
+	 * chamada do método adicionaDecorators do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	const CHAMADA_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_DECORATOS_CALL;
+
+	/**
+	 * Assinatura do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	const ASSINATURA_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_DECORATORS_DECLARATION;
+
+	/**
+	 * Comentário da declaração do método adicionaDecorators do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	const COMENTARIO_DECLARACAO_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_ADICIONA_DECORATORS_FORMULARIO_HEADER;
 	
 	/**
 	 * chamada do método adicionaElementos do formulário
@@ -549,6 +579,26 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 18/06/2012
 	 */
 	protected $_formularioOPController;
+
+	/**
+	 * Controlador de associações entre formulários e decorators
+	 * 
+	 * @var Basico_OPController_FormularioAssocclDecorator object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	protected $_formularioAssocclDecorator;
+
+	/**
+	 * Controlador de decorators
+	 * 
+	 * @var Basico_OPController_FormularioDecoratorOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	protected $_formularioDecorator;
 
 	/**
 	 * Controlador de categoria
@@ -633,8 +683,10 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// inicializando os controladores utilizados pelo controlador principal
 		$this->_formularioOPController 				  = Basico_OPController_FormularioOPController::getInstance();
-		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
-		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_formularioAssocclDecorator            = Basico_OPController_FormularioAssocclDecorator::getInstance();
+		$this->_formularioDecorator                   = Basico_OPController_FormularioDecoratorOPController::getInstance();
+		//$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
+		//$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
 		$this->_categoriaOPController  				  = Basico_OPController_CategoriaOPController::getInstance();
 		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
 
@@ -761,8 +813,14 @@ class Basico_OPController_GeradorFormularioOPController
 				return array('Não foi possível escrever o construtor da classe do formulário.');
 			}
 
+			// escrevendo o método adicionaDecorators e verificando o resultado da operação
+			if (!$this->escreveAdicionaDecoratorsFormulario($resourceArquivoTemporario, $idFormulario, $autorFormulario)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever o método adicionaDecorators no formulário.');
+			}
+
 			// escrevendo o método adicionaElementos e verificando o resultado da operação
-			if (!$this->escreveAdicionaELementosFormulario($resourceArquivoTemporario, $idFormulario, $autorFormulario)) {
+			if (!$this->escreveAdicionaElementosFormulario($resourceArquivoTemporario, $idFormulario, $autorFormulario)) {
 				// retornando mensagens de erro
 				return array('Não foi possível escrever o método adicionaElementos no formulário.');
 			}
@@ -1223,7 +1281,7 @@ class Basico_OPController_GeradorFormularioOPController
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
 		    	// retornando falso
 		    	return false;
-		    }
+	    }
 
 		// recuperando cabeçalho da chamada
 		$cabecalhoChamadaSetMethod = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_METHOD);
@@ -1363,13 +1421,54 @@ class Basico_OPController_GeradorFormularioOPController
 		    }
 
 		// recuperando cabeçalho do arquivo
-		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_ADD_ATTRIBS);
+		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_ATTRIBS);
 
 		// manipulando o cabeçalho
 		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_ATRIBUTOS_FORMULARIO, $atributosFormulario, $chamadaAddAttribs);
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddAttribs, true);
+	}
+
+	/**
+	 * Escreve o comentário e chamada do método adicionaDecorators do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentario
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveComentarioEChamadaAddDecoratorFormulario($resourceArquivo)
+	{
+		// retornando o resultado da escrita
+		return (($this->escreveComentarioChamadaAddDecoratorFormulario($resourceArquivo)) and ($this->escreveChamadaAdicionaDecoratorsFormulario($resourceArquivo)));
+	}
+
+	/**
+	 * Escreve a chamada ao metodo adicionaDecorators do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o comentario
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveChamadaAdicionaDecoratorsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_ADICIONA_DECORATORS_FORMULARIO);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaAddDecorator, true);
 	}
 	
 	/**
@@ -1386,9 +1485,9 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
-		    	// retornando falso
-		    	return false;
-		    }
+			// retornando falso
+			return false;
+		}
 
 		// recuperando cabeçalho da chamada
 		$cabecalhoChamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_ADD_DECORATOR);
@@ -1396,7 +1495,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaAddDecorator, true);
 	}
-	
+
 	/**
 	 * Escreve a chamada para o metodo addDecorator() do formulario substituindo uma flag pelo decorator do formulario
 	 * 
@@ -1572,6 +1671,7 @@ class Basico_OPController_GeradorFormularioOPController
 		return ($this->escreveComentarioEAssinaturaInitFormulario($resourceArquivo, $autor)
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, null, 1)
 				and $this->escreveInicializacaoFormulario($resourceArquivo, $arrayAtributosFormulario)
+				and $this->escreveComentarioEChamadaAddDecoratorFormulario($resourceArquivo)
 				and $this->escreveComentarioEChamadaAdicionaELementosFormulario($resourceArquivo)
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
 	}
@@ -1701,7 +1801,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO), true);
 	}
-	
+
 	/**
 	 * Escreve o comentário e a chamada do metodo adicionaElementos do formulario
 	 * 
@@ -1715,7 +1815,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo comentario e chamada e retornando resultado
 		return ($this->escreveComentarioChamadaAdicionaElementosFormulario($resourceArquivo) and $this->escreveChamadaAdicionaElementosFormulario($resourceArquivo));		
 	}
-	
+
 	/**
 	 * Escreve o comentario da declaração do método adicionaElementos do formulário
 	 * 
@@ -1765,7 +1865,115 @@ class Basico_OPController_GeradorFormularioOPController
 		// escrevendo a assinatura do construtor do formulario no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(1), self::ASSINATURA_ADICIONA_ELEMENTOS_FORMULARIO), true);
 	}
-	
+
+	/**
+	 * Escreve o método adicionaDecorators do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Integer $idFormulario - id do formulário que deseja adicionar os elementos
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever todos os códigos, false se não
+	 *
+	 * @authorCarlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveAdicionaDecoratorsFormulario($resourceArquivo, $idFormulario, $autor = self::AUTOR_PADRAO)
+	{
+		// escrevendo comentário, assinatura e métodos e retornando o resultado
+		return ($this->escreveComentarioDeclaracaoAdicionaDecoratorsFormulario($resourceArquivo, $autor) and
+				 $this->escreveAssinaturaAdicionaDecoratorsFormulario($resourceArquivo) and
+				 $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, false, 1) and
+				 $this->escreveDecoratorsFormulario($resourceArquivo, $idFormulario) and
+				 $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
+	}
+
+	/**
+	 * Escreve os decorators de um formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Integer $idFormulario - id do formulário que deseja adicionar os elementos
+	 * 
+	 * @return Boolean - true se conseguir escrever todos os códigos, false se não
+	 *
+	 * @authorCarlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveDecoratorsFormulario($resourceArquivo, $idFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or (!is_int($idFormulario))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+	    // recuperando os ids dos decorators associados ao formulário
+	    $arrayIdsDecoratorsFormulario = $this->_formularioAssocclDecorator->retornaArrayIdsDecoratorsPorArrayIdsFormularios(array($idFormulario));
+
+	    // verificando o resultado da recuperação dos ids dos decorators
+	    if (!count($arrayIdsDecoratorsFormulario)) {
+			// retornando falso
+			return false;
+	    }
+
+	    // recuperando array com os dados para montagem dos decorators
+	    $arrayDadosMontagemDecorators = $this->_formularioDecorator->retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators($arrayIdsDecoratorsFormulario);
+
+	    Basico_OPController_UtilOPController::print_debug($arrayDadosMontagemDecorators, true, false, true);
+
+	    return true;
+	}
+
+	/**
+	 * Escreve o comentário da declaração do método adicionaDecorators do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveComentarioDeclaracaoAdicionaDecoratorsFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// recuperando cabeçalho do arquivo
+		$comentarioAdicionaDecorators = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(1), self::COMENTARIO_DECLARACAO_ADICIONA_DECORATORS_FORMULARIO);
+		$comentarioAdicionaDecorators = str_replace(self::TAG_SUBSTITUICAO_AUTOR_FORMULARIO, $autor, $comentarioAdicionaDecorators);
+		$comentarioAdicionaDecorators = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(LOCALE_PT_BR, DEFAULT_DATETIME_FORMAT_PT_BR), $comentarioAdicionaDecorators);
+		
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, QUEBRA_DE_LINHA . $comentarioAdicionaDecorators, true);
+	}
+
+	/**
+	 * Escreve a assinatura do método adicionaDecorators do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 05/07/2012
+	 */
+	private function escreveAssinaturaAdicionaDecoratorsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(1), self::ASSINATURA_ADICIONA_DECORATORS_FORMULARIO), true);
+	}
+
 	/**
 	 * Escreve o metodo adicionaElementos do formulario
 	 * 
@@ -1778,7 +1986,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @authorJoão Vaconcelos / Carlos Feitosa (joao.vasconcelos@rochedoframework.com / carlos.feitosa@rochedoframework.com)
 	 * @since 26/06/2012
 	 */
-	private function escreveAdicionaELementosFormulario($resourceArquivo, $idFormulario, $autor = self::AUTOR_PADRAO)
+	private function escreveAdicionaElementosFormulario($resourceArquivo, $idFormulario, $autor = self::AUTOR_PADRAO)
 	{
 		// escrevendo comentario e chamada e retornando resultado
 		return ($this->escreveComentarioDeclaracaoAdicionaElementosFormulario($resourceArquivo, $autor) 
@@ -1923,7 +2131,9 @@ class Basico_OPController_GeradorFormularioOPController
 		$idCategoriaFormulario = $this->_formularioOPController->retornaIdCategoriaFormularioPorIdFormulario($idFormulario);
 
 		// retornando o resultado da verificação
-		return (($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario)) and ($this->_formularioOPController->verificaCompatibilidadeElementosFomularioPorIdFormulario($idFormulario)));
+		return (($this->_categoriaOPController->verificaCategoriaFormularioPorIdCategoria($idCategoriaFormulario)) and 
+		         ($this->_formularioOPController->verificaCompatibilidadeElementosFomularioPorIdFormulario($idFormulario)) and 
+		         ($this->_formularioOPController->verificaCompatibilidadeDecoratorsFomularioPorIdFormulario($idFormulario)));
 	}
 
 	private function verificaElementosFormulario($idFormulario)

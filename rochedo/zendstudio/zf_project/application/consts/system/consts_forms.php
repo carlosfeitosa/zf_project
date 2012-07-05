@@ -31,10 +31,12 @@ define("FORM_GERADOR_FORM_INIT_DECLARATION", '@identacaoprivate function init()'
 define("FORM_GERADOR_FORM_INIT_CALL", '@identacao$this->init();');
 define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION", '@identacaoprivate function adicionaElementos()');
 define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '@identacao$this->adicionaElementos();');
+define("FORM_GERADOR_FORM_ADICIONA_DECORATOS_CALL", '@identacao$this->adicionaDecorators();');
+define("FORM_GERADOR_FORM_ADICIONA_DECORATORS_DECLARATION", '@identacaoprivate function adicionaDecorators()');
 define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\');');
 define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
 define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
-define("FORM_GERADOR_FORM_ADDATTRIBS", '@identacao$this->addAttribs(array(@atributosFormulario));');
+define("FORM_GERADOR_FORM_SETATTRIBS", '@identacao$this->setAttribs(array(@atributosFormulario));');
 define("FORM_GERADOR_FORM_ADDDECORATOR", '$this->addDecorator(array(@decoratorFormulario))');
 define("FORM_GERADOR_FORM_REMOVEDECORATOR", '$this->removeDecorator(array(@decoratorFormulario))');
 
@@ -63,7 +65,7 @@ define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '@identacao// Setando o nome do for
 define("FORM_GERADOR_SET_METHOD_CALL_COMMENT", '@identacao// Setando o método do formulário');
 define("FORM_GERADOR_SET_ACTION_CALL_COMMENT", '@identacao// Setando a ação do formulário');
 define("FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT", '@identacao// Adicionando atributos ao formulário');
-define("FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT", '@identacao// Adicionando decorator ao formulário');
+define("FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT", '@identacao// Adicionando decorators ao formulário');
 define("FORM_GERADOR_REMOVE_DECORATOR_CALL_COMMENT", '@identacao// Removendo decorator do formulário');
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// adicionando elementos ao formulário');
 
@@ -169,3 +171,15 @@ $header = <<<TEXT
 @identacao*/
 TEXT;
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_FORMULARIO_HEADER", $header);
+
+$header = <<<TEXT
+@identacao/**
+@identacao* Adiciona decorators ao Formulário
+@identacao*
+@identacao* @return void - não espera retorno
+@identacao*
+@identacao* @author @autor
+@identacao* @since @dataCriacao
+@identacao*/
+TEXT;
+define("FORM_GERADOR_ADICIONA_DECORATORS_FORMULARIO_HEADER", $header);
