@@ -46,11 +46,15 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     		$contexto = 'ajax';
     	}else{
     		// NORMAL REQUEST
-    		
-    		// adicionando o headerMenu.
-    		$this->view->placeholder('headerMenu')->set($this->view->render('headerMenu.phtml'));
-    		// adicionando footer.
-    		$this->view->placeholder('footer')->set($this->view->render('footer.phtml'));
+
+    		// verificando se o banco de dados está levantado
+    		if (Basico_OPController_DBUtilOPController::checaBancoLevantado()) {
+	    		// adicionando o headerMenu.
+	    		$this->view->placeholder('headerMenu')->set($this->view->render('headerMenu.phtml'));
+
+	    		// adicionando footer.
+	    		$this->view->placeholder('footer')->set($this->view->render('footer.phtml'));
+    		}
     	}
     	
     	// processando os formulários
@@ -157,7 +161,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		// verificando ambiente
 		if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
 		    // verificando se existe usuario logado
-		    if (Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) {
+		    if ((Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) and (Basico_OPController_DBUtilOPController::checaBancoLevantado())) {
 		    	// recuperando a descricao do perfil padrao do usuario logado na sessao
 				$descricaoPerfilPadrao = Basico_OPController_PerfilOPController::retornaTraducaoPerfilPadraoUsuarioSessaoViaSQL();
 

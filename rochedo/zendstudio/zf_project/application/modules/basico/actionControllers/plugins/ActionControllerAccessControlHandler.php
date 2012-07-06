@@ -25,8 +25,9 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request deve ser processado
-		if (!$this->verificaSeProcessaRequest($request))
+		if ((!Basico_OPController_DBUtilOPController::checaBancoLevantado()) or (!$this->verificaSeProcessaRequest($request))) {
 			return;
+		}
 
 		// verificando o acesso
 		self::verificaAcessoRequest($request);
@@ -42,8 +43,9 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	public static function verificaAcessoRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se nao trata-se de um request solicitando desautenticao do usuario
-		if (Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoDesautenticarUsuarioAutenticadorControllerPorRequest($request))
+		if (Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoDesautenticarUsuarioAutenticadorControllerPorRequest($request)) {
 			return;
+		}
 
 		// instanciando controladores
 		$controleAcessoOPController = Basico_OPController_ControleAcessoOPController::getInstance();

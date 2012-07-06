@@ -41,6 +41,20 @@ class Basico_OPController_DBUtilOPController
 	}
 
 	/**
+	 * Verifica se o banco de dados está levantado
+	 * 
+	 * @return Boolean - True se o banco de dados estiver levantado. False se não.
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 06/07/2012
+	 */
+	public static function checaBancoLevantado() 
+	{
+		// retornando o resultado da verificação
+		return (Basico_OPController_DBUtilOPController::tabelaExiste('dicionario_expressao', 'basico') and (Basico_OPController_DicionarioExpressaoOPController::verificaTraducaoExiste('CONSTANTE_TEXTUAL_AINDA_NAO_TRADUZIDA')));
+	}
+
+	/**
 	 * Retorna o valor da chave primaria de um objeto
 	 * 
 	 * @param Object $objeto

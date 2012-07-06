@@ -27,8 +27,9 @@ class Basico_Controller_Plugin_ActionControllerLogHandler extends Zend_Controlle
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request deve ser processado
-		if (!$this->verificaSeProcessaRequest($request))
+		if ((!Basico_OPController_DBUtilOPController::checaBancoLevantado()) or (!$this->verificaSeProcessaRequest($request))) {
 			return;
+		}
 
 		// processando log
 		$this->processaLogRequest($request);

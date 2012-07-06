@@ -4,7 +4,7 @@
 
 -- Dumped from database version 8.3.17
 -- Dumped by pg_dump version 9.1.4
--- Started on 2012-07-04 15:15:58 BRT
+-- Started on 2012-07-06 14:45:49 BRT
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -22,7 +22,7 @@ CREATE SCHEMA basico;
 
 
 --
--- TOC entry 4217 (class 0 OID 0)
+-- TOC entry 4223 (class 0 OID 0)
 -- Dependencies: 3
 -- Name: SCHEMA basico; Type: COMMENT; Schema: -; Owner: -
 --
@@ -39,7 +39,7 @@ CREATE SCHEMA basico_acao_aplic_assoc_visao;
 
 
 --
--- TOC entry 4218 (class 0 OID 0)
+-- TOC entry 4224 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA basico_acao_aplic_assoc_visao; Type: COMMENT; Schema: -; Owner: -
 --
@@ -56,7 +56,7 @@ CREATE SCHEMA basico_acao_aplicacao;
 
 
 --
--- TOC entry 4219 (class 0 OID 0)
+-- TOC entry 4225 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: SCHEMA basico_acao_aplicacao; Type: COMMENT; Schema: -; Owner: -
 --
@@ -73,7 +73,7 @@ CREATE SCHEMA basico_acao_evento;
 
 
 --
--- TOC entry 4220 (class 0 OID 0)
+-- TOC entry 4226 (class 0 OID 0)
 -- Dependencies: 9
 -- Name: SCHEMA basico_acao_evento; Type: COMMENT; Schema: -; Owner: -
 --
@@ -90,7 +90,7 @@ CREATE SCHEMA basico_ajuda;
 
 
 --
--- TOC entry 4221 (class 0 OID 0)
+-- TOC entry 4227 (class 0 OID 0)
 -- Dependencies: 10
 -- Name: SCHEMA basico_ajuda; Type: COMMENT; Schema: -; Owner: -
 --
@@ -107,7 +107,7 @@ CREATE SCHEMA basico_assoc_banco;
 
 
 --
--- TOC entry 4222 (class 0 OID 0)
+-- TOC entry 4228 (class 0 OID 0)
 -- Dependencies: 11
 -- Name: SCHEMA basico_assoc_banco; Type: COMMENT; Schema: -; Owner: -
 --
@@ -124,7 +124,7 @@ CREATE SCHEMA basico_assoc_chave_estrangeira;
 
 
 --
--- TOC entry 4223 (class 0 OID 0)
+-- TOC entry 4229 (class 0 OID 0)
 -- Dependencies: 12
 -- Name: SCHEMA basico_assoc_chave_estrangeira; Type: COMMENT; Schema: -; Owner: -
 --
@@ -141,7 +141,7 @@ CREATE SCHEMA basico_assoc_dados_profis;
 
 
 --
--- TOC entry 4224 (class 0 OID 0)
+-- TOC entry 4230 (class 0 OID 0)
 -- Dependencies: 13
 -- Name: SCHEMA basico_assoc_dados_profis; Type: COMMENT; Schema: -; Owner: -
 --
@@ -158,7 +158,7 @@ CREATE SCHEMA basico_assoccl_pessoa_perfil;
 
 
 --
--- TOC entry 4225 (class 0 OID 0)
+-- TOC entry 4231 (class 0 OID 0)
 -- Dependencies: 14
 -- Name: SCHEMA basico_assoccl_pessoa_perfil; Type: COMMENT; Schema: -; Owner: -
 --
@@ -175,7 +175,7 @@ CREATE SCHEMA basico_assoccl_tipo_vinculo;
 
 
 --
--- TOC entry 4226 (class 0 OID 0)
+-- TOC entry 4232 (class 0 OID 0)
 -- Dependencies: 15
 -- Name: SCHEMA basico_assoccl_tipo_vinculo; Type: COMMENT; Schema: -; Owner: -
 --
@@ -192,7 +192,7 @@ CREATE SCHEMA basico_categoria;
 
 
 --
--- TOC entry 4227 (class 0 OID 0)
+-- TOC entry 4233 (class 0 OID 0)
 -- Dependencies: 16
 -- Name: SCHEMA basico_categoria; Type: COMMENT; Schema: -; Owner: -
 --
@@ -209,7 +209,7 @@ CREATE SCHEMA basico_componente;
 
 
 --
--- TOC entry 4228 (class 0 OID 0)
+-- TOC entry 4234 (class 0 OID 0)
 -- Dependencies: 17
 -- Name: SCHEMA basico_componente; Type: COMMENT; Schema: -; Owner: -
 --
@@ -226,7 +226,7 @@ CREATE SCHEMA basico_contato;
 
 
 --
--- TOC entry 4229 (class 0 OID 0)
+-- TOC entry 4235 (class 0 OID 0)
 -- Dependencies: 18
 -- Name: SCHEMA basico_contato; Type: COMMENT; Schema: -; Owner: -
 --
@@ -243,7 +243,7 @@ CREATE SCHEMA basico_cvc;
 
 
 --
--- TOC entry 4230 (class 0 OID 0)
+-- TOC entry 4236 (class 0 OID 0)
 -- Dependencies: 19
 -- Name: SCHEMA basico_cvc; Type: COMMENT; Schema: -; Owner: -
 --
@@ -260,7 +260,7 @@ CREATE SCHEMA basico_dados_academicos;
 
 
 --
--- TOC entry 4231 (class 0 OID 0)
+-- TOC entry 4237 (class 0 OID 0)
 -- Dependencies: 20
 -- Name: SCHEMA basico_dados_academicos; Type: COMMENT; Schema: -; Owner: -
 --
@@ -277,7 +277,7 @@ CREATE SCHEMA basico_dados_biometricos;
 
 
 --
--- TOC entry 4232 (class 0 OID 0)
+-- TOC entry 4238 (class 0 OID 0)
 -- Dependencies: 21
 -- Name: SCHEMA basico_dados_biometricos; Type: COMMENT; Schema: -; Owner: -
 --
@@ -294,7 +294,7 @@ CREATE SCHEMA basico_dados_profissionais;
 
 
 --
--- TOC entry 4233 (class 0 OID 0)
+-- TOC entry 4239 (class 0 OID 0)
 -- Dependencies: 22
 -- Name: SCHEMA basico_dados_profissionais; Type: COMMENT; Schema: -; Owner: -
 --
@@ -311,7 +311,7 @@ CREATE SCHEMA basico_filter;
 
 
 --
--- TOC entry 4234 (class 0 OID 0)
+-- TOC entry 4240 (class 0 OID 0)
 -- Dependencies: 41
 -- Name: SCHEMA basico_filter; Type: COMMENT; Schema: -; Owner: -
 --
@@ -328,7 +328,7 @@ CREATE SCHEMA basico_filter_grupo;
 
 
 --
--- TOC entry 4235 (class 0 OID 0)
+-- TOC entry 4241 (class 0 OID 0)
 -- Dependencies: 42
 -- Name: SCHEMA basico_filter_grupo; Type: COMMENT; Schema: -; Owner: -
 --
@@ -345,7 +345,7 @@ CREATE SCHEMA basico_form_assoccl_elem_grupo;
 
 
 --
--- TOC entry 4236 (class 0 OID 0)
+-- TOC entry 4242 (class 0 OID 0)
 -- Dependencies: 23
 -- Name: SCHEMA basico_form_assoccl_elem_grupo; Type: COMMENT; Schema: -; Owner: -
 --
@@ -362,7 +362,7 @@ CREATE SCHEMA basico_form_assoccl_elemento;
 
 
 --
--- TOC entry 4237 (class 0 OID 0)
+-- TOC entry 4243 (class 0 OID 0)
 -- Dependencies: 24
 -- Name: SCHEMA basico_form_assoccl_elemento; Type: COMMENT; Schema: -; Owner: -
 --
@@ -379,7 +379,7 @@ CREATE SCHEMA basico_form_decorator_grupo;
 
 
 --
--- TOC entry 4238 (class 0 OID 0)
+-- TOC entry 4244 (class 0 OID 0)
 -- Dependencies: 40
 -- Name: SCHEMA basico_form_decorator_grupo; Type: COMMENT; Schema: -; Owner: -
 --
@@ -396,7 +396,7 @@ CREATE SCHEMA basico_formulario;
 
 
 --
--- TOC entry 4239 (class 0 OID 0)
+-- TOC entry 4245 (class 0 OID 0)
 -- Dependencies: 25
 -- Name: SCHEMA basico_formulario; Type: COMMENT; Schema: -; Owner: -
 --
@@ -413,7 +413,7 @@ CREATE SCHEMA basico_formulario_decorator;
 
 
 --
--- TOC entry 4240 (class 0 OID 0)
+-- TOC entry 4246 (class 0 OID 0)
 -- Dependencies: 45
 -- Name: SCHEMA basico_formulario_decorator; Type: COMMENT; Schema: -; Owner: -
 --
@@ -430,7 +430,7 @@ CREATE SCHEMA basico_formulario_elemento;
 
 
 --
--- TOC entry 4241 (class 0 OID 0)
+-- TOC entry 4247 (class 0 OID 0)
 -- Dependencies: 26
 -- Name: SCHEMA basico_formulario_elemento; Type: COMMENT; Schema: -; Owner: -
 --
@@ -447,7 +447,7 @@ CREATE SCHEMA basico_formulario_rascunho;
 
 
 --
--- TOC entry 4242 (class 0 OID 0)
+-- TOC entry 4248 (class 0 OID 0)
 -- Dependencies: 27
 -- Name: SCHEMA basico_formulario_rascunho; Type: COMMENT; Schema: -; Owner: -
 --
@@ -464,7 +464,7 @@ CREATE SCHEMA basico_localizacao;
 
 
 --
--- TOC entry 4243 (class 0 OID 0)
+-- TOC entry 4249 (class 0 OID 0)
 -- Dependencies: 28
 -- Name: SCHEMA basico_localizacao; Type: COMMENT; Schema: -; Owner: -
 --
@@ -481,7 +481,7 @@ CREATE SCHEMA basico_mensagem;
 
 
 --
--- TOC entry 4244 (class 0 OID 0)
+-- TOC entry 4250 (class 0 OID 0)
 -- Dependencies: 29
 -- Name: SCHEMA basico_mensagem; Type: COMMENT; Schema: -; Owner: -
 --
@@ -498,7 +498,7 @@ CREATE SCHEMA basico_mensagem_assoc_email;
 
 
 --
--- TOC entry 4245 (class 0 OID 0)
+-- TOC entry 4251 (class 0 OID 0)
 -- Dependencies: 30
 -- Name: SCHEMA basico_mensagem_assoc_email; Type: COMMENT; Schema: -; Owner: -
 --
@@ -515,7 +515,7 @@ CREATE SCHEMA basico_metodo_validacao;
 
 
 --
--- TOC entry 4246 (class 0 OID 0)
+-- TOC entry 4252 (class 0 OID 0)
 -- Dependencies: 31
 -- Name: SCHEMA basico_metodo_validacao; Type: COMMENT; Schema: -; Owner: -
 --
@@ -532,7 +532,7 @@ CREATE SCHEMA basico_output;
 
 
 --
--- TOC entry 4247 (class 0 OID 0)
+-- TOC entry 4253 (class 0 OID 0)
 -- Dependencies: 32
 -- Name: SCHEMA basico_output; Type: COMMENT; Schema: -; Owner: -
 --
@@ -549,7 +549,7 @@ CREATE SCHEMA basico_perfil;
 
 
 --
--- TOC entry 4248 (class 0 OID 0)
+-- TOC entry 4254 (class 0 OID 0)
 -- Dependencies: 33
 -- Name: SCHEMA basico_perfil; Type: COMMENT; Schema: -; Owner: -
 --
@@ -566,7 +566,7 @@ CREATE SCHEMA basico_pessoa;
 
 
 --
--- TOC entry 4249 (class 0 OID 0)
+-- TOC entry 4255 (class 0 OID 0)
 -- Dependencies: 34
 -- Name: SCHEMA basico_pessoa; Type: COMMENT; Schema: -; Owner: -
 --
@@ -583,7 +583,7 @@ CREATE SCHEMA basico_pessoa_juridica;
 
 
 --
--- TOC entry 4250 (class 0 OID 0)
+-- TOC entry 4256 (class 0 OID 0)
 -- Dependencies: 35
 -- Name: SCHEMA basico_pessoa_juridica; Type: COMMENT; Schema: -; Owner: -
 --
@@ -600,7 +600,7 @@ CREATE SCHEMA basico_sequencia;
 
 
 --
--- TOC entry 4251 (class 0 OID 0)
+-- TOC entry 4257 (class 0 OID 0)
 -- Dependencies: 36
 -- Name: SCHEMA basico_sequencia; Type: COMMENT; Schema: -; Owner: -
 --
@@ -617,7 +617,7 @@ CREATE SCHEMA basico_template;
 
 
 --
--- TOC entry 4252 (class 0 OID 0)
+-- TOC entry 4258 (class 0 OID 0)
 -- Dependencies: 37
 -- Name: SCHEMA basico_template; Type: COMMENT; Schema: -; Owner: -
 --
@@ -634,7 +634,7 @@ CREATE SCHEMA basico_validator;
 
 
 --
--- TOC entry 4253 (class 0 OID 0)
+-- TOC entry 4259 (class 0 OID 0)
 -- Dependencies: 43
 -- Name: SCHEMA basico_validator; Type: COMMENT; Schema: -; Owner: -
 --
@@ -651,7 +651,7 @@ CREATE SCHEMA basico_validator_grupo;
 
 
 --
--- TOC entry 4254 (class 0 OID 0)
+-- TOC entry 4260 (class 0 OID 0)
 -- Dependencies: 44
 -- Name: SCHEMA basico_validator_grupo; Type: COMMENT; Schema: -; Owner: -
 --
@@ -673,7 +673,7 @@ CREATE FUNCTION fn_checkcodigoareaconhecimentoexists(character varying) RETURNS 
 
 
 --
--- TOC entry 4257 (class 0 OID 0)
+-- TOC entry 4263 (class 0 OID 0)
 -- Dependencies: 423
 -- Name: FUNCTION fn_checkcodigoareaconhecimentoexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -693,7 +693,7 @@ CREATE FUNCTION fn_checkcodigoareaeconomiaexists(character varying) RETURNS inte
 
 
 --
--- TOC entry 4258 (class 0 OID 0)
+-- TOC entry 4264 (class 0 OID 0)
 -- Dependencies: 424
 -- Name: FUNCTION fn_checkcodigoareaeconomiaexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -713,7 +713,7 @@ CREATE FUNCTION fn_checkcodigocategoriaexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4259 (class 0 OID 0)
+-- TOC entry 4265 (class 0 OID 0)
 -- Dependencies: 425
 -- Name: FUNCTION fn_checkcodigocategoriaexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -733,7 +733,7 @@ CREATE FUNCTION fn_checkcodigotipocategoriaexists(character varying) RETURNS int
 
 
 --
--- TOC entry 4260 (class 0 OID 0)
+-- TOC entry 4266 (class 0 OID 0)
 -- Dependencies: 426
 -- Name: FUNCTION fn_checkcodigotipocategoriaexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -753,7 +753,7 @@ CREATE FUNCTION fn_checkconstantetextualexists(character varying) RETURNS intege
 
 
 --
--- TOC entry 4261 (class 0 OID 0)
+-- TOC entry 4267 (class 0 OID 0)
 -- Dependencies: 427
 -- Name: FUNCTION fn_checkconstantetextualexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -773,7 +773,7 @@ CREATE FUNCTION fn_checknomearquivoexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4262 (class 0 OID 0)
+-- TOC entry 4268 (class 0 OID 0)
 -- Dependencies: 428
 -- Name: FUNCTION fn_checknomearquivoexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -793,7 +793,7 @@ CREATE FUNCTION fn_checknomelinkexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4263 (class 0 OID 0)
+-- TOC entry 4269 (class 0 OID 0)
 -- Dependencies: 418
 -- Name: FUNCTION fn_checknomelinkexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -813,7 +813,7 @@ CREATE FUNCTION fn_checknomeprodutoexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4264 (class 0 OID 0)
+-- TOC entry 4270 (class 0 OID 0)
 -- Dependencies: 419
 -- Name: FUNCTION fn_checknomeprodutoexists(character varying); Type: COMMENT; Schema: basico; Owner: -
 --
@@ -835,7 +835,7 @@ CREATE FUNCTION fn_checkcategoriachaveestrangeiracategoriaexists(integer) RETURN
 
 
 --
--- TOC entry 4265 (class 0 OID 0)
+-- TOC entry 4271 (class 0 OID 0)
 -- Dependencies: 420
 -- Name: FUNCTION fn_checkcategoriachaveestrangeiracategoriaexists(integer); Type: COMMENT; Schema: basico_categoria; Owner: -
 --
@@ -855,7 +855,7 @@ CREATE FUNCTION fn_retornaidcategoriacvc() RETURNS integer
 
 
 --
--- TOC entry 4266 (class 0 OID 0)
+-- TOC entry 4272 (class 0 OID 0)
 -- Dependencies: 415
 -- Name: FUNCTION fn_retornaidcategoriacvc(); Type: COMMENT; Schema: basico_categoria; Owner: -
 --
@@ -877,7 +877,7 @@ CREATE FUNCTION fn_checknomeemailexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4267 (class 0 OID 0)
+-- TOC entry 4273 (class 0 OID 0)
 -- Dependencies: 421
 -- Name: FUNCTION fn_checknomeemailexists(character varying); Type: COMMENT; Schema: basico_contato; Owner: -
 --
@@ -897,7 +897,7 @@ CREATE FUNCTION fn_checknometelefoneexists(character varying) RETURNS integer
 
 
 --
--- TOC entry 4268 (class 0 OID 0)
+-- TOC entry 4274 (class 0 OID 0)
 -- Dependencies: 422
 -- Name: FUNCTION fn_checknometelefoneexists(character varying); Type: COMMENT; Schema: basico_contato; Owner: -
 --
@@ -919,7 +919,7 @@ CREATE FUNCTION fn_checkcategoriacvc(integer) RETURNS integer
 
 
 --
--- TOC entry 4269 (class 0 OID 0)
+-- TOC entry 4275 (class 0 OID 0)
 -- Dependencies: 416
 -- Name: FUNCTION fn_checkcategoriacvc(integer); Type: COMMENT; Schema: basico_cvc; Owner: -
 --
@@ -946,7 +946,7 @@ WHERE ae.id = $1 AND ai.id_include = $2$_$;
 
 
 --
--- TOC entry 4270 (class 0 OID 0)
+-- TOC entry 4276 (class 0 OID 0)
 -- Dependencies: 417
 -- Name: FUNCTION fn_checkincludeassocclelementoexists(id_assoccl_elemento integer, id_include integer); Type: COMMENT; Schema: basico_formulario_elemento; Owner: -
 --
@@ -961,8 +961,8 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 401 (class 1259 OID 61457937)
--- Dependencies: 3111 3112 3113 3114 3115 3
+-- TOC entry 401 (class 1259 OID 61482416)
+-- Dependencies: 3114 3115 3116 3117 3118 3
 -- Name: acao_aplicacao; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -983,8 +983,8 @@ CREATE TABLE acao_aplicacao (
 
 
 --
--- TOC entry 400 (class 1259 OID 61457935)
--- Dependencies: 401 3
+-- TOC entry 400 (class 1259 OID 61482414)
+-- Dependencies: 3 401
 -- Name: acao_aplicacao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -997,7 +997,7 @@ CREATE SEQUENCE acao_aplicacao_id_seq
 
 
 --
--- TOC entry 4271 (class 0 OID 0)
+-- TOC entry 4277 (class 0 OID 0)
 -- Dependencies: 400
 -- Name: acao_aplicacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1006,8 +1006,8 @@ ALTER SEQUENCE acao_aplicacao_id_seq OWNED BY acao_aplicacao.id;
 
 
 --
--- TOC entry 399 (class 1259 OID 61457919)
--- Dependencies: 3105 3106 3107 3108 3109 3
+-- TOC entry 399 (class 1259 OID 61482398)
+-- Dependencies: 3108 3109 3110 3111 3112 3
 -- Name: acao_evento; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1028,7 +1028,7 @@ CREATE TABLE acao_evento (
 
 
 --
--- TOC entry 398 (class 1259 OID 61457917)
+-- TOC entry 398 (class 1259 OID 61482396)
 -- Dependencies: 399 3
 -- Name: acao_evento_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1042,7 +1042,7 @@ CREATE SEQUENCE acao_evento_id_seq
 
 
 --
--- TOC entry 4272 (class 0 OID 0)
+-- TOC entry 4278 (class 0 OID 0)
 -- Dependencies: 398
 -- Name: acao_evento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1051,8 +1051,8 @@ ALTER SEQUENCE acao_evento_id_seq OWNED BY acao_evento.id;
 
 
 --
--- TOC entry 397 (class 1259 OID 61457898)
--- Dependencies: 3096 3097 3098 3099 3100 3101 3102 3103 3
+-- TOC entry 397 (class 1259 OID 61482377)
+-- Dependencies: 3099 3100 3101 3102 3103 3104 3105 3106 3
 -- Name: ajuda; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1077,7 +1077,7 @@ CREATE TABLE ajuda (
 
 
 --
--- TOC entry 396 (class 1259 OID 61457896)
+-- TOC entry 396 (class 1259 OID 61482375)
 -- Dependencies: 3 397
 -- Name: ajuda_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1091,7 +1091,7 @@ CREATE SEQUENCE ajuda_id_seq
 
 
 --
--- TOC entry 4273 (class 0 OID 0)
+-- TOC entry 4279 (class 0 OID 0)
 -- Dependencies: 396
 -- Name: ajuda_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1100,8 +1100,8 @@ ALTER SEQUENCE ajuda_id_seq OWNED BY ajuda.id;
 
 
 --
--- TOC entry 395 (class 1259 OID 61457878)
--- Dependencies: 3088 3089 3090 3091 3092 3093 3094 3
+-- TOC entry 395 (class 1259 OID 61482357)
+-- Dependencies: 3091 3092 3093 3094 3095 3096 3097 3
 -- Name: area_conhecimento; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1125,8 +1125,8 @@ CREATE TABLE area_conhecimento (
 
 
 --
--- TOC entry 394 (class 1259 OID 61457876)
--- Dependencies: 3 395
+-- TOC entry 394 (class 1259 OID 61482355)
+-- Dependencies: 395 3
 -- Name: area_conhecimento_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1139,7 +1139,7 @@ CREATE SEQUENCE area_conhecimento_id_seq
 
 
 --
--- TOC entry 4274 (class 0 OID 0)
+-- TOC entry 4280 (class 0 OID 0)
 -- Dependencies: 394
 -- Name: area_conhecimento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1148,8 +1148,8 @@ ALTER SEQUENCE area_conhecimento_id_seq OWNED BY area_conhecimento.id;
 
 
 --
--- TOC entry 393 (class 1259 OID 61457858)
--- Dependencies: 3080 3081 3082 3083 3084 3085 3086 3
+-- TOC entry 393 (class 1259 OID 61482337)
+-- Dependencies: 3083 3084 3085 3086 3087 3088 3089 3
 -- Name: area_economia; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1173,7 +1173,7 @@ CREATE TABLE area_economia (
 
 
 --
--- TOC entry 392 (class 1259 OID 61457856)
+-- TOC entry 392 (class 1259 OID 61482335)
 -- Dependencies: 3 393
 -- Name: area_economia_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1187,7 +1187,7 @@ CREATE SEQUENCE area_economia_id_seq
 
 
 --
--- TOC entry 4275 (class 0 OID 0)
+-- TOC entry 4281 (class 0 OID 0)
 -- Dependencies: 392
 -- Name: area_economia_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1196,8 +1196,8 @@ ALTER SEQUENCE area_economia_id_seq OWNED BY area_economia.id;
 
 
 --
--- TOC entry 391 (class 1259 OID 61457838)
--- Dependencies: 3072 3073 3074 3075 3076 3077 3078 3
+-- TOC entry 391 (class 1259 OID 61482317)
+-- Dependencies: 3075 3076 3077 3078 3079 3080 3081 3
 -- Name: categoria; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1221,7 +1221,7 @@ CREATE TABLE categoria (
 
 
 --
--- TOC entry 4276 (class 0 OID 0)
+-- TOC entry 4282 (class 0 OID 0)
 -- Dependencies: 391
 -- Name: TABLE categoria; Type: COMMENT; Schema: basico; Owner: -
 --
@@ -1230,7 +1230,7 @@ COMMENT ON TABLE categoria IS 'containner de categorias';
 
 
 --
--- TOC entry 390 (class 1259 OID 61457836)
+-- TOC entry 390 (class 1259 OID 61482315)
 -- Dependencies: 391 3
 -- Name: categoria_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1244,7 +1244,7 @@ CREATE SEQUENCE categoria_id_seq
 
 
 --
--- TOC entry 4277 (class 0 OID 0)
+-- TOC entry 4283 (class 0 OID 0)
 -- Dependencies: 390
 -- Name: categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1253,8 +1253,8 @@ ALTER SEQUENCE categoria_id_seq OWNED BY categoria.id;
 
 
 --
--- TOC entry 389 (class 1259 OID 61457820)
--- Dependencies: 3066 3067 3068 3069 3070 3
+-- TOC entry 389 (class 1259 OID 61482299)
+-- Dependencies: 3069 3070 3071 3072 3073 3
 -- Name: componente; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1276,8 +1276,8 @@ CREATE TABLE componente (
 
 
 --
--- TOC entry 388 (class 1259 OID 61457818)
--- Dependencies: 3 389
+-- TOC entry 388 (class 1259 OID 61482297)
+-- Dependencies: 389 3
 -- Name: componente_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1290,7 +1290,7 @@ CREATE SEQUENCE componente_id_seq
 
 
 --
--- TOC entry 4278 (class 0 OID 0)
+-- TOC entry 4284 (class 0 OID 0)
 -- Dependencies: 388
 -- Name: componente_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1299,8 +1299,8 @@ ALTER SEQUENCE componente_id_seq OWNED BY componente.id;
 
 
 --
--- TOC entry 387 (class 1259 OID 61457800)
--- Dependencies: 3058 3059 3060 3061 3062 3063 3064 3
+-- TOC entry 387 (class 1259 OID 61482279)
+-- Dependencies: 3061 3062 3063 3064 3065 3066 3067 3
 -- Name: cpg_arquivo; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1328,8 +1328,8 @@ CREATE TABLE cpg_arquivo (
 
 
 --
--- TOC entry 386 (class 1259 OID 61457798)
--- Dependencies: 387 3
+-- TOC entry 386 (class 1259 OID 61482277)
+-- Dependencies: 3 387
 -- Name: cpg_arquivo_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1342,7 +1342,7 @@ CREATE SEQUENCE cpg_arquivo_id_seq
 
 
 --
--- TOC entry 4279 (class 0 OID 0)
+-- TOC entry 4285 (class 0 OID 0)
 -- Dependencies: 386
 -- Name: cpg_arquivo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1351,8 +1351,8 @@ ALTER SEQUENCE cpg_arquivo_id_seq OWNED BY cpg_arquivo.id;
 
 
 --
--- TOC entry 385 (class 1259 OID 61457783)
--- Dependencies: 3053 3054 3055 3056 3
+-- TOC entry 385 (class 1259 OID 61482262)
+-- Dependencies: 3056 3057 3058 3059 3
 -- Name: cpg_codigo_acesso; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1372,8 +1372,8 @@ CREATE TABLE cpg_codigo_acesso (
 
 
 --
--- TOC entry 384 (class 1259 OID 61457781)
--- Dependencies: 385 3
+-- TOC entry 384 (class 1259 OID 61482260)
+-- Dependencies: 3 385
 -- Name: cpg_codigo_acesso_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1386,7 +1386,7 @@ CREATE SEQUENCE cpg_codigo_acesso_id_seq
 
 
 --
--- TOC entry 4280 (class 0 OID 0)
+-- TOC entry 4286 (class 0 OID 0)
 -- Dependencies: 384
 -- Name: cpg_codigo_acesso_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1395,8 +1395,8 @@ ALTER SEQUENCE cpg_codigo_acesso_id_seq OWNED BY cpg_codigo_acesso.id;
 
 
 --
--- TOC entry 383 (class 1259 OID 61457768)
--- Dependencies: 3050 3051 3
+-- TOC entry 383 (class 1259 OID 61482247)
+-- Dependencies: 3053 3054 3
 -- Name: cpg_dados_bancarios; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1417,8 +1417,8 @@ CREATE TABLE cpg_dados_bancarios (
 
 
 --
--- TOC entry 382 (class 1259 OID 61457766)
--- Dependencies: 3 383
+-- TOC entry 382 (class 1259 OID 61482245)
+-- Dependencies: 383 3
 -- Name: cpg_dados_bancarios_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1431,7 +1431,7 @@ CREATE SEQUENCE cpg_dados_bancarios_id_seq
 
 
 --
--- TOC entry 4281 (class 0 OID 0)
+-- TOC entry 4287 (class 0 OID 0)
 -- Dependencies: 382
 -- Name: cpg_dados_bancarios_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1440,8 +1440,8 @@ ALTER SEQUENCE cpg_dados_bancarios_id_seq OWNED BY cpg_dados_bancarios.id;
 
 
 --
--- TOC entry 381 (class 1259 OID 61457752)
--- Dependencies: 3046 3047 3048 3
+-- TOC entry 381 (class 1259 OID 61482231)
+-- Dependencies: 3049 3050 3051 3
 -- Name: cpg_documento_identificacao; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1461,7 +1461,7 @@ CREATE TABLE cpg_documento_identificacao (
 
 
 --
--- TOC entry 380 (class 1259 OID 61457750)
+-- TOC entry 380 (class 1259 OID 61482229)
 -- Dependencies: 381 3
 -- Name: cpg_documento_identificacao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1475,7 +1475,7 @@ CREATE SEQUENCE cpg_documento_identificacao_id_seq
 
 
 --
--- TOC entry 4282 (class 0 OID 0)
+-- TOC entry 4288 (class 0 OID 0)
 -- Dependencies: 380
 -- Name: cpg_documento_identificacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1484,8 +1484,8 @@ ALTER SEQUENCE cpg_documento_identificacao_id_seq OWNED BY cpg_documento_identif
 
 
 --
--- TOC entry 379 (class 1259 OID 61457733)
--- Dependencies: 3039 3040 3041 3042 3043 3044 3
+-- TOC entry 379 (class 1259 OID 61482212)
+-- Dependencies: 3042 3043 3044 3045 3046 3047 3
 -- Name: cpg_link; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1508,7 +1508,7 @@ CREATE TABLE cpg_link (
 
 
 --
--- TOC entry 378 (class 1259 OID 61457731)
+-- TOC entry 378 (class 1259 OID 61482210)
 -- Dependencies: 3 379
 -- Name: cpg_link_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1522,7 +1522,7 @@ CREATE SEQUENCE cpg_link_id_seq
 
 
 --
--- TOC entry 4283 (class 0 OID 0)
+-- TOC entry 4289 (class 0 OID 0)
 -- Dependencies: 378
 -- Name: cpg_link_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1531,8 +1531,8 @@ ALTER SEQUENCE cpg_link_id_seq OWNED BY cpg_link.id;
 
 
 --
--- TOC entry 377 (class 1259 OID 61457718)
--- Dependencies: 3034 3035 3036 3037 3
+-- TOC entry 377 (class 1259 OID 61482197)
+-- Dependencies: 3037 3038 3039 3040 3
 -- Name: cpg_produto; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1555,8 +1555,8 @@ CREATE TABLE cpg_produto (
 
 
 --
--- TOC entry 376 (class 1259 OID 61457716)
--- Dependencies: 377 3
+-- TOC entry 376 (class 1259 OID 61482195)
+-- Dependencies: 3 377
 -- Name: cpg_produto_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1569,7 +1569,7 @@ CREATE SEQUENCE cpg_produto_id_seq
 
 
 --
--- TOC entry 4284 (class 0 OID 0)
+-- TOC entry 4290 (class 0 OID 0)
 -- Dependencies: 376
 -- Name: cpg_produto_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1578,8 +1578,8 @@ ALTER SEQUENCE cpg_produto_id_seq OWNED BY cpg_produto.id;
 
 
 --
--- TOC entry 375 (class 1259 OID 61457705)
--- Dependencies: 3031 3032 3
+-- TOC entry 375 (class 1259 OID 61482184)
+-- Dependencies: 3034 3035 3
 -- Name: cpg_token; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1595,8 +1595,8 @@ CREATE TABLE cpg_token (
 
 
 --
--- TOC entry 374 (class 1259 OID 61457703)
--- Dependencies: 375 3
+-- TOC entry 374 (class 1259 OID 61482182)
+-- Dependencies: 3 375
 -- Name: cpg_token_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1609,7 +1609,7 @@ CREATE SEQUENCE cpg_token_id_seq
 
 
 --
--- TOC entry 4285 (class 0 OID 0)
+-- TOC entry 4291 (class 0 OID 0)
 -- Dependencies: 374
 -- Name: cpg_token_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1618,8 +1618,8 @@ ALTER SEQUENCE cpg_token_id_seq OWNED BY cpg_token.id;
 
 
 --
--- TOC entry 373 (class 1259 OID 61457690)
--- Dependencies: 3028 3029 3
+-- TOC entry 373 (class 1259 OID 61482169)
+-- Dependencies: 3031 3032 3
 -- Name: dados_biometricos; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1634,7 +1634,7 @@ CREATE TABLE dados_biometricos (
 
 
 --
--- TOC entry 372 (class 1259 OID 61457688)
+-- TOC entry 372 (class 1259 OID 61482167)
 -- Dependencies: 373 3
 -- Name: dados_biometricos_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1648,7 +1648,7 @@ CREATE SEQUENCE dados_biometricos_id_seq
 
 
 --
--- TOC entry 4286 (class 0 OID 0)
+-- TOC entry 4292 (class 0 OID 0)
 -- Dependencies: 372
 -- Name: dados_biometricos_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1657,8 +1657,8 @@ ALTER SEQUENCE dados_biometricos_id_seq OWNED BY dados_biometricos.id;
 
 
 --
--- TOC entry 371 (class 1259 OID 61457673)
--- Dependencies: 3023 3024 3025 3026 3
+-- TOC entry 371 (class 1259 OID 61482152)
+-- Dependencies: 3026 3027 3028 3029 3
 -- Name: dicionario_expressao; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1676,8 +1676,8 @@ CREATE TABLE dicionario_expressao (
 
 
 --
--- TOC entry 370 (class 1259 OID 61457671)
--- Dependencies: 3 371
+-- TOC entry 370 (class 1259 OID 61482150)
+-- Dependencies: 371 3
 -- Name: dicionario_expressao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1690,7 +1690,7 @@ CREATE SEQUENCE dicionario_expressao_id_seq
 
 
 --
--- TOC entry 4287 (class 0 OID 0)
+-- TOC entry 4293 (class 0 OID 0)
 -- Dependencies: 370
 -- Name: dicionario_expressao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1699,8 +1699,8 @@ ALTER SEQUENCE dicionario_expressao_id_seq OWNED BY dicionario_expressao.id;
 
 
 --
--- TOC entry 369 (class 1259 OID 61457655)
--- Dependencies: 3017 3018 3019 3020 3021 3
+-- TOC entry 369 (class 1259 OID 61482134)
+-- Dependencies: 3020 3021 3022 3023 3024 3
 -- Name: evento; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1721,8 +1721,8 @@ CREATE TABLE evento (
 
 
 --
--- TOC entry 368 (class 1259 OID 61457653)
--- Dependencies: 3 369
+-- TOC entry 368 (class 1259 OID 61482132)
+-- Dependencies: 369 3
 -- Name: evento_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1735,7 +1735,7 @@ CREATE SEQUENCE evento_id_seq
 
 
 --
--- TOC entry 4288 (class 0 OID 0)
+-- TOC entry 4294 (class 0 OID 0)
 -- Dependencies: 368
 -- Name: evento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1744,8 +1744,8 @@ ALTER SEQUENCE evento_id_seq OWNED BY evento.id;
 
 
 --
--- TOC entry 367 (class 1259 OID 61457637)
--- Dependencies: 3011 3012 3013 3014 3015 3
+-- TOC entry 367 (class 1259 OID 61482116)
+-- Dependencies: 3014 3015 3016 3017 3018 3
 -- Name: filter; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1767,7 +1767,7 @@ CREATE TABLE filter (
 
 
 --
--- TOC entry 366 (class 1259 OID 61457635)
+-- TOC entry 366 (class 1259 OID 61482114)
 -- Dependencies: 3 367
 -- Name: filter_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1781,7 +1781,7 @@ CREATE SEQUENCE filter_id_seq
 
 
 --
--- TOC entry 4289 (class 0 OID 0)
+-- TOC entry 4295 (class 0 OID 0)
 -- Dependencies: 366
 -- Name: filter_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1790,8 +1790,8 @@ ALTER SEQUENCE filter_id_seq OWNED BY filter.id;
 
 
 --
--- TOC entry 365 (class 1259 OID 61457617)
--- Dependencies: 3003 3004 3005 3006 3007 3008 3009 3
+-- TOC entry 365 (class 1259 OID 61482096)
+-- Dependencies: 3006 3007 3008 3009 3010 3011 3012 3
 -- Name: formulario; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1822,8 +1822,8 @@ CREATE TABLE formulario (
 
 
 --
--- TOC entry 364 (class 1259 OID 61457615)
--- Dependencies: 3 365
+-- TOC entry 364 (class 1259 OID 61482094)
+-- Dependencies: 365 3
 -- Name: formulario_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1836,7 +1836,7 @@ CREATE SEQUENCE formulario_id_seq
 
 
 --
--- TOC entry 4290 (class 0 OID 0)
+-- TOC entry 4296 (class 0 OID 0)
 -- Dependencies: 364
 -- Name: formulario_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1845,8 +1845,8 @@ ALTER SEQUENCE formulario_id_seq OWNED BY formulario.id;
 
 
 --
--- TOC entry 363 (class 1259 OID 61457597)
--- Dependencies: 2997 2998 2999 3000 3001 3
+-- TOC entry 363 (class 1259 OID 61482076)
+-- Dependencies: 3000 3001 3002 3003 3004 3
 -- Name: include; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1867,7 +1867,7 @@ CREATE TABLE include (
 
 
 --
--- TOC entry 362 (class 1259 OID 61457595)
+-- TOC entry 362 (class 1259 OID 61482074)
 -- Dependencies: 363 3
 -- Name: include_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -1881,7 +1881,7 @@ CREATE SEQUENCE include_id_seq
 
 
 --
--- TOC entry 4291 (class 0 OID 0)
+-- TOC entry 4297 (class 0 OID 0)
 -- Dependencies: 362
 -- Name: include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1890,7 +1890,7 @@ ALTER SEQUENCE include_id_seq OWNED BY include.id;
 
 
 --
--- TOC entry 361 (class 1259 OID 61457586)
+-- TOC entry 361 (class 1259 OID 61482065)
 -- Dependencies: 3
 -- Name: log; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
@@ -1905,8 +1905,8 @@ CREATE TABLE log (
 
 
 --
--- TOC entry 360 (class 1259 OID 61457584)
--- Dependencies: 361 3
+-- TOC entry 360 (class 1259 OID 61482063)
+-- Dependencies: 3 361
 -- Name: log_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1919,7 +1919,7 @@ CREATE SEQUENCE log_id_seq
 
 
 --
--- TOC entry 4292 (class 0 OID 0)
+-- TOC entry 4298 (class 0 OID 0)
 -- Dependencies: 360
 -- Name: log_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1928,8 +1928,8 @@ ALTER SEQUENCE log_id_seq OWNED BY log.id;
 
 
 --
--- TOC entry 359 (class 1259 OID 61457573)
--- Dependencies: 2993 2994 3
+-- TOC entry 359 (class 1259 OID 61482052)
+-- Dependencies: 2996 2997 3
 -- Name: mensagem; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1951,8 +1951,8 @@ CREATE TABLE mensagem (
 
 
 --
--- TOC entry 358 (class 1259 OID 61457571)
--- Dependencies: 359 3
+-- TOC entry 358 (class 1259 OID 61482050)
+-- Dependencies: 3 359
 -- Name: mensagem_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -1965,7 +1965,7 @@ CREATE SEQUENCE mensagem_id_seq
 
 
 --
--- TOC entry 4293 (class 0 OID 0)
+-- TOC entry 4299 (class 0 OID 0)
 -- Dependencies: 358
 -- Name: mensagem_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -1974,8 +1974,8 @@ ALTER SEQUENCE mensagem_id_seq OWNED BY mensagem.id;
 
 
 --
--- TOC entry 357 (class 1259 OID 61457555)
--- Dependencies: 2987 2988 2989 2990 2991 3
+-- TOC entry 357 (class 1259 OID 61482034)
+-- Dependencies: 2990 2991 2992 2993 2994 3
 -- Name: metodo_validacao; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -1996,8 +1996,8 @@ CREATE TABLE metodo_validacao (
 
 
 --
--- TOC entry 356 (class 1259 OID 61457553)
--- Dependencies: 3 357
+-- TOC entry 356 (class 1259 OID 61482032)
+-- Dependencies: 357 3
 -- Name: metodo_validacao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2010,7 +2010,7 @@ CREATE SEQUENCE metodo_validacao_id_seq
 
 
 --
--- TOC entry 4294 (class 0 OID 0)
+-- TOC entry 4300 (class 0 OID 0)
 -- Dependencies: 356
 -- Name: metodo_validacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2019,8 +2019,8 @@ ALTER SEQUENCE metodo_validacao_id_seq OWNED BY metodo_validacao.id;
 
 
 --
--- TOC entry 355 (class 1259 OID 61457538)
--- Dependencies: 2980 2981 2982 2983 2984 2985 3
+-- TOC entry 355 (class 1259 OID 61482017)
+-- Dependencies: 2983 2984 2985 2986 2987 2988 3
 -- Name: modulo; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2046,7 +2046,7 @@ CREATE TABLE modulo (
 
 
 --
--- TOC entry 354 (class 1259 OID 61457536)
+-- TOC entry 354 (class 1259 OID 61482015)
 -- Dependencies: 355 3
 -- Name: modulo_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -2060,7 +2060,7 @@ CREATE SEQUENCE modulo_id_seq
 
 
 --
--- TOC entry 4295 (class 0 OID 0)
+-- TOC entry 4301 (class 0 OID 0)
 -- Dependencies: 354
 -- Name: modulo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2069,8 +2069,8 @@ ALTER SEQUENCE modulo_id_seq OWNED BY modulo.id;
 
 
 --
--- TOC entry 353 (class 1259 OID 61457522)
--- Dependencies: 2974 2975 2976 2977 2978 3
+-- TOC entry 353 (class 1259 OID 61482001)
+-- Dependencies: 2977 2978 2979 2980 2981 3
 -- Name: output; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2091,8 +2091,8 @@ CREATE TABLE output (
 
 
 --
--- TOC entry 352 (class 1259 OID 61457520)
--- Dependencies: 353 3
+-- TOC entry 352 (class 1259 OID 61481999)
+-- Dependencies: 3 353
 -- Name: output_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2105,7 +2105,7 @@ CREATE SEQUENCE output_id_seq
 
 
 --
--- TOC entry 4296 (class 0 OID 0)
+-- TOC entry 4302 (class 0 OID 0)
 -- Dependencies: 352
 -- Name: output_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2114,8 +2114,8 @@ ALTER SEQUENCE output_id_seq OWNED BY output.id;
 
 
 --
--- TOC entry 351 (class 1259 OID 61457503)
--- Dependencies: 2967 2968 2969 2970 2971 2972 3
+-- TOC entry 351 (class 1259 OID 61481982)
+-- Dependencies: 2970 2971 2972 2973 2974 2975 3
 -- Name: perfil; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2137,7 +2137,7 @@ CREATE TABLE perfil (
 
 
 --
--- TOC entry 350 (class 1259 OID 61457501)
+-- TOC entry 350 (class 1259 OID 61481980)
 -- Dependencies: 3 351
 -- Name: perfil_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -2151,7 +2151,7 @@ CREATE SEQUENCE perfil_id_seq
 
 
 --
--- TOC entry 4297 (class 0 OID 0)
+-- TOC entry 4303 (class 0 OID 0)
 -- Dependencies: 350
 -- Name: perfil_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2160,8 +2160,8 @@ ALTER SEQUENCE perfil_id_seq OWNED BY perfil.id;
 
 
 --
--- TOC entry 349 (class 1259 OID 61457490)
--- Dependencies: 2964 2965 3
+-- TOC entry 349 (class 1259 OID 61481969)
+-- Dependencies: 2967 2968 3
 -- Name: pessoa; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2180,7 +2180,7 @@ CREATE TABLE pessoa (
 
 
 --
--- TOC entry 348 (class 1259 OID 61457488)
+-- TOC entry 348 (class 1259 OID 61481967)
 -- Dependencies: 349 3
 -- Name: pessoa_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -2194,7 +2194,7 @@ CREATE SEQUENCE pessoa_id_seq
 
 
 --
--- TOC entry 4298 (class 0 OID 0)
+-- TOC entry 4304 (class 0 OID 0)
 -- Dependencies: 348
 -- Name: pessoa_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2203,8 +2203,8 @@ ALTER SEQUENCE pessoa_id_seq OWNED BY pessoa.id;
 
 
 --
--- TOC entry 347 (class 1259 OID 61457475)
--- Dependencies: 2959 2960 2961 2962 3
+-- TOC entry 347 (class 1259 OID 61481954)
+-- Dependencies: 2962 2963 2964 2965 3
 -- Name: pessoa_juridica; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2229,7 +2229,7 @@ CREATE TABLE pessoa_juridica (
 
 
 --
--- TOC entry 346 (class 1259 OID 61457473)
+-- TOC entry 346 (class 1259 OID 61481952)
 -- Dependencies: 347 3
 -- Name: pessoa_juridica_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -2243,7 +2243,7 @@ CREATE SEQUENCE pessoa_juridica_id_seq
 
 
 --
--- TOC entry 4299 (class 0 OID 0)
+-- TOC entry 4305 (class 0 OID 0)
 -- Dependencies: 346
 -- Name: pessoa_juridica_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2252,8 +2252,8 @@ ALTER SEQUENCE pessoa_juridica_id_seq OWNED BY pessoa_juridica.id;
 
 
 --
--- TOC entry 345 (class 1259 OID 61457459)
--- Dependencies: 2953 2954 2955 2956 2957 3
+-- TOC entry 345 (class 1259 OID 61481938)
+-- Dependencies: 2956 2957 2958 2959 2960 3
 -- Name: profissao; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2274,7 +2274,7 @@ CREATE TABLE profissao (
 
 
 --
--- TOC entry 344 (class 1259 OID 61457457)
+-- TOC entry 344 (class 1259 OID 61481936)
 -- Dependencies: 3 345
 -- Name: profissao_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
@@ -2288,7 +2288,7 @@ CREATE SEQUENCE profissao_id_seq
 
 
 --
--- TOC entry 4300 (class 0 OID 0)
+-- TOC entry 4306 (class 0 OID 0)
 -- Dependencies: 344
 -- Name: profissao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2297,8 +2297,8 @@ ALTER SEQUENCE profissao_id_seq OWNED BY profissao.id;
 
 
 --
--- TOC entry 343 (class 1259 OID 61457441)
--- Dependencies: 2947 2948 2949 2950 2951 3
+-- TOC entry 343 (class 1259 OID 61481920)
+-- Dependencies: 2950 2951 2952 2953 2954 3
 -- Name: sequencia; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2318,8 +2318,8 @@ CREATE TABLE sequencia (
 
 
 --
--- TOC entry 342 (class 1259 OID 61457439)
--- Dependencies: 343 3
+-- TOC entry 342 (class 1259 OID 61481918)
+-- Dependencies: 3 343
 -- Name: sequencia_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2332,7 +2332,7 @@ CREATE SEQUENCE sequencia_id_seq
 
 
 --
--- TOC entry 4301 (class 0 OID 0)
+-- TOC entry 4307 (class 0 OID 0)
 -- Dependencies: 342
 -- Name: sequencia_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2341,8 +2341,8 @@ ALTER SEQUENCE sequencia_id_seq OWNED BY sequencia.id;
 
 
 --
--- TOC entry 341 (class 1259 OID 61457425)
--- Dependencies: 2941 2942 2943 2944 2945 3
+-- TOC entry 341 (class 1259 OID 61481904)
+-- Dependencies: 2944 2945 2946 2947 2948 3
 -- Name: template; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2364,8 +2364,8 @@ CREATE TABLE template (
 
 
 --
--- TOC entry 340 (class 1259 OID 61457423)
--- Dependencies: 341 3
+-- TOC entry 340 (class 1259 OID 61481902)
+-- Dependencies: 3 341
 -- Name: template_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2378,7 +2378,7 @@ CREATE SEQUENCE template_id_seq
 
 
 --
--- TOC entry 4302 (class 0 OID 0)
+-- TOC entry 4308 (class 0 OID 0)
 -- Dependencies: 340
 -- Name: template_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2387,8 +2387,8 @@ ALTER SEQUENCE template_id_seq OWNED BY template.id;
 
 
 --
--- TOC entry 339 (class 1259 OID 61457404)
--- Dependencies: 2932 2933 2934 2935 2936 2937 2938 2939 3
+-- TOC entry 339 (class 1259 OID 61481883)
+-- Dependencies: 2935 2936 2937 2938 2939 2940 2941 2942 3
 -- Name: tipo_categoria; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2412,7 +2412,7 @@ CREATE TABLE tipo_categoria (
 
 
 --
--- TOC entry 4303 (class 0 OID 0)
+-- TOC entry 4309 (class 0 OID 0)
 -- Dependencies: 339
 -- Name: TABLE tipo_categoria; Type: COMMENT; Schema: basico; Owner: -
 --
@@ -2421,8 +2421,8 @@ COMMENT ON TABLE tipo_categoria IS 'containner de tipos de categoria';
 
 
 --
--- TOC entry 338 (class 1259 OID 61457402)
--- Dependencies: 3 339
+-- TOC entry 338 (class 1259 OID 61481881)
+-- Dependencies: 339 3
 -- Name: tipo_categoria_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2435,7 +2435,7 @@ CREATE SEQUENCE tipo_categoria_id_seq
 
 
 --
--- TOC entry 4304 (class 0 OID 0)
+-- TOC entry 4310 (class 0 OID 0)
 -- Dependencies: 338
 -- Name: tipo_categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2444,8 +2444,8 @@ ALTER SEQUENCE tipo_categoria_id_seq OWNED BY tipo_categoria.id;
 
 
 --
--- TOC entry 337 (class 1259 OID 61457387)
--- Dependencies: 2925 2926 2927 2928 2929 2930 3
+-- TOC entry 337 (class 1259 OID 61481866)
+-- Dependencies: 2928 2929 2930 2931 2932 2933 3
 -- Name: validator; Type: TABLE; Schema: basico; Owner: -; Tablespace: 
 --
 
@@ -2468,8 +2468,8 @@ CREATE TABLE validator (
 
 
 --
--- TOC entry 336 (class 1259 OID 61457385)
--- Dependencies: 337 3
+-- TOC entry 336 (class 1259 OID 61481864)
+-- Dependencies: 3 337
 -- Name: validator_id_seq; Type: SEQUENCE; Schema: basico; Owner: -
 --
 
@@ -2482,7 +2482,7 @@ CREATE SEQUENCE validator_id_seq
 
 
 --
--- TOC entry 4305 (class 0 OID 0)
+-- TOC entry 4311 (class 0 OID 0)
 -- Dependencies: 336
 -- Name: validator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico; Owner: -
 --
@@ -2493,8 +2493,8 @@ ALTER SEQUENCE validator_id_seq OWNED BY validator.id;
 SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
--- TOC entry 335 (class 1259 OID 61457373)
--- Dependencies: 2923 6
+-- TOC entry 335 (class 1259 OID 61481849)
+-- Dependencies: 2926 6
 -- Name: assoccl_atrib_met_rec_post; Type: TABLE; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
 
@@ -2509,8 +2509,8 @@ CREATE TABLE assoccl_atrib_met_rec_post (
 
 
 --
--- TOC entry 334 (class 1259 OID 61457371)
--- Dependencies: 6 335
+-- TOC entry 334 (class 1259 OID 61481847)
+-- Dependencies: 335 6
 -- Name: assoccl_atrib_met_rec_post_id_seq; Type: SEQUENCE; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -2523,7 +2523,7 @@ CREATE SEQUENCE assoccl_atrib_met_rec_post_id_seq
 
 
 --
--- TOC entry 4306 (class 0 OID 0)
+-- TOC entry 4312 (class 0 OID 0)
 -- Dependencies: 334
 -- Name: assoccl_atrib_met_rec_post_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
@@ -2532,8 +2532,8 @@ ALTER SEQUENCE assoccl_atrib_met_rec_post_id_seq OWNED BY assoccl_atrib_met_rec_
 
 
 --
--- TOC entry 333 (class 1259 OID 61457356)
--- Dependencies: 2918 2919 2920 2921 6
+-- TOC entry 333 (class 1259 OID 61481832)
+-- Dependencies: 2921 2922 2923 2924 6
 -- Name: atributo_metodo_recup_post; Type: TABLE; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
 
@@ -2552,8 +2552,8 @@ CREATE TABLE atributo_metodo_recup_post (
 
 
 --
--- TOC entry 332 (class 1259 OID 61457354)
--- Dependencies: 333 6
+-- TOC entry 332 (class 1259 OID 61481830)
+-- Dependencies: 6 333
 -- Name: atributo_metodo_recup_post_id_seq; Type: SEQUENCE; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -2566,7 +2566,7 @@ CREATE SEQUENCE atributo_metodo_recup_post_id_seq
 
 
 --
--- TOC entry 4307 (class 0 OID 0)
+-- TOC entry 4313 (class 0 OID 0)
 -- Dependencies: 332
 -- Name: atributo_metodo_recup_post_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
@@ -2577,8 +2577,8 @@ ALTER SEQUENCE atributo_metodo_recup_post_id_seq OWNED BY atributo_metodo_recup_
 SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
--- TOC entry 331 (class 1259 OID 61457338)
--- Dependencies: 2910 2911 2912 2913 2914 2915 2916 7
+-- TOC entry 331 (class 1259 OID 61481814)
+-- Dependencies: 2913 2914 2915 2916 2917 2918 2919 7
 -- Name: assoc_visao; Type: TABLE; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
 
@@ -2603,7 +2603,7 @@ CREATE TABLE assoc_visao (
 
 
 --
--- TOC entry 330 (class 1259 OID 61457336)
+-- TOC entry 330 (class 1259 OID 61481812)
 -- Dependencies: 7 331
 -- Name: assoc_visao_id_seq; Type: SEQUENCE; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2617,7 +2617,7 @@ CREATE SEQUENCE assoc_visao_id_seq
 
 
 --
--- TOC entry 4308 (class 0 OID 0)
+-- TOC entry 4314 (class 0 OID 0)
 -- Dependencies: 330
 -- Name: assoc_visao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2626,8 +2626,8 @@ ALTER SEQUENCE assoc_visao_id_seq OWNED BY assoc_visao.id;
 
 
 --
--- TOC entry 329 (class 1259 OID 61457324)
--- Dependencies: 2908 7
+-- TOC entry 329 (class 1259 OID 61481800)
+-- Dependencies: 2911 7
 -- Name: assoccl_metodo_validacao; Type: TABLE; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
 
@@ -2642,7 +2642,7 @@ CREATE TABLE assoccl_metodo_validacao (
 
 
 --
--- TOC entry 328 (class 1259 OID 61457322)
+-- TOC entry 328 (class 1259 OID 61481798)
 -- Dependencies: 329 7
 -- Name: assoccl_metodo_validacao_id_seq; Type: SEQUENCE; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2656,7 +2656,7 @@ CREATE SEQUENCE assoccl_metodo_validacao_id_seq
 
 
 --
--- TOC entry 4309 (class 0 OID 0)
+-- TOC entry 4315 (class 0 OID 0)
 -- Dependencies: 328
 -- Name: assoccl_metodo_validacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2665,8 +2665,8 @@ ALTER SEQUENCE assoccl_metodo_validacao_id_seq OWNED BY assoccl_metodo_validacao
 
 
 --
--- TOC entry 327 (class 1259 OID 61457310)
--- Dependencies: 2906 7
+-- TOC entry 327 (class 1259 OID 61481786)
+-- Dependencies: 2909 7
 -- Name: assoccl_perfil; Type: TABLE; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
 
@@ -2680,7 +2680,7 @@ CREATE TABLE assoccl_perfil (
 
 
 --
--- TOC entry 326 (class 1259 OID 61457308)
+-- TOC entry 326 (class 1259 OID 61481784)
 -- Dependencies: 7 327
 -- Name: assoccl_perfil_id_seq; Type: SEQUENCE; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2694,7 +2694,7 @@ CREATE SEQUENCE assoccl_perfil_id_seq
 
 
 --
--- TOC entry 4310 (class 0 OID 0)
+-- TOC entry 4316 (class 0 OID 0)
 -- Dependencies: 326
 -- Name: assoccl_perfil_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -2705,8 +2705,8 @@ ALTER SEQUENCE assoccl_perfil_id_seq OWNED BY assoccl_perfil.id;
 SET search_path = basico_acao_evento, pg_catalog;
 
 --
--- TOC entry 325 (class 1259 OID 61457296)
--- Dependencies: 2904 9
+-- TOC entry 325 (class 1259 OID 61481772)
+-- Dependencies: 2907 9
 -- Name: assoccl_include; Type: TABLE; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
 
@@ -2721,8 +2721,8 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 324 (class 1259 OID 61457294)
--- Dependencies: 9 325
+-- TOC entry 324 (class 1259 OID 61481770)
+-- Dependencies: 325 9
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_acao_evento; Owner: -
 --
 
@@ -2735,7 +2735,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4311 (class 0 OID 0)
+-- TOC entry 4317 (class 0 OID 0)
 -- Dependencies: 324
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_acao_evento; Owner: -
 --
@@ -2746,8 +2746,8 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 SET search_path = basico_ajuda, pg_catalog;
 
 --
--- TOC entry 323 (class 1259 OID 61457282)
--- Dependencies: 2902 10
+-- TOC entry 323 (class 1259 OID 61481758)
+-- Dependencies: 2905 10
 -- Name: assoccl_link; Type: TABLE; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
 
@@ -2762,7 +2762,7 @@ CREATE TABLE assoccl_link (
 
 
 --
--- TOC entry 322 (class 1259 OID 61457280)
+-- TOC entry 322 (class 1259 OID 61481756)
 -- Dependencies: 323 10
 -- Name: assoccl_link_id_seq; Type: SEQUENCE; Schema: basico_ajuda; Owner: -
 --
@@ -2776,7 +2776,7 @@ CREATE SEQUENCE assoccl_link_id_seq
 
 
 --
--- TOC entry 4312 (class 0 OID 0)
+-- TOC entry 4318 (class 0 OID 0)
 -- Dependencies: 322
 -- Name: assoccl_link_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_ajuda; Owner: -
 --
@@ -2787,8 +2787,8 @@ ALTER SEQUENCE assoccl_link_id_seq OWNED BY assoccl_link.id;
 SET search_path = basico_assoc_banco, pg_catalog;
 
 --
--- TOC entry 321 (class 1259 OID 61457263)
--- Dependencies: 2897 2898 2899 2900 11
+-- TOC entry 321 (class 1259 OID 61481739)
+-- Dependencies: 2900 2901 2902 2903 11
 -- Name: assoc_tipo_conta; Type: TABLE; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
 
@@ -2809,8 +2809,8 @@ CREATE TABLE assoc_tipo_conta (
 
 
 --
--- TOC entry 320 (class 1259 OID 61457261)
--- Dependencies: 11 321
+-- TOC entry 320 (class 1259 OID 61481737)
+-- Dependencies: 321 11
 -- Name: assoc_tipo_conta_id_seq; Type: SEQUENCE; Schema: basico_assoc_banco; Owner: -
 --
 
@@ -2823,7 +2823,7 @@ CREATE SEQUENCE assoc_tipo_conta_id_seq
 
 
 --
--- TOC entry 4313 (class 0 OID 0)
+-- TOC entry 4319 (class 0 OID 0)
 -- Dependencies: 320
 -- Name: assoc_tipo_conta_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_assoc_banco; Owner: -
 --
@@ -2834,8 +2834,8 @@ ALTER SEQUENCE assoc_tipo_conta_id_seq OWNED BY assoc_tipo_conta.id;
 SET search_path = basico_assoc_chave_estrangeira, pg_catalog;
 
 --
--- TOC entry 319 (class 1259 OID 61457249)
--- Dependencies: 2895 12
+-- TOC entry 319 (class 1259 OID 61481725)
+-- Dependencies: 2898 12
 -- Name: relacao; Type: TABLE; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
 
@@ -2849,7 +2849,7 @@ CREATE TABLE relacao (
 
 
 --
--- TOC entry 318 (class 1259 OID 61457247)
+-- TOC entry 318 (class 1259 OID 61481723)
 -- Dependencies: 319 12
 -- Name: relacao_id_seq; Type: SEQUENCE; Schema: basico_assoc_chave_estrangeira; Owner: -
 --
@@ -2863,7 +2863,7 @@ CREATE SEQUENCE relacao_id_seq
 
 
 --
--- TOC entry 4314 (class 0 OID 0)
+-- TOC entry 4320 (class 0 OID 0)
 -- Dependencies: 318
 -- Name: relacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_assoc_chave_estrangeira; Owner: -
 --
@@ -2874,8 +2874,8 @@ ALTER SEQUENCE relacao_id_seq OWNED BY relacao.id;
 SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
--- TOC entry 317 (class 1259 OID 61457235)
--- Dependencies: 2893 13
+-- TOC entry 317 (class 1259 OID 61481711)
+-- Dependencies: 2896 13
 -- Name: assoccl_area_conhecimento; Type: TABLE; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
 
@@ -2889,8 +2889,8 @@ CREATE TABLE assoccl_area_conhecimento (
 
 
 --
--- TOC entry 316 (class 1259 OID 61457233)
--- Dependencies: 317 13
+-- TOC entry 316 (class 1259 OID 61481709)
+-- Dependencies: 13 317
 -- Name: assoccl_area_conhecimento_id_seq; Type: SEQUENCE; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -2903,7 +2903,7 @@ CREATE SEQUENCE assoccl_area_conhecimento_id_seq
 
 
 --
--- TOC entry 4315 (class 0 OID 0)
+-- TOC entry 4321 (class 0 OID 0)
 -- Dependencies: 316
 -- Name: assoccl_area_conhecimento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_assoc_dados_profis; Owner: -
 --
@@ -2914,8 +2914,8 @@ ALTER SEQUENCE assoccl_area_conhecimento_id_seq OWNED BY assoccl_area_conhecimen
 SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
--- TOC entry 315 (class 1259 OID 61457222)
--- Dependencies: 2890 2891 14
+-- TOC entry 315 (class 1259 OID 61481698)
+-- Dependencies: 2893 2894 14
 -- Name: assoc_dados; Type: TABLE; Schema: basico_assoccl_pessoa_perfil; Owner: -; Tablespace: 
 --
 
@@ -2930,8 +2930,8 @@ CREATE TABLE assoc_dados (
 
 
 --
--- TOC entry 314 (class 1259 OID 61457220)
--- Dependencies: 14 315
+-- TOC entry 314 (class 1259 OID 61481696)
+-- Dependencies: 315 14
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
 
@@ -2944,7 +2944,7 @@ CREATE SEQUENCE assoc_dados_id_seq
 
 
 --
--- TOC entry 4316 (class 0 OID 0)
+-- TOC entry 4322 (class 0 OID 0)
 -- Dependencies: 314
 -- Name: assoc_dados_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
@@ -2955,8 +2955,8 @@ ALTER SEQUENCE assoc_dados_id_seq OWNED BY assoc_dados.id;
 SET search_path = basico_assoccl_tipo_vinculo, pg_catalog;
 
 --
--- TOC entry 313 (class 1259 OID 61457209)
--- Dependencies: 2887 2888 15
+-- TOC entry 313 (class 1259 OID 61481685)
+-- Dependencies: 2890 2891 15
 -- Name: assoc_dados; Type: TABLE; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
 
@@ -2984,7 +2984,7 @@ CREATE TABLE assoc_dados (
 
 
 --
--- TOC entry 312 (class 1259 OID 61457207)
+-- TOC entry 312 (class 1259 OID 61481683)
 -- Dependencies: 15 313
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
@@ -2998,7 +2998,7 @@ CREATE SEQUENCE assoc_dados_id_seq
 
 
 --
--- TOC entry 4317 (class 0 OID 0)
+-- TOC entry 4323 (class 0 OID 0)
 -- Dependencies: 312
 -- Name: assoc_dados_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
@@ -3009,8 +3009,8 @@ ALTER SEQUENCE assoc_dados_id_seq OWNED BY assoc_dados.id;
 SET search_path = basico_categoria, pg_catalog;
 
 --
--- TOC entry 311 (class 1259 OID 61457196)
--- Dependencies: 2884 2885 16
+-- TOC entry 311 (class 1259 OID 61481672)
+-- Dependencies: 2887 2888 16
 -- Name: assoc_chave_estrangeira; Type: TABLE; Schema: basico_categoria; Owner: -; Tablespace: 
 --
 
@@ -3027,7 +3027,7 @@ CREATE TABLE assoc_chave_estrangeira (
 
 
 --
--- TOC entry 4318 (class 0 OID 0)
+-- TOC entry 4324 (class 0 OID 0)
 -- Dependencies: 311
 -- Name: TABLE assoc_chave_estrangeira; Type: COMMENT; Schema: basico_categoria; Owner: -
 --
@@ -3036,7 +3036,7 @@ COMMENT ON TABLE assoc_chave_estrangeira IS 'conteinner de relacao de uma catego
 
 
 --
--- TOC entry 310 (class 1259 OID 61457194)
+-- TOC entry 310 (class 1259 OID 61481670)
 -- Dependencies: 16 311
 -- Name: assoc_chave_estrangeira_id_seq; Type: SEQUENCE; Schema: basico_categoria; Owner: -
 --
@@ -3050,7 +3050,7 @@ CREATE SEQUENCE assoc_chave_estrangeira_id_seq
 
 
 --
--- TOC entry 4319 (class 0 OID 0)
+-- TOC entry 4325 (class 0 OID 0)
 -- Dependencies: 310
 -- Name: assoc_chave_estrangeira_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_categoria; Owner: -
 --
@@ -3059,8 +3059,8 @@ ALTER SEQUENCE assoc_chave_estrangeira_id_seq OWNED BY assoc_chave_estrangeira.i
 
 
 --
--- TOC entry 309 (class 1259 OID 61457184)
--- Dependencies: 2882 16
+-- TOC entry 309 (class 1259 OID 61481660)
+-- Dependencies: 2885 16
 -- Name: assoc_evento_acao; Type: TABLE; Schema: basico_categoria; Owner: -; Tablespace: 
 --
 
@@ -3076,8 +3076,8 @@ CREATE TABLE assoc_evento_acao (
 
 
 --
--- TOC entry 308 (class 1259 OID 61457182)
--- Dependencies: 309 16
+-- TOC entry 308 (class 1259 OID 61481658)
+-- Dependencies: 16 309
 -- Name: assoc_evento_acao_id_seq; Type: SEQUENCE; Schema: basico_categoria; Owner: -
 --
 
@@ -3090,7 +3090,7 @@ CREATE SEQUENCE assoc_evento_acao_id_seq
 
 
 --
--- TOC entry 4320 (class 0 OID 0)
+-- TOC entry 4326 (class 0 OID 0)
 -- Dependencies: 308
 -- Name: assoc_evento_acao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_categoria; Owner: -
 --
@@ -3101,8 +3101,8 @@ ALTER SEQUENCE assoc_evento_acao_id_seq OWNED BY assoc_evento_acao.id;
 SET search_path = basico_componente, pg_catalog;
 
 --
--- TOC entry 307 (class 1259 OID 61457170)
--- Dependencies: 2880 17
+-- TOC entry 307 (class 1259 OID 61481646)
+-- Dependencies: 2883 17
 -- Name: assoccl_include; Type: TABLE; Schema: basico_componente; Owner: -; Tablespace: 
 --
 
@@ -3117,8 +3117,8 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 306 (class 1259 OID 61457168)
--- Dependencies: 17 307
+-- TOC entry 306 (class 1259 OID 61481644)
+-- Dependencies: 307 17
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_componente; Owner: -
 --
 
@@ -3131,7 +3131,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4321 (class 0 OID 0)
+-- TOC entry 4327 (class 0 OID 0)
 -- Dependencies: 306
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_componente; Owner: -
 --
@@ -3142,8 +3142,8 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 305 (class 1259 OID 61457150)
--- Dependencies: 2872 2873 2874 2875 2876 2877 2878 18
+-- TOC entry 305 (class 1259 OID 61481626)
+-- Dependencies: 2875 2876 2877 2878 2879 2880 2881 18
 -- Name: cpg_email; Type: TABLE; Schema: basico_contato; Owner: -; Tablespace: 
 --
 
@@ -3170,8 +3170,8 @@ CREATE TABLE cpg_email (
 
 
 --
--- TOC entry 304 (class 1259 OID 61457148)
--- Dependencies: 18 305
+-- TOC entry 304 (class 1259 OID 61481624)
+-- Dependencies: 305 18
 -- Name: cpg_email_id_seq; Type: SEQUENCE; Schema: basico_contato; Owner: -
 --
 
@@ -3184,7 +3184,7 @@ CREATE SEQUENCE cpg_email_id_seq
 
 
 --
--- TOC entry 4322 (class 0 OID 0)
+-- TOC entry 4328 (class 0 OID 0)
 -- Dependencies: 304
 -- Name: cpg_email_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_contato; Owner: -
 --
@@ -3193,8 +3193,8 @@ ALTER SEQUENCE cpg_email_id_seq OWNED BY cpg_email.id;
 
 
 --
--- TOC entry 303 (class 1259 OID 61457131)
--- Dependencies: 2865 2866 2867 2868 2869 2870 18
+-- TOC entry 303 (class 1259 OID 61481607)
+-- Dependencies: 2868 2869 2870 2871 2872 2873 18
 -- Name: cpg_telefone; Type: TABLE; Schema: basico_contato; Owner: -; Tablespace: 
 --
 
@@ -3220,8 +3220,8 @@ CREATE TABLE cpg_telefone (
 
 
 --
--- TOC entry 302 (class 1259 OID 61457129)
--- Dependencies: 303 18
+-- TOC entry 302 (class 1259 OID 61481605)
+-- Dependencies: 18 303
 -- Name: cpg_telefone_id_seq; Type: SEQUENCE; Schema: basico_contato; Owner: -
 --
 
@@ -3234,7 +3234,7 @@ CREATE SEQUENCE cpg_telefone_id_seq
 
 
 --
--- TOC entry 4323 (class 0 OID 0)
+-- TOC entry 4329 (class 0 OID 0)
 -- Dependencies: 302
 -- Name: cpg_telefone_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_contato; Owner: -
 --
@@ -3245,8 +3245,8 @@ ALTER SEQUENCE cpg_telefone_id_seq OWNED BY cpg_telefone.id;
 SET search_path = basico_cvc, pg_catalog;
 
 --
--- TOC entry 301 (class 1259 OID 61457114)
--- Dependencies: 2860 2861 2862 2863 19
+-- TOC entry 301 (class 1259 OID 61481590)
+-- Dependencies: 2863 2864 2865 2866 19
 -- Name: cvc; Type: TABLE; Schema: basico_cvc; Owner: -; Tablespace: 
 --
 
@@ -3266,8 +3266,8 @@ CREATE TABLE cvc (
 
 
 --
--- TOC entry 300 (class 1259 OID 61457112)
--- Dependencies: 19 301
+-- TOC entry 300 (class 1259 OID 61481588)
+-- Dependencies: 301 19
 -- Name: cvc_id_seq; Type: SEQUENCE; Schema: basico_cvc; Owner: -
 --
 
@@ -3280,7 +3280,7 @@ CREATE SEQUENCE cvc_id_seq
 
 
 --
--- TOC entry 4324 (class 0 OID 0)
+-- TOC entry 4330 (class 0 OID 0)
 -- Dependencies: 300
 -- Name: cvc_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_cvc; Owner: -
 --
@@ -3291,8 +3291,8 @@ ALTER SEQUENCE cvc_id_seq OWNED BY cvc.id;
 SET search_path = basico_dados_academicos, pg_catalog;
 
 --
--- TOC entry 299 (class 1259 OID 61457098)
--- Dependencies: 2854 2855 2856 2857 2858 20
+-- TOC entry 299 (class 1259 OID 61481574)
+-- Dependencies: 2857 2858 2859 2860 2861 20
 -- Name: titulacao; Type: TABLE; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
 
@@ -3312,7 +3312,7 @@ CREATE TABLE titulacao (
 
 
 --
--- TOC entry 298 (class 1259 OID 61457096)
+-- TOC entry 298 (class 1259 OID 61481572)
 -- Dependencies: 299 20
 -- Name: titulacao_id_seq; Type: SEQUENCE; Schema: basico_dados_academicos; Owner: -
 --
@@ -3326,7 +3326,7 @@ CREATE SEQUENCE titulacao_id_seq
 
 
 --
--- TOC entry 4325 (class 0 OID 0)
+-- TOC entry 4331 (class 0 OID 0)
 -- Dependencies: 298
 -- Name: titulacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dados_academicos; Owner: -
 --
@@ -3337,8 +3337,8 @@ ALTER SEQUENCE titulacao_id_seq OWNED BY titulacao.id;
 SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
--- TOC entry 297 (class 1259 OID 61457085)
--- Dependencies: 2851 2852 21
+-- TOC entry 297 (class 1259 OID 61481561)
+-- Dependencies: 2854 2855 21
 -- Name: assoc_pessoa; Type: TABLE; Schema: basico_dados_biometricos; Owner: -; Tablespace: 
 --
 
@@ -3358,8 +3358,8 @@ CREATE TABLE assoc_pessoa (
 
 
 --
--- TOC entry 296 (class 1259 OID 61457083)
--- Dependencies: 297 21
+-- TOC entry 296 (class 1259 OID 61481559)
+-- Dependencies: 21 297
 -- Name: assoc_pessoa_id_seq; Type: SEQUENCE; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -3372,7 +3372,7 @@ CREATE SEQUENCE assoc_pessoa_id_seq
 
 
 --
--- TOC entry 4326 (class 0 OID 0)
+-- TOC entry 4332 (class 0 OID 0)
 -- Dependencies: 296
 -- Name: assoc_pessoa_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dados_biometricos; Owner: -
 --
@@ -3383,8 +3383,8 @@ ALTER SEQUENCE assoc_pessoa_id_seq OWNED BY assoc_pessoa.id;
 SET search_path = basico_dados_profissionais, pg_catalog;
 
 --
--- TOC entry 295 (class 1259 OID 61457066)
--- Dependencies: 2844 2845 2846 2847 2848 2849 22
+-- TOC entry 295 (class 1259 OID 61481542)
+-- Dependencies: 2847 2848 2849 2850 2851 2852 22
 -- Name: regime_trabalho; Type: TABLE; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
 
@@ -3407,8 +3407,8 @@ CREATE TABLE regime_trabalho (
 
 
 --
--- TOC entry 294 (class 1259 OID 61457064)
--- Dependencies: 295 22
+-- TOC entry 294 (class 1259 OID 61481540)
+-- Dependencies: 22 295
 -- Name: regime_trabalho_id_seq; Type: SEQUENCE; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -3421,7 +3421,7 @@ CREATE SEQUENCE regime_trabalho_id_seq
 
 
 --
--- TOC entry 4327 (class 0 OID 0)
+-- TOC entry 4333 (class 0 OID 0)
 -- Dependencies: 294
 -- Name: regime_trabalho_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dados_profissionais; Owner: -
 --
@@ -3430,8 +3430,8 @@ ALTER SEQUENCE regime_trabalho_id_seq OWNED BY regime_trabalho.id;
 
 
 --
--- TOC entry 293 (class 1259 OID 61457046)
--- Dependencies: 2836 2837 2838 2839 2840 2841 2842 22
+-- TOC entry 293 (class 1259 OID 61481522)
+-- Dependencies: 2839 2840 2841 2842 2843 2844 2845 22
 -- Name: tipo_vinculo; Type: TABLE; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
 
@@ -3454,7 +3454,7 @@ CREATE TABLE tipo_vinculo (
 
 
 --
--- TOC entry 292 (class 1259 OID 61457044)
+-- TOC entry 292 (class 1259 OID 61481520)
 -- Dependencies: 22 293
 -- Name: tipo_vinculo_id_seq; Type: SEQUENCE; Schema: basico_dados_profissionais; Owner: -
 --
@@ -3468,7 +3468,7 @@ CREATE SEQUENCE tipo_vinculo_id_seq
 
 
 --
--- TOC entry 4328 (class 0 OID 0)
+-- TOC entry 4334 (class 0 OID 0)
 -- Dependencies: 292
 -- Name: tipo_vinculo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dados_profissionais; Owner: -
 --
@@ -3477,8 +3477,8 @@ ALTER SEQUENCE tipo_vinculo_id_seq OWNED BY tipo_vinculo.id;
 
 
 --
--- TOC entry 291 (class 1259 OID 61457028)
--- Dependencies: 2830 2831 2832 2833 2834 22
+-- TOC entry 291 (class 1259 OID 61481504)
+-- Dependencies: 2833 2834 2835 2836 2837 22
 -- Name: vinculo_empregaticio; Type: TABLE; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
 
@@ -3499,7 +3499,7 @@ CREATE TABLE vinculo_empregaticio (
 
 
 --
--- TOC entry 290 (class 1259 OID 61457026)
+-- TOC entry 290 (class 1259 OID 61481502)
 -- Dependencies: 22 291
 -- Name: vinculo_empregaticio_id_seq; Type: SEQUENCE; Schema: basico_dados_profissionais; Owner: -
 --
@@ -3513,7 +3513,7 @@ CREATE SEQUENCE vinculo_empregaticio_id_seq
 
 
 --
--- TOC entry 4329 (class 0 OID 0)
+-- TOC entry 4335 (class 0 OID 0)
 -- Dependencies: 290
 -- Name: vinculo_empregaticio_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_dados_profissionais; Owner: -
 --
@@ -3524,8 +3524,8 @@ ALTER SEQUENCE vinculo_empregaticio_id_seq OWNED BY vinculo_empregaticio.id;
 SET search_path = basico_filter, pg_catalog;
 
 --
--- TOC entry 281 (class 1259 OID 61456938)
--- Dependencies: 2824 2825 2826 2827 2828 41
+-- TOC entry 281 (class 1259 OID 61481414)
+-- Dependencies: 2827 2828 2829 2830 2831 41
 -- Name: grupo; Type: TABLE; Schema: basico_filter; Owner: -; Tablespace: 
 --
 
@@ -3545,7 +3545,7 @@ CREATE TABLE grupo (
 
 
 --
--- TOC entry 280 (class 1259 OID 61456936)
+-- TOC entry 280 (class 1259 OID 61481412)
 -- Dependencies: 281 41
 -- Name: grupo_id_seq; Type: SEQUENCE; Schema: basico_filter; Owner: -
 --
@@ -3559,7 +3559,7 @@ CREATE SEQUENCE grupo_id_seq
 
 
 --
--- TOC entry 4330 (class 0 OID 0)
+-- TOC entry 4336 (class 0 OID 0)
 -- Dependencies: 280
 -- Name: grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_filter; Owner: -
 --
@@ -3570,8 +3570,8 @@ ALTER SEQUENCE grupo_id_seq OWNED BY grupo.id;
 SET search_path = basico_filter_grupo, pg_catalog;
 
 --
--- TOC entry 279 (class 1259 OID 61456925)
--- Dependencies: 2821 2822 42
+-- TOC entry 279 (class 1259 OID 61481401)
+-- Dependencies: 2824 2825 42
 -- Name: assocag_grupo; Type: TABLE; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
 
@@ -3588,7 +3588,7 @@ CREATE TABLE assocag_grupo (
 
 
 --
--- TOC entry 278 (class 1259 OID 61456923)
+-- TOC entry 278 (class 1259 OID 61481399)
 -- Dependencies: 42 279
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE; Schema: basico_filter_grupo; Owner: -
 --
@@ -3602,7 +3602,7 @@ CREATE SEQUENCE assocag_grupo_id_seq
 
 
 --
--- TOC entry 4331 (class 0 OID 0)
+-- TOC entry 4337 (class 0 OID 0)
 -- Dependencies: 278
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_filter_grupo; Owner: -
 --
@@ -3613,8 +3613,8 @@ ALTER SEQUENCE assocag_grupo_id_seq OWNED BY assocag_grupo.id;
 SET search_path = basico_form_assoccl_elem_grupo, pg_catalog;
 
 --
--- TOC entry 277 (class 1259 OID 61456911)
--- Dependencies: 2819 23
+-- TOC entry 277 (class 1259 OID 61481387)
+-- Dependencies: 2822 23
 -- Name: assoccl_decorator; Type: TABLE; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
 
@@ -3629,8 +3629,8 @@ CREATE TABLE assoccl_decorator (
 
 
 --
--- TOC entry 276 (class 1259 OID 61456909)
--- Dependencies: 277 23
+-- TOC entry 276 (class 1259 OID 61481385)
+-- Dependencies: 23 277
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
 
@@ -3643,7 +3643,7 @@ CREATE SEQUENCE assoccl_decorator_id_seq
 
 
 --
--- TOC entry 4332 (class 0 OID 0)
+-- TOC entry 4338 (class 0 OID 0)
 -- Dependencies: 276
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
@@ -3654,25 +3654,27 @@ ALTER SEQUENCE assoccl_decorator_id_seq OWNED BY assoccl_decorator.id;
 SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
--- TOC entry 275 (class 1259 OID 61456896)
--- Dependencies: 2816 2817 24
+-- TOC entry 275 (class 1259 OID 61481371)
+-- Dependencies: 2818 2819 2820 24
 -- Name: assoccl_decorator; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 CREATE TABLE assoccl_decorator (
     id integer NOT NULL,
     id_assoccl_elemento integer NOT NULL,
-    id_decorator integer NOT NULL,
+    id_decorator integer,
+    id_decorator_grupo integer,
     remove_flag boolean DEFAULT false NOT NULL,
     ordem integer NOT NULL,
     datahora_criacao timestamp without time zone DEFAULT now() NOT NULL,
-    rowinfo character varying(2000) NOT NULL
+    rowinfo character varying(2000) NOT NULL,
+    CONSTRAINT ck_form_assoccl_elem_assoccl_decorator CHECK ((((id_decorator IS NOT NULL) AND (id_decorator_grupo IS NULL)) OR ((id_decorator IS NULL) AND (id_decorator_grupo IS NOT NULL))))
 );
 
 
 --
--- TOC entry 274 (class 1259 OID 61456894)
--- Dependencies: 24 275
+-- TOC entry 274 (class 1259 OID 61481369)
+-- Dependencies: 275 24
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3685,7 +3687,7 @@ CREATE SEQUENCE assoccl_decorator_id_seq
 
 
 --
--- TOC entry 4333 (class 0 OID 0)
+-- TOC entry 4339 (class 0 OID 0)
 -- Dependencies: 274
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3694,8 +3696,8 @@ ALTER SEQUENCE assoccl_decorator_id_seq OWNED BY assoccl_decorator.id;
 
 
 --
--- TOC entry 273 (class 1259 OID 61456881)
--- Dependencies: 2813 2814 24
+-- TOC entry 273 (class 1259 OID 61481356)
+-- Dependencies: 2815 2816 24
 -- Name: assoccl_evento; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
@@ -3712,7 +3714,7 @@ CREATE TABLE assoccl_evento (
 
 
 --
--- TOC entry 272 (class 1259 OID 61456879)
+-- TOC entry 272 (class 1259 OID 61481354)
 -- Dependencies: 24 273
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3726,7 +3728,7 @@ CREATE SEQUENCE assoccl_evento_id_seq
 
 
 --
--- TOC entry 4334 (class 0 OID 0)
+-- TOC entry 4340 (class 0 OID 0)
 -- Dependencies: 272
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3735,25 +3737,27 @@ ALTER SEQUENCE assoccl_evento_id_seq OWNED BY assoccl_evento.id;
 
 
 --
--- TOC entry 271 (class 1259 OID 61456866)
--- Dependencies: 2810 2811 24
+-- TOC entry 271 (class 1259 OID 61481340)
+-- Dependencies: 2811 2812 2813 24
 -- Name: assoccl_filter; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 CREATE TABLE assoccl_filter (
     id integer NOT NULL,
     id_assoccl_elemento integer NOT NULL,
-    id_filter integer NOT NULL,
+    id_filter integer,
+    id_filter_grupo integer,
     ordem integer NOT NULL,
     remove_flag boolean DEFAULT false NOT NULL,
     datahora_criacao timestamp without time zone DEFAULT now() NOT NULL,
-    rowinfo character varying(2000) NOT NULL
+    rowinfo character varying(2000) NOT NULL,
+    CONSTRAINT ck_form_assoccl_elem_assoccl_filter CHECK ((((id_filter IS NOT NULL) AND (id_filter_grupo IS NULL)) OR ((id_filter IS NULL) AND (id_filter_grupo IS NOT NULL))))
 );
 
 
 --
--- TOC entry 270 (class 1259 OID 61456864)
--- Dependencies: 24 271
+-- TOC entry 270 (class 1259 OID 61481338)
+-- Dependencies: 271 24
 -- Name: assoccl_filter_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3766,7 +3770,7 @@ CREATE SEQUENCE assoccl_filter_id_seq
 
 
 --
--- TOC entry 4335 (class 0 OID 0)
+-- TOC entry 4341 (class 0 OID 0)
 -- Dependencies: 270
 -- Name: assoccl_filter_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3775,8 +3779,8 @@ ALTER SEQUENCE assoccl_filter_id_seq OWNED BY assoccl_filter.id;
 
 
 --
--- TOC entry 269 (class 1259 OID 61456851)
--- Dependencies: 2807 2808 24
+-- TOC entry 269 (class 1259 OID 61481325)
+-- Dependencies: 2808 2809 24
 -- Name: assoccl_include; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
@@ -3792,8 +3796,8 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 268 (class 1259 OID 61456849)
--- Dependencies: 24 269
+-- TOC entry 268 (class 1259 OID 61481323)
+-- Dependencies: 269 24
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3806,7 +3810,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4336 (class 0 OID 0)
+-- TOC entry 4342 (class 0 OID 0)
 -- Dependencies: 268
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3815,24 +3819,26 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 
 
 --
--- TOC entry 267 (class 1259 OID 61456836)
--- Dependencies: 2804 2805 24
+-- TOC entry 267 (class 1259 OID 61481309)
+-- Dependencies: 2804 2805 2806 24
 -- Name: assoccl_validator; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 CREATE TABLE assoccl_validator (
     id integer NOT NULL,
     id_assoccl_elemento integer NOT NULL,
-    id_validator integer NOT NULL,
+    id_validator integer,
+    id_validator_grupo integer,
     remove_flag boolean DEFAULT false NOT NULL,
     datahora_criacao timestamp without time zone DEFAULT now() NOT NULL,
-    rowinfo character varying(2000) NOT NULL
+    rowinfo character varying(2000) NOT NULL,
+    CONSTRAINT ck_form_assoccl_elem_assoccl_validator CHECK ((((id_validator IS NOT NULL) AND (id_validator_grupo IS NULL)) OR ((id_validator IS NULL) AND (id_validator_grupo IS NOT NULL))))
 );
 
 
 --
--- TOC entry 266 (class 1259 OID 61456834)
--- Dependencies: 267 24
+-- TOC entry 266 (class 1259 OID 61481307)
+-- Dependencies: 24 267
 -- Name: assoccl_validator_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3845,7 +3851,7 @@ CREATE SEQUENCE assoccl_validator_id_seq
 
 
 --
--- TOC entry 4337 (class 0 OID 0)
+-- TOC entry 4343 (class 0 OID 0)
 -- Dependencies: 266
 -- Name: assoccl_validator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3854,7 +3860,7 @@ ALTER SEQUENCE assoccl_validator_id_seq OWNED BY assoccl_validator.id;
 
 
 --
--- TOC entry 265 (class 1259 OID 61456820)
+-- TOC entry 265 (class 1259 OID 61481293)
 -- Dependencies: 2798 2799 2800 2801 2802 24
 -- Name: grupo; Type: TABLE; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -3875,8 +3881,8 @@ CREATE TABLE grupo (
 
 
 --
--- TOC entry 264 (class 1259 OID 61456818)
--- Dependencies: 265 24
+-- TOC entry 264 (class 1259 OID 61481291)
+-- Dependencies: 24 265
 -- Name: grupo_id_seq; Type: SEQUENCE; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -3889,7 +3895,7 @@ CREATE SEQUENCE grupo_id_seq
 
 
 --
--- TOC entry 4338 (class 0 OID 0)
+-- TOC entry 4344 (class 0 OID 0)
 -- Dependencies: 264
 -- Name: grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -3900,7 +3906,7 @@ ALTER SEQUENCE grupo_id_seq OWNED BY grupo.id;
 SET search_path = basico_form_decorator_grupo, pg_catalog;
 
 --
--- TOC entry 263 (class 1259 OID 61456807)
+-- TOC entry 263 (class 1259 OID 61481280)
 -- Dependencies: 2795 2796 40
 -- Name: assocag_grupo; Type: TABLE; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -3918,8 +3924,8 @@ CREATE TABLE assocag_grupo (
 
 
 --
--- TOC entry 262 (class 1259 OID 61456805)
--- Dependencies: 263 40
+-- TOC entry 262 (class 1259 OID 61481278)
+-- Dependencies: 40 263
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE; Schema: basico_form_decorator_grupo; Owner: -
 --
 
@@ -3932,7 +3938,7 @@ CREATE SEQUENCE assocag_grupo_id_seq
 
 
 --
--- TOC entry 4339 (class 0 OID 0)
+-- TOC entry 4345 (class 0 OID 0)
 -- Dependencies: 262
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_form_decorator_grupo; Owner: -
 --
@@ -3943,7 +3949,7 @@ ALTER SEQUENCE assocag_grupo_id_seq OWNED BY assocag_grupo.id;
 SET search_path = basico_formulario, pg_catalog;
 
 --
--- TOC entry 261 (class 1259 OID 61456791)
+-- TOC entry 261 (class 1259 OID 61481264)
 -- Dependencies: 2791 2792 2793 25
 -- Name: assoccl_decorator; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -3962,7 +3968,7 @@ CREATE TABLE assoccl_decorator (
 
 
 --
--- TOC entry 260 (class 1259 OID 61456789)
+-- TOC entry 260 (class 1259 OID 61481262)
 -- Dependencies: 261 25
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
@@ -3976,7 +3982,7 @@ CREATE SEQUENCE assoccl_decorator_id_seq
 
 
 --
--- TOC entry 4340 (class 0 OID 0)
+-- TOC entry 4346 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -3985,7 +3991,7 @@ ALTER SEQUENCE assoccl_decorator_id_seq OWNED BY assoccl_decorator.id;
 
 
 --
--- TOC entry 259 (class 1259 OID 61456771)
+-- TOC entry 259 (class 1259 OID 61481244)
 -- Dependencies: 2785 2786 2787 2788 2789 25
 -- Name: assoccl_elemento; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4011,8 +4017,8 @@ CREATE TABLE assoccl_elemento (
 
 
 --
--- TOC entry 258 (class 1259 OID 61456769)
--- Dependencies: 259 25
+-- TOC entry 258 (class 1259 OID 61481242)
+-- Dependencies: 25 259
 -- Name: assoccl_elemento_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
 
@@ -4025,7 +4031,7 @@ CREATE SEQUENCE assoccl_elemento_id_seq
 
 
 --
--- TOC entry 4341 (class 0 OID 0)
+-- TOC entry 4347 (class 0 OID 0)
 -- Dependencies: 258
 -- Name: assoccl_elemento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4034,7 +4040,7 @@ ALTER SEQUENCE assoccl_elemento_id_seq OWNED BY assoccl_elemento.id;
 
 
 --
--- TOC entry 257 (class 1259 OID 61456757)
+-- TOC entry 257 (class 1259 OID 61481230)
 -- Dependencies: 2783 25
 -- Name: assoccl_evento; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4051,8 +4057,8 @@ CREATE TABLE assoccl_evento (
 
 
 --
--- TOC entry 256 (class 1259 OID 61456755)
--- Dependencies: 257 25
+-- TOC entry 256 (class 1259 OID 61481228)
+-- Dependencies: 25 257
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
 
@@ -4065,7 +4071,7 @@ CREATE SEQUENCE assoccl_evento_id_seq
 
 
 --
--- TOC entry 4342 (class 0 OID 0)
+-- TOC entry 4348 (class 0 OID 0)
 -- Dependencies: 256
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4074,7 +4080,7 @@ ALTER SEQUENCE assoccl_evento_id_seq OWNED BY assoccl_evento.id;
 
 
 --
--- TOC entry 255 (class 1259 OID 61456743)
+-- TOC entry 255 (class 1259 OID 61481216)
 -- Dependencies: 2781 25
 -- Name: assoccl_include; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4090,7 +4096,7 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 254 (class 1259 OID 61456741)
+-- TOC entry 254 (class 1259 OID 61481214)
 -- Dependencies: 255 25
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
@@ -4104,7 +4110,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4343 (class 0 OID 0)
+-- TOC entry 4349 (class 0 OID 0)
 -- Dependencies: 254
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4113,7 +4119,7 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 
 
 --
--- TOC entry 253 (class 1259 OID 61456729)
+-- TOC entry 253 (class 1259 OID 61481202)
 -- Dependencies: 2779 25
 -- Name: assoccl_modulo; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4128,8 +4134,8 @@ CREATE TABLE assoccl_modulo (
 
 
 --
--- TOC entry 252 (class 1259 OID 61456727)
--- Dependencies: 25 253
+-- TOC entry 252 (class 1259 OID 61481200)
+-- Dependencies: 253 25
 -- Name: assoccl_modulo_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
 
@@ -4142,7 +4148,7 @@ CREATE SEQUENCE assoccl_modulo_id_seq
 
 
 --
--- TOC entry 4344 (class 0 OID 0)
+-- TOC entry 4350 (class 0 OID 0)
 -- Dependencies: 252
 -- Name: assoccl_modulo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4151,7 +4157,7 @@ ALTER SEQUENCE assoccl_modulo_id_seq OWNED BY assoccl_modulo.id;
 
 
 --
--- TOC entry 251 (class 1259 OID 61456713)
+-- TOC entry 251 (class 1259 OID 61481186)
 -- Dependencies: 2773 2774 2775 2776 2777 25
 -- Name: decorator; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4175,7 +4181,7 @@ CREATE TABLE decorator (
 
 
 --
--- TOC entry 250 (class 1259 OID 61456711)
+-- TOC entry 250 (class 1259 OID 61481184)
 -- Dependencies: 25 251
 -- Name: decorator_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
@@ -4189,7 +4195,7 @@ CREATE SEQUENCE decorator_id_seq
 
 
 --
--- TOC entry 4345 (class 0 OID 0)
+-- TOC entry 4351 (class 0 OID 0)
 -- Dependencies: 250
 -- Name: decorator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4198,7 +4204,7 @@ ALTER SEQUENCE decorator_id_seq OWNED BY decorator.id;
 
 
 --
--- TOC entry 249 (class 1259 OID 61456693)
+-- TOC entry 249 (class 1259 OID 61481166)
 -- Dependencies: 2765 2766 2767 2768 2769 2770 2771 25
 -- Name: elemento; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4228,7 +4234,7 @@ CREATE TABLE elemento (
 
 
 --
--- TOC entry 248 (class 1259 OID 61456691)
+-- TOC entry 248 (class 1259 OID 61481164)
 -- Dependencies: 25 249
 -- Name: elemento_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
@@ -4242,7 +4248,7 @@ CREATE SEQUENCE elemento_id_seq
 
 
 --
--- TOC entry 4346 (class 0 OID 0)
+-- TOC entry 4352 (class 0 OID 0)
 -- Dependencies: 248
 -- Name: elemento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4251,7 +4257,7 @@ ALTER SEQUENCE elemento_id_seq OWNED BY elemento.id;
 
 
 --
--- TOC entry 247 (class 1259 OID 61456679)
+-- TOC entry 247 (class 1259 OID 61481152)
 -- Dependencies: 2761 2762 2763 25
 -- Name: rascunho; Type: TABLE; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -4277,7 +4283,7 @@ CREATE TABLE rascunho (
 
 
 --
--- TOC entry 246 (class 1259 OID 61456677)
+-- TOC entry 246 (class 1259 OID 61481150)
 -- Dependencies: 25 247
 -- Name: rascunho_id_seq; Type: SEQUENCE; Schema: basico_formulario; Owner: -
 --
@@ -4291,7 +4297,7 @@ CREATE SEQUENCE rascunho_id_seq
 
 
 --
--- TOC entry 4347 (class 0 OID 0)
+-- TOC entry 4353 (class 0 OID 0)
 -- Dependencies: 246
 -- Name: rascunho_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario; Owner: -
 --
@@ -4302,7 +4308,7 @@ ALTER SEQUENCE rascunho_id_seq OWNED BY rascunho.id;
 SET search_path = basico_formulario_decorator, pg_catalog;
 
 --
--- TOC entry 245 (class 1259 OID 61456665)
+-- TOC entry 245 (class 1259 OID 61481138)
 -- Dependencies: 2759 45
 -- Name: assoccl_include; Type: TABLE; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -4318,7 +4324,7 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 244 (class 1259 OID 61456663)
+-- TOC entry 244 (class 1259 OID 61481136)
 -- Dependencies: 45 245
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_formulario_decorator; Owner: -
 --
@@ -4332,7 +4338,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4348 (class 0 OID 0)
+-- TOC entry 4354 (class 0 OID 0)
 -- Dependencies: 244
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_decorator; Owner: -
 --
@@ -4341,7 +4347,7 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 
 
 --
--- TOC entry 243 (class 1259 OID 61456649)
+-- TOC entry 243 (class 1259 OID 61481122)
 -- Dependencies: 2753 2754 2755 2756 2757 45
 -- Name: grupo; Type: TABLE; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -4362,8 +4368,8 @@ CREATE TABLE grupo (
 
 
 --
--- TOC entry 242 (class 1259 OID 61456647)
--- Dependencies: 45 243
+-- TOC entry 242 (class 1259 OID 61481120)
+-- Dependencies: 243 45
 -- Name: grupo_id_seq; Type: SEQUENCE; Schema: basico_formulario_decorator; Owner: -
 --
 
@@ -4376,7 +4382,7 @@ CREATE SEQUENCE grupo_id_seq
 
 
 --
--- TOC entry 4349 (class 0 OID 0)
+-- TOC entry 4355 (class 0 OID 0)
 -- Dependencies: 242
 -- Name: grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_decorator; Owner: -
 --
@@ -4387,7 +4393,7 @@ ALTER SEQUENCE grupo_id_seq OWNED BY grupo.id;
 SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
--- TOC entry 241 (class 1259 OID 61456633)
+-- TOC entry 241 (class 1259 OID 61481106)
 -- Dependencies: 2749 2750 2751 26
 -- Name: assoccl_decorator; Type: TABLE; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -4406,8 +4412,8 @@ CREATE TABLE assoccl_decorator (
 
 
 --
--- TOC entry 240 (class 1259 OID 61456631)
--- Dependencies: 26 241
+-- TOC entry 240 (class 1259 OID 61481104)
+-- Dependencies: 241 26
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -4420,7 +4426,7 @@ CREATE SEQUENCE assoccl_decorator_id_seq
 
 
 --
--- TOC entry 4350 (class 0 OID 0)
+-- TOC entry 4356 (class 0 OID 0)
 -- Dependencies: 240
 -- Name: assoccl_decorator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4429,7 +4435,7 @@ ALTER SEQUENCE assoccl_decorator_id_seq OWNED BY assoccl_decorator.id;
 
 
 --
--- TOC entry 239 (class 1259 OID 61456618)
+-- TOC entry 239 (class 1259 OID 61481091)
 -- Dependencies: 2746 2747 26
 -- Name: assoccl_evento; Type: TABLE; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -4447,7 +4453,7 @@ CREATE TABLE assoccl_evento (
 
 
 --
--- TOC entry 238 (class 1259 OID 61456616)
+-- TOC entry 238 (class 1259 OID 61481089)
 -- Dependencies: 26 239
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4461,7 +4467,7 @@ CREATE SEQUENCE assoccl_evento_id_seq
 
 
 --
--- TOC entry 4351 (class 0 OID 0)
+-- TOC entry 4357 (class 0 OID 0)
 -- Dependencies: 238
 -- Name: assoccl_evento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4470,7 +4476,7 @@ ALTER SEQUENCE assoccl_evento_id_seq OWNED BY assoccl_evento.id;
 
 
 --
--- TOC entry 237 (class 1259 OID 61456602)
+-- TOC entry 237 (class 1259 OID 61481075)
 -- Dependencies: 2742 2743 2744 26
 -- Name: assoccl_filter; Type: TABLE; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -4489,7 +4495,7 @@ CREATE TABLE assoccl_filter (
 
 
 --
--- TOC entry 236 (class 1259 OID 61456600)
+-- TOC entry 236 (class 1259 OID 61481073)
 -- Dependencies: 237 26
 -- Name: assoccl_filter_id_seq; Type: SEQUENCE; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4503,7 +4509,7 @@ CREATE SEQUENCE assoccl_filter_id_seq
 
 
 --
--- TOC entry 4352 (class 0 OID 0)
+-- TOC entry 4358 (class 0 OID 0)
 -- Dependencies: 236
 -- Name: assoccl_filter_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4512,8 +4518,8 @@ ALTER SEQUENCE assoccl_filter_id_seq OWNED BY assoccl_filter.id;
 
 
 --
--- TOC entry 235 (class 1259 OID 61456586)
--- Dependencies: 2738 2739 2740 26
+-- TOC entry 235 (class 1259 OID 61481059)
+-- Dependencies: 2737 2738 2740 26
 -- Name: assoccl_validator; Type: TABLE; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
 
@@ -4530,8 +4536,8 @@ CREATE TABLE assoccl_validator (
 
 
 --
--- TOC entry 234 (class 1259 OID 61456584)
--- Dependencies: 235 26
+-- TOC entry 234 (class 1259 OID 61481057)
+-- Dependencies: 26 235
 -- Name: assoccl_validator_id_seq; Type: SEQUENCE; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -4544,7 +4550,7 @@ CREATE SEQUENCE assoccl_validator_id_seq
 
 
 --
--- TOC entry 4353 (class 0 OID 0)
+-- TOC entry 4359 (class 0 OID 0)
 -- Dependencies: 234
 -- Name: assoccl_validator_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_elemento; Owner: -
 --
@@ -4555,7 +4561,7 @@ ALTER SEQUENCE assoccl_validator_id_seq OWNED BY assoccl_validator.id;
 SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
--- TOC entry 233 (class 1259 OID 61456573)
+-- TOC entry 233 (class 1259 OID 61481046)
 -- Dependencies: 2735 2736 27
 -- Name: assocag_grupo; Type: TABLE; Schema: basico_formulario_rascunho; Owner: -; Tablespace: 
 --
@@ -4571,8 +4577,8 @@ CREATE TABLE assocag_grupo (
 
 
 --
--- TOC entry 232 (class 1259 OID 61456571)
--- Dependencies: 233 27
+-- TOC entry 232 (class 1259 OID 61481044)
+-- Dependencies: 27 233
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE; Schema: basico_formulario_rascunho; Owner: -
 --
 
@@ -4585,7 +4591,7 @@ CREATE SEQUENCE assocag_grupo_id_seq
 
 
 --
--- TOC entry 4354 (class 0 OID 0)
+-- TOC entry 4360 (class 0 OID 0)
 -- Dependencies: 232
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_formulario_rascunho; Owner: -
 --
@@ -4596,7 +4602,7 @@ ALTER SEQUENCE assocag_grupo_id_seq OWNED BY assocag_grupo.id;
 SET search_path = basico_localizacao, pg_catalog;
 
 --
--- TOC entry 231 (class 1259 OID 61456557)
+-- TOC entry 231 (class 1259 OID 61481022)
 -- Dependencies: 2731 2732 2733 28
 -- Name: assoc_bairro; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4613,8 +4619,8 @@ CREATE TABLE assoc_bairro (
 
 
 --
--- TOC entry 230 (class 1259 OID 61456555)
--- Dependencies: 28 231
+-- TOC entry 230 (class 1259 OID 61481020)
+-- Dependencies: 231 28
 -- Name: assoc_bairro_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
 
@@ -4627,7 +4633,7 @@ CREATE SEQUENCE assoc_bairro_id_seq
 
 
 --
--- TOC entry 4355 (class 0 OID 0)
+-- TOC entry 4361 (class 0 OID 0)
 -- Dependencies: 230
 -- Name: assoc_bairro_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4636,7 +4642,7 @@ ALTER SEQUENCE assoc_bairro_id_seq OWNED BY assoc_bairro.id;
 
 
 --
--- TOC entry 229 (class 1259 OID 61456540)
+-- TOC entry 229 (class 1259 OID 61481005)
 -- Dependencies: 2726 2727 2728 2729 28
 -- Name: assoc_estado; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4658,8 +4664,8 @@ CREATE TABLE assoc_estado (
 
 
 --
--- TOC entry 228 (class 1259 OID 61456538)
--- Dependencies: 28 229
+-- TOC entry 228 (class 1259 OID 61481003)
+-- Dependencies: 229 28
 -- Name: assoc_estado_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
 
@@ -4672,7 +4678,7 @@ CREATE SEQUENCE assoc_estado_id_seq
 
 
 --
--- TOC entry 4356 (class 0 OID 0)
+-- TOC entry 4362 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: assoc_estado_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4681,7 +4687,7 @@ ALTER SEQUENCE assoc_estado_id_seq OWNED BY assoc_estado.id;
 
 
 --
--- TOC entry 227 (class 1259 OID 61456524)
+-- TOC entry 227 (class 1259 OID 61480989)
 -- Dependencies: 2722 2723 2724 28
 -- Name: assoc_logradouro; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4699,7 +4705,7 @@ CREATE TABLE assoc_logradouro (
 
 
 --
--- TOC entry 226 (class 1259 OID 61456522)
+-- TOC entry 226 (class 1259 OID 61480987)
 -- Dependencies: 28 227
 -- Name: assoc_logradouro_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
@@ -4713,7 +4719,7 @@ CREATE SEQUENCE assoc_logradouro_id_seq
 
 
 --
--- TOC entry 4357 (class 0 OID 0)
+-- TOC entry 4363 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: assoc_logradouro_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4722,7 +4728,7 @@ ALTER SEQUENCE assoc_logradouro_id_seq OWNED BY assoc_logradouro.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 61456507)
+-- TOC entry 225 (class 1259 OID 61480972)
 -- Dependencies: 2717 2718 2719 2720 28
 -- Name: assoc_municipio; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4743,8 +4749,8 @@ CREATE TABLE assoc_municipio (
 
 
 --
--- TOC entry 224 (class 1259 OID 61456505)
--- Dependencies: 28 225
+-- TOC entry 224 (class 1259 OID 61480970)
+-- Dependencies: 225 28
 -- Name: assoc_municipio_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
 
@@ -4757,7 +4763,7 @@ CREATE SEQUENCE assoc_municipio_id_seq
 
 
 --
--- TOC entry 4358 (class 0 OID 0)
+-- TOC entry 4364 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: assoc_municipio_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4766,7 +4772,7 @@ ALTER SEQUENCE assoc_municipio_id_seq OWNED BY assoc_municipio.id;
 
 
 --
--- TOC entry 223 (class 1259 OID 61456491)
+-- TOC entry 223 (class 1259 OID 61480956)
 -- Dependencies: 2713 2714 2715 28
 -- Name: codigo_postal; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4788,7 +4794,7 @@ CREATE TABLE codigo_postal (
 
 
 --
--- TOC entry 222 (class 1259 OID 61456489)
+-- TOC entry 222 (class 1259 OID 61480954)
 -- Dependencies: 28 223
 -- Name: codigo_postal_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
@@ -4802,7 +4808,7 @@ CREATE SEQUENCE codigo_postal_id_seq
 
 
 --
--- TOC entry 4359 (class 0 OID 0)
+-- TOC entry 4365 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: codigo_postal_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4811,7 +4817,7 @@ ALTER SEQUENCE codigo_postal_id_seq OWNED BY codigo_postal.id;
 
 
 --
--- TOC entry 221 (class 1259 OID 61456474)
+-- TOC entry 221 (class 1259 OID 61480939)
 -- Dependencies: 2708 2709 2710 2711 28
 -- Name: cpg_endereco; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4842,8 +4848,8 @@ CREATE TABLE cpg_endereco (
 
 
 --
--- TOC entry 220 (class 1259 OID 61456472)
--- Dependencies: 221 28
+-- TOC entry 220 (class 1259 OID 61480937)
+-- Dependencies: 28 221
 -- Name: cpg_endereco_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
 
@@ -4856,7 +4862,7 @@ CREATE SEQUENCE cpg_endereco_id_seq
 
 
 --
--- TOC entry 4360 (class 0 OID 0)
+-- TOC entry 4366 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: cpg_endereco_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4865,7 +4871,7 @@ ALTER SEQUENCE cpg_endereco_id_seq OWNED BY cpg_endereco.id;
 
 
 --
--- TOC entry 219 (class 1259 OID 61456455)
+-- TOC entry 219 (class 1259 OID 61480922)
 -- Dependencies: 2703 2704 2705 2706 28
 -- Name: pais; Type: TABLE; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -4885,8 +4891,8 @@ CREATE TABLE pais (
 
 
 --
--- TOC entry 218 (class 1259 OID 61456453)
--- Dependencies: 28 219
+-- TOC entry 218 (class 1259 OID 61480920)
+-- Dependencies: 219 28
 -- Name: pais_id_seq; Type: SEQUENCE; Schema: basico_localizacao; Owner: -
 --
 
@@ -4899,7 +4905,7 @@ CREATE SEQUENCE pais_id_seq
 
 
 --
--- TOC entry 4361 (class 0 OID 0)
+-- TOC entry 4367 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: pais_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_localizacao; Owner: -
 --
@@ -4910,7 +4916,7 @@ ALTER SEQUENCE pais_id_seq OWNED BY pais.id;
 SET search_path = basico_mensagem, pg_catalog;
 
 --
--- TOC entry 217 (class 1259 OID 61456443)
+-- TOC entry 217 (class 1259 OID 61480910)
 -- Dependencies: 2701 29
 -- Name: assoc_email; Type: TABLE; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -4924,8 +4930,8 @@ CREATE TABLE assoc_email (
 
 
 --
--- TOC entry 216 (class 1259 OID 61456441)
--- Dependencies: 29 217
+-- TOC entry 216 (class 1259 OID 61480908)
+-- Dependencies: 217 29
 -- Name: assoc_email_id_seq; Type: SEQUENCE; Schema: basico_mensagem; Owner: -
 --
 
@@ -4938,7 +4944,7 @@ CREATE SEQUENCE assoc_email_id_seq
 
 
 --
--- TOC entry 4362 (class 0 OID 0)
+-- TOC entry 4368 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: assoc_email_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_mensagem; Owner: -
 --
@@ -4947,7 +4953,7 @@ ALTER SEQUENCE assoc_email_id_seq OWNED BY assoc_email.id;
 
 
 --
--- TOC entry 215 (class 1259 OID 61456428)
+-- TOC entry 215 (class 1259 OID 61480895)
 -- Dependencies: 2698 2699 29
 -- Name: assoccl_assoccl_pessoa_perfil; Type: TABLE; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -4964,8 +4970,8 @@ CREATE TABLE assoccl_assoccl_pessoa_perfil (
 
 
 --
--- TOC entry 214 (class 1259 OID 61456426)
--- Dependencies: 215 29
+-- TOC entry 214 (class 1259 OID 61480893)
+-- Dependencies: 29 215
 -- Name: assoccl_assoccl_pessoa_perfil_id_seq; Type: SEQUENCE; Schema: basico_mensagem; Owner: -
 --
 
@@ -4978,7 +4984,7 @@ CREATE SEQUENCE assoccl_assoccl_pessoa_perfil_id_seq
 
 
 --
--- TOC entry 4363 (class 0 OID 0)
+-- TOC entry 4369 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: assoccl_assoccl_pessoa_perfil_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_mensagem; Owner: -
 --
@@ -4987,7 +4993,7 @@ ALTER SEQUENCE assoccl_assoccl_pessoa_perfil_id_seq OWNED BY assoccl_assoccl_pes
 
 
 --
--- TOC entry 213 (class 1259 OID 61456407)
+-- TOC entry 213 (class 1259 OID 61480874)
 -- Dependencies: 2689 2690 2691 2692 2693 2694 2695 2696 29
 -- Name: template; Type: TABLE; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -5014,8 +5020,8 @@ CREATE TABLE template (
 
 
 --
--- TOC entry 212 (class 1259 OID 61456405)
--- Dependencies: 213 29
+-- TOC entry 212 (class 1259 OID 61480872)
+-- Dependencies: 29 213
 -- Name: template_id_seq; Type: SEQUENCE; Schema: basico_mensagem; Owner: -
 --
 
@@ -5028,7 +5034,7 @@ CREATE SEQUENCE template_id_seq
 
 
 --
--- TOC entry 4364 (class 0 OID 0)
+-- TOC entry 4370 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: template_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_mensagem; Owner: -
 --
@@ -5039,7 +5045,7 @@ ALTER SEQUENCE template_id_seq OWNED BY template.id;
 SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
--- TOC entry 211 (class 1259 OID 61456394)
+-- TOC entry 211 (class 1259 OID 61480861)
 -- Dependencies: 2686 2687 30
 -- Name: assoc_dados; Type: TABLE; Schema: basico_mensagem_assoc_email; Owner: -; Tablespace: 
 --
@@ -5062,8 +5068,8 @@ CREATE TABLE assoc_dados (
 
 
 --
--- TOC entry 210 (class 1259 OID 61456392)
--- Dependencies: 211 30
+-- TOC entry 210 (class 1259 OID 61480859)
+-- Dependencies: 30 211
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_mensagem_assoc_email; Owner: -
 --
 
@@ -5076,7 +5082,7 @@ CREATE SEQUENCE assoc_dados_id_seq
 
 
 --
--- TOC entry 4365 (class 0 OID 0)
+-- TOC entry 4371 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: assoc_dados_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_mensagem_assoc_email; Owner: -
 --
@@ -5087,7 +5093,7 @@ ALTER SEQUENCE assoc_dados_id_seq OWNED BY assoc_dados.id;
 SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
--- TOC entry 209 (class 1259 OID 61456380)
+-- TOC entry 209 (class 1259 OID 61480847)
 -- Dependencies: 2684 31
 -- Name: assoccl_include; Type: TABLE; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -5103,7 +5109,7 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 208 (class 1259 OID 61456378)
+-- TOC entry 208 (class 1259 OID 61480845)
 -- Dependencies: 209 31
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_metodo_validacao; Owner: -
 --
@@ -5117,7 +5123,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4366 (class 0 OID 0)
+-- TOC entry 4372 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_metodo_validacao; Owner: -
 --
@@ -5128,7 +5134,7 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 SET search_path = basico_output, pg_catalog;
 
 --
--- TOC entry 207 (class 1259 OID 61456366)
+-- TOC entry 207 (class 1259 OID 61480833)
 -- Dependencies: 2682 32
 -- Name: assoccl_include; Type: TABLE; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -5144,8 +5150,8 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 206 (class 1259 OID 61456364)
--- Dependencies: 207 32
+-- TOC entry 206 (class 1259 OID 61480831)
+-- Dependencies: 32 207
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_output; Owner: -
 --
 
@@ -5158,7 +5164,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4367 (class 0 OID 0)
+-- TOC entry 4373 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_output; Owner: -
 --
@@ -5169,7 +5175,7 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 SET search_path = basico_perfil, pg_catalog;
 
 --
--- TOC entry 205 (class 1259 OID 61456352)
+-- TOC entry 205 (class 1259 OID 61480819)
 -- Dependencies: 2680 33
 -- Name: assoccl_modulo; Type: TABLE; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -5184,8 +5190,8 @@ CREATE TABLE assoccl_modulo (
 
 
 --
--- TOC entry 204 (class 1259 OID 61456350)
--- Dependencies: 33 205
+-- TOC entry 204 (class 1259 OID 61480817)
+-- Dependencies: 205 33
 -- Name: assoccl_modulo_id_seq; Type: SEQUENCE; Schema: basico_perfil; Owner: -
 --
 
@@ -5198,7 +5204,7 @@ CREATE SEQUENCE assoccl_modulo_id_seq
 
 
 --
--- TOC entry 4368 (class 0 OID 0)
+-- TOC entry 4374 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: assoccl_modulo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_perfil; Owner: -
 --
@@ -5209,7 +5215,7 @@ ALTER SEQUENCE assoccl_modulo_id_seq OWNED BY assoccl_modulo.id;
 SET search_path = basico_pessoa, pg_catalog;
 
 --
--- TOC entry 203 (class 1259 OID 61456338)
+-- TOC entry 203 (class 1259 OID 61480805)
 -- Dependencies: 2676 2677 2678 34
 -- Name: assoc_dados; Type: TABLE; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -5232,7 +5238,7 @@ CREATE TABLE assoc_dados (
 
 
 --
--- TOC entry 202 (class 1259 OID 61456336)
+-- TOC entry 202 (class 1259 OID 61480803)
 -- Dependencies: 203 34
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_pessoa; Owner: -
 --
@@ -5246,7 +5252,7 @@ CREATE SEQUENCE assoc_dados_id_seq
 
 
 --
--- TOC entry 4369 (class 0 OID 0)
+-- TOC entry 4375 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: assoc_dados_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa; Owner: -
 --
@@ -5255,7 +5261,7 @@ ALTER SEQUENCE assoc_dados_id_seq OWNED BY assoc_dados.id;
 
 
 --
--- TOC entry 201 (class 1259 OID 61456322)
+-- TOC entry 201 (class 1259 OID 61480789)
 -- Dependencies: 2672 2673 2674 34
 -- Name: assoccl_perfil; Type: TABLE; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -5272,8 +5278,8 @@ CREATE TABLE assoccl_perfil (
 
 
 --
--- TOC entry 200 (class 1259 OID 61456320)
--- Dependencies: 34 201
+-- TOC entry 200 (class 1259 OID 61480787)
+-- Dependencies: 201 34
 -- Name: assoccl_perfil_id_seq; Type: SEQUENCE; Schema: basico_pessoa; Owner: -
 --
 
@@ -5286,7 +5292,7 @@ CREATE SEQUENCE assoccl_perfil_id_seq
 
 
 --
--- TOC entry 4370 (class 0 OID 0)
+-- TOC entry 4376 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: assoccl_perfil_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa; Owner: -
 --
@@ -5295,7 +5301,7 @@ ALTER SEQUENCE assoccl_perfil_id_seq OWNED BY assoccl_perfil.id;
 
 
 --
--- TOC entry 199 (class 1259 OID 61456309)
+-- TOC entry 199 (class 1259 OID 61480776)
 -- Dependencies: 2669 2670 34
 -- Name: assoccl_tipo_vinculo; Type: TABLE; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -5311,7 +5317,7 @@ CREATE TABLE assoccl_tipo_vinculo (
 
 
 --
--- TOC entry 198 (class 1259 OID 61456307)
+-- TOC entry 198 (class 1259 OID 61480774)
 -- Dependencies: 199 34
 -- Name: assoccl_tipo_vinculo_id_seq; Type: SEQUENCE; Schema: basico_pessoa; Owner: -
 --
@@ -5325,7 +5331,7 @@ CREATE SEQUENCE assoccl_tipo_vinculo_id_seq
 
 
 --
--- TOC entry 4371 (class 0 OID 0)
+-- TOC entry 4377 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: assoccl_tipo_vinculo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa; Owner: -
 --
@@ -5334,7 +5340,7 @@ ALTER SEQUENCE assoccl_tipo_vinculo_id_seq OWNED BY assoccl_tipo_vinculo.id;
 
 
 --
--- TOC entry 197 (class 1259 OID 61456288)
+-- TOC entry 197 (class 1259 OID 61480755)
 -- Dependencies: 2660 2661 2662 2663 2664 2665 2666 2667 34
 -- Name: login; Type: TABLE; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -5364,8 +5370,8 @@ CREATE TABLE login (
 
 
 --
--- TOC entry 196 (class 1259 OID 61456286)
--- Dependencies: 197 34
+-- TOC entry 196 (class 1259 OID 61480753)
+-- Dependencies: 34 197
 -- Name: login_id_seq; Type: SEQUENCE; Schema: basico_pessoa; Owner: -
 --
 
@@ -5378,7 +5384,7 @@ CREATE SEQUENCE login_id_seq
 
 
 --
--- TOC entry 4372 (class 0 OID 0)
+-- TOC entry 4378 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: login_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa; Owner: -
 --
@@ -5389,7 +5395,7 @@ ALTER SEQUENCE login_id_seq OWNED BY login.id;
 SET search_path = basico_pessoa_juridica, pg_catalog;
 
 --
--- TOC entry 195 (class 1259 OID 61456274)
+-- TOC entry 195 (class 1259 OID 61480741)
 -- Dependencies: 2656 2657 2658 35
 -- Name: assoc_banco; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5408,8 +5414,8 @@ CREATE TABLE assoc_banco (
 
 
 --
--- TOC entry 194 (class 1259 OID 61456272)
--- Dependencies: 35 195
+-- TOC entry 194 (class 1259 OID 61480739)
+-- Dependencies: 195 35
 -- Name: assoc_banco_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -5422,7 +5428,7 @@ CREATE SEQUENCE assoc_banco_id_seq
 
 
 --
--- TOC entry 4373 (class 0 OID 0)
+-- TOC entry 4379 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: assoc_banco_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5431,7 +5437,7 @@ ALTER SEQUENCE assoc_banco_id_seq OWNED BY assoc_banco.id;
 
 
 --
--- TOC entry 193 (class 1259 OID 61456261)
+-- TOC entry 193 (class 1259 OID 61480728)
 -- Dependencies: 2653 2654 35
 -- Name: assoc_dados; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5455,7 +5461,7 @@ CREATE TABLE assoc_dados (
 
 
 --
--- TOC entry 192 (class 1259 OID 61456259)
+-- TOC entry 192 (class 1259 OID 61480726)
 -- Dependencies: 35 193
 -- Name: assoc_dados_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5469,7 +5475,7 @@ CREATE SEQUENCE assoc_dados_id_seq
 
 
 --
--- TOC entry 4374 (class 0 OID 0)
+-- TOC entry 4380 (class 0 OID 0)
 -- Dependencies: 192
 -- Name: assoc_dados_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5478,7 +5484,7 @@ ALTER SEQUENCE assoc_dados_id_seq OWNED BY assoc_dados.id;
 
 
 --
--- TOC entry 191 (class 1259 OID 61456247)
+-- TOC entry 191 (class 1259 OID 61480714)
 -- Dependencies: 2651 35
 -- Name: assocag_incubadora; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5494,8 +5500,8 @@ CREATE TABLE assocag_incubadora (
 
 
 --
--- TOC entry 190 (class 1259 OID 61456245)
--- Dependencies: 191 35
+-- TOC entry 190 (class 1259 OID 61480712)
+-- Dependencies: 35 191
 -- Name: assocag_incubadora_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -5508,7 +5514,7 @@ CREATE SEQUENCE assocag_incubadora_id_seq
 
 
 --
--- TOC entry 4375 (class 0 OID 0)
+-- TOC entry 4381 (class 0 OID 0)
 -- Dependencies: 190
 -- Name: assocag_incubadora_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5517,7 +5523,7 @@ ALTER SEQUENCE assocag_incubadora_id_seq OWNED BY assocag_incubadora.id;
 
 
 --
--- TOC entry 189 (class 1259 OID 61456230)
+-- TOC entry 189 (class 1259 OID 61480697)
 -- Dependencies: 2646 2647 2648 2649 35
 -- Name: assocag_parceria; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5539,7 +5545,7 @@ CREATE TABLE assocag_parceria (
 
 
 --
--- TOC entry 188 (class 1259 OID 61456228)
+-- TOC entry 188 (class 1259 OID 61480695)
 -- Dependencies: 189 35
 -- Name: assocag_parceria_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5553,7 +5559,7 @@ CREATE SEQUENCE assocag_parceria_id_seq
 
 
 --
--- TOC entry 4376 (class 0 OID 0)
+-- TOC entry 4382 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: assocag_parceria_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5562,7 +5568,7 @@ ALTER SEQUENCE assocag_parceria_id_seq OWNED BY assocag_parceria.id;
 
 
 --
--- TOC entry 187 (class 1259 OID 61456216)
+-- TOC entry 187 (class 1259 OID 61480683)
 -- Dependencies: 2644 35
 -- Name: assoccl_area_economia; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5577,7 +5583,7 @@ CREATE TABLE assoccl_area_economia (
 
 
 --
--- TOC entry 186 (class 1259 OID 61456214)
+-- TOC entry 186 (class 1259 OID 61480681)
 -- Dependencies: 187 35
 -- Name: assoccl_area_economia_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5591,7 +5597,7 @@ CREATE SEQUENCE assoccl_area_economia_id_seq
 
 
 --
--- TOC entry 4377 (class 0 OID 0)
+-- TOC entry 4383 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: assoccl_area_economia_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5600,7 +5606,7 @@ ALTER SEQUENCE assoccl_area_economia_id_seq OWNED BY assoccl_area_economia.id;
 
 
 --
--- TOC entry 185 (class 1259 OID 61456201)
+-- TOC entry 185 (class 1259 OID 61480668)
 -- Dependencies: 2641 2642 35
 -- Name: assoccl_capital_social; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5617,8 +5623,8 @@ CREATE TABLE assoccl_capital_social (
 
 
 --
--- TOC entry 184 (class 1259 OID 61456199)
--- Dependencies: 35 185
+-- TOC entry 184 (class 1259 OID 61480666)
+-- Dependencies: 185 35
 -- Name: assoccl_capital_social_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -5631,7 +5637,7 @@ CREATE SEQUENCE assoccl_capital_social_id_seq
 
 
 --
--- TOC entry 4378 (class 0 OID 0)
+-- TOC entry 4384 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: assoccl_capital_social_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5640,7 +5646,7 @@ ALTER SEQUENCE assoccl_capital_social_id_seq OWNED BY assoccl_capital_social.id;
 
 
 --
--- TOC entry 183 (class 1259 OID 61456186)
+-- TOC entry 183 (class 1259 OID 61480653)
 -- Dependencies: 2638 2639 35
 -- Name: assoccl_faturamento; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5659,7 +5665,7 @@ CREATE TABLE assoccl_faturamento (
 
 
 --
--- TOC entry 182 (class 1259 OID 61456184)
+-- TOC entry 182 (class 1259 OID 61480651)
 -- Dependencies: 183 35
 -- Name: assoccl_faturamento_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5673,7 +5679,7 @@ CREATE SEQUENCE assoccl_faturamento_id_seq
 
 
 --
--- TOC entry 4379 (class 0 OID 0)
+-- TOC entry 4385 (class 0 OID 0)
 -- Dependencies: 182
 -- Name: assoccl_faturamento_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5682,7 +5688,7 @@ ALTER SEQUENCE assoccl_faturamento_id_seq OWNED BY assoccl_faturamento.id;
 
 
 --
--- TOC entry 181 (class 1259 OID 61456171)
+-- TOC entry 181 (class 1259 OID 61480638)
 -- Dependencies: 2635 2636 35
 -- Name: assoccl_quadro_funcionario; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5702,8 +5708,8 @@ CREATE TABLE assoccl_quadro_funcionario (
 
 
 --
--- TOC entry 180 (class 1259 OID 61456169)
--- Dependencies: 181 35
+-- TOC entry 180 (class 1259 OID 61480636)
+-- Dependencies: 35 181
 -- Name: assoccl_quadro_funcionario_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -5716,7 +5722,7 @@ CREATE SEQUENCE assoccl_quadro_funcionario_id_seq
 
 
 --
--- TOC entry 4380 (class 0 OID 0)
+-- TOC entry 4386 (class 0 OID 0)
 -- Dependencies: 180
 -- Name: assoccl_quadro_funcionario_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5725,7 +5731,7 @@ ALTER SEQUENCE assoccl_quadro_funcionario_id_seq OWNED BY assoccl_quadro_funcion
 
 
 --
--- TOC entry 179 (class 1259 OID 61456155)
+-- TOC entry 179 (class 1259 OID 61480622)
 -- Dependencies: 2629 2630 2631 2632 2633 35
 -- Name: capital_social; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5746,7 +5752,7 @@ CREATE TABLE capital_social (
 
 
 --
--- TOC entry 178 (class 1259 OID 61456153)
+-- TOC entry 178 (class 1259 OID 61480620)
 -- Dependencies: 35 179
 -- Name: capital_social_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5760,7 +5766,7 @@ CREATE SEQUENCE capital_social_id_seq
 
 
 --
--- TOC entry 4381 (class 0 OID 0)
+-- TOC entry 4387 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: capital_social_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5769,7 +5775,7 @@ ALTER SEQUENCE capital_social_id_seq OWNED BY capital_social.id;
 
 
 --
--- TOC entry 177 (class 1259 OID 61456139)
+-- TOC entry 177 (class 1259 OID 61480606)
 -- Dependencies: 2623 2624 2625 2626 2627 35
 -- Name: natureza; Type: TABLE; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -5791,7 +5797,7 @@ CREATE TABLE natureza (
 
 
 --
--- TOC entry 176 (class 1259 OID 61456137)
+-- TOC entry 176 (class 1259 OID 61480604)
 -- Dependencies: 35 177
 -- Name: natureza_id_seq; Type: SEQUENCE; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5805,7 +5811,7 @@ CREATE SEQUENCE natureza_id_seq
 
 
 --
--- TOC entry 4382 (class 0 OID 0)
+-- TOC entry 4388 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: natureza_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -5816,7 +5822,7 @@ ALTER SEQUENCE natureza_id_seq OWNED BY natureza.id;
 SET search_path = basico_sequencia, pg_catalog;
 
 --
--- TOC entry 175 (class 1259 OID 61456121)
+-- TOC entry 175 (class 1259 OID 61480588)
 -- Dependencies: 2617 2618 2619 2620 2621 36
 -- Name: assocsq_acao_aplicacao; Type: TABLE; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -5840,8 +5846,8 @@ CREATE TABLE assocsq_acao_aplicacao (
 
 
 --
--- TOC entry 174 (class 1259 OID 61456119)
--- Dependencies: 175 36
+-- TOC entry 174 (class 1259 OID 61480586)
+-- Dependencies: 36 175
 -- Name: assocsq_acao_aplicacao_id_seq; Type: SEQUENCE; Schema: basico_sequencia; Owner: -
 --
 
@@ -5854,7 +5860,7 @@ CREATE SEQUENCE assocsq_acao_aplicacao_id_seq
 
 
 --
--- TOC entry 4383 (class 0 OID 0)
+-- TOC entry 4389 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: assocsq_acao_aplicacao_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_sequencia; Owner: -
 --
@@ -5865,7 +5871,7 @@ ALTER SEQUENCE assocsq_acao_aplicacao_id_seq OWNED BY assocsq_acao_aplicacao.id;
 SET search_path = basico_template, pg_catalog;
 
 --
--- TOC entry 173 (class 1259 OID 61456107)
+-- TOC entry 173 (class 1259 OID 61480574)
 -- Dependencies: 2615 37
 -- Name: assoccl_include; Type: TABLE; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -5881,7 +5887,7 @@ CREATE TABLE assoccl_include (
 
 
 --
--- TOC entry 172 (class 1259 OID 61456105)
+-- TOC entry 172 (class 1259 OID 61480572)
 -- Dependencies: 173 37
 -- Name: assoccl_include_id_seq; Type: SEQUENCE; Schema: basico_template; Owner: -
 --
@@ -5895,7 +5901,7 @@ CREATE SEQUENCE assoccl_include_id_seq
 
 
 --
--- TOC entry 4384 (class 0 OID 0)
+-- TOC entry 4390 (class 0 OID 0)
 -- Dependencies: 172
 -- Name: assoccl_include_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_template; Owner: -
 --
@@ -5904,7 +5910,7 @@ ALTER SEQUENCE assoccl_include_id_seq OWNED BY assoccl_include.id;
 
 
 --
--- TOC entry 171 (class 1259 OID 61456093)
+-- TOC entry 171 (class 1259 OID 61480560)
 -- Dependencies: 2613 37
 -- Name: assoccl_output; Type: TABLE; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -5919,7 +5925,7 @@ CREATE TABLE assoccl_output (
 
 
 --
--- TOC entry 170 (class 1259 OID 61456091)
+-- TOC entry 170 (class 1259 OID 61480558)
 -- Dependencies: 37 171
 -- Name: assoccl_output_id_seq; Type: SEQUENCE; Schema: basico_template; Owner: -
 --
@@ -5933,7 +5939,7 @@ CREATE SEQUENCE assoccl_output_id_seq
 
 
 --
--- TOC entry 4385 (class 0 OID 0)
+-- TOC entry 4391 (class 0 OID 0)
 -- Dependencies: 170
 -- Name: assoccl_output_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_template; Owner: -
 --
@@ -5944,7 +5950,7 @@ ALTER SEQUENCE assoccl_output_id_seq OWNED BY assoccl_output.id;
 SET search_path = basico_validator, pg_catalog;
 
 --
--- TOC entry 169 (class 1259 OID 61456077)
+-- TOC entry 169 (class 1259 OID 61480544)
 -- Dependencies: 2607 2608 2609 2610 2611 43
 -- Name: grupo; Type: TABLE; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -5965,7 +5971,7 @@ CREATE TABLE grupo (
 
 
 --
--- TOC entry 168 (class 1259 OID 61456075)
+-- TOC entry 168 (class 1259 OID 61480542)
 -- Dependencies: 169 43
 -- Name: grupo_id_seq; Type: SEQUENCE; Schema: basico_validator; Owner: -
 --
@@ -5979,7 +5985,7 @@ CREATE SEQUENCE grupo_id_seq
 
 
 --
--- TOC entry 4386 (class 0 OID 0)
+-- TOC entry 4392 (class 0 OID 0)
 -- Dependencies: 168
 -- Name: grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_validator; Owner: -
 --
@@ -5990,7 +5996,7 @@ ALTER SEQUENCE grupo_id_seq OWNED BY grupo.id;
 SET search_path = basico_validator_grupo, pg_catalog;
 
 --
--- TOC entry 167 (class 1259 OID 61456064)
+-- TOC entry 167 (class 1259 OID 61480531)
 -- Dependencies: 2604 2605 44
 -- Name: assocag_grupo; Type: TABLE; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -6008,7 +6014,7 @@ CREATE TABLE assocag_grupo (
 
 
 --
--- TOC entry 166 (class 1259 OID 61456062)
+-- TOC entry 166 (class 1259 OID 61480529)
 -- Dependencies: 167 44
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE; Schema: basico_validator_grupo; Owner: -
 --
@@ -6022,7 +6028,7 @@ CREATE SEQUENCE assocag_grupo_id_seq
 
 
 --
--- TOC entry 4387 (class 0 OID 0)
+-- TOC entry 4393 (class 0 OID 0)
 -- Dependencies: 166
 -- Name: assocag_grupo_id_seq; Type: SEQUENCE OWNED BY; Schema: basico_validator_grupo; Owner: -
 --
@@ -6033,7 +6039,7 @@ ALTER SEQUENCE assocag_grupo_id_seq OWNED BY assocag_grupo.id;
 SET search_path = basico, pg_catalog;
 
 --
--- TOC entry 3110 (class 2604 OID 61457940)
+-- TOC entry 3113 (class 2604 OID 61482419)
 -- Dependencies: 400 401 401
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6042,8 +6048,8 @@ ALTER TABLE ONLY acao_aplicacao ALTER COLUMN id SET DEFAULT nextval('acao_aplica
 
 
 --
--- TOC entry 3104 (class 2604 OID 61457922)
--- Dependencies: 398 399 399
+-- TOC entry 3107 (class 2604 OID 61482401)
+-- Dependencies: 399 398 399
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6051,8 +6057,8 @@ ALTER TABLE ONLY acao_evento ALTER COLUMN id SET DEFAULT nextval('acao_evento_id
 
 
 --
--- TOC entry 3095 (class 2604 OID 61457901)
--- Dependencies: 396 397 397
+-- TOC entry 3098 (class 2604 OID 61482380)
+-- Dependencies: 397 396 397
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6060,8 +6066,8 @@ ALTER TABLE ONLY ajuda ALTER COLUMN id SET DEFAULT nextval('ajuda_id_seq'::regcl
 
 
 --
--- TOC entry 3087 (class 2604 OID 61457881)
--- Dependencies: 394 395 395
+-- TOC entry 3090 (class 2604 OID 61482360)
+-- Dependencies: 395 394 395
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6069,8 +6075,8 @@ ALTER TABLE ONLY area_conhecimento ALTER COLUMN id SET DEFAULT nextval('area_con
 
 
 --
--- TOC entry 3079 (class 2604 OID 61457861)
--- Dependencies: 393 392 393
+-- TOC entry 3082 (class 2604 OID 61482340)
+-- Dependencies: 392 393 393
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6078,8 +6084,8 @@ ALTER TABLE ONLY area_economia ALTER COLUMN id SET DEFAULT nextval('area_economi
 
 
 --
--- TOC entry 3071 (class 2604 OID 61457841)
--- Dependencies: 391 390 391
+-- TOC entry 3074 (class 2604 OID 61482320)
+-- Dependencies: 390 391 391
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6087,8 +6093,8 @@ ALTER TABLE ONLY categoria ALTER COLUMN id SET DEFAULT nextval('categoria_id_seq
 
 
 --
--- TOC entry 3065 (class 2604 OID 61457823)
--- Dependencies: 388 389 389
+-- TOC entry 3068 (class 2604 OID 61482302)
+-- Dependencies: 389 388 389
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6096,7 +6102,7 @@ ALTER TABLE ONLY componente ALTER COLUMN id SET DEFAULT nextval('componente_id_s
 
 
 --
--- TOC entry 3057 (class 2604 OID 61457803)
+-- TOC entry 3060 (class 2604 OID 61482282)
 -- Dependencies: 387 386 387
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6105,8 +6111,8 @@ ALTER TABLE ONLY cpg_arquivo ALTER COLUMN id SET DEFAULT nextval('cpg_arquivo_id
 
 
 --
--- TOC entry 3052 (class 2604 OID 61457786)
--- Dependencies: 385 384 385
+-- TOC entry 3055 (class 2604 OID 61482265)
+-- Dependencies: 384 385 385
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6114,8 +6120,8 @@ ALTER TABLE ONLY cpg_codigo_acesso ALTER COLUMN id SET DEFAULT nextval('cpg_codi
 
 
 --
--- TOC entry 3049 (class 2604 OID 61457771)
--- Dependencies: 383 382 383
+-- TOC entry 3052 (class 2604 OID 61482250)
+-- Dependencies: 382 383 383
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6123,7 +6129,7 @@ ALTER TABLE ONLY cpg_dados_bancarios ALTER COLUMN id SET DEFAULT nextval('cpg_da
 
 
 --
--- TOC entry 3045 (class 2604 OID 61457755)
+-- TOC entry 3048 (class 2604 OID 61482234)
 -- Dependencies: 380 381 381
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6132,8 +6138,8 @@ ALTER TABLE ONLY cpg_documento_identificacao ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- TOC entry 3038 (class 2604 OID 61457736)
--- Dependencies: 378 379 379
+-- TOC entry 3041 (class 2604 OID 61482215)
+-- Dependencies: 379 378 379
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6141,7 +6147,7 @@ ALTER TABLE ONLY cpg_link ALTER COLUMN id SET DEFAULT nextval('cpg_link_id_seq':
 
 
 --
--- TOC entry 3033 (class 2604 OID 61457721)
+-- TOC entry 3036 (class 2604 OID 61482200)
 -- Dependencies: 376 377 377
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6150,7 +6156,7 @@ ALTER TABLE ONLY cpg_produto ALTER COLUMN id SET DEFAULT nextval('cpg_produto_id
 
 
 --
--- TOC entry 3030 (class 2604 OID 61457708)
+-- TOC entry 3033 (class 2604 OID 61482187)
 -- Dependencies: 374 375 375
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6159,7 +6165,7 @@ ALTER TABLE ONLY cpg_token ALTER COLUMN id SET DEFAULT nextval('cpg_token_id_seq
 
 
 --
--- TOC entry 3027 (class 2604 OID 61457693)
+-- TOC entry 3030 (class 2604 OID 61482172)
 -- Dependencies: 373 372 373
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6168,8 +6174,8 @@ ALTER TABLE ONLY dados_biometricos ALTER COLUMN id SET DEFAULT nextval('dados_bi
 
 
 --
--- TOC entry 3022 (class 2604 OID 61457676)
--- Dependencies: 370 371 371
+-- TOC entry 3025 (class 2604 OID 61482155)
+-- Dependencies: 371 370 371
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6177,7 +6183,7 @@ ALTER TABLE ONLY dicionario_expressao ALTER COLUMN id SET DEFAULT nextval('dicio
 
 
 --
--- TOC entry 3016 (class 2604 OID 61457658)
+-- TOC entry 3019 (class 2604 OID 61482137)
 -- Dependencies: 368 369 369
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6186,7 +6192,7 @@ ALTER TABLE ONLY evento ALTER COLUMN id SET DEFAULT nextval('evento_id_seq'::reg
 
 
 --
--- TOC entry 3010 (class 2604 OID 61457640)
+-- TOC entry 3013 (class 2604 OID 61482119)
 -- Dependencies: 366 367 367
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6195,8 +6201,8 @@ ALTER TABLE ONLY filter ALTER COLUMN id SET DEFAULT nextval('filter_id_seq'::reg
 
 
 --
--- TOC entry 3002 (class 2604 OID 61457620)
--- Dependencies: 364 365 365
+-- TOC entry 3005 (class 2604 OID 61482099)
+-- Dependencies: 365 364 365
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6204,7 +6210,7 @@ ALTER TABLE ONLY formulario ALTER COLUMN id SET DEFAULT nextval('formulario_id_s
 
 
 --
--- TOC entry 2996 (class 2604 OID 61457600)
+-- TOC entry 2999 (class 2604 OID 61482079)
 -- Dependencies: 362 363 363
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6213,7 +6219,7 @@ ALTER TABLE ONLY include ALTER COLUMN id SET DEFAULT nextval('include_id_seq'::r
 
 
 --
--- TOC entry 2995 (class 2604 OID 61457589)
+-- TOC entry 2998 (class 2604 OID 61482068)
 -- Dependencies: 360 361 361
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6222,7 +6228,7 @@ ALTER TABLE ONLY log ALTER COLUMN id SET DEFAULT nextval('log_id_seq'::regclass)
 
 
 --
--- TOC entry 2992 (class 2604 OID 61457576)
+-- TOC entry 2995 (class 2604 OID 61482055)
 -- Dependencies: 358 359 359
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6231,8 +6237,8 @@ ALTER TABLE ONLY mensagem ALTER COLUMN id SET DEFAULT nextval('mensagem_id_seq':
 
 
 --
--- TOC entry 2986 (class 2604 OID 61457558)
--- Dependencies: 356 357 357
+-- TOC entry 2989 (class 2604 OID 61482037)
+-- Dependencies: 357 356 357
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6240,8 +6246,8 @@ ALTER TABLE ONLY metodo_validacao ALTER COLUMN id SET DEFAULT nextval('metodo_va
 
 
 --
--- TOC entry 2979 (class 2604 OID 61457541)
--- Dependencies: 354 355 355
+-- TOC entry 2982 (class 2604 OID 61482020)
+-- Dependencies: 355 354 355
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6249,7 +6255,7 @@ ALTER TABLE ONLY modulo ALTER COLUMN id SET DEFAULT nextval('modulo_id_seq'::reg
 
 
 --
--- TOC entry 2973 (class 2604 OID 61457525)
+-- TOC entry 2976 (class 2604 OID 61482004)
 -- Dependencies: 352 353 353
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6258,7 +6264,7 @@ ALTER TABLE ONLY output ALTER COLUMN id SET DEFAULT nextval('output_id_seq'::reg
 
 
 --
--- TOC entry 2966 (class 2604 OID 61457506)
+-- TOC entry 2969 (class 2604 OID 61481985)
 -- Dependencies: 351 350 351
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6267,7 +6273,7 @@ ALTER TABLE ONLY perfil ALTER COLUMN id SET DEFAULT nextval('perfil_id_seq'::reg
 
 
 --
--- TOC entry 2963 (class 2604 OID 61457493)
+-- TOC entry 2966 (class 2604 OID 61481972)
 -- Dependencies: 348 349 349
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6276,7 +6282,7 @@ ALTER TABLE ONLY pessoa ALTER COLUMN id SET DEFAULT nextval('pessoa_id_seq'::reg
 
 
 --
--- TOC entry 2958 (class 2604 OID 61457478)
+-- TOC entry 2961 (class 2604 OID 61481957)
 -- Dependencies: 347 346 347
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6285,7 +6291,7 @@ ALTER TABLE ONLY pessoa_juridica ALTER COLUMN id SET DEFAULT nextval('pessoa_jur
 
 
 --
--- TOC entry 2952 (class 2604 OID 61457462)
+-- TOC entry 2955 (class 2604 OID 61481941)
 -- Dependencies: 345 344 345
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6294,8 +6300,8 @@ ALTER TABLE ONLY profissao ALTER COLUMN id SET DEFAULT nextval('profissao_id_seq
 
 
 --
--- TOC entry 2946 (class 2604 OID 61457444)
--- Dependencies: 342 343 343
+-- TOC entry 2949 (class 2604 OID 61481923)
+-- Dependencies: 343 342 343
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6303,7 +6309,7 @@ ALTER TABLE ONLY sequencia ALTER COLUMN id SET DEFAULT nextval('sequencia_id_seq
 
 
 --
--- TOC entry 2940 (class 2604 OID 61457428)
+-- TOC entry 2943 (class 2604 OID 61481907)
 -- Dependencies: 341 340 341
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6312,7 +6318,7 @@ ALTER TABLE ONLY template ALTER COLUMN id SET DEFAULT nextval('template_id_seq':
 
 
 --
--- TOC entry 2931 (class 2604 OID 61457407)
+-- TOC entry 2934 (class 2604 OID 61481886)
 -- Dependencies: 338 339 339
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
@@ -6321,8 +6327,8 @@ ALTER TABLE ONLY tipo_categoria ALTER COLUMN id SET DEFAULT nextval('tipo_catego
 
 
 --
--- TOC entry 2924 (class 2604 OID 61457390)
--- Dependencies: 337 336 337
+-- TOC entry 2927 (class 2604 OID 61481869)
+-- Dependencies: 336 337 337
 -- Name: id; Type: DEFAULT; Schema: basico; Owner: -
 --
 
@@ -6332,7 +6338,7 @@ ALTER TABLE ONLY validator ALTER COLUMN id SET DEFAULT nextval('validator_id_seq
 SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
--- TOC entry 2922 (class 2604 OID 61457376)
+-- TOC entry 2925 (class 2604 OID 61481852)
 -- Dependencies: 335 334 335
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
@@ -6341,8 +6347,8 @@ ALTER TABLE ONLY assoccl_atrib_met_rec_post ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2917 (class 2604 OID 61457359)
--- Dependencies: 332 333 333
+-- TOC entry 2920 (class 2604 OID 61481835)
+-- Dependencies: 333 332 333
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -6352,7 +6358,7 @@ ALTER TABLE ONLY atributo_metodo_recup_post ALTER COLUMN id SET DEFAULT nextval(
 SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
--- TOC entry 2909 (class 2604 OID 61457341)
+-- TOC entry 2912 (class 2604 OID 61481817)
 -- Dependencies: 331 330 331
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplicacao; Owner: -
 --
@@ -6361,8 +6367,8 @@ ALTER TABLE ONLY assoc_visao ALTER COLUMN id SET DEFAULT nextval('assoc_visao_id
 
 
 --
--- TOC entry 2907 (class 2604 OID 61457327)
--- Dependencies: 329 328 329
+-- TOC entry 2910 (class 2604 OID 61481803)
+-- Dependencies: 328 329 329
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -6370,8 +6376,8 @@ ALTER TABLE ONLY assoccl_metodo_validacao ALTER COLUMN id SET DEFAULT nextval('a
 
 
 --
--- TOC entry 2905 (class 2604 OID 61457313)
--- Dependencies: 326 327 327
+-- TOC entry 2908 (class 2604 OID 61481789)
+-- Dependencies: 327 326 327
 -- Name: id; Type: DEFAULT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -6381,8 +6387,8 @@ ALTER TABLE ONLY assoccl_perfil ALTER COLUMN id SET DEFAULT nextval('assoccl_per
 SET search_path = basico_acao_evento, pg_catalog;
 
 --
--- TOC entry 2903 (class 2604 OID 61457299)
--- Dependencies: 325 324 325
+-- TOC entry 2906 (class 2604 OID 61481775)
+-- Dependencies: 324 325 325
 -- Name: id; Type: DEFAULT; Schema: basico_acao_evento; Owner: -
 --
 
@@ -6392,8 +6398,8 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 SET search_path = basico_ajuda, pg_catalog;
 
 --
--- TOC entry 2901 (class 2604 OID 61457285)
--- Dependencies: 322 323 323
+-- TOC entry 2904 (class 2604 OID 61481761)
+-- Dependencies: 323 322 323
 -- Name: id; Type: DEFAULT; Schema: basico_ajuda; Owner: -
 --
 
@@ -6403,7 +6409,7 @@ ALTER TABLE ONLY assoccl_link ALTER COLUMN id SET DEFAULT nextval('assoccl_link_
 SET search_path = basico_assoc_banco, pg_catalog;
 
 --
--- TOC entry 2896 (class 2604 OID 61457266)
+-- TOC entry 2899 (class 2604 OID 61481742)
 -- Dependencies: 321 320 321
 -- Name: id; Type: DEFAULT; Schema: basico_assoc_banco; Owner: -
 --
@@ -6414,8 +6420,8 @@ ALTER TABLE ONLY assoc_tipo_conta ALTER COLUMN id SET DEFAULT nextval('assoc_tip
 SET search_path = basico_assoc_chave_estrangeira, pg_catalog;
 
 --
--- TOC entry 2894 (class 2604 OID 61457252)
--- Dependencies: 319 318 319
+-- TOC entry 2897 (class 2604 OID 61481728)
+-- Dependencies: 318 319 319
 -- Name: id; Type: DEFAULT; Schema: basico_assoc_chave_estrangeira; Owner: -
 --
 
@@ -6425,8 +6431,8 @@ ALTER TABLE ONLY relacao ALTER COLUMN id SET DEFAULT nextval('relacao_id_seq'::r
 SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
--- TOC entry 2892 (class 2604 OID 61457238)
--- Dependencies: 317 316 317
+-- TOC entry 2895 (class 2604 OID 61481714)
+-- Dependencies: 316 317 317
 -- Name: id; Type: DEFAULT; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -6436,8 +6442,8 @@ ALTER TABLE ONLY assoccl_area_conhecimento ALTER COLUMN id SET DEFAULT nextval('
 SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
--- TOC entry 2889 (class 2604 OID 61457225)
--- Dependencies: 314 315 315
+-- TOC entry 2892 (class 2604 OID 61481701)
+-- Dependencies: 315 314 315
 -- Name: id; Type: DEFAULT; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
 
@@ -6447,8 +6453,8 @@ ALTER TABLE ONLY assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id
 SET search_path = basico_assoccl_tipo_vinculo, pg_catalog;
 
 --
--- TOC entry 2886 (class 2604 OID 61457212)
--- Dependencies: 313 312 313
+-- TOC entry 2889 (class 2604 OID 61481688)
+-- Dependencies: 312 313 313
 -- Name: id; Type: DEFAULT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -6458,8 +6464,8 @@ ALTER TABLE ONLY assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id
 SET search_path = basico_categoria, pg_catalog;
 
 --
--- TOC entry 2883 (class 2604 OID 61457199)
--- Dependencies: 311 310 311
+-- TOC entry 2886 (class 2604 OID 61481675)
+-- Dependencies: 310 311 311
 -- Name: id; Type: DEFAULT; Schema: basico_categoria; Owner: -
 --
 
@@ -6467,7 +6473,7 @@ ALTER TABLE ONLY assoc_chave_estrangeira ALTER COLUMN id SET DEFAULT nextval('as
 
 
 --
--- TOC entry 2881 (class 2604 OID 61457187)
+-- TOC entry 2884 (class 2604 OID 61481663)
 -- Dependencies: 309 308 309
 -- Name: id; Type: DEFAULT; Schema: basico_categoria; Owner: -
 --
@@ -6478,8 +6484,8 @@ ALTER TABLE ONLY assoc_evento_acao ALTER COLUMN id SET DEFAULT nextval('assoc_ev
 SET search_path = basico_componente, pg_catalog;
 
 --
--- TOC entry 2879 (class 2604 OID 61457173)
--- Dependencies: 306 307 307
+-- TOC entry 2882 (class 2604 OID 61481649)
+-- Dependencies: 307 306 307
 -- Name: id; Type: DEFAULT; Schema: basico_componente; Owner: -
 --
 
@@ -6489,8 +6495,8 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 2871 (class 2604 OID 61457153)
--- Dependencies: 304 305 305
+-- TOC entry 2874 (class 2604 OID 61481629)
+-- Dependencies: 305 304 305
 -- Name: id; Type: DEFAULT; Schema: basico_contato; Owner: -
 --
 
@@ -6498,8 +6504,8 @@ ALTER TABLE ONLY cpg_email ALTER COLUMN id SET DEFAULT nextval('cpg_email_id_seq
 
 
 --
--- TOC entry 2864 (class 2604 OID 61457134)
--- Dependencies: 303 302 303
+-- TOC entry 2867 (class 2604 OID 61481610)
+-- Dependencies: 302 303 303
 -- Name: id; Type: DEFAULT; Schema: basico_contato; Owner: -
 --
 
@@ -6509,8 +6515,8 @@ ALTER TABLE ONLY cpg_telefone ALTER COLUMN id SET DEFAULT nextval('cpg_telefone_
 SET search_path = basico_cvc, pg_catalog;
 
 --
--- TOC entry 2859 (class 2604 OID 61457117)
--- Dependencies: 300 301 301
+-- TOC entry 2862 (class 2604 OID 61481593)
+-- Dependencies: 301 300 301
 -- Name: id; Type: DEFAULT; Schema: basico_cvc; Owner: -
 --
 
@@ -6520,8 +6526,8 @@ ALTER TABLE ONLY cvc ALTER COLUMN id SET DEFAULT nextval('cvc_id_seq'::regclass)
 SET search_path = basico_dados_academicos, pg_catalog;
 
 --
--- TOC entry 2853 (class 2604 OID 61457101)
--- Dependencies: 299 298 299
+-- TOC entry 2856 (class 2604 OID 61481577)
+-- Dependencies: 298 299 299
 -- Name: id; Type: DEFAULT; Schema: basico_dados_academicos; Owner: -
 --
 
@@ -6531,7 +6537,7 @@ ALTER TABLE ONLY titulacao ALTER COLUMN id SET DEFAULT nextval('titulacao_id_seq
 SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
--- TOC entry 2850 (class 2604 OID 61457088)
+-- TOC entry 2853 (class 2604 OID 61481564)
 -- Dependencies: 297 296 297
 -- Name: id; Type: DEFAULT; Schema: basico_dados_biometricos; Owner: -
 --
@@ -6542,8 +6548,8 @@ ALTER TABLE ONLY assoc_pessoa ALTER COLUMN id SET DEFAULT nextval('assoc_pessoa_
 SET search_path = basico_dados_profissionais, pg_catalog;
 
 --
--- TOC entry 2843 (class 2604 OID 61457069)
--- Dependencies: 294 295 295
+-- TOC entry 2846 (class 2604 OID 61481545)
+-- Dependencies: 295 294 295
 -- Name: id; Type: DEFAULT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -6551,8 +6557,8 @@ ALTER TABLE ONLY regime_trabalho ALTER COLUMN id SET DEFAULT nextval('regime_tra
 
 
 --
--- TOC entry 2835 (class 2604 OID 61457049)
--- Dependencies: 292 293 293
+-- TOC entry 2838 (class 2604 OID 61481525)
+-- Dependencies: 293 292 293
 -- Name: id; Type: DEFAULT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -6560,7 +6566,7 @@ ALTER TABLE ONLY tipo_vinculo ALTER COLUMN id SET DEFAULT nextval('tipo_vinculo_
 
 
 --
--- TOC entry 2829 (class 2604 OID 61457031)
+-- TOC entry 2832 (class 2604 OID 61481507)
 -- Dependencies: 291 290 291
 -- Name: id; Type: DEFAULT; Schema: basico_dados_profissionais; Owner: -
 --
@@ -6571,8 +6577,8 @@ ALTER TABLE ONLY vinculo_empregaticio ALTER COLUMN id SET DEFAULT nextval('vincu
 SET search_path = basico_filter, pg_catalog;
 
 --
--- TOC entry 2823 (class 2604 OID 61456941)
--- Dependencies: 281 280 281
+-- TOC entry 2826 (class 2604 OID 61481417)
+-- Dependencies: 280 281 281
 -- Name: id; Type: DEFAULT; Schema: basico_filter; Owner: -
 --
 
@@ -6582,7 +6588,7 @@ ALTER TABLE ONLY grupo ALTER COLUMN id SET DEFAULT nextval('grupo_id_seq'::regcl
 SET search_path = basico_filter_grupo, pg_catalog;
 
 --
--- TOC entry 2820 (class 2604 OID 61456928)
+-- TOC entry 2823 (class 2604 OID 61481404)
 -- Dependencies: 279 278 279
 -- Name: id; Type: DEFAULT; Schema: basico_filter_grupo; Owner: -
 --
@@ -6593,7 +6599,7 @@ ALTER TABLE ONLY assocag_grupo ALTER COLUMN id SET DEFAULT nextval('assocag_grup
 SET search_path = basico_form_assoccl_elem_grupo, pg_catalog;
 
 --
--- TOC entry 2818 (class 2604 OID 61456914)
+-- TOC entry 2821 (class 2604 OID 61481390)
 -- Dependencies: 277 276 277
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
@@ -6604,7 +6610,7 @@ ALTER TABLE ONLY assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
--- TOC entry 2815 (class 2604 OID 61456899)
+-- TOC entry 2817 (class 2604 OID 61481374)
 -- Dependencies: 274 275 275
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -6613,8 +6619,8 @@ ALTER TABLE ONLY assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 
 
 --
--- TOC entry 2812 (class 2604 OID 61456884)
--- Dependencies: 273 272 273
+-- TOC entry 2814 (class 2604 OID 61481359)
+-- Dependencies: 272 273 273
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -6622,7 +6628,7 @@ ALTER TABLE ONLY assoccl_evento ALTER COLUMN id SET DEFAULT nextval('assoccl_eve
 
 
 --
--- TOC entry 2809 (class 2604 OID 61456869)
+-- TOC entry 2810 (class 2604 OID 61481343)
 -- Dependencies: 271 270 271
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -6631,8 +6637,8 @@ ALTER TABLE ONLY assoccl_filter ALTER COLUMN id SET DEFAULT nextval('assoccl_fil
 
 
 --
--- TOC entry 2806 (class 2604 OID 61456854)
--- Dependencies: 269 268 269
+-- TOC entry 2807 (class 2604 OID 61481328)
+-- Dependencies: 268 269 269
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -6640,7 +6646,7 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 
 
 --
--- TOC entry 2803 (class 2604 OID 61456839)
+-- TOC entry 2803 (class 2604 OID 61481312)
 -- Dependencies: 266 267 267
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
@@ -6649,8 +6655,8 @@ ALTER TABLE ONLY assoccl_validator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 
 
 --
--- TOC entry 2797 (class 2604 OID 61456823)
--- Dependencies: 265 264 265
+-- TOC entry 2797 (class 2604 OID 61481296)
+-- Dependencies: 264 265 265
 -- Name: id; Type: DEFAULT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -6660,7 +6666,7 @@ ALTER TABLE ONLY grupo ALTER COLUMN id SET DEFAULT nextval('grupo_id_seq'::regcl
 SET search_path = basico_form_decorator_grupo, pg_catalog;
 
 --
--- TOC entry 2794 (class 2604 OID 61456810)
+-- TOC entry 2794 (class 2604 OID 61481283)
 -- Dependencies: 263 262 263
 -- Name: id; Type: DEFAULT; Schema: basico_form_decorator_grupo; Owner: -
 --
@@ -6671,7 +6677,7 @@ ALTER TABLE ONLY assocag_grupo ALTER COLUMN id SET DEFAULT nextval('assocag_grup
 SET search_path = basico_formulario, pg_catalog;
 
 --
--- TOC entry 2790 (class 2604 OID 61456794)
+-- TOC entry 2790 (class 2604 OID 61481267)
 -- Dependencies: 261 260 261
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
@@ -6680,7 +6686,7 @@ ALTER TABLE ONLY assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 
 
 --
--- TOC entry 2784 (class 2604 OID 61456774)
+-- TOC entry 2784 (class 2604 OID 61481247)
 -- Dependencies: 259 258 259
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
@@ -6689,8 +6695,8 @@ ALTER TABLE ONLY assoccl_elemento ALTER COLUMN id SET DEFAULT nextval('assoccl_e
 
 
 --
--- TOC entry 2782 (class 2604 OID 61456760)
--- Dependencies: 257 256 257
+-- TOC entry 2782 (class 2604 OID 61481233)
+-- Dependencies: 256 257 257
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -6698,8 +6704,8 @@ ALTER TABLE ONLY assoccl_evento ALTER COLUMN id SET DEFAULT nextval('assoccl_eve
 
 
 --
--- TOC entry 2780 (class 2604 OID 61456746)
--- Dependencies: 255 254 255
+-- TOC entry 2780 (class 2604 OID 61481219)
+-- Dependencies: 254 255 255
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -6707,8 +6713,8 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 
 
 --
--- TOC entry 2778 (class 2604 OID 61456732)
--- Dependencies: 253 252 253
+-- TOC entry 2778 (class 2604 OID 61481205)
+-- Dependencies: 252 253 253
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -6716,7 +6722,7 @@ ALTER TABLE ONLY assoccl_modulo ALTER COLUMN id SET DEFAULT nextval('assoccl_mod
 
 
 --
--- TOC entry 2772 (class 2604 OID 61456716)
+-- TOC entry 2772 (class 2604 OID 61481189)
 -- Dependencies: 251 250 251
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
@@ -6725,8 +6731,8 @@ ALTER TABLE ONLY decorator ALTER COLUMN id SET DEFAULT nextval('decorator_id_seq
 
 
 --
--- TOC entry 2764 (class 2604 OID 61456696)
--- Dependencies: 248 249 249
+-- TOC entry 2764 (class 2604 OID 61481169)
+-- Dependencies: 249 248 249
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
 
@@ -6734,7 +6740,7 @@ ALTER TABLE ONLY elemento ALTER COLUMN id SET DEFAULT nextval('elemento_id_seq':
 
 
 --
--- TOC entry 2760 (class 2604 OID 61456682)
+-- TOC entry 2760 (class 2604 OID 61481155)
 -- Dependencies: 246 247 247
 -- Name: id; Type: DEFAULT; Schema: basico_formulario; Owner: -
 --
@@ -6745,8 +6751,8 @@ ALTER TABLE ONLY rascunho ALTER COLUMN id SET DEFAULT nextval('rascunho_id_seq':
 SET search_path = basico_formulario_decorator, pg_catalog;
 
 --
--- TOC entry 2758 (class 2604 OID 61456668)
--- Dependencies: 244 245 245
+-- TOC entry 2758 (class 2604 OID 61481141)
+-- Dependencies: 245 244 245
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_decorator; Owner: -
 --
 
@@ -6754,7 +6760,7 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 
 
 --
--- TOC entry 2752 (class 2604 OID 61456652)
+-- TOC entry 2752 (class 2604 OID 61481125)
 -- Dependencies: 242 243 243
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_decorator; Owner: -
 --
@@ -6765,7 +6771,7 @@ ALTER TABLE ONLY grupo ALTER COLUMN id SET DEFAULT nextval('grupo_id_seq'::regcl
 SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
--- TOC entry 2748 (class 2604 OID 61456636)
+-- TOC entry 2748 (class 2604 OID 61481109)
 -- Dependencies: 241 240 241
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
@@ -6774,7 +6780,7 @@ ALTER TABLE ONLY assoccl_decorator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 
 
 --
--- TOC entry 2745 (class 2604 OID 61456621)
+-- TOC entry 2745 (class 2604 OID 61481094)
 -- Dependencies: 239 238 239
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
@@ -6783,7 +6789,7 @@ ALTER TABLE ONLY assoccl_evento ALTER COLUMN id SET DEFAULT nextval('assoccl_eve
 
 
 --
--- TOC entry 2741 (class 2604 OID 61456605)
+-- TOC entry 2741 (class 2604 OID 61481078)
 -- Dependencies: 236 237 237
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
@@ -6792,7 +6798,7 @@ ALTER TABLE ONLY assoccl_filter ALTER COLUMN id SET DEFAULT nextval('assoccl_fil
 
 
 --
--- TOC entry 2737 (class 2604 OID 61456589)
+-- TOC entry 2739 (class 2604 OID 61481062)
 -- Dependencies: 234 235 235
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_elemento; Owner: -
 --
@@ -6803,7 +6809,7 @@ ALTER TABLE ONLY assoccl_validator ALTER COLUMN id SET DEFAULT nextval('assoccl_
 SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
--- TOC entry 2734 (class 2604 OID 61456576)
+-- TOC entry 2734 (class 2604 OID 61481049)
 -- Dependencies: 232 233 233
 -- Name: id; Type: DEFAULT; Schema: basico_formulario_rascunho; Owner: -
 --
@@ -6814,7 +6820,7 @@ ALTER TABLE ONLY assocag_grupo ALTER COLUMN id SET DEFAULT nextval('assocag_grup
 SET search_path = basico_localizacao, pg_catalog;
 
 --
--- TOC entry 2730 (class 2604 OID 61456560)
+-- TOC entry 2730 (class 2604 OID 61481025)
 -- Dependencies: 231 230 231
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
@@ -6823,7 +6829,7 @@ ALTER TABLE ONLY assoc_bairro ALTER COLUMN id SET DEFAULT nextval('assoc_bairro_
 
 
 --
--- TOC entry 2725 (class 2604 OID 61456543)
+-- TOC entry 2725 (class 2604 OID 61481008)
 -- Dependencies: 229 228 229
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
@@ -6832,8 +6838,8 @@ ALTER TABLE ONLY assoc_estado ALTER COLUMN id SET DEFAULT nextval('assoc_estado_
 
 
 --
--- TOC entry 2721 (class 2604 OID 61456527)
--- Dependencies: 226 227 227
+-- TOC entry 2721 (class 2604 OID 61480992)
+-- Dependencies: 227 226 227
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -6841,7 +6847,7 @@ ALTER TABLE ONLY assoc_logradouro ALTER COLUMN id SET DEFAULT nextval('assoc_log
 
 
 --
--- TOC entry 2716 (class 2604 OID 61456510)
+-- TOC entry 2716 (class 2604 OID 61480975)
 -- Dependencies: 224 225 225
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
@@ -6850,8 +6856,8 @@ ALTER TABLE ONLY assoc_municipio ALTER COLUMN id SET DEFAULT nextval('assoc_muni
 
 
 --
--- TOC entry 2712 (class 2604 OID 61456494)
--- Dependencies: 222 223 223
+-- TOC entry 2712 (class 2604 OID 61480959)
+-- Dependencies: 223 222 223
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
 
@@ -6859,7 +6865,7 @@ ALTER TABLE ONLY codigo_postal ALTER COLUMN id SET DEFAULT nextval('codigo_posta
 
 
 --
--- TOC entry 2707 (class 2604 OID 61456477)
+-- TOC entry 2707 (class 2604 OID 61480942)
 -- Dependencies: 220 221 221
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
@@ -6868,7 +6874,7 @@ ALTER TABLE ONLY cpg_endereco ALTER COLUMN id SET DEFAULT nextval('cpg_endereco_
 
 
 --
--- TOC entry 2702 (class 2604 OID 61456458)
+-- TOC entry 2702 (class 2604 OID 61480925)
 -- Dependencies: 218 219 219
 -- Name: id; Type: DEFAULT; Schema: basico_localizacao; Owner: -
 --
@@ -6879,8 +6885,8 @@ ALTER TABLE ONLY pais ALTER COLUMN id SET DEFAULT nextval('pais_id_seq'::regclas
 SET search_path = basico_mensagem, pg_catalog;
 
 --
--- TOC entry 2700 (class 2604 OID 61456446)
--- Dependencies: 216 217 217
+-- TOC entry 2700 (class 2604 OID 61480913)
+-- Dependencies: 217 216 217
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem; Owner: -
 --
 
@@ -6888,8 +6894,8 @@ ALTER TABLE ONLY assoc_email ALTER COLUMN id SET DEFAULT nextval('assoc_email_id
 
 
 --
--- TOC entry 2697 (class 2604 OID 61456431)
--- Dependencies: 214 215 215
+-- TOC entry 2697 (class 2604 OID 61480898)
+-- Dependencies: 215 214 215
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem; Owner: -
 --
 
@@ -6897,8 +6903,8 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 2688 (class 2604 OID 61456410)
--- Dependencies: 213 212 213
+-- TOC entry 2688 (class 2604 OID 61480877)
+-- Dependencies: 212 213 213
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem; Owner: -
 --
 
@@ -6908,7 +6914,7 @@ ALTER TABLE ONLY template ALTER COLUMN id SET DEFAULT nextval('template_id_seq':
 SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
--- TOC entry 2685 (class 2604 OID 61456397)
+-- TOC entry 2685 (class 2604 OID 61480864)
 -- Dependencies: 211 210 211
 -- Name: id; Type: DEFAULT; Schema: basico_mensagem_assoc_email; Owner: -
 --
@@ -6919,8 +6925,8 @@ ALTER TABLE ONLY assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id
 SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
--- TOC entry 2683 (class 2604 OID 61456383)
--- Dependencies: 208 209 209
+-- TOC entry 2683 (class 2604 OID 61480850)
+-- Dependencies: 209 208 209
 -- Name: id; Type: DEFAULT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -6930,7 +6936,7 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 SET search_path = basico_output, pg_catalog;
 
 --
--- TOC entry 2681 (class 2604 OID 61456369)
+-- TOC entry 2681 (class 2604 OID 61480836)
 -- Dependencies: 206 207 207
 -- Name: id; Type: DEFAULT; Schema: basico_output; Owner: -
 --
@@ -6941,8 +6947,8 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 SET search_path = basico_perfil, pg_catalog;
 
 --
--- TOC entry 2679 (class 2604 OID 61456355)
--- Dependencies: 205 204 205
+-- TOC entry 2679 (class 2604 OID 61480822)
+-- Dependencies: 204 205 205
 -- Name: id; Type: DEFAULT; Schema: basico_perfil; Owner: -
 --
 
@@ -6952,7 +6958,7 @@ ALTER TABLE ONLY assoccl_modulo ALTER COLUMN id SET DEFAULT nextval('assoccl_mod
 SET search_path = basico_pessoa, pg_catalog;
 
 --
--- TOC entry 2675 (class 2604 OID 61456341)
+-- TOC entry 2675 (class 2604 OID 61480808)
 -- Dependencies: 203 202 203
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
@@ -6961,7 +6967,7 @@ ALTER TABLE ONLY assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id
 
 
 --
--- TOC entry 2671 (class 2604 OID 61456325)
+-- TOC entry 2671 (class 2604 OID 61480792)
 -- Dependencies: 201 200 201
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
@@ -6970,8 +6976,8 @@ ALTER TABLE ONLY assoccl_perfil ALTER COLUMN id SET DEFAULT nextval('assoccl_per
 
 
 --
--- TOC entry 2668 (class 2604 OID 61456312)
--- Dependencies: 199 198 199
+-- TOC entry 2668 (class 2604 OID 61480779)
+-- Dependencies: 198 199 199
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
 
@@ -6979,7 +6985,7 @@ ALTER TABLE ONLY assoccl_tipo_vinculo ALTER COLUMN id SET DEFAULT nextval('assoc
 
 
 --
--- TOC entry 2659 (class 2604 OID 61456291)
+-- TOC entry 2659 (class 2604 OID 61480758)
 -- Dependencies: 197 196 197
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa; Owner: -
 --
@@ -6990,8 +6996,8 @@ ALTER TABLE ONLY login ALTER COLUMN id SET DEFAULT nextval('login_id_seq'::regcl
 SET search_path = basico_pessoa_juridica, pg_catalog;
 
 --
--- TOC entry 2655 (class 2604 OID 61456277)
--- Dependencies: 195 194 195
+-- TOC entry 2655 (class 2604 OID 61480744)
+-- Dependencies: 194 195 195
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -6999,8 +7005,8 @@ ALTER TABLE ONLY assoc_banco ALTER COLUMN id SET DEFAULT nextval('assoc_banco_id
 
 
 --
--- TOC entry 2652 (class 2604 OID 61456264)
--- Dependencies: 192 193 193
+-- TOC entry 2652 (class 2604 OID 61480731)
+-- Dependencies: 193 192 193
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -7008,7 +7014,7 @@ ALTER TABLE ONLY assoc_dados ALTER COLUMN id SET DEFAULT nextval('assoc_dados_id
 
 
 --
--- TOC entry 2650 (class 2604 OID 61456250)
+-- TOC entry 2650 (class 2604 OID 61480717)
 -- Dependencies: 190 191 191
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -7017,8 +7023,8 @@ ALTER TABLE ONLY assocag_incubadora ALTER COLUMN id SET DEFAULT nextval('assocag
 
 
 --
--- TOC entry 2645 (class 2604 OID 61456233)
--- Dependencies: 189 188 189
+-- TOC entry 2645 (class 2604 OID 61480700)
+-- Dependencies: 188 189 189
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -7026,8 +7032,8 @@ ALTER TABLE ONLY assocag_parceria ALTER COLUMN id SET DEFAULT nextval('assocag_p
 
 
 --
--- TOC entry 2643 (class 2604 OID 61456219)
--- Dependencies: 187 186 187
+-- TOC entry 2643 (class 2604 OID 61480686)
+-- Dependencies: 186 187 187
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -7035,7 +7041,7 @@ ALTER TABLE ONLY assoccl_area_economia ALTER COLUMN id SET DEFAULT nextval('asso
 
 
 --
--- TOC entry 2640 (class 2604 OID 61456204)
+-- TOC entry 2640 (class 2604 OID 61480671)
 -- Dependencies: 185 184 185
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -7044,8 +7050,8 @@ ALTER TABLE ONLY assoccl_capital_social ALTER COLUMN id SET DEFAULT nextval('ass
 
 
 --
--- TOC entry 2637 (class 2604 OID 61456189)
--- Dependencies: 182 183 183
+-- TOC entry 2637 (class 2604 OID 61480656)
+-- Dependencies: 183 182 183
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -7053,7 +7059,7 @@ ALTER TABLE ONLY assoccl_faturamento ALTER COLUMN id SET DEFAULT nextval('assocc
 
 
 --
--- TOC entry 2634 (class 2604 OID 61456174)
+-- TOC entry 2634 (class 2604 OID 61480641)
 -- Dependencies: 181 180 181
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -7062,7 +7068,7 @@ ALTER TABLE ONLY assoccl_quadro_funcionario ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 2628 (class 2604 OID 61456158)
+-- TOC entry 2628 (class 2604 OID 61480625)
 -- Dependencies: 178 179 179
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -7071,7 +7077,7 @@ ALTER TABLE ONLY capital_social ALTER COLUMN id SET DEFAULT nextval('capital_soc
 
 
 --
--- TOC entry 2622 (class 2604 OID 61456142)
+-- TOC entry 2622 (class 2604 OID 61480609)
 -- Dependencies: 177 176 177
 -- Name: id; Type: DEFAULT; Schema: basico_pessoa_juridica; Owner: -
 --
@@ -7082,7 +7088,7 @@ ALTER TABLE ONLY natureza ALTER COLUMN id SET DEFAULT nextval('natureza_id_seq':
 SET search_path = basico_sequencia, pg_catalog;
 
 --
--- TOC entry 2616 (class 2604 OID 61456124)
+-- TOC entry 2616 (class 2604 OID 61480591)
 -- Dependencies: 175 174 175
 -- Name: id; Type: DEFAULT; Schema: basico_sequencia; Owner: -
 --
@@ -7093,7 +7099,7 @@ ALTER TABLE ONLY assocsq_acao_aplicacao ALTER COLUMN id SET DEFAULT nextval('ass
 SET search_path = basico_template, pg_catalog;
 
 --
--- TOC entry 2614 (class 2604 OID 61456110)
+-- TOC entry 2614 (class 2604 OID 61480577)
 -- Dependencies: 173 172 173
 -- Name: id; Type: DEFAULT; Schema: basico_template; Owner: -
 --
@@ -7102,7 +7108,7 @@ ALTER TABLE ONLY assoccl_include ALTER COLUMN id SET DEFAULT nextval('assoccl_in
 
 
 --
--- TOC entry 2612 (class 2604 OID 61456096)
+-- TOC entry 2612 (class 2604 OID 61480563)
 -- Dependencies: 171 170 171
 -- Name: id; Type: DEFAULT; Schema: basico_template; Owner: -
 --
@@ -7113,7 +7119,7 @@ ALTER TABLE ONLY assoccl_output ALTER COLUMN id SET DEFAULT nextval('assoccl_out
 SET search_path = basico_validator, pg_catalog;
 
 --
--- TOC entry 2606 (class 2604 OID 61456080)
+-- TOC entry 2606 (class 2604 OID 61480547)
 -- Dependencies: 169 168 169
 -- Name: id; Type: DEFAULT; Schema: basico_validator; Owner: -
 --
@@ -7124,7 +7130,7 @@ ALTER TABLE ONLY grupo ALTER COLUMN id SET DEFAULT nextval('grupo_id_seq'::regcl
 SET search_path = basico_validator_grupo, pg_catalog;
 
 --
--- TOC entry 2603 (class 2604 OID 61456067)
+-- TOC entry 2603 (class 2604 OID 61480534)
 -- Dependencies: 167 166 167
 -- Name: id; Type: DEFAULT; Schema: basico_validator_grupo; Owner: -
 --
@@ -7135,7 +7141,7 @@ ALTER TABLE ONLY assocag_grupo ALTER COLUMN id SET DEFAULT nextval('assocag_grup
 SET search_path = basico, pg_catalog;
 
 --
--- TOC entry 3973 (class 2606 OID 61457932)
+-- TOC entry 3976 (class 2606 OID 61482411)
 -- Dependencies: 399 399
 -- Name: acao_evento_pkey; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7145,7 +7151,7 @@ ALTER TABLE ONLY acao_evento
 
 
 --
--- TOC entry 3832 (class 2606 OID 61457670)
+-- TOC entry 3835 (class 2606 OID 61482149)
 -- Dependencies: 369 369
 -- Name: evento_evento_key; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7155,7 +7161,7 @@ ALTER TABLE ONLY evento
 
 
 --
--- TOC entry 3827 (class 2606 OID 61457650)
+-- TOC entry 3830 (class 2606 OID 61482129)
 -- Dependencies: 367 367
 -- Name: filter_pkey; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7165,7 +7171,7 @@ ALTER TABLE ONLY filter
 
 
 --
--- TOC entry 3804 (class 2606 OID 61457612)
+-- TOC entry 3807 (class 2606 OID 61482091)
 -- Dependencies: 363 363
 -- Name: include_uri_key; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7175,7 +7181,7 @@ ALTER TABLE ONLY include
 
 
 --
--- TOC entry 3773 (class 2606 OID 61457535)
+-- TOC entry 3776 (class 2606 OID 61482014)
 -- Dependencies: 353 353
 -- Name: output_pkey; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7185,7 +7191,7 @@ ALTER TABLE ONLY output
 
 
 --
--- TOC entry 3982 (class 2606 OID 61457950)
+-- TOC entry 3985 (class 2606 OID 61482429)
 -- Dependencies: 401 401
 -- Name: pk_acao_aplicacao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7195,7 +7201,7 @@ ALTER TABLE ONLY acao_aplicacao
 
 
 --
--- TOC entry 3964 (class 2606 OID 61457914)
+-- TOC entry 3967 (class 2606 OID 61482393)
 -- Dependencies: 397 397
 -- Name: pk_ajuda; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7205,7 +7211,7 @@ ALTER TABLE ONLY ajuda
 
 
 --
--- TOC entry 3953 (class 2606 OID 61457893)
+-- TOC entry 3956 (class 2606 OID 61482372)
 -- Dependencies: 395 395
 -- Name: pk_area_conhecimento; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7215,7 +7221,7 @@ ALTER TABLE ONLY area_conhecimento
 
 
 --
--- TOC entry 3943 (class 2606 OID 61457873)
+-- TOC entry 3946 (class 2606 OID 61482352)
 -- Dependencies: 393 393
 -- Name: pk_area_economia; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7225,7 +7231,7 @@ ALTER TABLE ONLY area_economia
 
 
 --
--- TOC entry 3914 (class 2606 OID 61457815)
+-- TOC entry 3917 (class 2606 OID 61482294)
 -- Dependencies: 387 387
 -- Name: pk_arquivo; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7235,7 +7241,7 @@ ALTER TABLE ONLY cpg_arquivo
 
 
 --
--- TOC entry 3737 (class 2606 OID 61457454)
+-- TOC entry 3740 (class 2606 OID 61481933)
 -- Dependencies: 343 343
 -- Name: pk_assocag_sequencia; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7245,7 +7251,7 @@ ALTER TABLE ONLY sequencia
 
 
 --
--- TOC entry 3933 (class 2606 OID 61457853)
+-- TOC entry 3936 (class 2606 OID 61482332)
 -- Dependencies: 391 391
 -- Name: pk_categoria; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7255,7 +7261,7 @@ ALTER TABLE ONLY categoria
 
 
 --
--- TOC entry 3901 (class 2606 OID 61457795)
+-- TOC entry 3904 (class 2606 OID 61482274)
 -- Dependencies: 385 385
 -- Name: pk_codigo_acesso; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7265,7 +7271,7 @@ ALTER TABLE ONLY cpg_codigo_acesso
 
 
 --
--- TOC entry 3923 (class 2606 OID 61457833)
+-- TOC entry 3926 (class 2606 OID 61482312)
 -- Dependencies: 389 389
 -- Name: pk_componente; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7275,7 +7281,7 @@ ALTER TABLE ONLY componente
 
 
 --
--- TOC entry 3891 (class 2606 OID 61457778)
+-- TOC entry 3894 (class 2606 OID 61482257)
 -- Dependencies: 383 383
 -- Name: pk_dados_bancarios; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7285,7 +7291,7 @@ ALTER TABLE ONLY cpg_dados_bancarios
 
 
 --
--- TOC entry 3849 (class 2606 OID 61457700)
+-- TOC entry 3852 (class 2606 OID 61482179)
 -- Dependencies: 373 373
 -- Name: pk_dados_biometricos; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7295,7 +7301,7 @@ ALTER TABLE ONLY dados_biometricos
 
 
 --
--- TOC entry 3842 (class 2606 OID 61457685)
+-- TOC entry 3845 (class 2606 OID 61482164)
 -- Dependencies: 371 371
 -- Name: pk_dicionario_expressao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7305,7 +7311,7 @@ ALTER TABLE ONLY dicionario_expressao
 
 
 --
--- TOC entry 3882 (class 2606 OID 61457763)
+-- TOC entry 3885 (class 2606 OID 61482242)
 -- Dependencies: 381 381
 -- Name: pk_documento_identificacao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7315,7 +7321,7 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 
 --
--- TOC entry 3837 (class 2606 OID 61457668)
+-- TOC entry 3840 (class 2606 OID 61482147)
 -- Dependencies: 369 369
 -- Name: pk_evento; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7325,7 +7331,7 @@ ALTER TABLE ONLY evento
 
 
 --
--- TOC entry 3817 (class 2606 OID 61457632)
+-- TOC entry 3820 (class 2606 OID 61482111)
 -- Dependencies: 365 365
 -- Name: pk_formulario; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7335,7 +7341,7 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 3806 (class 2606 OID 61457610)
+-- TOC entry 3809 (class 2606 OID 61482089)
 -- Dependencies: 363 363
 -- Name: pk_include; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7345,7 +7351,7 @@ ALTER TABLE ONLY include
 
 
 --
--- TOC entry 3873 (class 2606 OID 61457747)
+-- TOC entry 3876 (class 2606 OID 61482226)
 -- Dependencies: 379 379
 -- Name: pk_link; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7355,7 +7361,7 @@ ALTER TABLE ONLY cpg_link
 
 
 --
--- TOC entry 3797 (class 2606 OID 61457594)
+-- TOC entry 3800 (class 2606 OID 61482073)
 -- Dependencies: 361 361
 -- Name: pk_log; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7365,7 +7371,7 @@ ALTER TABLE ONLY log
 
 
 --
--- TOC entry 3792 (class 2606 OID 61457583)
+-- TOC entry 3795 (class 2606 OID 61482062)
 -- Dependencies: 359 359
 -- Name: pk_mensagem; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7375,7 +7381,7 @@ ALTER TABLE ONLY mensagem
 
 
 --
--- TOC entry 3785 (class 2606 OID 61457568)
+-- TOC entry 3788 (class 2606 OID 61482047)
 -- Dependencies: 357 357
 -- Name: pk_metodo_validacao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7385,7 +7391,7 @@ ALTER TABLE ONLY metodo_validacao
 
 
 --
--- TOC entry 3779 (class 2606 OID 61457552)
+-- TOC entry 3782 (class 2606 OID 61482031)
 -- Dependencies: 355 355
 -- Name: pk_modulo; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7395,7 +7401,7 @@ ALTER TABLE ONLY modulo
 
 
 --
--- TOC entry 3765 (class 2606 OID 61457517)
+-- TOC entry 3768 (class 2606 OID 61481996)
 -- Dependencies: 351 351
 -- Name: pk_perfil; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7405,7 +7411,7 @@ ALTER TABLE ONLY perfil
 
 
 --
--- TOC entry 3759 (class 2606 OID 61457500)
+-- TOC entry 3762 (class 2606 OID 61481979)
 -- Dependencies: 349 349
 -- Name: pk_pessoa; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7415,7 +7421,7 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 3756 (class 2606 OID 61457487)
+-- TOC entry 3759 (class 2606 OID 61481966)
 -- Dependencies: 347 347
 -- Name: pk_pessoa_juridica; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7425,7 +7431,7 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 3865 (class 2606 OID 61457730)
+-- TOC entry 3868 (class 2606 OID 61482209)
 -- Dependencies: 377 377
 -- Name: pk_produto; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7435,7 +7441,7 @@ ALTER TABLE ONLY cpg_produto
 
 
 --
--- TOC entry 3745 (class 2606 OID 61457472)
+-- TOC entry 3748 (class 2606 OID 61481951)
 -- Dependencies: 345 345
 -- Name: pk_profissao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7445,7 +7451,7 @@ ALTER TABLE ONLY profissao
 
 
 --
--- TOC entry 3731 (class 2606 OID 61457438)
+-- TOC entry 3734 (class 2606 OID 61481917)
 -- Dependencies: 341 341
 -- Name: pk_template; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7455,7 +7461,7 @@ ALTER TABLE ONLY template
 
 
 --
--- TOC entry 3722 (class 2606 OID 61457420)
+-- TOC entry 3725 (class 2606 OID 61481899)
 -- Dependencies: 339 339
 -- Name: pk_tipo_categoria; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7465,7 +7471,7 @@ ALTER TABLE ONLY tipo_categoria
 
 
 --
--- TOC entry 3857 (class 2606 OID 61457715)
+-- TOC entry 3860 (class 2606 OID 61482194)
 -- Dependencies: 375 375
 -- Name: pk_token; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7475,7 +7481,7 @@ ALTER TABLE ONLY cpg_token
 
 
 --
--- TOC entry 3984 (class 2606 OID 61457952)
+-- TOC entry 3987 (class 2606 OID 61482431)
 -- Dependencies: 401 401 401 401
 -- Name: un_acao_aplicacao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7485,7 +7491,7 @@ ALTER TABLE ONLY acao_aplicacao
 
 
 --
--- TOC entry 3975 (class 2606 OID 61457934)
+-- TOC entry 3978 (class 2606 OID 61482413)
 -- Dependencies: 399 399 399
 -- Name: un_acao_evento; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7495,7 +7501,7 @@ ALTER TABLE ONLY acao_evento
 
 
 --
--- TOC entry 3966 (class 2606 OID 61457916)
+-- TOC entry 3969 (class 2606 OID 61482395)
 -- Dependencies: 397 397 397
 -- Name: un_ajuda; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7505,7 +7511,7 @@ ALTER TABLE ONLY ajuda
 
 
 --
--- TOC entry 3955 (class 2606 OID 61457895)
+-- TOC entry 3958 (class 2606 OID 61482374)
 -- Dependencies: 395 395 395 395
 -- Name: un_area_conhecimento; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7515,7 +7521,7 @@ ALTER TABLE ONLY area_conhecimento
 
 
 --
--- TOC entry 3945 (class 2606 OID 61457875)
+-- TOC entry 3948 (class 2606 OID 61482354)
 -- Dependencies: 393 393 393 393
 -- Name: un_area_economica; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7525,7 +7531,7 @@ ALTER TABLE ONLY area_economia
 
 
 --
--- TOC entry 3935 (class 2606 OID 61457855)
+-- TOC entry 3938 (class 2606 OID 61482334)
 -- Dependencies: 391 391 391 391
 -- Name: un_categoria; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7535,7 +7541,7 @@ ALTER TABLE ONLY categoria
 
 
 --
--- TOC entry 3903 (class 2606 OID 61457797)
+-- TOC entry 3906 (class 2606 OID 61482276)
 -- Dependencies: 385 385 385 385 385 385
 -- Name: un_codigo_acesso; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7545,7 +7551,7 @@ ALTER TABLE ONLY cpg_codigo_acesso
 
 
 --
--- TOC entry 3925 (class 2606 OID 61457835)
+-- TOC entry 3928 (class 2606 OID 61482314)
 -- Dependencies: 389 389 389
 -- Name: un_componente; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7555,7 +7561,7 @@ ALTER TABLE ONLY componente
 
 
 --
--- TOC entry 3916 (class 2606 OID 61457817)
+-- TOC entry 3919 (class 2606 OID 61482296)
 -- Dependencies: 387 387 387 387
 -- Name: un_cpg_arquivo; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7565,7 +7571,7 @@ ALTER TABLE ONLY cpg_arquivo
 
 
 --
--- TOC entry 3893 (class 2606 OID 61457780)
+-- TOC entry 3896 (class 2606 OID 61482259)
 -- Dependencies: 383 383 383 383 383 383 383
 -- Name: un_dados_bancarios; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7575,7 +7581,7 @@ ALTER TABLE ONLY cpg_dados_bancarios
 
 
 --
--- TOC entry 3851 (class 2606 OID 61457702)
+-- TOC entry 3854 (class 2606 OID 61482181)
 -- Dependencies: 373 373 373
 -- Name: un_dados_biometricos; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7585,7 +7591,7 @@ ALTER TABLE ONLY dados_biometricos
 
 
 --
--- TOC entry 3844 (class 2606 OID 61457687)
+-- TOC entry 3847 (class 2606 OID 61482166)
 -- Dependencies: 371 371 371
 -- Name: un_dicionario_expressao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7595,7 +7601,7 @@ ALTER TABLE ONLY dicionario_expressao
 
 
 --
--- TOC entry 3884 (class 2606 OID 61457765)
+-- TOC entry 3887 (class 2606 OID 61482244)
 -- Dependencies: 381 381 381 381 381
 -- Name: un_documento; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7605,7 +7611,7 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 
 --
--- TOC entry 3829 (class 2606 OID 61457652)
+-- TOC entry 3832 (class 2606 OID 61482131)
 -- Dependencies: 367 367 367
 -- Name: un_filter; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7615,7 +7621,7 @@ ALTER TABLE ONLY filter
 
 
 --
--- TOC entry 3819 (class 2606 OID 61457634)
+-- TOC entry 3822 (class 2606 OID 61482113)
 -- Dependencies: 365 365 365 365
 -- Name: un_formulario; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7625,7 +7631,7 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 3808 (class 2606 OID 61457614)
+-- TOC entry 3811 (class 2606 OID 61482093)
 -- Dependencies: 363 363 363
 -- Name: un_include; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7635,7 +7641,7 @@ ALTER TABLE ONLY include
 
 
 --
--- TOC entry 3875 (class 2606 OID 61457749)
+-- TOC entry 3878 (class 2606 OID 61482228)
 -- Dependencies: 379 379 379 379 379
 -- Name: un_link; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7645,7 +7651,7 @@ ALTER TABLE ONLY cpg_link
 
 
 --
--- TOC entry 3787 (class 2606 OID 61457570)
+-- TOC entry 3790 (class 2606 OID 61482049)
 -- Dependencies: 357 357 357
 -- Name: un_metodo_validacao; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7655,7 +7661,7 @@ ALTER TABLE ONLY metodo_validacao
 
 
 --
--- TOC entry 3767 (class 2606 OID 61457519)
+-- TOC entry 3770 (class 2606 OID 61481998)
 -- Dependencies: 351 351 351
 -- Name: un_perfil; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7665,7 +7671,7 @@ ALTER TABLE ONLY perfil
 
 
 --
--- TOC entry 3743 (class 2606 OID 61457456)
+-- TOC entry 3746 (class 2606 OID 61481935)
 -- Dependencies: 343 343 343
 -- Name: un_sequencia; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7675,7 +7681,7 @@ ALTER TABLE ONLY sequencia
 
 
 --
--- TOC entry 3729 (class 2606 OID 61457422)
+-- TOC entry 3732 (class 2606 OID 61481901)
 -- Dependencies: 339 339 339
 -- Name: un_tipo_categoria; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7685,7 +7691,7 @@ ALTER TABLE ONLY tipo_categoria
 
 
 --
--- TOC entry 3720 (class 2606 OID 61457401)
+-- TOC entry 3723 (class 2606 OID 61481880)
 -- Dependencies: 337 337
 -- Name: validator_pkey; Type: CONSTRAINT; Schema: basico; Owner: -; Tablespace: 
 --
@@ -7697,7 +7703,7 @@ ALTER TABLE ONLY validator
 SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
--- TOC entry 3710 (class 2606 OID 61457382)
+-- TOC entry 3713 (class 2606 OID 61481859)
 -- Dependencies: 335 335
 -- Name: pk_assoccl_ref_atrib_met_rec_post; Type: CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -7707,7 +7713,7 @@ ALTER TABLE ONLY assoccl_atrib_met_rec_post
 
 
 --
--- TOC entry 3702 (class 2606 OID 61457368)
+-- TOC entry 3705 (class 2606 OID 61481844)
 -- Dependencies: 333 333
 -- Name: pk_atributo_metodo_recup_post; Type: CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -7717,7 +7723,7 @@ ALTER TABLE ONLY atributo_metodo_recup_post
 
 
 --
--- TOC entry 3712 (class 2606 OID 61457384)
+-- TOC entry 3715 (class 2606 OID 61481862)
 -- Dependencies: 335 335 335 335
 -- Name: un_assoccl_atrib_met_rec_post; Type: CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -7727,7 +7733,7 @@ ALTER TABLE ONLY assoccl_atrib_met_rec_post
 
 
 --
--- TOC entry 3704 (class 2606 OID 61457370)
+-- TOC entry 3707 (class 2606 OID 61481846)
 -- Dependencies: 333 333 333
 -- Name: un_atributo_metodo_recup_post; Type: CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -7739,7 +7745,7 @@ ALTER TABLE ONLY atributo_metodo_recup_post
 SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
--- TOC entry 3696 (class 2606 OID 61457353)
+-- TOC entry 3699 (class 2606 OID 61481829)
 -- Dependencies: 331 331
 -- Name: pk_assoc_visao; Type: CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -7749,7 +7755,7 @@ ALTER TABLE ONLY assoc_visao
 
 
 --
--- TOC entry 3685 (class 2606 OID 61457333)
+-- TOC entry 3688 (class 2606 OID 61481809)
 -- Dependencies: 329 329
 -- Name: pk_assoccl_metodo_validacao; Type: CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -7759,7 +7765,7 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 
 --
--- TOC entry 3677 (class 2606 OID 61457319)
+-- TOC entry 3680 (class 2606 OID 61481795)
 -- Dependencies: 327 327
 -- Name: pk_assoccl_perfil; Type: CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -7769,7 +7775,7 @@ ALTER TABLE ONLY assoccl_perfil
 
 
 --
--- TOC entry 3687 (class 2606 OID 61457335)
+-- TOC entry 3690 (class 2606 OID 61481811)
 -- Dependencies: 329 329 329 329
 -- Name: un_assoccl_metodo_validacao; Type: CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -7779,7 +7785,7 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 
 --
--- TOC entry 3679 (class 2606 OID 61457321)
+-- TOC entry 3682 (class 2606 OID 61481797)
 -- Dependencies: 327 327 327
 -- Name: un_assoccl_perfil; Type: CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -7791,7 +7797,7 @@ ALTER TABLE ONLY assoccl_perfil
 SET search_path = basico_acao_evento, pg_catalog;
 
 --
--- TOC entry 3670 (class 2606 OID 61457305)
+-- TOC entry 3673 (class 2606 OID 61481781)
 -- Dependencies: 325 325
 -- Name: assoccl_include_pkey; Type: CONSTRAINT; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
@@ -7801,7 +7807,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3672 (class 2606 OID 61457307)
+-- TOC entry 3675 (class 2606 OID 61481783)
 -- Dependencies: 325 325 325
 -- Name: un_assoccl_include1; Type: CONSTRAINT; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
@@ -7813,7 +7819,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_ajuda, pg_catalog;
 
 --
--- TOC entry 3663 (class 2606 OID 61457291)
+-- TOC entry 3666 (class 2606 OID 61481767)
 -- Dependencies: 323 323
 -- Name: pk_assoccl_link; Type: CONSTRAINT; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
@@ -7823,7 +7829,7 @@ ALTER TABLE ONLY assoccl_link
 
 
 --
--- TOC entry 3665 (class 2606 OID 61457293)
+-- TOC entry 3668 (class 2606 OID 61481769)
 -- Dependencies: 323 323 323
 -- Name: un_assoccl_link; Type: CONSTRAINT; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
@@ -7835,7 +7841,7 @@ ALTER TABLE ONLY assoccl_link
 SET search_path = basico_assoc_banco, pg_catalog;
 
 --
--- TOC entry 3654 (class 2606 OID 61457275)
+-- TOC entry 3657 (class 2606 OID 61481751)
 -- Dependencies: 321 321
 -- Name: pk_assoc_tipo_conta; Type: CONSTRAINT; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -7845,7 +7851,7 @@ ALTER TABLE ONLY assoc_tipo_conta
 
 
 --
--- TOC entry 3656 (class 2606 OID 61457277)
+-- TOC entry 3659 (class 2606 OID 61481753)
 -- Dependencies: 321 321 321
 -- Name: un_assoc_tipo_conta_categoria; Type: CONSTRAINT; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -7855,7 +7861,7 @@ ALTER TABLE ONLY assoc_tipo_conta
 
 
 --
--- TOC entry 3658 (class 2606 OID 61457279)
+-- TOC entry 3661 (class 2606 OID 61481755)
 -- Dependencies: 321 321 321
 -- Name: un_assoc_tipo_conta_codigo; Type: CONSTRAINT; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -7867,7 +7873,7 @@ ALTER TABLE ONLY assoc_tipo_conta
 SET search_path = basico_assoc_chave_estrangeira, pg_catalog;
 
 --
--- TOC entry 3641 (class 2606 OID 61457258)
+-- TOC entry 3644 (class 2606 OID 61481734)
 -- Dependencies: 319 319
 -- Name: pk_relacao; Type: CONSTRAINT; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
@@ -7877,7 +7883,7 @@ ALTER TABLE ONLY relacao
 
 
 --
--- TOC entry 3646 (class 2606 OID 61457260)
+-- TOC entry 3649 (class 2606 OID 61481736)
 -- Dependencies: 319 319 319
 -- Name: un_relacao; Type: CONSTRAINT; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
@@ -7889,7 +7895,7 @@ ALTER TABLE ONLY relacao
 SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
--- TOC entry 3637 (class 2606 OID 61457244)
+-- TOC entry 3640 (class 2606 OID 61481720)
 -- Dependencies: 317 317
 -- Name: pk_assoccl_area_conhecimento; Type: CONSTRAINT; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
@@ -7899,7 +7905,7 @@ ALTER TABLE ONLY assoccl_area_conhecimento
 
 
 --
--- TOC entry 3639 (class 2606 OID 61457246)
+-- TOC entry 3642 (class 2606 OID 61481722)
 -- Dependencies: 317 317 317
 -- Name: un_assoc_dados_profis_area_conhec; Type: CONSTRAINT; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
@@ -7911,7 +7917,7 @@ ALTER TABLE ONLY assoccl_area_conhecimento
 SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
--- TOC entry 3632 (class 2606 OID 61457232)
+-- TOC entry 3635 (class 2606 OID 61481708)
 -- Dependencies: 315 315
 -- Name: pk_assoccl_pessoa_perfil_dados; Type: CONSTRAINT; Schema: basico_assoccl_pessoa_perfil; Owner: -; Tablespace: 
 --
@@ -7923,7 +7929,7 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_assoccl_tipo_vinculo, pg_catalog;
 
 --
--- TOC entry 3628 (class 2606 OID 61457219)
+-- TOC entry 3631 (class 2606 OID 61481695)
 -- Dependencies: 313 313
 -- Name: pk_assoc_dados_profissionais; Type: CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -7935,7 +7941,7 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_categoria, pg_catalog;
 
 --
--- TOC entry 3620 (class 2606 OID 61457206)
+-- TOC entry 3623 (class 2606 OID 61481682)
 -- Dependencies: 311 311
 -- Name: pk_assoc_categ_chave_estrang; Type: CONSTRAINT; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -7945,7 +7951,7 @@ ALTER TABLE ONLY assoc_chave_estrangeira
 
 
 --
--- TOC entry 3613 (class 2606 OID 61457193)
+-- TOC entry 3616 (class 2606 OID 61481669)
 -- Dependencies: 309 309
 -- Name: pk_assoc_evento_acao; Type: CONSTRAINT; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -7957,7 +7963,7 @@ ALTER TABLE ONLY assoc_evento_acao
 SET search_path = basico_componente, pg_catalog;
 
 --
--- TOC entry 3607 (class 2606 OID 61457179)
+-- TOC entry 3610 (class 2606 OID 61481655)
 -- Dependencies: 307 307
 -- Name: pk_componente_assoccl_include; Type: CONSTRAINT; Schema: basico_componente; Owner: -; Tablespace: 
 --
@@ -7967,7 +7973,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3609 (class 2606 OID 61457181)
+-- TOC entry 3612 (class 2606 OID 61481657)
 -- Dependencies: 307 307 307
 -- Name: un_assoccl_include_componente; Type: CONSTRAINT; Schema: basico_componente; Owner: -; Tablespace: 
 --
@@ -7979,7 +7985,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 3600 (class 2606 OID 61457165)
+-- TOC entry 3603 (class 2606 OID 61481641)
 -- Dependencies: 305 305
 -- Name: pk_email; Type: CONSTRAINT; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -7989,7 +7995,7 @@ ALTER TABLE ONLY cpg_email
 
 
 --
--- TOC entry 3590 (class 2606 OID 61457145)
+-- TOC entry 3593 (class 2606 OID 61481621)
 -- Dependencies: 303 303
 -- Name: pk_telefone; Type: CONSTRAINT; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -7999,7 +8005,7 @@ ALTER TABLE ONLY cpg_telefone
 
 
 --
--- TOC entry 3602 (class 2606 OID 61457167)
+-- TOC entry 3605 (class 2606 OID 61481643)
 -- Dependencies: 305 305 305 305
 -- Name: un_email; Type: CONSTRAINT; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -8009,7 +8015,7 @@ ALTER TABLE ONLY cpg_email
 
 
 --
--- TOC entry 3592 (class 2606 OID 61457147)
+-- TOC entry 3595 (class 2606 OID 61481623)
 -- Dependencies: 303 303 303 303 303 303 303
 -- Name: un_telefone; Type: CONSTRAINT; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -8021,7 +8027,7 @@ ALTER TABLE ONLY cpg_telefone
 SET search_path = basico_cvc, pg_catalog;
 
 --
--- TOC entry 3582 (class 2606 OID 61457126)
+-- TOC entry 3585 (class 2606 OID 61481602)
 -- Dependencies: 301 301
 -- Name: pk_cvc; Type: CONSTRAINT; Schema: basico_cvc; Owner: -; Tablespace: 
 --
@@ -8031,7 +8037,7 @@ ALTER TABLE ONLY cvc
 
 
 --
--- TOC entry 3584 (class 2606 OID 61457128)
+-- TOC entry 3587 (class 2606 OID 61481604)
 -- Dependencies: 301 301 301 301
 -- Name: un_cvc; Type: CONSTRAINT; Schema: basico_cvc; Owner: -; Tablespace: 
 --
@@ -8043,7 +8049,7 @@ ALTER TABLE ONLY cvc
 SET search_path = basico_dados_academicos, pg_catalog;
 
 --
--- TOC entry 3573 (class 2606 OID 61457111)
+-- TOC entry 3576 (class 2606 OID 61481587)
 -- Dependencies: 299 299
 -- Name: pk_titulacao; Type: CONSTRAINT; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
@@ -8055,7 +8061,7 @@ ALTER TABLE ONLY titulacao
 SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
--- TOC entry 3571 (class 2606 OID 61457095)
+-- TOC entry 3574 (class 2606 OID 61481571)
 -- Dependencies: 297 297
 -- Name: pk_assoc_pessoa; Type: CONSTRAINT; Schema: basico_dados_biometricos; Owner: -; Tablespace: 
 --
@@ -8067,7 +8073,7 @@ ALTER TABLE ONLY assoc_pessoa
 SET search_path = basico_dados_profissionais, pg_catalog;
 
 --
--- TOC entry 3558 (class 2606 OID 61457080)
+-- TOC entry 3561 (class 2606 OID 61481556)
 -- Dependencies: 295 295
 -- Name: pk_regime_trabalho; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8077,7 +8083,7 @@ ALTER TABLE ONLY regime_trabalho
 
 
 --
--- TOC entry 3549 (class 2606 OID 61457061)
+-- TOC entry 3552 (class 2606 OID 61481537)
 -- Dependencies: 293 293
 -- Name: pk_tipo_vinculo; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8087,7 +8093,7 @@ ALTER TABLE ONLY tipo_vinculo
 
 
 --
--- TOC entry 3540 (class 2606 OID 61457041)
+-- TOC entry 3543 (class 2606 OID 61481517)
 -- Dependencies: 291 291
 -- Name: pk_vinculo_empregaticio; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8097,7 +8103,7 @@ ALTER TABLE ONLY vinculo_empregaticio
 
 
 --
--- TOC entry 3566 (class 2606 OID 61457082)
+-- TOC entry 3569 (class 2606 OID 61481558)
 -- Dependencies: 295 295 295 295 295
 -- Name: un_regime_trabalho; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8107,7 +8113,7 @@ ALTER TABLE ONLY regime_trabalho
 
 
 --
--- TOC entry 3556 (class 2606 OID 61457063)
+-- TOC entry 3559 (class 2606 OID 61481539)
 -- Dependencies: 293 293 293 293
 -- Name: un_tipo_vinculo; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8117,7 +8123,7 @@ ALTER TABLE ONLY tipo_vinculo
 
 
 --
--- TOC entry 3542 (class 2606 OID 61457043)
+-- TOC entry 3545 (class 2606 OID 61481519)
 -- Dependencies: 291 291 291 291
 -- Name: un_vinculo_empregaticio; Type: CONSTRAINT; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -8129,7 +8135,7 @@ ALTER TABLE ONLY vinculo_empregaticio
 SET search_path = basico_filter, pg_catalog;
 
 --
--- TOC entry 3538 (class 2606 OID 61456951)
+-- TOC entry 3541 (class 2606 OID 61481427)
 -- Dependencies: 281 281
 -- Name: pk_filter_grupo; Type: CONSTRAINT; Schema: basico_filter; Owner: -; Tablespace: 
 --
@@ -8141,7 +8147,7 @@ ALTER TABLE ONLY grupo
 SET search_path = basico_filter_grupo, pg_catalog;
 
 --
--- TOC entry 3532 (class 2606 OID 61456935)
+-- TOC entry 3535 (class 2606 OID 61481411)
 -- Dependencies: 279 279
 -- Name: pk_grupo_assocag_filter; Type: CONSTRAINT; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
@@ -8153,7 +8159,7 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_form_assoccl_elem_grupo, pg_catalog;
 
 --
--- TOC entry 3524 (class 2606 OID 61456920)
+-- TOC entry 3527 (class 2606 OID 61481396)
 -- Dependencies: 277 277
 -- Name: pk_assoccl_decorator; Type: CONSTRAINT; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
@@ -8163,7 +8169,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3526 (class 2606 OID 61456922)
+-- TOC entry 3529 (class 2606 OID 61481398)
 -- Dependencies: 277 277 277
 -- Name: un_assoccl_decorator1; Type: CONSTRAINT; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
@@ -8175,17 +8181,7 @@ ALTER TABLE ONLY assoccl_decorator
 SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
--- TOC entry 3489 (class 2606 OID 61456846)
--- Dependencies: 267 267
--- Name: assoccl_validator_pkey; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY assoccl_validator
-    ADD CONSTRAINT assoccl_validator_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 3517 (class 2606 OID 61456906)
+-- TOC entry 3520 (class 2606 OID 61481382)
 -- Dependencies: 275 275
 -- Name: pk_assoccl_elemento; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8195,7 +8191,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3510 (class 2606 OID 61456891)
+-- TOC entry 3513 (class 2606 OID 61481366)
 -- Dependencies: 273 273
 -- Name: pk_assoccl_evento; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8205,7 +8201,7 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3503 (class 2606 OID 61456876)
+-- TOC entry 3506 (class 2606 OID 61481351)
 -- Dependencies: 271 271
 -- Name: pk_assoccl_filter; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8215,7 +8211,7 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 3496 (class 2606 OID 61456861)
+-- TOC entry 3499 (class 2606 OID 61481335)
 -- Dependencies: 269 269
 -- Name: pk_assoccl_include; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8225,7 +8221,17 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3484 (class 2606 OID 61456833)
+-- TOC entry 3492 (class 2606 OID 61481320)
+-- Dependencies: 267 267
+-- Name: pk_form_assoccl_elem_validator; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY assoccl_validator
+    ADD CONSTRAINT pk_form_assoccl_elem_validator PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3487 (class 2606 OID 61481306)
 -- Dependencies: 265 265
 -- Name: pk_grupo; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8235,27 +8241,27 @@ ALTER TABLE ONLY grupo
 
 
 --
--- TOC entry 3519 (class 2606 OID 61456908)
--- Dependencies: 275 275 275 275
+-- TOC entry 3522 (class 2606 OID 61481384)
+-- Dependencies: 275 275 275 275 275
 -- Name: un_assoccl_decorator_assoccl_elemento; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY assoccl_decorator
-    ADD CONSTRAINT un_assoccl_decorator_assoccl_elemento UNIQUE (id_assoccl_elemento, id_decorator, ordem);
+    ADD CONSTRAINT un_assoccl_decorator_assoccl_elemento UNIQUE (id_assoccl_elemento, id_decorator, ordem, id_decorator_grupo);
 
 
 --
--- TOC entry 3491 (class 2606 OID 61456848)
--- Dependencies: 267 267 267
+-- TOC entry 3494 (class 2606 OID 61481322)
+-- Dependencies: 267 267 267 267
 -- Name: un_assoccl_elemento1; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY assoccl_validator
-    ADD CONSTRAINT un_assoccl_elemento1 UNIQUE (id_assoccl_elemento, id_validator);
+    ADD CONSTRAINT un_assoccl_elemento1 UNIQUE (id_assoccl_elemento, id_validator, id_validator_grupo);
 
 
 --
--- TOC entry 3512 (class 2606 OID 61456893)
+-- TOC entry 3515 (class 2606 OID 61481368)
 -- Dependencies: 273 273 273 273
 -- Name: un_assoccl_evento2; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8265,17 +8271,17 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3505 (class 2606 OID 61456878)
--- Dependencies: 271 271 271
+-- TOC entry 3508 (class 2606 OID 61481353)
+-- Dependencies: 271 271 271 271
 -- Name: un_assoccl_filter1; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY assoccl_filter
-    ADD CONSTRAINT un_assoccl_filter1 UNIQUE (id_assoccl_elemento, id_filter);
+    ADD CONSTRAINT un_assoccl_filter1 UNIQUE (id_assoccl_elemento, id_filter, id_filter_grupo);
 
 
 --
--- TOC entry 3498 (class 2606 OID 61456863)
+-- TOC entry 3501 (class 2606 OID 61481337)
 -- Dependencies: 269 269 269
 -- Name: un_assoccl_include_assoccl_elemento; Type: CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -8287,7 +8293,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_form_decorator_grupo, pg_catalog;
 
 --
--- TOC entry 3478 (class 2606 OID 61456817)
+-- TOC entry 3481 (class 2606 OID 61481290)
 -- Dependencies: 263 263
 -- Name: pk_grupo_assocag_decorator; Type: CONSTRAINT; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -8299,7 +8305,7 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_formulario, pg_catalog;
 
 --
--- TOC entry 3470 (class 2606 OID 61456802)
+-- TOC entry 3473 (class 2606 OID 61481275)
 -- Dependencies: 261 261
 -- Name: pk_assoccl_decorator; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8309,7 +8315,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3460 (class 2606 OID 61456784)
+-- TOC entry 3463 (class 2606 OID 61481257)
 -- Dependencies: 259 259
 -- Name: pk_assoccl_elemento; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8319,7 +8325,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 3452 (class 2606 OID 61456766)
+-- TOC entry 3455 (class 2606 OID 61481239)
 -- Dependencies: 257 257
 -- Name: pk_assoccl_evento; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8329,7 +8335,7 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3437 (class 2606 OID 61456738)
+-- TOC entry 3440 (class 2606 OID 61481211)
 -- Dependencies: 253 253
 -- Name: pk_assoccl_modulo; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8339,7 +8345,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 3432 (class 2606 OID 61456726)
+-- TOC entry 3435 (class 2606 OID 61481199)
 -- Dependencies: 251 251
 -- Name: pk_decorator; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8349,7 +8355,7 @@ ALTER TABLE ONLY decorator
 
 
 --
--- TOC entry 3423 (class 2606 OID 61456708)
+-- TOC entry 3426 (class 2606 OID 61481181)
 -- Dependencies: 249 249
 -- Name: pk_elemento; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8359,7 +8365,7 @@ ALTER TABLE ONLY elemento
 
 
 --
--- TOC entry 3444 (class 2606 OID 61456752)
+-- TOC entry 3447 (class 2606 OID 61481225)
 -- Dependencies: 255 255
 -- Name: pk_formulario_assoccl_include; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8369,7 +8375,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3406 (class 2606 OID 61456690)
+-- TOC entry 3409 (class 2606 OID 61481163)
 -- Dependencies: 247 247
 -- Name: pk_rascunho; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8379,7 +8385,7 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 3472 (class 2606 OID 61456804)
+-- TOC entry 3475 (class 2606 OID 61481277)
 -- Dependencies: 261 261 261 261 261 261
 -- Name: un_assoccl_decorator; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8389,7 +8395,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3462 (class 2606 OID 61456788)
+-- TOC entry 3465 (class 2606 OID 61481261)
 -- Dependencies: 259 259 259 259
 -- Name: un_assoccl_elemento; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8399,7 +8405,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 3464 (class 2606 OID 61456786)
+-- TOC entry 3467 (class 2606 OID 61481259)
 -- Dependencies: 259 259 259
 -- Name: un_assoccl_elemento_element_name; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8409,7 +8415,7 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 3454 (class 2606 OID 61456768)
+-- TOC entry 3457 (class 2606 OID 61481241)
 -- Dependencies: 257 257 257 257 257
 -- Name: un_assoccl_evento1; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8419,7 +8425,7 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3446 (class 2606 OID 61456754)
+-- TOC entry 3449 (class 2606 OID 61481227)
 -- Dependencies: 255 255 255
 -- Name: un_assoccl_include_formulario; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8429,7 +8435,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3439 (class 2606 OID 61456740)
+-- TOC entry 3442 (class 2606 OID 61481213)
 -- Dependencies: 253 253 253
 -- Name: un_assoccl_modulo1; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8439,7 +8445,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 3425 (class 2606 OID 61456710)
+-- TOC entry 3428 (class 2606 OID 61481183)
 -- Dependencies: 249 249 249
 -- Name: un_formulario_elemento; Type: CONSTRAINT; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -8451,7 +8457,7 @@ ALTER TABLE ONLY elemento
 SET search_path = basico_formulario_decorator, pg_catalog;
 
 --
--- TOC entry 3402 (class 2606 OID 61456674)
+-- TOC entry 3405 (class 2606 OID 61481147)
 -- Dependencies: 245 245
 -- Name: pk_decorator_assoccl_include; Type: CONSTRAINT; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -8461,7 +8467,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3397 (class 2606 OID 61456662)
+-- TOC entry 3400 (class 2606 OID 61481135)
 -- Dependencies: 243 243
 -- Name: pk_grupo_decorator; Type: CONSTRAINT; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -8471,7 +8477,7 @@ ALTER TABLE ONLY grupo
 
 
 --
--- TOC entry 3404 (class 2606 OID 61456676)
+-- TOC entry 3407 (class 2606 OID 61481149)
 -- Dependencies: 245 245 245
 -- Name: un_assoccl_include_decorator; Type: CONSTRAINT; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -8483,7 +8489,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
--- TOC entry 3366 (class 2606 OID 61456597)
+-- TOC entry 3369 (class 2606 OID 61481070)
 -- Dependencies: 235 235
 -- Name: assoccl_validator_pkey; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8493,7 +8499,7 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 3389 (class 2606 OID 61456644)
+-- TOC entry 3392 (class 2606 OID 61481117)
 -- Dependencies: 241 241
 -- Name: pk_assoccl_decorator; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8503,7 +8509,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3381 (class 2606 OID 61456628)
+-- TOC entry 3384 (class 2606 OID 61481101)
 -- Dependencies: 239 239
 -- Name: pk_assoccl_evento; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8513,7 +8519,7 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3374 (class 2606 OID 61456613)
+-- TOC entry 3377 (class 2606 OID 61481086)
 -- Dependencies: 237 237
 -- Name: pk_assoccl_filter; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8523,7 +8529,7 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 3391 (class 2606 OID 61456646)
+-- TOC entry 3394 (class 2606 OID 61481119)
 -- Dependencies: 241 241 241 241 241 241
 -- Name: un_assoccl_decorator_elemento; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8533,7 +8539,7 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 3383 (class 2606 OID 61456630)
+-- TOC entry 3386 (class 2606 OID 61481103)
 -- Dependencies: 239 239 239 239 239
 -- Name: un_assoccl_evento; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8543,7 +8549,7 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 3376 (class 2606 OID 61456615)
+-- TOC entry 3379 (class 2606 OID 61481088)
 -- Dependencies: 237 237 237 237 237 237
 -- Name: un_assoccl_filter; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8553,7 +8559,7 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 3368 (class 2606 OID 61456599)
+-- TOC entry 3371 (class 2606 OID 61481072)
 -- Dependencies: 235 235 235 235 235
 -- Name: un_assoccl_validator; Type: CONSTRAINT; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -8565,7 +8571,7 @@ ALTER TABLE ONLY assoccl_validator
 SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
--- TOC entry 3360 (class 2606 OID 61456583)
+-- TOC entry 3363 (class 2606 OID 61481056)
 -- Dependencies: 233 233
 -- Name: pk_assocag_grupo; Type: CONSTRAINT; Schema: basico_formulario_rascunho; Owner: -; Tablespace: 
 --
@@ -8577,7 +8583,7 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_localizacao, pg_catalog;
 
 --
--- TOC entry 3295 (class 2606 OID 61456470)
+-- TOC entry 3298 (class 2606 OID 61480936)
 -- Dependencies: 219 219
 -- Name: pais_codigo_iso3166_key; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8587,7 +8593,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 3354 (class 2606 OID 61456568)
+-- TOC entry 3357 (class 2606 OID 61481033)
 -- Dependencies: 231 231
 -- Name: pk_assoc_bairro; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8597,7 +8603,7 @@ ALTER TABLE ONLY assoc_bairro
 
 
 --
--- TOC entry 3347 (class 2606 OID 61456552)
+-- TOC entry 3350 (class 2606 OID 61481017)
 -- Dependencies: 229 229
 -- Name: pk_assoc_estado; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8607,7 +8613,7 @@ ALTER TABLE ONLY assoc_estado
 
 
 --
--- TOC entry 3337 (class 2606 OID 61456535)
+-- TOC entry 3340 (class 2606 OID 61481000)
 -- Dependencies: 227 227
 -- Name: pk_assoc_logradouro; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8617,7 +8623,7 @@ ALTER TABLE ONLY assoc_logradouro
 
 
 --
--- TOC entry 3329 (class 2606 OID 61456519)
+-- TOC entry 3332 (class 2606 OID 61480984)
 -- Dependencies: 225 225
 -- Name: pk_assoc_municipio; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8627,7 +8633,7 @@ ALTER TABLE ONLY assoc_municipio
 
 
 --
--- TOC entry 3319 (class 2606 OID 61456502)
+-- TOC entry 3322 (class 2606 OID 61480967)
 -- Dependencies: 223 223
 -- Name: pk_codigo_postal; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8637,7 +8643,7 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 3307 (class 2606 OID 61456486)
+-- TOC entry 3310 (class 2606 OID 61480951)
 -- Dependencies: 221 221
 -- Name: pk_endereco; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8647,7 +8653,7 @@ ALTER TABLE ONLY cpg_endereco
 
 
 --
--- TOC entry 3300 (class 2606 OID 61456467)
+-- TOC entry 3303 (class 2606 OID 61480934)
 -- Dependencies: 219 219
 -- Name: pk_pais; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8657,7 +8663,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 3356 (class 2606 OID 61456570)
+-- TOC entry 3359 (class 2606 OID 61481035)
 -- Dependencies: 231 231 231
 -- Name: un_assoc_bairro; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8667,7 +8673,7 @@ ALTER TABLE ONLY assoc_bairro
 
 
 --
--- TOC entry 3339 (class 2606 OID 61456537)
+-- TOC entry 3342 (class 2606 OID 61481002)
 -- Dependencies: 227 227 227 227
 -- Name: un_assoc_logradouro; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8677,7 +8683,7 @@ ALTER TABLE ONLY assoc_logradouro
 
 
 --
--- TOC entry 3321 (class 2606 OID 61456504)
+-- TOC entry 3324 (class 2606 OID 61480969)
 -- Dependencies: 223 223 223
 -- Name: un_cep; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8687,7 +8693,7 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 3309 (class 2606 OID 61456488)
+-- TOC entry 3312 (class 2606 OID 61480953)
 -- Dependencies: 221 221 221
 -- Name: un_endereco; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8697,7 +8703,7 @@ ALTER TABLE ONLY cpg_endereco
 
 
 --
--- TOC entry 3349 (class 2606 OID 61456554)
+-- TOC entry 3352 (class 2606 OID 61481019)
 -- Dependencies: 229 229 229 229 229
 -- Name: un_estado_pais; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8707,7 +8713,7 @@ ALTER TABLE ONLY assoc_estado
 
 
 --
--- TOC entry 3331 (class 2606 OID 61456521)
+-- TOC entry 3334 (class 2606 OID 61480986)
 -- Dependencies: 225 225 225 225 225
 -- Name: un_municipio_estado; Type: CONSTRAINT; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -8719,7 +8725,7 @@ ALTER TABLE ONLY assoc_municipio
 SET search_path = basico_mensagem, pg_catalog;
 
 --
--- TOC entry 3293 (class 2606 OID 61456452)
+-- TOC entry 3296 (class 2606 OID 61480919)
 -- Dependencies: 217 217
 -- Name: pk_assoc_email; Type: CONSTRAINT; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -8729,7 +8735,7 @@ ALTER TABLE ONLY assoc_email
 
 
 --
--- TOC entry 3287 (class 2606 OID 61456438)
+-- TOC entry 3290 (class 2606 OID 61480905)
 -- Dependencies: 215 215
 -- Name: pk_assocl_assocl_pessoa_perfil; Type: CONSTRAINT; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -8739,7 +8745,7 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 
 --
--- TOC entry 3275 (class 2606 OID 61456423)
+-- TOC entry 3278 (class 2606 OID 61480890)
 -- Dependencies: 213 213
 -- Name: pk_template; Type: CONSTRAINT; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -8749,7 +8755,7 @@ ALTER TABLE ONLY template
 
 
 --
--- TOC entry 3289 (class 2606 OID 61456440)
+-- TOC entry 3292 (class 2606 OID 61480907)
 -- Dependencies: 215 215 215 215
 -- Name: un_assoccl_assoccl_pessoa_perfil; Type: CONSTRAINT; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -8759,7 +8765,7 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 
 --
--- TOC entry 3281 (class 2606 OID 61456425)
+-- TOC entry 3284 (class 2606 OID 61480892)
 -- Dependencies: 213 213 213 213
 -- Name: un_mensagem_template; Type: CONSTRAINT; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -8771,7 +8777,7 @@ ALTER TABLE ONLY template
 SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
--- TOC entry 3273 (class 2606 OID 61456404)
+-- TOC entry 3276 (class 2606 OID 61480871)
 -- Dependencies: 211 211
 -- Name: pk_assoc_dados; Type: CONSTRAINT; Schema: basico_mensagem_assoc_email; Owner: -; Tablespace: 
 --
@@ -8783,7 +8789,7 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
--- TOC entry 3267 (class 2606 OID 61456389)
+-- TOC entry 3270 (class 2606 OID 61480856)
 -- Dependencies: 209 209
 -- Name: pk_metodo_valid_assoccl_include; Type: CONSTRAINT; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -8793,7 +8799,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3269 (class 2606 OID 61456391)
+-- TOC entry 3272 (class 2606 OID 61480858)
 -- Dependencies: 209 209 209
 -- Name: un_assoccl_include; Type: CONSTRAINT; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -8805,7 +8811,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_output, pg_catalog;
 
 --
--- TOC entry 3260 (class 2606 OID 61456375)
+-- TOC entry 3263 (class 2606 OID 61480842)
 -- Dependencies: 207 207
 -- Name: pk_output_assoccl_include; Type: CONSTRAINT; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -8815,7 +8821,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3262 (class 2606 OID 61456377)
+-- TOC entry 3265 (class 2606 OID 61480844)
 -- Dependencies: 207 207 207
 -- Name: un_assoccl_include_output; Type: CONSTRAINT; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -8827,7 +8833,7 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_perfil, pg_catalog;
 
 --
--- TOC entry 3253 (class 2606 OID 61456361)
+-- TOC entry 3256 (class 2606 OID 61480828)
 -- Dependencies: 205 205
 -- Name: pk_assoccl_modulo; Type: CONSTRAINT; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -8837,7 +8843,7 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 3255 (class 2606 OID 61456363)
+-- TOC entry 3258 (class 2606 OID 61480830)
 -- Dependencies: 205 205 205
 -- Name: un_assoccl_modulo; Type: CONSTRAINT; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -8849,7 +8855,7 @@ ALTER TABLE ONLY assoccl_modulo
 SET search_path = basico_pessoa, pg_catalog;
 
 --
--- TOC entry 3229 (class 2606 OID 61456306)
+-- TOC entry 3232 (class 2606 OID 61480773)
 -- Dependencies: 197 197
 -- Name: login_login_key; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8859,7 +8865,7 @@ ALTER TABLE ONLY login
 
 
 --
--- TOC entry 3248 (class 2606 OID 61456349)
+-- TOC entry 3251 (class 2606 OID 61480816)
 -- Dependencies: 203 203
 -- Name: pk_assoc_dados; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8869,7 +8875,7 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 3241 (class 2606 OID 61456333)
+-- TOC entry 3244 (class 2606 OID 61480800)
 -- Dependencies: 201 201
 -- Name: pk_assoccl_perfil; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8879,7 +8885,7 @@ ALTER TABLE ONLY assoccl_perfil
 
 
 --
--- TOC entry 3236 (class 2606 OID 61456319)
+-- TOC entry 3239 (class 2606 OID 61480786)
 -- Dependencies: 199 199
 -- Name: pk_assoccl_vinculo_profissional; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8889,7 +8895,7 @@ ALTER TABLE ONLY assoccl_tipo_vinculo
 
 
 --
--- TOC entry 3231 (class 2606 OID 61456304)
+-- TOC entry 3234 (class 2606 OID 61480771)
 -- Dependencies: 197 197
 -- Name: pk_login; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8899,7 +8905,7 @@ ALTER TABLE ONLY login
 
 
 --
--- TOC entry 3243 (class 2606 OID 61456335)
+-- TOC entry 3246 (class 2606 OID 61480802)
 -- Dependencies: 201 201 201
 -- Name: un_assoccl_pessoa_perfil; Type: CONSTRAINT; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -8911,7 +8917,7 @@ ALTER TABLE ONLY assoccl_perfil
 SET search_path = basico_pessoa_juridica, pg_catalog;
 
 --
--- TOC entry 3225 (class 2606 OID 61456285)
+-- TOC entry 3228 (class 2606 OID 61480752)
 -- Dependencies: 195 195
 -- Name: pk_assoc_banco; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8921,7 +8927,7 @@ ALTER TABLE ONLY assoc_banco
 
 
 --
--- TOC entry 3219 (class 2606 OID 61456271)
+-- TOC entry 3222 (class 2606 OID 61480738)
 -- Dependencies: 193 193
 -- Name: pk_assoc_dados_pj; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8931,7 +8937,7 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 3210 (class 2606 OID 61456256)
+-- TOC entry 3213 (class 2606 OID 61480723)
 -- Dependencies: 191 191
 -- Name: pk_assocag_incubadora; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8941,7 +8947,7 @@ ALTER TABLE ONLY assocag_incubadora
 
 
 --
--- TOC entry 3202 (class 2606 OID 61456242)
+-- TOC entry 3205 (class 2606 OID 61480709)
 -- Dependencies: 189 189
 -- Name: pk_assocag_parceria; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8951,7 +8957,7 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 3192 (class 2606 OID 61456225)
+-- TOC entry 3195 (class 2606 OID 61480692)
 -- Dependencies: 187 187
 -- Name: pk_assoccl_area_economia; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8961,7 +8967,7 @@ ALTER TABLE ONLY assoccl_area_economia
 
 
 --
--- TOC entry 3185 (class 2606 OID 61456211)
+-- TOC entry 3188 (class 2606 OID 61480678)
 -- Dependencies: 185 185
 -- Name: pk_assoccl_capital_social; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8971,7 +8977,7 @@ ALTER TABLE ONLY assoccl_capital_social
 
 
 --
--- TOC entry 3178 (class 2606 OID 61456196)
+-- TOC entry 3181 (class 2606 OID 61480663)
 -- Dependencies: 183 183
 -- Name: pk_assoccl_faturamento; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8981,7 +8987,7 @@ ALTER TABLE ONLY assoccl_faturamento
 
 
 --
--- TOC entry 3171 (class 2606 OID 61456181)
+-- TOC entry 3174 (class 2606 OID 61480648)
 -- Dependencies: 181 181
 -- Name: pk_assoccl_quadro_funcionario; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -8991,7 +8997,7 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 
 --
--- TOC entry 3165 (class 2606 OID 61456168)
+-- TOC entry 3168 (class 2606 OID 61480635)
 -- Dependencies: 179 179
 -- Name: pk_capital_social; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9001,7 +9007,7 @@ ALTER TABLE ONLY capital_social
 
 
 --
--- TOC entry 3159 (class 2606 OID 61456152)
+-- TOC entry 3162 (class 2606 OID 61480619)
 -- Dependencies: 177 177
 -- Name: pk_natureza; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9011,7 +9017,7 @@ ALTER TABLE ONLY natureza
 
 
 --
--- TOC entry 3173 (class 2606 OID 61456183)
+-- TOC entry 3176 (class 2606 OID 61480650)
 -- Dependencies: 181 181 181 181 181
 -- Name: un_assoc_quadro_funcionarios; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9021,7 +9027,7 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 
 --
--- TOC entry 3204 (class 2606 OID 61456244)
+-- TOC entry 3207 (class 2606 OID 61480711)
 -- Dependencies: 189 189 189 189 189
 -- Name: un_assocag_parceria; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9031,7 +9037,7 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 3194 (class 2606 OID 61456227)
+-- TOC entry 3197 (class 2606 OID 61480694)
 -- Dependencies: 187 187 187
 -- Name: un_assoccl_area_economia; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9041,7 +9047,7 @@ ALTER TABLE ONLY assoccl_area_economia
 
 
 --
--- TOC entry 3187 (class 2606 OID 61456213)
+-- TOC entry 3190 (class 2606 OID 61480680)
 -- Dependencies: 185 185 185
 -- Name: un_assoccl_capital_social; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9051,7 +9057,7 @@ ALTER TABLE ONLY assoccl_capital_social
 
 
 --
--- TOC entry 3180 (class 2606 OID 61456198)
+-- TOC entry 3183 (class 2606 OID 61480665)
 -- Dependencies: 183 183 183 183 183
 -- Name: un_assoccl_faturamento; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9061,7 +9067,7 @@ ALTER TABLE ONLY assoccl_faturamento
 
 
 --
--- TOC entry 3212 (class 2606 OID 61456258)
+-- TOC entry 3215 (class 2606 OID 61480725)
 -- Dependencies: 191 191 191 191
 -- Name: un_incubadora; Type: CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -9073,7 +9079,7 @@ ALTER TABLE ONLY assocag_incubadora
 SET search_path = basico_sequencia, pg_catalog;
 
 --
--- TOC entry 3150 (class 2606 OID 61456134)
+-- TOC entry 3153 (class 2606 OID 61480601)
 -- Dependencies: 175 175
 -- Name: pk_assocsq_acao_aplicacao; Type: CONSTRAINT; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -9083,7 +9089,7 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 
 
 --
--- TOC entry 3152 (class 2606 OID 61456136)
+-- TOC entry 3155 (class 2606 OID 61480603)
 -- Dependencies: 175 175 175 175
 -- Name: un_assocsq_acao_aplicacao; Type: CONSTRAINT; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -9095,7 +9101,7 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 SET search_path = basico_template, pg_catalog;
 
 --
--- TOC entry 3132 (class 2606 OID 61456102)
+-- TOC entry 3135 (class 2606 OID 61480569)
 -- Dependencies: 171 171
 -- Name: pk_assoccl_output; Type: CONSTRAINT; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -9105,7 +9111,7 @@ ALTER TABLE ONLY assoccl_output
 
 
 --
--- TOC entry 3139 (class 2606 OID 61456116)
+-- TOC entry 3142 (class 2606 OID 61480583)
 -- Dependencies: 173 173
 -- Name: pk_template_assoccl_include; Type: CONSTRAINT; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -9115,7 +9121,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3141 (class 2606 OID 61456118)
+-- TOC entry 3144 (class 2606 OID 61480585)
 -- Dependencies: 173 173 173
 -- Name: un_assoccl_include_template; Type: CONSTRAINT; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -9125,7 +9131,7 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3134 (class 2606 OID 61456104)
+-- TOC entry 3137 (class 2606 OID 61480571)
 -- Dependencies: 171 171 171
 -- Name: un_assoccl_output; Type: CONSTRAINT; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -9137,7 +9143,7 @@ ALTER TABLE ONLY assoccl_output
 SET search_path = basico_validator, pg_catalog;
 
 --
--- TOC entry 3127 (class 2606 OID 61456090)
+-- TOC entry 3130 (class 2606 OID 61480557)
 -- Dependencies: 169 169
 -- Name: pk_validator_grupo; Type: CONSTRAINT; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -9149,7 +9155,7 @@ ALTER TABLE ONLY grupo
 SET search_path = basico_validator_grupo, pg_catalog;
 
 --
--- TOC entry 3121 (class 2606 OID 61456074)
+-- TOC entry 3124 (class 2606 OID 61480541)
 -- Dependencies: 167 167
 -- Name: pk_validator_assocag_grupo; Type: CONSTRAINT; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -9161,7 +9167,7 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico, pg_catalog;
 
 --
--- TOC entry 3976 (class 1259 OID 61459648)
+-- TOC entry 3979 (class 1259 OID 61484182)
 -- Dependencies: 401
 -- Name: acao_aplicacao_action; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9170,7 +9176,7 @@ CREATE INDEX acao_aplicacao_action ON acao_aplicacao USING btree (action);
 
 
 --
--- TOC entry 3977 (class 1259 OID 61459649)
+-- TOC entry 3980 (class 1259 OID 61484183)
 -- Dependencies: 401
 -- Name: acao_aplicacao_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9179,7 +9185,7 @@ CREATE INDEX acao_aplicacao_constante_textual ON acao_aplicacao USING btree (con
 
 
 --
--- TOC entry 3978 (class 1259 OID 61459647)
+-- TOC entry 3981 (class 1259 OID 61484181)
 -- Dependencies: 401
 -- Name: acao_aplicacao_controller; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9188,7 +9194,7 @@ CREATE INDEX acao_aplicacao_controller ON acao_aplicacao USING btree (controller
 
 
 --
--- TOC entry 3979 (class 1259 OID 61459645)
+-- TOC entry 3982 (class 1259 OID 61484179)
 -- Dependencies: 401
 -- Name: acao_aplicacao_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9197,7 +9203,7 @@ CREATE UNIQUE INDEX acao_aplicacao_id ON acao_aplicacao USING btree (id);
 
 
 --
--- TOC entry 3980 (class 1259 OID 61459646)
+-- TOC entry 3983 (class 1259 OID 61484180)
 -- Dependencies: 401
 -- Name: acao_aplicacao_id_modulo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9206,7 +9212,7 @@ CREATE INDEX acao_aplicacao_id_modulo ON acao_aplicacao USING btree (id_modulo);
 
 
 --
--- TOC entry 3967 (class 1259 OID 61459643)
+-- TOC entry 3970 (class 1259 OID 61484177)
 -- Dependencies: 399
 -- Name: acao_evento_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9215,7 +9221,7 @@ CREATE INDEX acao_evento_constante_textual ON acao_evento USING btree (constante
 
 
 --
--- TOC entry 3968 (class 1259 OID 61459644)
+-- TOC entry 3971 (class 1259 OID 61484178)
 -- Dependencies: 399
 -- Name: acao_evento_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9224,7 +9230,7 @@ CREATE INDEX acao_evento_constante_textual_descricao ON acao_evento USING btree 
 
 
 --
--- TOC entry 3969 (class 1259 OID 61459640)
+-- TOC entry 3972 (class 1259 OID 61484174)
 -- Dependencies: 399
 -- Name: acao_evento_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9233,7 +9239,7 @@ CREATE UNIQUE INDEX acao_evento_id ON acao_evento USING btree (id);
 
 
 --
--- TOC entry 3970 (class 1259 OID 61459641)
+-- TOC entry 3973 (class 1259 OID 61484175)
 -- Dependencies: 399
 -- Name: acao_evento_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9242,7 +9248,7 @@ CREATE INDEX acao_evento_id_categoria ON acao_evento USING btree (id_categoria);
 
 
 --
--- TOC entry 3971 (class 1259 OID 61459642)
+-- TOC entry 3974 (class 1259 OID 61484176)
 -- Dependencies: 399
 -- Name: acao_evento_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9251,7 +9257,7 @@ CREATE INDEX acao_evento_nome ON acao_evento USING btree (nome);
 
 
 --
--- TOC entry 3956 (class 1259 OID 61459636)
+-- TOC entry 3959 (class 1259 OID 61484170)
 -- Dependencies: 397
 -- Name: ajuda_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9260,7 +9266,7 @@ CREATE INDEX ajuda_constante_textual ON ajuda USING btree (constante_textual);
 
 
 --
--- TOC entry 3957 (class 1259 OID 61459638)
+-- TOC entry 3960 (class 1259 OID 61484172)
 -- Dependencies: 397
 -- Name: ajuda_constante_textual_ajuda; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9269,7 +9275,7 @@ CREATE INDEX ajuda_constante_textual_ajuda ON ajuda USING btree (constante_textu
 
 
 --
--- TOC entry 3958 (class 1259 OID 61459637)
+-- TOC entry 3961 (class 1259 OID 61484171)
 -- Dependencies: 397
 -- Name: ajuda_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9278,7 +9284,7 @@ CREATE INDEX ajuda_constante_textual_descricao ON ajuda USING btree (constante_t
 
 
 --
--- TOC entry 3959 (class 1259 OID 61459639)
+-- TOC entry 3962 (class 1259 OID 61484173)
 -- Dependencies: 397
 -- Name: ajuda_constante_textual_hint; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9287,7 +9293,7 @@ CREATE INDEX ajuda_constante_textual_hint ON ajuda USING btree (constante_textua
 
 
 --
--- TOC entry 3960 (class 1259 OID 61459633)
+-- TOC entry 3963 (class 1259 OID 61484167)
 -- Dependencies: 397
 -- Name: ajuda_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9296,7 +9302,7 @@ CREATE UNIQUE INDEX ajuda_id ON ajuda USING btree (id);
 
 
 --
--- TOC entry 3961 (class 1259 OID 61459634)
+-- TOC entry 3964 (class 1259 OID 61484168)
 -- Dependencies: 397
 -- Name: ajuda_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9305,7 +9311,7 @@ CREATE INDEX ajuda_id_categoria ON ajuda USING btree (id_categoria);
 
 
 --
--- TOC entry 3962 (class 1259 OID 61459635)
+-- TOC entry 3965 (class 1259 OID 61484169)
 -- Dependencies: 397
 -- Name: ajuda_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9314,7 +9320,7 @@ CREATE INDEX ajuda_nome ON ajuda USING btree (nome);
 
 
 --
--- TOC entry 3946 (class 1259 OID 61459632)
+-- TOC entry 3949 (class 1259 OID 61484166)
 -- Dependencies: 395
 -- Name: area_conhecimento_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9323,7 +9329,7 @@ CREATE INDEX area_conhecimento_codigo ON area_conhecimento USING btree (codigo);
 
 
 --
--- TOC entry 3947 (class 1259 OID 61459631)
+-- TOC entry 3950 (class 1259 OID 61484165)
 -- Dependencies: 395
 -- Name: area_conhecimento_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9332,7 +9338,7 @@ CREATE INDEX area_conhecimento_constante_textual ON area_conhecimento USING btre
 
 
 --
--- TOC entry 3948 (class 1259 OID 61459627)
+-- TOC entry 3951 (class 1259 OID 61484161)
 -- Dependencies: 395
 -- Name: area_conhecimento_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9341,7 +9347,7 @@ CREATE UNIQUE INDEX area_conhecimento_id ON area_conhecimento USING btree (id);
 
 
 --
--- TOC entry 3949 (class 1259 OID 61459628)
+-- TOC entry 3952 (class 1259 OID 61484162)
 -- Dependencies: 395
 -- Name: area_conhecimento_id_area_conhecimento_pai; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9350,7 +9356,7 @@ CREATE INDEX area_conhecimento_id_area_conhecimento_pai ON area_conhecimento USI
 
 
 --
--- TOC entry 3950 (class 1259 OID 61459629)
+-- TOC entry 3953 (class 1259 OID 61484163)
 -- Dependencies: 395
 -- Name: area_conhecimento_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9359,7 +9365,7 @@ CREATE INDEX area_conhecimento_id_categoria ON area_conhecimento USING btree (id
 
 
 --
--- TOC entry 3951 (class 1259 OID 61459630)
+-- TOC entry 3954 (class 1259 OID 61484164)
 -- Dependencies: 395
 -- Name: area_conhecimento_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9368,7 +9374,7 @@ CREATE INDEX area_conhecimento_nome ON area_conhecimento USING btree (nome);
 
 
 --
--- TOC entry 3936 (class 1259 OID 61459626)
+-- TOC entry 3939 (class 1259 OID 61484160)
 -- Dependencies: 393
 -- Name: area_economia_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9377,7 +9383,7 @@ CREATE INDEX area_economia_codigo ON area_economia USING btree (codigo);
 
 
 --
--- TOC entry 3937 (class 1259 OID 61459625)
+-- TOC entry 3940 (class 1259 OID 61484159)
 -- Dependencies: 393
 -- Name: area_economia_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9386,7 +9392,7 @@ CREATE INDEX area_economia_constante_textual ON area_economia USING btree (const
 
 
 --
--- TOC entry 3938 (class 1259 OID 61459621)
+-- TOC entry 3941 (class 1259 OID 61484155)
 -- Dependencies: 393
 -- Name: area_economia_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9395,7 +9401,7 @@ CREATE UNIQUE INDEX area_economia_id ON area_economia USING btree (id);
 
 
 --
--- TOC entry 3939 (class 1259 OID 61459622)
+-- TOC entry 3942 (class 1259 OID 61484156)
 -- Dependencies: 393
 -- Name: area_economia_id_area_economia_pai; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9404,7 +9410,7 @@ CREATE INDEX area_economia_id_area_economia_pai ON area_economia USING btree (id
 
 
 --
--- TOC entry 3940 (class 1259 OID 61459623)
+-- TOC entry 3943 (class 1259 OID 61484157)
 -- Dependencies: 393
 -- Name: area_economia_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9413,7 +9419,7 @@ CREATE INDEX area_economia_id_categoria ON area_economia USING btree (id_categor
 
 
 --
--- TOC entry 3941 (class 1259 OID 61459624)
+-- TOC entry 3944 (class 1259 OID 61484158)
 -- Dependencies: 393
 -- Name: area_economia_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9422,7 +9428,7 @@ CREATE INDEX area_economia_nome ON area_economia USING btree (nome);
 
 
 --
--- TOC entry 3926 (class 1259 OID 61459620)
+-- TOC entry 3929 (class 1259 OID 61484154)
 -- Dependencies: 391
 -- Name: categoria_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9431,7 +9437,7 @@ CREATE INDEX categoria_codigo ON categoria USING btree (codigo);
 
 
 --
--- TOC entry 3927 (class 1259 OID 61459619)
+-- TOC entry 3930 (class 1259 OID 61484153)
 -- Dependencies: 391
 -- Name: categoria_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9440,7 +9446,7 @@ CREATE INDEX categoria_constante_textual ON categoria USING btree (constante_tex
 
 
 --
--- TOC entry 3928 (class 1259 OID 61459615)
+-- TOC entry 3931 (class 1259 OID 61484149)
 -- Dependencies: 391
 -- Name: categoria_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9449,7 +9455,7 @@ CREATE UNIQUE INDEX categoria_id ON categoria USING btree (id);
 
 
 --
--- TOC entry 3929 (class 1259 OID 61459617)
+-- TOC entry 3932 (class 1259 OID 61484151)
 -- Dependencies: 391
 -- Name: categoria_id_categoria_pai; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9458,7 +9464,7 @@ CREATE INDEX categoria_id_categoria_pai ON categoria USING btree (id_categoria_p
 
 
 --
--- TOC entry 3930 (class 1259 OID 61459616)
+-- TOC entry 3933 (class 1259 OID 61484150)
 -- Dependencies: 391
 -- Name: categoria_id_tipo_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9467,7 +9473,7 @@ CREATE INDEX categoria_id_tipo_categoria ON categoria USING btree (id_tipo_categ
 
 
 --
--- TOC entry 3931 (class 1259 OID 61459618)
+-- TOC entry 3934 (class 1259 OID 61484152)
 -- Dependencies: 391
 -- Name: categoria_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9476,7 +9482,7 @@ CREATE INDEX categoria_nome ON categoria USING btree (nome);
 
 
 --
--- TOC entry 3917 (class 1259 OID 61459613)
+-- TOC entry 3920 (class 1259 OID 61484147)
 -- Dependencies: 389
 -- Name: componente_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9485,7 +9491,7 @@ CREATE INDEX componente_constante_textual ON componente USING btree (constante_t
 
 
 --
--- TOC entry 3918 (class 1259 OID 61459614)
+-- TOC entry 3921 (class 1259 OID 61484148)
 -- Dependencies: 389
 -- Name: componente_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9494,7 +9500,7 @@ CREATE INDEX componente_constante_textual_descricao ON componente USING btree (c
 
 
 --
--- TOC entry 3919 (class 1259 OID 61459610)
+-- TOC entry 3922 (class 1259 OID 61484144)
 -- Dependencies: 389
 -- Name: componente_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9503,7 +9509,7 @@ CREATE UNIQUE INDEX componente_id ON componente USING btree (id);
 
 
 --
--- TOC entry 3920 (class 1259 OID 61459611)
+-- TOC entry 3923 (class 1259 OID 61484145)
 -- Dependencies: 389
 -- Name: componente_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9512,7 +9518,7 @@ CREATE INDEX componente_id_categoria ON componente USING btree (id_categoria);
 
 
 --
--- TOC entry 3921 (class 1259 OID 61459612)
+-- TOC entry 3924 (class 1259 OID 61484146)
 -- Dependencies: 389
 -- Name: componente_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9521,7 +9527,7 @@ CREATE INDEX componente_nome ON componente USING btree (nome);
 
 
 --
--- TOC entry 3904 (class 1259 OID 61459601)
+-- TOC entry 3907 (class 1259 OID 61484135)
 -- Dependencies: 387
 -- Name: cpg_arquivo_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9530,7 +9536,7 @@ CREATE UNIQUE INDEX cpg_arquivo_id ON cpg_arquivo USING btree (id);
 
 
 --
--- TOC entry 3905 (class 1259 OID 61459602)
+-- TOC entry 3908 (class 1259 OID 61484136)
 -- Dependencies: 387
 -- Name: cpg_arquivo_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9539,7 +9545,7 @@ CREATE INDEX cpg_arquivo_id_categoria ON cpg_arquivo USING btree (id_categoria);
 
 
 --
--- TOC entry 3906 (class 1259 OID 61459603)
+-- TOC entry 3909 (class 1259 OID 61484137)
 -- Dependencies: 387
 -- Name: cpg_arquivo_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9548,7 +9554,7 @@ CREATE INDEX cpg_arquivo_id_generico_proprietario ON cpg_arquivo USING btree (id
 
 
 --
--- TOC entry 3907 (class 1259 OID 61459607)
+-- TOC entry 3910 (class 1259 OID 61484141)
 -- Dependencies: 387
 -- Name: cpg_arquivo_mime_type; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9557,7 +9563,7 @@ CREATE INDEX cpg_arquivo_mime_type ON cpg_arquivo USING btree (mime_type);
 
 
 --
--- TOC entry 3908 (class 1259 OID 61459604)
+-- TOC entry 3911 (class 1259 OID 61484138)
 -- Dependencies: 387
 -- Name: cpg_arquivo_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9566,7 +9572,7 @@ CREATE INDEX cpg_arquivo_nome ON cpg_arquivo USING btree (nome);
 
 
 --
--- TOC entry 3909 (class 1259 OID 61459605)
+-- TOC entry 3912 (class 1259 OID 61484139)
 -- Dependencies: 387
 -- Name: cpg_arquivo_nome_original; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9575,7 +9581,7 @@ CREATE INDEX cpg_arquivo_nome_original ON cpg_arquivo USING btree (nome_original
 
 
 --
--- TOC entry 3910 (class 1259 OID 61459606)
+-- TOC entry 3913 (class 1259 OID 61484140)
 -- Dependencies: 387
 -- Name: cpg_arquivo_nome_sugestao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9584,7 +9590,7 @@ CREATE INDEX cpg_arquivo_nome_sugestao ON cpg_arquivo USING btree (nome_sugestao
 
 
 --
--- TOC entry 3911 (class 1259 OID 61459609)
+-- TOC entry 3914 (class 1259 OID 61484143)
 -- Dependencies: 387
 -- Name: cpg_arquivo_remoto; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9593,7 +9599,7 @@ CREATE INDEX cpg_arquivo_remoto ON cpg_arquivo USING btree (remoto);
 
 
 --
--- TOC entry 3912 (class 1259 OID 61459608)
+-- TOC entry 3915 (class 1259 OID 61484142)
 -- Dependencies: 387
 -- Name: cpg_arquivo_uri; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9602,7 +9608,7 @@ CREATE INDEX cpg_arquivo_uri ON cpg_arquivo USING btree (uri);
 
 
 --
--- TOC entry 3894 (class 1259 OID 61459600)
+-- TOC entry 3897 (class 1259 OID 61484134)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9611,7 +9617,7 @@ CREATE UNIQUE INDEX cpg_codigo_acesso_codigo ON cpg_codigo_acesso USING btree (c
 
 
 --
--- TOC entry 3895 (class 1259 OID 61459595)
+-- TOC entry 3898 (class 1259 OID 61484129)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9620,7 +9626,7 @@ CREATE UNIQUE INDEX cpg_codigo_acesso_id ON cpg_codigo_acesso USING btree (id);
 
 
 --
--- TOC entry 3896 (class 1259 OID 61459598)
+-- TOC entry 3899 (class 1259 OID 61484132)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_id_categoria_acesso; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9629,7 +9635,7 @@ CREATE INDEX cpg_codigo_acesso_id_categoria_acesso ON cpg_codigo_acesso USING bt
 
 
 --
--- TOC entry 3897 (class 1259 OID 61459596)
+-- TOC entry 3900 (class 1259 OID 61484130)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_id_categoria_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9638,7 +9644,7 @@ CREATE INDEX cpg_codigo_acesso_id_categoria_proprietario ON cpg_codigo_acesso US
 
 
 --
--- TOC entry 3898 (class 1259 OID 61459599)
+-- TOC entry 3901 (class 1259 OID 61484133)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_id_generico_acesso; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9647,7 +9653,7 @@ CREATE INDEX cpg_codigo_acesso_id_generico_acesso ON cpg_codigo_acesso USING btr
 
 
 --
--- TOC entry 3899 (class 1259 OID 61459597)
+-- TOC entry 3902 (class 1259 OID 61484131)
 -- Dependencies: 385
 -- Name: cpg_codigo_acesso_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9656,7 +9662,7 @@ CREATE INDEX cpg_codigo_acesso_id_generico_proprietario ON cpg_codigo_acesso USI
 
 
 --
--- TOC entry 3885 (class 1259 OID 61459590)
+-- TOC entry 3888 (class 1259 OID 61484124)
 -- Dependencies: 383
 -- Name: cpg_dados_bancarios_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9665,7 +9671,7 @@ CREATE UNIQUE INDEX cpg_dados_bancarios_id ON cpg_dados_bancarios USING btree (i
 
 
 --
--- TOC entry 3886 (class 1259 OID 61459591)
+-- TOC entry 3889 (class 1259 OID 61484125)
 -- Dependencies: 383
 -- Name: cpg_dados_bancarios_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9674,7 +9680,7 @@ CREATE INDEX cpg_dados_bancarios_id_categoria ON cpg_dados_bancarios USING btree
 
 
 --
--- TOC entry 3887 (class 1259 OID 61459592)
+-- TOC entry 3890 (class 1259 OID 61484126)
 -- Dependencies: 383
 -- Name: cpg_dados_bancarios_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9683,7 +9689,7 @@ CREATE INDEX cpg_dados_bancarios_id_generico_proprietario ON cpg_dados_bancarios
 
 
 --
--- TOC entry 3888 (class 1259 OID 61459594)
+-- TOC entry 3891 (class 1259 OID 61484128)
 -- Dependencies: 383
 -- Name: cpg_dados_bancarios_nome_banco; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9692,7 +9698,7 @@ CREATE INDEX cpg_dados_bancarios_nome_banco ON cpg_dados_bancarios USING btree (
 
 
 --
--- TOC entry 3889 (class 1259 OID 61459593)
+-- TOC entry 3892 (class 1259 OID 61484127)
 -- Dependencies: 383
 -- Name: cpg_dados_bancarios_numero_banco; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9701,7 +9707,7 @@ CREATE INDEX cpg_dados_bancarios_numero_banco ON cpg_dados_bancarios USING btree
 
 
 --
--- TOC entry 3876 (class 1259 OID 61459585)
+-- TOC entry 3879 (class 1259 OID 61484119)
 -- Dependencies: 381
 -- Name: cpg_documento_identificacao_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9710,7 +9716,7 @@ CREATE UNIQUE INDEX cpg_documento_identificacao_id ON cpg_documento_identificaca
 
 
 --
--- TOC entry 3877 (class 1259 OID 61459586)
+-- TOC entry 3880 (class 1259 OID 61484120)
 -- Dependencies: 381
 -- Name: cpg_documento_identificacao_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9719,7 +9725,7 @@ CREATE INDEX cpg_documento_identificacao_id_categoria ON cpg_documento_identific
 
 
 --
--- TOC entry 3878 (class 1259 OID 61459587)
+-- TOC entry 3881 (class 1259 OID 61484121)
 -- Dependencies: 381
 -- Name: cpg_documento_identificacao_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9728,7 +9734,7 @@ CREATE INDEX cpg_documento_identificacao_id_generico_proprietario ON cpg_documen
 
 
 --
--- TOC entry 3879 (class 1259 OID 61459588)
+-- TOC entry 3882 (class 1259 OID 61484122)
 -- Dependencies: 381
 -- Name: cpg_documento_identificacao_id_pessoa_juridica_emissor; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9737,7 +9743,7 @@ CREATE INDEX cpg_documento_identificacao_id_pessoa_juridica_emissor ON cpg_docum
 
 
 --
--- TOC entry 3880 (class 1259 OID 61459589)
+-- TOC entry 3883 (class 1259 OID 61484123)
 -- Dependencies: 381
 -- Name: cpg_documento_identificacao_identificador; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9746,7 +9752,7 @@ CREATE INDEX cpg_documento_identificacao_identificador ON cpg_documento_identifi
 
 
 --
--- TOC entry 3866 (class 1259 OID 61459583)
+-- TOC entry 3869 (class 1259 OID 61484117)
 -- Dependencies: 379
 -- Name: cpg_link_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9755,7 +9761,7 @@ CREATE INDEX cpg_link_constante_textual ON cpg_link USING btree (constante_textu
 
 
 --
--- TOC entry 3867 (class 1259 OID 61459579)
+-- TOC entry 3870 (class 1259 OID 61484113)
 -- Dependencies: 379
 -- Name: cpg_link_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9764,7 +9770,7 @@ CREATE UNIQUE INDEX cpg_link_id ON cpg_link USING btree (id);
 
 
 --
--- TOC entry 3868 (class 1259 OID 61459580)
+-- TOC entry 3871 (class 1259 OID 61484114)
 -- Dependencies: 379
 -- Name: cpg_link_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9773,7 +9779,7 @@ CREATE INDEX cpg_link_id_categoria ON cpg_link USING btree (id_categoria);
 
 
 --
--- TOC entry 3869 (class 1259 OID 61459581)
+-- TOC entry 3872 (class 1259 OID 61484115)
 -- Dependencies: 379
 -- Name: cpg_link_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9782,7 +9788,7 @@ CREATE INDEX cpg_link_id_generico_proprietario ON cpg_link USING btree (id_gener
 
 
 --
--- TOC entry 3870 (class 1259 OID 61459582)
+-- TOC entry 3873 (class 1259 OID 61484116)
 -- Dependencies: 379
 -- Name: cpg_link_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9791,7 +9797,7 @@ CREATE INDEX cpg_link_nome ON cpg_link USING btree (nome);
 
 
 --
--- TOC entry 3871 (class 1259 OID 61459584)
+-- TOC entry 3874 (class 1259 OID 61484118)
 -- Dependencies: 379
 -- Name: cpg_link_url; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9800,7 +9806,7 @@ CREATE INDEX cpg_link_url ON cpg_link USING btree (url);
 
 
 --
--- TOC entry 3858 (class 1259 OID 61459578)
+-- TOC entry 3861 (class 1259 OID 61484112)
 -- Dependencies: 377
 -- Name: cpg_produto_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9809,7 +9815,7 @@ CREATE INDEX cpg_produto_constante_textual ON cpg_produto USING btree (constante
 
 
 --
--- TOC entry 3859 (class 1259 OID 61459573)
+-- TOC entry 3862 (class 1259 OID 61484107)
 -- Dependencies: 377
 -- Name: cpg_produto_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9818,7 +9824,7 @@ CREATE UNIQUE INDEX cpg_produto_id ON cpg_produto USING btree (id);
 
 
 --
--- TOC entry 3860 (class 1259 OID 61459574)
+-- TOC entry 3863 (class 1259 OID 61484108)
 -- Dependencies: 377
 -- Name: cpg_produto_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9827,7 +9833,7 @@ CREATE INDEX cpg_produto_id_categoria ON cpg_produto USING btree (id_categoria);
 
 
 --
--- TOC entry 3861 (class 1259 OID 61459576)
+-- TOC entry 3864 (class 1259 OID 61484110)
 -- Dependencies: 377
 -- Name: cpg_produto_id_categoria_moeda; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9836,7 +9842,7 @@ CREATE INDEX cpg_produto_id_categoria_moeda ON cpg_produto USING btree (id_categ
 
 
 --
--- TOC entry 3862 (class 1259 OID 61459575)
+-- TOC entry 3865 (class 1259 OID 61484109)
 -- Dependencies: 377
 -- Name: cpg_produto_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9845,7 +9851,7 @@ CREATE INDEX cpg_produto_id_generico_proprietario ON cpg_produto USING btree (id
 
 
 --
--- TOC entry 3863 (class 1259 OID 61459577)
+-- TOC entry 3866 (class 1259 OID 61484111)
 -- Dependencies: 377
 -- Name: cpg_produto_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9854,7 +9860,7 @@ CREATE INDEX cpg_produto_nome ON cpg_produto USING btree (nome);
 
 
 --
--- TOC entry 3852 (class 1259 OID 61459569)
+-- TOC entry 3855 (class 1259 OID 61484103)
 -- Dependencies: 375
 -- Name: cpg_token_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9863,7 +9869,7 @@ CREATE UNIQUE INDEX cpg_token_id ON cpg_token USING btree (id);
 
 
 --
--- TOC entry 3853 (class 1259 OID 61459570)
+-- TOC entry 3856 (class 1259 OID 61484104)
 -- Dependencies: 375
 -- Name: cpg_token_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9872,7 +9878,7 @@ CREATE INDEX cpg_token_id_categoria ON cpg_token USING btree (id_categoria);
 
 
 --
--- TOC entry 3854 (class 1259 OID 61459571)
+-- TOC entry 3857 (class 1259 OID 61484105)
 -- Dependencies: 375
 -- Name: cpg_token_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9881,7 +9887,7 @@ CREATE INDEX cpg_token_id_generico_proprietario ON cpg_token USING btree (id_gen
 
 
 --
--- TOC entry 3855 (class 1259 OID 61459572)
+-- TOC entry 3858 (class 1259 OID 61484106)
 -- Dependencies: 375
 -- Name: cpg_token_token; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9890,7 +9896,7 @@ CREATE UNIQUE INDEX cpg_token_token ON cpg_token USING btree (token);
 
 
 --
--- TOC entry 3845 (class 1259 OID 61459566)
+-- TOC entry 3848 (class 1259 OID 61484100)
 -- Dependencies: 373
 -- Name: dados_biometricos_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9899,7 +9905,7 @@ CREATE UNIQUE INDEX dados_biometricos_id ON dados_biometricos USING btree (id);
 
 
 --
--- TOC entry 3846 (class 1259 OID 61459567)
+-- TOC entry 3849 (class 1259 OID 61484101)
 -- Dependencies: 373
 -- Name: dados_biometricos_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9908,7 +9914,7 @@ CREATE INDEX dados_biometricos_id_categoria ON dados_biometricos USING btree (id
 
 
 --
--- TOC entry 3847 (class 1259 OID 61459568)
+-- TOC entry 3850 (class 1259 OID 61484102)
 -- Dependencies: 373
 -- Name: dados_biometricos_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9917,7 +9923,7 @@ CREATE INDEX dados_biometricos_id_generico_proprietario ON dados_biometricos USI
 
 
 --
--- TOC entry 3838 (class 1259 OID 61459565)
+-- TOC entry 3841 (class 1259 OID 61484099)
 -- Dependencies: 371
 -- Name: dicionario_expressao_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9926,7 +9932,7 @@ CREATE INDEX dicionario_expressao_constante_textual ON dicionario_expressao USIN
 
 
 --
--- TOC entry 3839 (class 1259 OID 61459563)
+-- TOC entry 3842 (class 1259 OID 61484097)
 -- Dependencies: 371
 -- Name: dicionario_expressao_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9935,7 +9941,7 @@ CREATE UNIQUE INDEX dicionario_expressao_id ON dicionario_expressao USING btree 
 
 
 --
--- TOC entry 3840 (class 1259 OID 61459564)
+-- TOC entry 3843 (class 1259 OID 61484098)
 -- Dependencies: 371
 -- Name: dicionario_expressao_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9944,7 +9950,7 @@ CREATE INDEX dicionario_expressao_id_categoria ON dicionario_expressao USING btr
 
 
 --
--- TOC entry 3830 (class 1259 OID 61459562)
+-- TOC entry 3833 (class 1259 OID 61484096)
 -- Dependencies: 369
 -- Name: evento_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9953,7 +9959,7 @@ CREATE INDEX evento_constante_textual ON evento USING btree (constante_textual);
 
 
 --
--- TOC entry 3833 (class 1259 OID 61459558)
+-- TOC entry 3836 (class 1259 OID 61484093)
 -- Dependencies: 369
 -- Name: evento_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9962,7 +9968,7 @@ CREATE UNIQUE INDEX evento_id ON evento USING btree (id);
 
 
 --
--- TOC entry 3834 (class 1259 OID 61459559)
+-- TOC entry 3837 (class 1259 OID 61484094)
 -- Dependencies: 369
 -- Name: evento_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9971,7 +9977,7 @@ CREATE INDEX evento_id_categoria ON evento USING btree (id_categoria);
 
 
 --
--- TOC entry 3835 (class 1259 OID 61459560)
+-- TOC entry 3838 (class 1259 OID 61484095)
 -- Dependencies: 369
 -- Name: evento_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9980,7 +9986,7 @@ CREATE UNIQUE INDEX evento_nome ON evento USING btree (nome);
 
 
 --
--- TOC entry 3820 (class 1259 OID 61459556)
+-- TOC entry 3823 (class 1259 OID 61484091)
 -- Dependencies: 367
 -- Name: filter_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9989,7 +9995,7 @@ CREATE INDEX filter_constante_textual ON filter USING btree (constante_textual);
 
 
 --
--- TOC entry 3821 (class 1259 OID 61459557)
+-- TOC entry 3824 (class 1259 OID 61484092)
 -- Dependencies: 367
 -- Name: filter_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -9998,7 +10004,7 @@ CREATE INDEX filter_constante_textual_descricao ON filter USING btree (constante
 
 
 --
--- TOC entry 3822 (class 1259 OID 61459552)
+-- TOC entry 3825 (class 1259 OID 61484087)
 -- Dependencies: 367
 -- Name: filter_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10007,7 +10013,7 @@ CREATE UNIQUE INDEX filter_id ON filter USING btree (id);
 
 
 --
--- TOC entry 3823 (class 1259 OID 61459553)
+-- TOC entry 3826 (class 1259 OID 61484088)
 -- Dependencies: 367
 -- Name: filter_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10016,7 +10022,7 @@ CREATE INDEX filter_id_categoria ON filter USING btree (id_categoria);
 
 
 --
--- TOC entry 3824 (class 1259 OID 61459554)
+-- TOC entry 3827 (class 1259 OID 61484089)
 -- Dependencies: 367
 -- Name: filter_id_componente; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10025,7 +10031,7 @@ CREATE INDEX filter_id_componente ON filter USING btree (id_componente);
 
 
 --
--- TOC entry 3825 (class 1259 OID 61459555)
+-- TOC entry 3828 (class 1259 OID 61484090)
 -- Dependencies: 367
 -- Name: filter_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10034,7 +10040,7 @@ CREATE INDEX filter_nome ON filter USING btree (nome);
 
 
 --
--- TOC entry 3809 (class 1259 OID 61459550)
+-- TOC entry 3812 (class 1259 OID 61484085)
 -- Dependencies: 365
 -- Name: formulario_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10043,7 +10049,7 @@ CREATE INDEX formulario_constante_textual ON formulario USING btree (constante_t
 
 
 --
--- TOC entry 3810 (class 1259 OID 61459551)
+-- TOC entry 3813 (class 1259 OID 61484086)
 -- Dependencies: 365
 -- Name: formulario_form_name; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10052,7 +10058,7 @@ CREATE INDEX formulario_form_name ON formulario USING btree (form_name);
 
 
 --
--- TOC entry 3811 (class 1259 OID 61459545)
+-- TOC entry 3814 (class 1259 OID 61484080)
 -- Dependencies: 365
 -- Name: formulario_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10061,7 +10067,7 @@ CREATE UNIQUE INDEX formulario_id ON formulario USING btree (id);
 
 
 --
--- TOC entry 3812 (class 1259 OID 61459548)
+-- TOC entry 3815 (class 1259 OID 61484083)
 -- Dependencies: 365
 -- Name: formulario_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10070,7 +10076,7 @@ CREATE INDEX formulario_id_categoria ON formulario USING btree (id_categoria);
 
 
 --
--- TOC entry 3813 (class 1259 OID 61459547)
+-- TOC entry 3816 (class 1259 OID 61484082)
 -- Dependencies: 365
 -- Name: formulario_id_componente; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10079,7 +10085,7 @@ CREATE INDEX formulario_id_componente ON formulario USING btree (id_componente);
 
 
 --
--- TOC entry 3814 (class 1259 OID 61459546)
+-- TOC entry 3817 (class 1259 OID 61484081)
 -- Dependencies: 365
 -- Name: formulario_id_formulario_pai; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10088,7 +10094,7 @@ CREATE INDEX formulario_id_formulario_pai ON formulario USING btree (id_formular
 
 
 --
--- TOC entry 3815 (class 1259 OID 61459549)
+-- TOC entry 3818 (class 1259 OID 61484084)
 -- Dependencies: 365
 -- Name: formulario_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10097,7 +10103,7 @@ CREATE UNIQUE INDEX formulario_nome ON formulario USING btree (nome);
 
 
 --
--- TOC entry 3798 (class 1259 OID 61459543)
+-- TOC entry 3801 (class 1259 OID 61484078)
 -- Dependencies: 363
 -- Name: include_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10106,7 +10112,7 @@ CREATE INDEX include_constante_textual ON include USING btree (constante_textual
 
 
 --
--- TOC entry 3799 (class 1259 OID 61459544)
+-- TOC entry 3802 (class 1259 OID 61484079)
 -- Dependencies: 363
 -- Name: include_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10115,7 +10121,7 @@ CREATE INDEX include_constante_textual_descricao ON include USING btree (constan
 
 
 --
--- TOC entry 3800 (class 1259 OID 61459540)
+-- TOC entry 3803 (class 1259 OID 61484075)
 -- Dependencies: 363
 -- Name: include_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10124,7 +10130,7 @@ CREATE UNIQUE INDEX include_id ON include USING btree (id);
 
 
 --
--- TOC entry 3801 (class 1259 OID 61459541)
+-- TOC entry 3804 (class 1259 OID 61484076)
 -- Dependencies: 363
 -- Name: include_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10133,7 +10139,7 @@ CREATE INDEX include_id_categoria ON include USING btree (id_categoria);
 
 
 --
--- TOC entry 3802 (class 1259 OID 61459542)
+-- TOC entry 3805 (class 1259 OID 61484077)
 -- Dependencies: 363
 -- Name: include_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10142,7 +10148,7 @@ CREATE INDEX include_nome ON include USING btree (nome);
 
 
 --
--- TOC entry 3793 (class 1259 OID 61459537)
+-- TOC entry 3796 (class 1259 OID 61484072)
 -- Dependencies: 361
 -- Name: log_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10151,7 +10157,7 @@ CREATE UNIQUE INDEX log_id ON log USING btree (id);
 
 
 --
--- TOC entry 3794 (class 1259 OID 61459539)
+-- TOC entry 3797 (class 1259 OID 61484074)
 -- Dependencies: 361
 -- Name: log_id_assoccl_perfil; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10160,7 +10166,7 @@ CREATE INDEX log_id_assoccl_perfil ON log USING btree (id_assoccl_perfil);
 
 
 --
--- TOC entry 3795 (class 1259 OID 61459538)
+-- TOC entry 3798 (class 1259 OID 61484073)
 -- Dependencies: 361
 -- Name: log_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10169,7 +10175,7 @@ CREATE INDEX log_id_categoria ON log USING btree (id_categoria);
 
 
 --
--- TOC entry 3788 (class 1259 OID 61459534)
+-- TOC entry 3791 (class 1259 OID 61484069)
 -- Dependencies: 359
 -- Name: mensagem_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10178,7 +10184,7 @@ CREATE UNIQUE INDEX mensagem_id ON mensagem USING btree (id);
 
 
 --
--- TOC entry 3789 (class 1259 OID 61459535)
+-- TOC entry 3792 (class 1259 OID 61484070)
 -- Dependencies: 359
 -- Name: mensagem_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10187,7 +10193,7 @@ CREATE INDEX mensagem_id_categoria ON mensagem USING btree (id_categoria);
 
 
 --
--- TOC entry 3790 (class 1259 OID 61459536)
+-- TOC entry 3793 (class 1259 OID 61484071)
 -- Dependencies: 359
 -- Name: mensagem_id_generico_proprietario; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10196,7 +10202,7 @@ CREATE INDEX mensagem_id_generico_proprietario ON mensagem USING btree (id_gener
 
 
 --
--- TOC entry 3780 (class 1259 OID 61459533)
+-- TOC entry 3783 (class 1259 OID 61484068)
 -- Dependencies: 357
 -- Name: metodo_validacao_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10205,7 +10211,7 @@ CREATE INDEX metodo_validacao_constante_textual ON metodo_validacao USING btree 
 
 
 --
--- TOC entry 3781 (class 1259 OID 61459530)
+-- TOC entry 3784 (class 1259 OID 61484065)
 -- Dependencies: 357
 -- Name: metodo_validacao_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10214,7 +10220,7 @@ CREATE UNIQUE INDEX metodo_validacao_id ON metodo_validacao USING btree (id);
 
 
 --
--- TOC entry 3782 (class 1259 OID 61459531)
+-- TOC entry 3785 (class 1259 OID 61484066)
 -- Dependencies: 357
 -- Name: metodo_validacao_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10223,7 +10229,7 @@ CREATE INDEX metodo_validacao_id_categoria ON metodo_validacao USING btree (id_c
 
 
 --
--- TOC entry 3783 (class 1259 OID 61459532)
+-- TOC entry 3786 (class 1259 OID 61484067)
 -- Dependencies: 357
 -- Name: metodo_validacao_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10232,7 +10238,7 @@ CREATE INDEX metodo_validacao_nome ON metodo_validacao USING btree (nome);
 
 
 --
--- TOC entry 3774 (class 1259 OID 61459529)
+-- TOC entry 3777 (class 1259 OID 61484064)
 -- Dependencies: 355
 -- Name: modulo_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10241,7 +10247,7 @@ CREATE INDEX modulo_constante_textual ON modulo USING btree (constante_textual);
 
 
 --
--- TOC entry 3775 (class 1259 OID 61459526)
+-- TOC entry 3778 (class 1259 OID 61484061)
 -- Dependencies: 355
 -- Name: modulo_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10250,7 +10256,7 @@ CREATE UNIQUE INDEX modulo_id ON modulo USING btree (id);
 
 
 --
--- TOC entry 3776 (class 1259 OID 61459527)
+-- TOC entry 3779 (class 1259 OID 61484062)
 -- Dependencies: 355
 -- Name: modulo_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10259,7 +10265,7 @@ CREATE INDEX modulo_id_categoria ON modulo USING btree (id_categoria);
 
 
 --
--- TOC entry 3777 (class 1259 OID 61459528)
+-- TOC entry 3780 (class 1259 OID 61484063)
 -- Dependencies: 355
 -- Name: modulo_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10268,7 +10274,7 @@ CREATE UNIQUE INDEX modulo_nome ON modulo USING btree (nome);
 
 
 --
--- TOC entry 3768 (class 1259 OID 61459525)
+-- TOC entry 3771 (class 1259 OID 61484060)
 -- Dependencies: 353
 -- Name: output_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10277,7 +10283,7 @@ CREATE INDEX output_constante_textual ON output USING btree (constante_textual);
 
 
 --
--- TOC entry 3769 (class 1259 OID 61459522)
+-- TOC entry 3772 (class 1259 OID 61484057)
 -- Dependencies: 353
 -- Name: output_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10286,7 +10292,7 @@ CREATE UNIQUE INDEX output_id ON output USING btree (id);
 
 
 --
--- TOC entry 3770 (class 1259 OID 61459523)
+-- TOC entry 3773 (class 1259 OID 61484058)
 -- Dependencies: 353
 -- Name: output_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10295,7 +10301,7 @@ CREATE INDEX output_id_categoria ON output USING btree (id_categoria);
 
 
 --
--- TOC entry 3771 (class 1259 OID 61459524)
+-- TOC entry 3774 (class 1259 OID 61484059)
 -- Dependencies: 353
 -- Name: output_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10304,7 +10310,7 @@ CREATE UNIQUE INDEX output_nome ON output USING btree (nome);
 
 
 --
--- TOC entry 3760 (class 1259 OID 61459521)
+-- TOC entry 3763 (class 1259 OID 61484056)
 -- Dependencies: 351
 -- Name: perfil_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10313,7 +10319,7 @@ CREATE INDEX perfil_constante_textual ON perfil USING btree (constante_textual);
 
 
 --
--- TOC entry 3761 (class 1259 OID 61459518)
+-- TOC entry 3764 (class 1259 OID 61484053)
 -- Dependencies: 351
 -- Name: perfil_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10322,7 +10328,7 @@ CREATE UNIQUE INDEX perfil_id ON perfil USING btree (id);
 
 
 --
--- TOC entry 3762 (class 1259 OID 61459519)
+-- TOC entry 3765 (class 1259 OID 61484054)
 -- Dependencies: 351
 -- Name: perfil_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10331,7 +10337,7 @@ CREATE INDEX perfil_id_categoria ON perfil USING btree (id_categoria);
 
 
 --
--- TOC entry 3763 (class 1259 OID 61459520)
+-- TOC entry 3766 (class 1259 OID 61484055)
 -- Dependencies: 351
 -- Name: perfil_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10340,7 +10346,7 @@ CREATE INDEX perfil_nome ON perfil USING btree (nome);
 
 
 --
--- TOC entry 3757 (class 1259 OID 61459517)
+-- TOC entry 3760 (class 1259 OID 61484052)
 -- Dependencies: 349
 -- Name: pessoa_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10349,7 +10355,7 @@ CREATE UNIQUE INDEX pessoa_id ON pessoa USING btree (id);
 
 
 --
--- TOC entry 3751 (class 1259 OID 61459513)
+-- TOC entry 3754 (class 1259 OID 61484048)
 -- Dependencies: 347
 -- Name: pessoa_juridica_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10358,7 +10364,7 @@ CREATE UNIQUE INDEX pessoa_juridica_id ON pessoa_juridica USING btree (id);
 
 
 --
--- TOC entry 3752 (class 1259 OID 61459514)
+-- TOC entry 3755 (class 1259 OID 61484049)
 -- Dependencies: 347
 -- Name: pessoa_juridica_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10367,7 +10373,7 @@ CREATE INDEX pessoa_juridica_id_categoria ON pessoa_juridica USING btree (id_cat
 
 
 --
--- TOC entry 3753 (class 1259 OID 61459515)
+-- TOC entry 3756 (class 1259 OID 61484050)
 -- Dependencies: 347
 -- Name: pessoa_juridica_id_natureza; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10376,7 +10382,7 @@ CREATE INDEX pessoa_juridica_id_natureza ON pessoa_juridica USING btree (id_natu
 
 
 --
--- TOC entry 3754 (class 1259 OID 61459516)
+-- TOC entry 3757 (class 1259 OID 61484051)
 -- Dependencies: 347
 -- Name: pessoa_juridica_id_pessoa_responsavel_cadastro; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10385,7 +10391,7 @@ CREATE INDEX pessoa_juridica_id_pessoa_responsavel_cadastro ON pessoa_juridica U
 
 
 --
--- TOC entry 3746 (class 1259 OID 61459512)
+-- TOC entry 3749 (class 1259 OID 61484047)
 -- Dependencies: 345
 -- Name: profissao_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10394,7 +10400,7 @@ CREATE UNIQUE INDEX profissao_codigo ON profissao USING btree (codigo);
 
 
 --
--- TOC entry 3747 (class 1259 OID 61459511)
+-- TOC entry 3750 (class 1259 OID 61484046)
 -- Dependencies: 345
 -- Name: profissao_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10403,7 +10409,7 @@ CREATE INDEX profissao_constante_textual ON profissao USING btree (constante_tex
 
 
 --
--- TOC entry 3748 (class 1259 OID 61459508)
+-- TOC entry 3751 (class 1259 OID 61484043)
 -- Dependencies: 345
 -- Name: profissao_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10412,7 +10418,7 @@ CREATE UNIQUE INDEX profissao_id ON profissao USING btree (id);
 
 
 --
--- TOC entry 3749 (class 1259 OID 61459509)
+-- TOC entry 3752 (class 1259 OID 61484044)
 -- Dependencies: 345
 -- Name: profissao_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10421,7 +10427,7 @@ CREATE INDEX profissao_id_categoria ON profissao USING btree (id_categoria);
 
 
 --
--- TOC entry 3750 (class 1259 OID 61459510)
+-- TOC entry 3753 (class 1259 OID 61484045)
 -- Dependencies: 345
 -- Name: profissao_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10430,7 +10436,7 @@ CREATE UNIQUE INDEX profissao_nome ON profissao USING btree (nome);
 
 
 --
--- TOC entry 3738 (class 1259 OID 61459507)
+-- TOC entry 3741 (class 1259 OID 61484042)
 -- Dependencies: 343
 -- Name: sequencia_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10439,7 +10445,7 @@ CREATE INDEX sequencia_constante_textual ON sequencia USING btree (constante_tex
 
 
 --
--- TOC entry 3739 (class 1259 OID 61459504)
+-- TOC entry 3742 (class 1259 OID 61484039)
 -- Dependencies: 343
 -- Name: sequencia_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10448,7 +10454,7 @@ CREATE UNIQUE INDEX sequencia_id ON sequencia USING btree (id);
 
 
 --
--- TOC entry 3740 (class 1259 OID 61459505)
+-- TOC entry 3743 (class 1259 OID 61484040)
 -- Dependencies: 343
 -- Name: sequencia_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10457,7 +10463,7 @@ CREATE INDEX sequencia_id_categoria ON sequencia USING btree (id_categoria);
 
 
 --
--- TOC entry 3741 (class 1259 OID 61459506)
+-- TOC entry 3744 (class 1259 OID 61484041)
 -- Dependencies: 343
 -- Name: sequencia_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10466,7 +10472,7 @@ CREATE INDEX sequencia_nome ON sequencia USING btree (nome);
 
 
 --
--- TOC entry 3732 (class 1259 OID 61459503)
+-- TOC entry 3735 (class 1259 OID 61484038)
 -- Dependencies: 341
 -- Name: template_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10475,7 +10481,7 @@ CREATE INDEX template_constante_textual ON template USING btree (constante_textu
 
 
 --
--- TOC entry 3733 (class 1259 OID 61459500)
+-- TOC entry 3736 (class 1259 OID 61484035)
 -- Dependencies: 341
 -- Name: template_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10484,7 +10490,7 @@ CREATE UNIQUE INDEX template_id ON template USING btree (id);
 
 
 --
--- TOC entry 3734 (class 1259 OID 61459501)
+-- TOC entry 3737 (class 1259 OID 61484036)
 -- Dependencies: 341
 -- Name: template_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10493,7 +10499,7 @@ CREATE INDEX template_id_categoria ON template USING btree (id_categoria);
 
 
 --
--- TOC entry 3735 (class 1259 OID 61459502)
+-- TOC entry 3738 (class 1259 OID 61484037)
 -- Dependencies: 341
 -- Name: template_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10502,7 +10508,7 @@ CREATE UNIQUE INDEX template_nome ON template USING btree (nome);
 
 
 --
--- TOC entry 3723 (class 1259 OID 61459499)
+-- TOC entry 3726 (class 1259 OID 61484034)
 -- Dependencies: 339
 -- Name: tipo_categoria_codigo; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10511,7 +10517,7 @@ CREATE INDEX tipo_categoria_codigo ON tipo_categoria USING btree (codigo);
 
 
 --
--- TOC entry 3724 (class 1259 OID 61459498)
+-- TOC entry 3727 (class 1259 OID 61484033)
 -- Dependencies: 339
 -- Name: tipo_categoria_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10520,7 +10526,7 @@ CREATE INDEX tipo_categoria_constante_textual ON tipo_categoria USING btree (con
 
 
 --
--- TOC entry 3725 (class 1259 OID 61459495)
+-- TOC entry 3728 (class 1259 OID 61484030)
 -- Dependencies: 339
 -- Name: tipo_categoria_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10529,7 +10535,7 @@ CREATE UNIQUE INDEX tipo_categoria_id ON tipo_categoria USING btree (id);
 
 
 --
--- TOC entry 3726 (class 1259 OID 61459496)
+-- TOC entry 3729 (class 1259 OID 61484031)
 -- Dependencies: 339
 -- Name: tipo_categoria_id_tipo_categoria_pai; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10538,7 +10544,7 @@ CREATE INDEX tipo_categoria_id_tipo_categoria_pai ON tipo_categoria USING btree 
 
 
 --
--- TOC entry 3727 (class 1259 OID 61459497)
+-- TOC entry 3730 (class 1259 OID 61484032)
 -- Dependencies: 339
 -- Name: tipo_categoria_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10547,7 +10553,7 @@ CREATE INDEX tipo_categoria_nome ON tipo_categoria USING btree (nome);
 
 
 --
--- TOC entry 3713 (class 1259 OID 61459493)
+-- TOC entry 3716 (class 1259 OID 61484028)
 -- Dependencies: 337
 -- Name: validator_constante_textual; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10556,7 +10562,7 @@ CREATE INDEX validator_constante_textual ON validator USING btree (constante_tex
 
 
 --
--- TOC entry 3714 (class 1259 OID 61459494)
+-- TOC entry 3717 (class 1259 OID 61484029)
 -- Dependencies: 337
 -- Name: validator_constante_textual_descricao; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10565,7 +10571,7 @@ CREATE INDEX validator_constante_textual_descricao ON validator USING btree (con
 
 
 --
--- TOC entry 3715 (class 1259 OID 61459489)
+-- TOC entry 3718 (class 1259 OID 61484024)
 -- Dependencies: 337
 -- Name: validator_id; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10574,7 +10580,7 @@ CREATE UNIQUE INDEX validator_id ON validator USING btree (id);
 
 
 --
--- TOC entry 3716 (class 1259 OID 61459490)
+-- TOC entry 3719 (class 1259 OID 61484025)
 -- Dependencies: 337
 -- Name: validator_id_categoria; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10583,7 +10589,7 @@ CREATE INDEX validator_id_categoria ON validator USING btree (id_categoria);
 
 
 --
--- TOC entry 3717 (class 1259 OID 61459491)
+-- TOC entry 3720 (class 1259 OID 61484026)
 -- Dependencies: 337
 -- Name: validator_id_componente; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10592,7 +10598,7 @@ CREATE INDEX validator_id_componente ON validator USING btree (id_componente);
 
 
 --
--- TOC entry 3718 (class 1259 OID 61459492)
+-- TOC entry 3721 (class 1259 OID 61484027)
 -- Dependencies: 337
 -- Name: validator_nome; Type: INDEX; Schema: basico; Owner: -; Tablespace: 
 --
@@ -10603,7 +10609,7 @@ CREATE UNIQUE INDEX validator_nome ON validator USING btree (nome);
 SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
--- TOC entry 3705 (class 1259 OID 61459485)
+-- TOC entry 3708 (class 1259 OID 61484020)
 -- Dependencies: 335
 -- Name: assoccl_atrib_met_rec_post_id; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10612,7 +10618,7 @@ CREATE UNIQUE INDEX assoccl_atrib_met_rec_post_id ON assoccl_atrib_met_rec_post 
 
 
 --
--- TOC entry 3706 (class 1259 OID 61459486)
+-- TOC entry 3709 (class 1259 OID 61484021)
 -- Dependencies: 335
 -- Name: assoccl_atrib_met_rec_post_id_assoc_visao_ref_post; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10621,7 +10627,7 @@ CREATE INDEX assoccl_atrib_met_rec_post_id_assoc_visao_ref_post ON assoccl_atrib
 
 
 --
--- TOC entry 3707 (class 1259 OID 61459487)
+-- TOC entry 3710 (class 1259 OID 61484022)
 -- Dependencies: 335
 -- Name: assoccl_atrib_met_rec_post_id_atributo_metodo_recup_post; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10630,7 +10636,7 @@ CREATE INDEX assoccl_atrib_met_rec_post_id_atributo_metodo_recup_post ON assoccl
 
 
 --
--- TOC entry 3708 (class 1259 OID 61459488)
+-- TOC entry 3711 (class 1259 OID 61484023)
 -- Dependencies: 335
 -- Name: assoccl_atrib_met_rec_post_ordem; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10639,7 +10645,7 @@ CREATE INDEX assoccl_atrib_met_rec_post_ordem ON assoccl_atrib_met_rec_post USIN
 
 
 --
--- TOC entry 3697 (class 1259 OID 61459483)
+-- TOC entry 3700 (class 1259 OID 61484018)
 -- Dependencies: 333
 -- Name: atributo_metodo_recup_post_atributo; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10648,7 +10654,7 @@ CREATE INDEX atributo_metodo_recup_post_atributo ON atributo_metodo_recup_post U
 
 
 --
--- TOC entry 3698 (class 1259 OID 61459481)
+-- TOC entry 3701 (class 1259 OID 61484016)
 -- Dependencies: 333
 -- Name: atributo_metodo_recup_post_id; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10657,7 +10663,7 @@ CREATE UNIQUE INDEX atributo_metodo_recup_post_id ON atributo_metodo_recup_post 
 
 
 --
--- TOC entry 3699 (class 1259 OID 61459482)
+-- TOC entry 3702 (class 1259 OID 61484017)
 -- Dependencies: 333
 -- Name: atributo_metodo_recup_post_id_categoria; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10666,7 +10672,7 @@ CREATE INDEX atributo_metodo_recup_post_id_categoria ON atributo_metodo_recup_po
 
 
 --
--- TOC entry 3700 (class 1259 OID 61459484)
+-- TOC entry 3703 (class 1259 OID 61484019)
 -- Dependencies: 333
 -- Name: atributo_metodo_recup_post_metodo_recuperacao; Type: INDEX; Schema: basico_acao_aplic_assoc_visao; Owner: -; Tablespace: 
 --
@@ -10677,7 +10683,7 @@ CREATE INDEX atributo_metodo_recup_post_metodo_recuperacao ON atributo_metodo_re
 SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
--- TOC entry 3688 (class 1259 OID 61459477)
+-- TOC entry 3691 (class 1259 OID 61484012)
 -- Dependencies: 331
 -- Name: assoc_visao_constante_textual; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10686,7 +10692,7 @@ CREATE INDEX assoc_visao_constante_textual ON assoc_visao USING btree (constante
 
 
 --
--- TOC entry 3689 (class 1259 OID 61459480)
+-- TOC entry 3692 (class 1259 OID 61484015)
 -- Dependencies: 331
 -- Name: assoc_visao_constante_textual_mensagem; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10695,7 +10701,7 @@ CREATE INDEX assoc_visao_constante_textual_mensagem ON assoc_visao USING btree (
 
 
 --
--- TOC entry 3690 (class 1259 OID 61459479)
+-- TOC entry 3693 (class 1259 OID 61484014)
 -- Dependencies: 331
 -- Name: assoc_visao_constante_textual_subtitulo; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10704,7 +10710,7 @@ CREATE INDEX assoc_visao_constante_textual_subtitulo ON assoc_visao USING btree 
 
 
 --
--- TOC entry 3691 (class 1259 OID 61459478)
+-- TOC entry 3694 (class 1259 OID 61484013)
 -- Dependencies: 331
 -- Name: assoc_visao_constante_textual_titulo; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10713,7 +10719,7 @@ CREATE INDEX assoc_visao_constante_textual_titulo ON assoc_visao USING btree (co
 
 
 --
--- TOC entry 3692 (class 1259 OID 61459474)
+-- TOC entry 3695 (class 1259 OID 61484009)
 -- Dependencies: 331
 -- Name: assoc_visao_id; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10722,7 +10728,7 @@ CREATE UNIQUE INDEX assoc_visao_id ON assoc_visao USING btree (id);
 
 
 --
--- TOC entry 3693 (class 1259 OID 61459476)
+-- TOC entry 3696 (class 1259 OID 61484011)
 -- Dependencies: 331
 -- Name: assoc_visao_id_acao_aplicacao; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10731,7 +10737,7 @@ CREATE UNIQUE INDEX assoc_visao_id_acao_aplicacao ON assoc_visao USING btree (id
 
 
 --
--- TOC entry 3694 (class 1259 OID 61459475)
+-- TOC entry 3697 (class 1259 OID 61484010)
 -- Dependencies: 331
 -- Name: assoc_visao_id_categoria; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10740,7 +10746,7 @@ CREATE INDEX assoc_visao_id_categoria ON assoc_visao USING btree (id_categoria);
 
 
 --
--- TOC entry 3680 (class 1259 OID 61459470)
+-- TOC entry 3683 (class 1259 OID 61484005)
 -- Dependencies: 329
 -- Name: assoccl_metodo_validacao_id; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10749,7 +10755,7 @@ CREATE UNIQUE INDEX assoccl_metodo_validacao_id ON assoccl_metodo_validacao USIN
 
 
 --
--- TOC entry 3681 (class 1259 OID 61459471)
+-- TOC entry 3684 (class 1259 OID 61484006)
 -- Dependencies: 329
 -- Name: assoccl_metodo_validacao_id_acao_aplicacao; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10758,7 +10764,7 @@ CREATE INDEX assoccl_metodo_validacao_id_acao_aplicacao ON assoccl_metodo_valida
 
 
 --
--- TOC entry 3682 (class 1259 OID 61459472)
+-- TOC entry 3685 (class 1259 OID 61484007)
 -- Dependencies: 329
 -- Name: assoccl_metodo_validacao_id_metodo_validacao; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10767,7 +10773,7 @@ CREATE INDEX assoccl_metodo_validacao_id_metodo_validacao ON assoccl_metodo_vali
 
 
 --
--- TOC entry 3683 (class 1259 OID 61459473)
+-- TOC entry 3686 (class 1259 OID 61484008)
 -- Dependencies: 329
 -- Name: assoccl_metodo_validacao_id_perfil; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10776,7 +10782,7 @@ CREATE INDEX assoccl_metodo_validacao_id_perfil ON assoccl_metodo_validacao USIN
 
 
 --
--- TOC entry 3673 (class 1259 OID 61459467)
+-- TOC entry 3676 (class 1259 OID 61484002)
 -- Dependencies: 327
 -- Name: assoccl_perfil_id; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10785,7 +10791,7 @@ CREATE UNIQUE INDEX assoccl_perfil_id ON assoccl_perfil USING btree (id);
 
 
 --
--- TOC entry 3674 (class 1259 OID 61459468)
+-- TOC entry 3677 (class 1259 OID 61484003)
 -- Dependencies: 327
 -- Name: assoccl_perfil_id_acao_aplicacao; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10794,7 +10800,7 @@ CREATE INDEX assoccl_perfil_id_acao_aplicacao ON assoccl_perfil USING btree (id_
 
 
 --
--- TOC entry 3675 (class 1259 OID 61459469)
+-- TOC entry 3678 (class 1259 OID 61484004)
 -- Dependencies: 327
 -- Name: assoccl_perfil_id_perfil; Type: INDEX; Schema: basico_acao_aplicacao; Owner: -; Tablespace: 
 --
@@ -10805,7 +10811,7 @@ CREATE INDEX assoccl_perfil_id_perfil ON assoccl_perfil USING btree (id_perfil);
 SET search_path = basico_acao_evento, pg_catalog;
 
 --
--- TOC entry 3666 (class 1259 OID 61459464)
+-- TOC entry 3669 (class 1259 OID 61483999)
 -- Dependencies: 325
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
@@ -10814,7 +10820,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3667 (class 1259 OID 61459465)
+-- TOC entry 3670 (class 1259 OID 61484000)
 -- Dependencies: 325
 -- Name: assoccl_include_id_acao_evento; Type: INDEX; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
@@ -10823,7 +10829,7 @@ CREATE INDEX assoccl_include_id_acao_evento ON assoccl_include USING btree (id_a
 
 
 --
--- TOC entry 3668 (class 1259 OID 61459466)
+-- TOC entry 3671 (class 1259 OID 61484001)
 -- Dependencies: 325
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_acao_evento; Owner: -; Tablespace: 
 --
@@ -10834,7 +10840,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 SET search_path = basico_ajuda, pg_catalog;
 
 --
--- TOC entry 3659 (class 1259 OID 61459461)
+-- TOC entry 3662 (class 1259 OID 61483996)
 -- Dependencies: 323
 -- Name: assoccl_link_id; Type: INDEX; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
@@ -10843,7 +10849,7 @@ CREATE UNIQUE INDEX assoccl_link_id ON assoccl_link USING btree (id);
 
 
 --
--- TOC entry 3660 (class 1259 OID 61459462)
+-- TOC entry 3663 (class 1259 OID 61483997)
 -- Dependencies: 323
 -- Name: assoccl_link_id_ajuda; Type: INDEX; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
@@ -10852,7 +10858,7 @@ CREATE INDEX assoccl_link_id_ajuda ON assoccl_link USING btree (id_ajuda);
 
 
 --
--- TOC entry 3661 (class 1259 OID 61459463)
+-- TOC entry 3664 (class 1259 OID 61483998)
 -- Dependencies: 323
 -- Name: assoccl_link_id_link; Type: INDEX; Schema: basico_ajuda; Owner: -; Tablespace: 
 --
@@ -10863,7 +10869,7 @@ CREATE INDEX assoccl_link_id_link ON assoccl_link USING btree (id_link);
 SET search_path = basico_assoc_banco, pg_catalog;
 
 --
--- TOC entry 3647 (class 1259 OID 61459460)
+-- TOC entry 3650 (class 1259 OID 61483995)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_codigo; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10872,7 +10878,7 @@ CREATE INDEX assoc_tipo_conta_codigo ON assoc_tipo_conta USING btree (codigo);
 
 
 --
--- TOC entry 3648 (class 1259 OID 61459459)
+-- TOC entry 3651 (class 1259 OID 61483994)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_constante_textual; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10881,7 +10887,7 @@ CREATE INDEX assoc_tipo_conta_constante_textual ON assoc_tipo_conta USING btree 
 
 
 --
--- TOC entry 3649 (class 1259 OID 61459455)
+-- TOC entry 3652 (class 1259 OID 61483990)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_id; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10890,7 +10896,7 @@ CREATE UNIQUE INDEX assoc_tipo_conta_id ON assoc_tipo_conta USING btree (id);
 
 
 --
--- TOC entry 3650 (class 1259 OID 61459456)
+-- TOC entry 3653 (class 1259 OID 61483991)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_id_assoc_banco; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10899,7 +10905,7 @@ CREATE INDEX assoc_tipo_conta_id_assoc_banco ON assoc_tipo_conta USING btree (id
 
 
 --
--- TOC entry 3651 (class 1259 OID 61459457)
+-- TOC entry 3654 (class 1259 OID 61483992)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_id_categoria; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10908,7 +10914,7 @@ CREATE INDEX assoc_tipo_conta_id_categoria ON assoc_tipo_conta USING btree (id_c
 
 
 --
--- TOC entry 3652 (class 1259 OID 61459458)
+-- TOC entry 3655 (class 1259 OID 61483993)
 -- Dependencies: 321
 -- Name: assoc_tipo_conta_nome; Type: INDEX; Schema: basico_assoc_banco; Owner: -; Tablespace: 
 --
@@ -10919,7 +10925,7 @@ CREATE INDEX assoc_tipo_conta_nome ON assoc_tipo_conta USING btree (nome);
 SET search_path = basico_assoc_chave_estrangeira, pg_catalog;
 
 --
--- TOC entry 3642 (class 1259 OID 61459454)
+-- TOC entry 3645 (class 1259 OID 61483989)
 -- Dependencies: 319
 -- Name: relacao_campo_origem; Type: INDEX; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
@@ -10928,7 +10934,7 @@ CREATE INDEX relacao_campo_origem ON relacao USING btree (campo_origem);
 
 
 --
--- TOC entry 3643 (class 1259 OID 61459452)
+-- TOC entry 3646 (class 1259 OID 61483987)
 -- Dependencies: 319
 -- Name: relacao_id; Type: INDEX; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
@@ -10937,7 +10943,7 @@ CREATE UNIQUE INDEX relacao_id ON relacao USING btree (id);
 
 
 --
--- TOC entry 3644 (class 1259 OID 61459453)
+-- TOC entry 3647 (class 1259 OID 61483988)
 -- Dependencies: 319
 -- Name: relacao_tabela_origem; Type: INDEX; Schema: basico_assoc_chave_estrangeira; Owner: -; Tablespace: 
 --
@@ -10948,7 +10954,7 @@ CREATE INDEX relacao_tabela_origem ON relacao USING btree (tabela_origem);
 SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
--- TOC entry 3633 (class 1259 OID 61459449)
+-- TOC entry 3636 (class 1259 OID 61483984)
 -- Dependencies: 317
 -- Name: assoccl_area_conhecimento_id; Type: INDEX; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
@@ -10957,7 +10963,7 @@ CREATE UNIQUE INDEX assoccl_area_conhecimento_id ON assoccl_area_conhecimento US
 
 
 --
--- TOC entry 3634 (class 1259 OID 61459450)
+-- TOC entry 3637 (class 1259 OID 61483985)
 -- Dependencies: 317
 -- Name: assoccl_area_conhecimento_id_area_conhecimento; Type: INDEX; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
@@ -10966,7 +10972,7 @@ CREATE INDEX assoccl_area_conhecimento_id_area_conhecimento ON assoccl_area_conh
 
 
 --
--- TOC entry 3635 (class 1259 OID 61459451)
+-- TOC entry 3638 (class 1259 OID 61483986)
 -- Dependencies: 317
 -- Name: assoccl_area_conhecimento_id_assoc_dados_profissionais; Type: INDEX; Schema: basico_assoc_dados_profis; Owner: -; Tablespace: 
 --
@@ -10977,7 +10983,7 @@ CREATE INDEX assoccl_area_conhecimento_id_assoc_dados_profissionais ON assoccl_a
 SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
--- TOC entry 3629 (class 1259 OID 61459447)
+-- TOC entry 3632 (class 1259 OID 61483982)
 -- Dependencies: 315
 -- Name: assoc_dados_id; Type: INDEX; Schema: basico_assoccl_pessoa_perfil; Owner: -; Tablespace: 
 --
@@ -10986,7 +10992,7 @@ CREATE UNIQUE INDEX assoc_dados_id ON assoc_dados USING btree (id);
 
 
 --
--- TOC entry 3630 (class 1259 OID 61459448)
+-- TOC entry 3633 (class 1259 OID 61483983)
 -- Dependencies: 315
 -- Name: assoc_dados_id_assoccl_pessoa_perfil; Type: INDEX; Schema: basico_assoccl_pessoa_perfil; Owner: -; Tablespace: 
 --
@@ -10997,7 +11003,7 @@ CREATE UNIQUE INDEX assoc_dados_id_assoccl_pessoa_perfil ON assoc_dados USING bt
 SET search_path = basico_assoccl_tipo_vinculo, pg_catalog;
 
 --
--- TOC entry 3621 (class 1259 OID 61459441)
+-- TOC entry 3624 (class 1259 OID 61483976)
 -- Dependencies: 313
 -- Name: assoc_dados_id; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11006,7 +11012,7 @@ CREATE UNIQUE INDEX assoc_dados_id ON assoc_dados USING btree (id);
 
 
 --
--- TOC entry 3622 (class 1259 OID 61459442)
+-- TOC entry 3625 (class 1259 OID 61483977)
 -- Dependencies: 313
 -- Name: assoc_dados_id_assoccl_vinculo_profissional; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11015,7 +11021,7 @@ CREATE UNIQUE INDEX assoc_dados_id_assoccl_vinculo_profissional ON assoc_dados U
 
 
 --
--- TOC entry 3623 (class 1259 OID 61459445)
+-- TOC entry 3626 (class 1259 OID 61483980)
 -- Dependencies: 313
 -- Name: assoc_dados_id_pessoa_juridica_vinculo; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11024,7 +11030,7 @@ CREATE INDEX assoc_dados_id_pessoa_juridica_vinculo ON assoc_dados USING btree (
 
 
 --
--- TOC entry 3624 (class 1259 OID 61459443)
+-- TOC entry 3627 (class 1259 OID 61483978)
 -- Dependencies: 313
 -- Name: assoc_dados_id_profissao; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11033,7 +11039,7 @@ CREATE INDEX assoc_dados_id_profissao ON assoc_dados USING btree (id_profissao);
 
 
 --
--- TOC entry 3625 (class 1259 OID 61459444)
+-- TOC entry 3628 (class 1259 OID 61483979)
 -- Dependencies: 313
 -- Name: assoc_dados_id_vinculo_empregaticio; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11042,7 +11048,7 @@ CREATE INDEX assoc_dados_id_vinculo_empregaticio ON assoc_dados USING btree (id_
 
 
 --
--- TOC entry 3626 (class 1259 OID 61459446)
+-- TOC entry 3629 (class 1259 OID 61483981)
 -- Dependencies: 313
 -- Name: assoc_dados_matricula; Type: INDEX; Schema: basico_assoccl_tipo_vinculo; Owner: -; Tablespace: 
 --
@@ -11053,7 +11059,7 @@ CREATE INDEX assoc_dados_matricula ON assoc_dados USING btree (matricula);
 SET search_path = basico_categoria, pg_catalog;
 
 --
--- TOC entry 3614 (class 1259 OID 61459440)
+-- TOC entry 3617 (class 1259 OID 61483975)
 -- Dependencies: 311
 -- Name: assoc_chave_estrangeira_campo_estrangeiro; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11062,7 +11068,7 @@ CREATE INDEX assoc_chave_estrangeira_campo_estrangeiro ON assoc_chave_estrangeir
 
 
 --
--- TOC entry 3615 (class 1259 OID 61459436)
+-- TOC entry 3618 (class 1259 OID 61483971)
 -- Dependencies: 311
 -- Name: assoc_chave_estrangeira_id; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11071,7 +11077,7 @@ CREATE UNIQUE INDEX assoc_chave_estrangeira_id ON assoc_chave_estrangeira USING 
 
 
 --
--- TOC entry 3616 (class 1259 OID 61459438)
+-- TOC entry 3619 (class 1259 OID 61483973)
 -- Dependencies: 311
 -- Name: assoc_chave_estrangeira_id_categoria; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11080,7 +11086,7 @@ CREATE INDEX assoc_chave_estrangeira_id_categoria ON assoc_chave_estrangeira USI
 
 
 --
--- TOC entry 3617 (class 1259 OID 61459437)
+-- TOC entry 3620 (class 1259 OID 61483972)
 -- Dependencies: 311
 -- Name: assoc_chave_estrangeira_id_modulo; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11089,7 +11095,7 @@ CREATE INDEX assoc_chave_estrangeira_id_modulo ON assoc_chave_estrangeira USING 
 
 
 --
--- TOC entry 3618 (class 1259 OID 61459439)
+-- TOC entry 3621 (class 1259 OID 61483974)
 -- Dependencies: 311
 -- Name: assoc_chave_estrangeira_tabela_estrangeira; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11098,7 +11104,7 @@ CREATE INDEX assoc_chave_estrangeira_tabela_estrangeira ON assoc_chave_estrangei
 
 
 --
--- TOC entry 3610 (class 1259 OID 61459434)
+-- TOC entry 3613 (class 1259 OID 61483969)
 -- Dependencies: 309
 -- Name: assoc_evento_acao_id; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11107,7 +11113,7 @@ CREATE UNIQUE INDEX assoc_evento_acao_id ON assoc_evento_acao USING btree (id);
 
 
 --
--- TOC entry 3611 (class 1259 OID 61459435)
+-- TOC entry 3614 (class 1259 OID 61483970)
 -- Dependencies: 309
 -- Name: assoc_evento_acao_id_categoria; Type: INDEX; Schema: basico_categoria; Owner: -; Tablespace: 
 --
@@ -11118,7 +11124,7 @@ CREATE UNIQUE INDEX assoc_evento_acao_id_categoria ON assoc_evento_acao USING bt
 SET search_path = basico_componente, pg_catalog;
 
 --
--- TOC entry 3603 (class 1259 OID 61459431)
+-- TOC entry 3606 (class 1259 OID 61483966)
 -- Dependencies: 307
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_componente; Owner: -; Tablespace: 
 --
@@ -11127,7 +11133,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3604 (class 1259 OID 61459432)
+-- TOC entry 3607 (class 1259 OID 61483967)
 -- Dependencies: 307
 -- Name: assoccl_include_id_componente; Type: INDEX; Schema: basico_componente; Owner: -; Tablespace: 
 --
@@ -11136,7 +11142,7 @@ CREATE INDEX assoccl_include_id_componente ON assoccl_include USING btree (id_co
 
 
 --
--- TOC entry 3605 (class 1259 OID 61459433)
+-- TOC entry 3608 (class 1259 OID 61483968)
 -- Dependencies: 307
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_componente; Owner: -; Tablespace: 
 --
@@ -11147,7 +11153,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 3593 (class 1259 OID 61459430)
+-- TOC entry 3596 (class 1259 OID 61483965)
 -- Dependencies: 305
 -- Name: cpg_email_email; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11156,7 +11162,7 @@ CREATE INDEX cpg_email_email ON cpg_email USING btree (email);
 
 
 --
--- TOC entry 3594 (class 1259 OID 61459425)
+-- TOC entry 3597 (class 1259 OID 61483960)
 -- Dependencies: 305
 -- Name: cpg_email_id; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11165,7 +11171,7 @@ CREATE UNIQUE INDEX cpg_email_id ON cpg_email USING btree (id);
 
 
 --
--- TOC entry 3595 (class 1259 OID 61459426)
+-- TOC entry 3598 (class 1259 OID 61483961)
 -- Dependencies: 305
 -- Name: cpg_email_id_categoria; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11174,7 +11180,7 @@ CREATE INDEX cpg_email_id_categoria ON cpg_email USING btree (id_categoria);
 
 
 --
--- TOC entry 3596 (class 1259 OID 61459427)
+-- TOC entry 3599 (class 1259 OID 61483962)
 -- Dependencies: 305
 -- Name: cpg_email_id_generico_proprietario; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11183,7 +11189,7 @@ CREATE INDEX cpg_email_id_generico_proprietario ON cpg_email USING btree (id_gen
 
 
 --
--- TOC entry 3597 (class 1259 OID 61459428)
+-- TOC entry 3600 (class 1259 OID 61483963)
 -- Dependencies: 305
 -- Name: cpg_email_nome; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11192,7 +11198,7 @@ CREATE INDEX cpg_email_nome ON cpg_email USING btree (nome);
 
 
 --
--- TOC entry 3598 (class 1259 OID 61459429)
+-- TOC entry 3601 (class 1259 OID 61483964)
 -- Dependencies: 305
 -- Name: cpg_email_unique_id; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11201,7 +11207,7 @@ CREATE UNIQUE INDEX cpg_email_unique_id ON cpg_email USING btree (unique_id);
 
 
 --
--- TOC entry 3585 (class 1259 OID 61459421)
+-- TOC entry 3588 (class 1259 OID 61483956)
 -- Dependencies: 303
 -- Name: cpg_telefone_id; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11210,7 +11216,7 @@ CREATE UNIQUE INDEX cpg_telefone_id ON cpg_telefone USING btree (id);
 
 
 --
--- TOC entry 3586 (class 1259 OID 61459422)
+-- TOC entry 3589 (class 1259 OID 61483957)
 -- Dependencies: 303
 -- Name: cpg_telefone_id_categoria; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11219,7 +11225,7 @@ CREATE INDEX cpg_telefone_id_categoria ON cpg_telefone USING btree (id_categoria
 
 
 --
--- TOC entry 3587 (class 1259 OID 61459423)
+-- TOC entry 3590 (class 1259 OID 61483958)
 -- Dependencies: 303
 -- Name: cpg_telefone_id_generico_proprietario; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11228,7 +11234,7 @@ CREATE INDEX cpg_telefone_id_generico_proprietario ON cpg_telefone USING btree (
 
 
 --
--- TOC entry 3588 (class 1259 OID 61459424)
+-- TOC entry 3591 (class 1259 OID 61483959)
 -- Dependencies: 303
 -- Name: cpg_telefone_nome; Type: INDEX; Schema: basico_contato; Owner: -; Tablespace: 
 --
@@ -11239,7 +11245,7 @@ CREATE INDEX cpg_telefone_nome ON cpg_telefone USING btree (nome);
 SET search_path = basico_cvc, pg_catalog;
 
 --
--- TOC entry 3578 (class 1259 OID 61459418)
+-- TOC entry 3581 (class 1259 OID 61483953)
 -- Dependencies: 301
 -- Name: cvc_id; Type: INDEX; Schema: basico_cvc; Owner: -; Tablespace: 
 --
@@ -11248,7 +11254,7 @@ CREATE UNIQUE INDEX cvc_id ON cvc USING btree (id);
 
 
 --
--- TOC entry 3579 (class 1259 OID 61459419)
+-- TOC entry 3582 (class 1259 OID 61483954)
 -- Dependencies: 301
 -- Name: cvc_id_assoc_chave_estrangeira; Type: INDEX; Schema: basico_cvc; Owner: -; Tablespace: 
 --
@@ -11257,7 +11263,7 @@ CREATE INDEX cvc_id_assoc_chave_estrangeira ON cvc USING btree (id_assoc_chave_e
 
 
 --
--- TOC entry 3580 (class 1259 OID 61459420)
+-- TOC entry 3583 (class 1259 OID 61483955)
 -- Dependencies: 301
 -- Name: cvc_id_generico; Type: INDEX; Schema: basico_cvc; Owner: -; Tablespace: 
 --
@@ -11268,7 +11274,7 @@ CREATE INDEX cvc_id_generico ON cvc USING btree (id_generico);
 SET search_path = basico_dados_academicos, pg_catalog;
 
 --
--- TOC entry 3574 (class 1259 OID 61459417)
+-- TOC entry 3577 (class 1259 OID 61483952)
 -- Dependencies: 299
 -- Name: titulacao_constante_textual; Type: INDEX; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
@@ -11277,7 +11283,7 @@ CREATE INDEX titulacao_constante_textual ON titulacao USING btree (constante_tex
 
 
 --
--- TOC entry 3575 (class 1259 OID 61459414)
+-- TOC entry 3578 (class 1259 OID 61483949)
 -- Dependencies: 299
 -- Name: titulacao_id; Type: INDEX; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
@@ -11286,7 +11292,7 @@ CREATE UNIQUE INDEX titulacao_id ON titulacao USING btree (id);
 
 
 --
--- TOC entry 3576 (class 1259 OID 61459415)
+-- TOC entry 3579 (class 1259 OID 61483950)
 -- Dependencies: 299
 -- Name: titulacao_id_categoria; Type: INDEX; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
@@ -11295,7 +11301,7 @@ CREATE INDEX titulacao_id_categoria ON titulacao USING btree (id_categoria);
 
 
 --
--- TOC entry 3577 (class 1259 OID 61459416)
+-- TOC entry 3580 (class 1259 OID 61483951)
 -- Dependencies: 299
 -- Name: titulacao_nome; Type: INDEX; Schema: basico_dados_academicos; Owner: -; Tablespace: 
 --
@@ -11306,7 +11312,7 @@ CREATE UNIQUE INDEX titulacao_nome ON titulacao USING btree (nome);
 SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
--- TOC entry 3567 (class 1259 OID 61459411)
+-- TOC entry 3570 (class 1259 OID 61483946)
 -- Dependencies: 297
 -- Name: assoc_pessoa_id; Type: INDEX; Schema: basico_dados_biometricos; Owner: -; Tablespace: 
 --
@@ -11315,7 +11321,7 @@ CREATE UNIQUE INDEX assoc_pessoa_id ON assoc_pessoa USING btree (id);
 
 
 --
--- TOC entry 3568 (class 1259 OID 61459413)
+-- TOC entry 3571 (class 1259 OID 61483948)
 -- Dependencies: 297
 -- Name: assoc_pessoa_id_categoria_sexo; Type: INDEX; Schema: basico_dados_biometricos; Owner: -; Tablespace: 
 --
@@ -11324,7 +11330,7 @@ CREATE INDEX assoc_pessoa_id_categoria_sexo ON assoc_pessoa USING btree (id_cate
 
 
 --
--- TOC entry 3569 (class 1259 OID 61459412)
+-- TOC entry 3572 (class 1259 OID 61483947)
 -- Dependencies: 297
 -- Name: assoc_pessoa_id_dados_biometricos; Type: INDEX; Schema: basico_dados_biometricos; Owner: -; Tablespace: 
 --
@@ -11335,7 +11341,7 @@ CREATE UNIQUE INDEX assoc_pessoa_id_dados_biometricos ON assoc_pessoa USING btre
 SET search_path = basico_dados_profissionais, pg_catalog;
 
 --
--- TOC entry 3559 (class 1259 OID 61459410)
+-- TOC entry 3562 (class 1259 OID 61483945)
 -- Dependencies: 295
 -- Name: regime_trabalho_codigo; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11344,7 +11350,7 @@ CREATE INDEX regime_trabalho_codigo ON regime_trabalho USING btree (codigo);
 
 
 --
--- TOC entry 3560 (class 1259 OID 61459409)
+-- TOC entry 3563 (class 1259 OID 61483944)
 -- Dependencies: 295
 -- Name: regime_trabalho_constante_textual; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11353,7 +11359,7 @@ CREATE INDEX regime_trabalho_constante_textual ON regime_trabalho USING btree (c
 
 
 --
--- TOC entry 3561 (class 1259 OID 61459405)
+-- TOC entry 3564 (class 1259 OID 61483940)
 -- Dependencies: 295
 -- Name: regime_trabalho_id; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11362,7 +11368,7 @@ CREATE UNIQUE INDEX regime_trabalho_id ON regime_trabalho USING btree (id);
 
 
 --
--- TOC entry 3562 (class 1259 OID 61459407)
+-- TOC entry 3565 (class 1259 OID 61483942)
 -- Dependencies: 295
 -- Name: regime_trabalho_id_categoria; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11371,7 +11377,7 @@ CREATE INDEX regime_trabalho_id_categoria ON regime_trabalho USING btree (id_cat
 
 
 --
--- TOC entry 3563 (class 1259 OID 61459406)
+-- TOC entry 3566 (class 1259 OID 61483941)
 -- Dependencies: 295
 -- Name: regime_trabalho_id_regime_trabalho_pai; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11380,7 +11386,7 @@ CREATE INDEX regime_trabalho_id_regime_trabalho_pai ON regime_trabalho USING btr
 
 
 --
--- TOC entry 3564 (class 1259 OID 61459408)
+-- TOC entry 3567 (class 1259 OID 61483943)
 -- Dependencies: 295
 -- Name: regime_trabalho_nome; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11389,7 +11395,7 @@ CREATE INDEX regime_trabalho_nome ON regime_trabalho USING btree (nome);
 
 
 --
--- TOC entry 3550 (class 1259 OID 61459404)
+-- TOC entry 3553 (class 1259 OID 61483939)
 -- Dependencies: 293
 -- Name: tipo_vinculo_codigo; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11398,7 +11404,7 @@ CREATE INDEX tipo_vinculo_codigo ON tipo_vinculo USING btree (codigo);
 
 
 --
--- TOC entry 3551 (class 1259 OID 61459403)
+-- TOC entry 3554 (class 1259 OID 61483938)
 -- Dependencies: 293
 -- Name: tipo_vinculo_constante_textual; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11407,7 +11413,7 @@ CREATE INDEX tipo_vinculo_constante_textual ON tipo_vinculo USING btree (constan
 
 
 --
--- TOC entry 3552 (class 1259 OID 61459400)
+-- TOC entry 3555 (class 1259 OID 61483935)
 -- Dependencies: 293
 -- Name: tipo_vinculo_id; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11416,7 +11422,7 @@ CREATE UNIQUE INDEX tipo_vinculo_id ON tipo_vinculo USING btree (id);
 
 
 --
--- TOC entry 3553 (class 1259 OID 61459401)
+-- TOC entry 3556 (class 1259 OID 61483936)
 -- Dependencies: 293
 -- Name: tipo_vinculo_id_categoria; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11425,7 +11431,7 @@ CREATE INDEX tipo_vinculo_id_categoria ON tipo_vinculo USING btree (id_categoria
 
 
 --
--- TOC entry 3554 (class 1259 OID 61459402)
+-- TOC entry 3557 (class 1259 OID 61483937)
 -- Dependencies: 293
 -- Name: tipo_vinculo_nome; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11434,7 +11440,7 @@ CREATE INDEX tipo_vinculo_nome ON tipo_vinculo USING btree (nome);
 
 
 --
--- TOC entry 3543 (class 1259 OID 61459399)
+-- TOC entry 3546 (class 1259 OID 61483934)
 -- Dependencies: 291
 -- Name: vinculo_empregaticio_codigo; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11443,7 +11449,7 @@ CREATE INDEX vinculo_empregaticio_codigo ON vinculo_empregaticio USING btree (co
 
 
 --
--- TOC entry 3544 (class 1259 OID 61459398)
+-- TOC entry 3547 (class 1259 OID 61483933)
 -- Dependencies: 291
 -- Name: vinculo_empregaticio_constante_textual; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11452,7 +11458,7 @@ CREATE INDEX vinculo_empregaticio_constante_textual ON vinculo_empregaticio USIN
 
 
 --
--- TOC entry 3545 (class 1259 OID 61459395)
+-- TOC entry 3548 (class 1259 OID 61483930)
 -- Dependencies: 291
 -- Name: vinculo_empregaticio_id; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11461,7 +11467,7 @@ CREATE UNIQUE INDEX vinculo_empregaticio_id ON vinculo_empregaticio USING btree 
 
 
 --
--- TOC entry 3546 (class 1259 OID 61459396)
+-- TOC entry 3549 (class 1259 OID 61483931)
 -- Dependencies: 291
 -- Name: vinculo_empregaticio_id_categoria; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11470,7 +11476,7 @@ CREATE INDEX vinculo_empregaticio_id_categoria ON vinculo_empregaticio USING btr
 
 
 --
--- TOC entry 3547 (class 1259 OID 61459397)
+-- TOC entry 3550 (class 1259 OID 61483932)
 -- Dependencies: 291
 -- Name: vinculo_empregaticio_nome; Type: INDEX; Schema: basico_dados_profissionais; Owner: -; Tablespace: 
 --
@@ -11481,7 +11487,7 @@ CREATE INDEX vinculo_empregaticio_nome ON vinculo_empregaticio USING btree (nome
 SET search_path = basico_filter, pg_catalog;
 
 --
--- TOC entry 3533 (class 1259 OID 61459372)
+-- TOC entry 3536 (class 1259 OID 61483907)
 -- Dependencies: 281
 -- Name: grupo_constante_textual; Type: INDEX; Schema: basico_filter; Owner: -; Tablespace: 
 --
@@ -11490,7 +11496,7 @@ CREATE INDEX grupo_constante_textual ON grupo USING btree (constante_textual);
 
 
 --
--- TOC entry 3534 (class 1259 OID 61459369)
+-- TOC entry 3537 (class 1259 OID 61483904)
 -- Dependencies: 281
 -- Name: grupo_id; Type: INDEX; Schema: basico_filter; Owner: -; Tablespace: 
 --
@@ -11499,7 +11505,7 @@ CREATE UNIQUE INDEX grupo_id ON grupo USING btree (id);
 
 
 --
--- TOC entry 3535 (class 1259 OID 61459370)
+-- TOC entry 3538 (class 1259 OID 61483905)
 -- Dependencies: 281
 -- Name: grupo_id_categoria; Type: INDEX; Schema: basico_filter; Owner: -; Tablespace: 
 --
@@ -11508,7 +11514,7 @@ CREATE INDEX grupo_id_categoria ON grupo USING btree (id_categoria);
 
 
 --
--- TOC entry 3536 (class 1259 OID 61459371)
+-- TOC entry 3539 (class 1259 OID 61483906)
 -- Dependencies: 281
 -- Name: grupo_nome; Type: INDEX; Schema: basico_filter; Owner: -; Tablespace: 
 --
@@ -11519,7 +11525,7 @@ CREATE UNIQUE INDEX grupo_nome ON grupo USING btree (nome);
 SET search_path = basico_filter_grupo, pg_catalog;
 
 --
--- TOC entry 3527 (class 1259 OID 61459365)
+-- TOC entry 3530 (class 1259 OID 61483900)
 -- Dependencies: 279
 -- Name: assocag_grupo_id; Type: INDEX; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
@@ -11528,7 +11534,7 @@ CREATE UNIQUE INDEX assocag_grupo_id ON assocag_grupo USING btree (id);
 
 
 --
--- TOC entry 3528 (class 1259 OID 61459367)
+-- TOC entry 3531 (class 1259 OID 61483902)
 -- Dependencies: 279
 -- Name: assocag_grupo_id_filter; Type: INDEX; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
@@ -11537,7 +11543,7 @@ CREATE INDEX assocag_grupo_id_filter ON assocag_grupo USING btree (id_filter);
 
 
 --
--- TOC entry 3529 (class 1259 OID 61459366)
+-- TOC entry 3532 (class 1259 OID 61483901)
 -- Dependencies: 279
 -- Name: assocag_grupo_id_filter_grupo; Type: INDEX; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
@@ -11546,7 +11552,7 @@ CREATE INDEX assocag_grupo_id_filter_grupo ON assocag_grupo USING btree (id_filt
 
 
 --
--- TOC entry 3530 (class 1259 OID 61459368)
+-- TOC entry 3533 (class 1259 OID 61483903)
 -- Dependencies: 279
 -- Name: assocag_grupo_id_filter_grupo_assoc; Type: INDEX; Schema: basico_filter_grupo; Owner: -; Tablespace: 
 --
@@ -11557,7 +11563,7 @@ CREATE INDEX assocag_grupo_id_filter_grupo_assoc ON assocag_grupo USING btree (i
 SET search_path = basico_form_assoccl_elem_grupo, pg_catalog;
 
 --
--- TOC entry 3520 (class 1259 OID 61459362)
+-- TOC entry 3523 (class 1259 OID 61483897)
 -- Dependencies: 277
 -- Name: assoccl_decorator_id; Type: INDEX; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
@@ -11566,7 +11572,7 @@ CREATE UNIQUE INDEX assoccl_decorator_id ON assoccl_decorator USING btree (id);
 
 
 --
--- TOC entry 3521 (class 1259 OID 61459364)
+-- TOC entry 3524 (class 1259 OID 61483899)
 -- Dependencies: 277
 -- Name: assoccl_decorator_id_decorator; Type: INDEX; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
@@ -11575,7 +11581,7 @@ CREATE INDEX assoccl_decorator_id_decorator ON assoccl_decorator USING btree (id
 
 
 --
--- TOC entry 3522 (class 1259 OID 61459363)
+-- TOC entry 3525 (class 1259 OID 61483898)
 -- Dependencies: 277
 -- Name: assoccl_decorator_id_grupo; Type: INDEX; Schema: basico_form_assoccl_elem_grupo; Owner: -; Tablespace: 
 --
@@ -11586,7 +11592,7 @@ CREATE INDEX assoccl_decorator_id_grupo ON assoccl_decorator USING btree (id_gru
 SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
--- TOC entry 3513 (class 1259 OID 61459359)
+-- TOC entry 3516 (class 1259 OID 61483894)
 -- Dependencies: 275
 -- Name: assoccl_decorator_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11595,7 +11601,7 @@ CREATE UNIQUE INDEX assoccl_decorator_id ON assoccl_decorator USING btree (id);
 
 
 --
--- TOC entry 3514 (class 1259 OID 61459360)
+-- TOC entry 3517 (class 1259 OID 61483895)
 -- Dependencies: 275
 -- Name: assoccl_decorator_id_assoccl_elemento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11604,7 +11610,7 @@ CREATE INDEX assoccl_decorator_id_assoccl_elemento ON assoccl_decorator USING bt
 
 
 --
--- TOC entry 3515 (class 1259 OID 61459361)
+-- TOC entry 3518 (class 1259 OID 61483896)
 -- Dependencies: 275
 -- Name: assoccl_decorator_id_decorator; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11613,7 +11619,7 @@ CREATE INDEX assoccl_decorator_id_decorator ON assoccl_decorator USING btree (id
 
 
 --
--- TOC entry 3506 (class 1259 OID 61459356)
+-- TOC entry 3509 (class 1259 OID 61483891)
 -- Dependencies: 273
 -- Name: assoccl_evento_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11622,7 +11628,7 @@ CREATE UNIQUE INDEX assoccl_evento_id ON assoccl_evento USING btree (id);
 
 
 --
--- TOC entry 3507 (class 1259 OID 61459357)
+-- TOC entry 3510 (class 1259 OID 61483892)
 -- Dependencies: 273
 -- Name: assoccl_evento_id_assoccl_elemento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11631,7 +11637,7 @@ CREATE INDEX assoccl_evento_id_assoccl_elemento ON assoccl_evento USING btree (i
 
 
 --
--- TOC entry 3508 (class 1259 OID 61459358)
+-- TOC entry 3511 (class 1259 OID 61483893)
 -- Dependencies: 273
 -- Name: assoccl_evento_id_evento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11640,7 +11646,7 @@ CREATE INDEX assoccl_evento_id_evento ON assoccl_evento USING btree (id_evento);
 
 
 --
--- TOC entry 3499 (class 1259 OID 61459353)
+-- TOC entry 3502 (class 1259 OID 61483888)
 -- Dependencies: 271
 -- Name: assoccl_filter_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11649,7 +11655,7 @@ CREATE UNIQUE INDEX assoccl_filter_id ON assoccl_filter USING btree (id);
 
 
 --
--- TOC entry 3500 (class 1259 OID 61459354)
+-- TOC entry 3503 (class 1259 OID 61483889)
 -- Dependencies: 271
 -- Name: assoccl_filter_id_assoccl_elemento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11658,7 +11664,7 @@ CREATE INDEX assoccl_filter_id_assoccl_elemento ON assoccl_filter USING btree (i
 
 
 --
--- TOC entry 3501 (class 1259 OID 61459355)
+-- TOC entry 3504 (class 1259 OID 61483890)
 -- Dependencies: 271
 -- Name: assoccl_filter_id_filter; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11667,7 +11673,7 @@ CREATE INDEX assoccl_filter_id_filter ON assoccl_filter USING btree (id_filter);
 
 
 --
--- TOC entry 3492 (class 1259 OID 61459350)
+-- TOC entry 3495 (class 1259 OID 61483885)
 -- Dependencies: 269
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11676,7 +11682,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3493 (class 1259 OID 61459351)
+-- TOC entry 3496 (class 1259 OID 61483886)
 -- Dependencies: 269
 -- Name: assoccl_include_id_assoccl_elemento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11685,7 +11691,7 @@ CREATE INDEX assoccl_include_id_assoccl_elemento ON assoccl_include USING btree 
 
 
 --
--- TOC entry 3494 (class 1259 OID 61459352)
+-- TOC entry 3497 (class 1259 OID 61483887)
 -- Dependencies: 269
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11694,7 +11700,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3485 (class 1259 OID 61459347)
+-- TOC entry 3488 (class 1259 OID 61483882)
 -- Dependencies: 267
 -- Name: assoccl_validator_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11703,7 +11709,7 @@ CREATE UNIQUE INDEX assoccl_validator_id ON assoccl_validator USING btree (id);
 
 
 --
--- TOC entry 3486 (class 1259 OID 61459348)
+-- TOC entry 3489 (class 1259 OID 61483883)
 -- Dependencies: 267
 -- Name: assoccl_validator_id_assoccl_elemento; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11712,7 +11718,7 @@ CREATE INDEX assoccl_validator_id_assoccl_elemento ON assoccl_validator USING bt
 
 
 --
--- TOC entry 3487 (class 1259 OID 61459349)
+-- TOC entry 3490 (class 1259 OID 61483884)
 -- Dependencies: 267
 -- Name: assoccl_validator_id_validator; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11721,7 +11727,7 @@ CREATE INDEX assoccl_validator_id_validator ON assoccl_validator USING btree (id
 
 
 --
--- TOC entry 3479 (class 1259 OID 61459345)
+-- TOC entry 3482 (class 1259 OID 61483880)
 -- Dependencies: 265
 -- Name: grupo_constante_textual; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11730,7 +11736,7 @@ CREATE INDEX grupo_constante_textual ON grupo USING btree (constante_textual);
 
 
 --
--- TOC entry 3480 (class 1259 OID 61459346)
+-- TOC entry 3483 (class 1259 OID 61483881)
 -- Dependencies: 265
 -- Name: grupo_constante_textual_label; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11739,7 +11745,7 @@ CREATE INDEX grupo_constante_textual_label ON grupo USING btree (constante_textu
 
 
 --
--- TOC entry 3481 (class 1259 OID 61459343)
+-- TOC entry 3484 (class 1259 OID 61483878)
 -- Dependencies: 265
 -- Name: grupo_id; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11748,7 +11754,7 @@ CREATE UNIQUE INDEX grupo_id ON grupo USING btree (id);
 
 
 --
--- TOC entry 3482 (class 1259 OID 61459344)
+-- TOC entry 3485 (class 1259 OID 61483879)
 -- Dependencies: 265
 -- Name: grupo_nome; Type: INDEX; Schema: basico_form_assoccl_elemento; Owner: -; Tablespace: 
 --
@@ -11759,7 +11765,7 @@ CREATE UNIQUE INDEX grupo_nome ON grupo USING btree (nome);
 SET search_path = basico_form_decorator_grupo, pg_catalog;
 
 --
--- TOC entry 3473 (class 1259 OID 61459339)
+-- TOC entry 3476 (class 1259 OID 61483874)
 -- Dependencies: 263
 -- Name: assocag_grupo_id; Type: INDEX; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -11768,7 +11774,7 @@ CREATE UNIQUE INDEX assocag_grupo_id ON assocag_grupo USING btree (id);
 
 
 --
--- TOC entry 3474 (class 1259 OID 61459340)
+-- TOC entry 3477 (class 1259 OID 61483875)
 -- Dependencies: 263
 -- Name: assocag_grupo_id_form_decorator_grupo; Type: INDEX; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -11777,7 +11783,7 @@ CREATE INDEX assocag_grupo_id_form_decorator_grupo ON assocag_grupo USING btree 
 
 
 --
--- TOC entry 3475 (class 1259 OID 61459342)
+-- TOC entry 3478 (class 1259 OID 61483877)
 -- Dependencies: 263
 -- Name: assocag_grupo_id_form_decorator_grupo_assoc; Type: INDEX; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -11786,7 +11792,7 @@ CREATE INDEX assocag_grupo_id_form_decorator_grupo_assoc ON assocag_grupo USING 
 
 
 --
--- TOC entry 3476 (class 1259 OID 61459341)
+-- TOC entry 3479 (class 1259 OID 61483876)
 -- Dependencies: 263
 -- Name: assocag_grupo_id_formulario_decorator; Type: INDEX; Schema: basico_form_decorator_grupo; Owner: -; Tablespace: 
 --
@@ -11797,7 +11803,7 @@ CREATE INDEX assocag_grupo_id_formulario_decorator ON assocag_grupo USING btree 
 SET search_path = basico_formulario, pg_catalog;
 
 --
--- TOC entry 3465 (class 1259 OID 61459335)
+-- TOC entry 3468 (class 1259 OID 61483870)
 -- Dependencies: 261
 -- Name: assoccl_decorator_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11806,7 +11812,7 @@ CREATE UNIQUE INDEX assoccl_decorator_id ON assoccl_decorator USING btree (id);
 
 
 --
--- TOC entry 3466 (class 1259 OID 61459337)
+-- TOC entry 3469 (class 1259 OID 61483872)
 -- Dependencies: 261
 -- Name: assoccl_decorator_id_decorator; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11815,7 +11821,7 @@ CREATE INDEX assoccl_decorator_id_decorator ON assoccl_decorator USING btree (id
 
 
 --
--- TOC entry 3467 (class 1259 OID 61459338)
+-- TOC entry 3470 (class 1259 OID 61483873)
 -- Dependencies: 261
 -- Name: assoccl_decorator_id_decorator_grupo; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11824,7 +11830,7 @@ CREATE INDEX assoccl_decorator_id_decorator_grupo ON assoccl_decorator USING btr
 
 
 --
--- TOC entry 3468 (class 1259 OID 61459336)
+-- TOC entry 3471 (class 1259 OID 61483871)
 -- Dependencies: 261
 -- Name: assoccl_decorator_id_formulario; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11833,7 +11839,7 @@ CREATE INDEX assoccl_decorator_id_formulario ON assoccl_decorator USING btree (i
 
 
 --
--- TOC entry 3455 (class 1259 OID 61459334)
+-- TOC entry 3458 (class 1259 OID 61483869)
 -- Dependencies: 259
 -- Name: assoccl_elemento_constante_textual_label; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11842,7 +11848,7 @@ CREATE INDEX assoccl_elemento_constante_textual_label ON assoccl_elemento USING 
 
 
 --
--- TOC entry 3456 (class 1259 OID 61459331)
+-- TOC entry 3459 (class 1259 OID 61483866)
 -- Dependencies: 259
 -- Name: assoccl_elemento_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11851,7 +11857,7 @@ CREATE UNIQUE INDEX assoccl_elemento_id ON assoccl_elemento USING btree (id);
 
 
 --
--- TOC entry 3457 (class 1259 OID 61459333)
+-- TOC entry 3460 (class 1259 OID 61483868)
 -- Dependencies: 259
 -- Name: assoccl_elemento_id_elemento; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11860,7 +11866,7 @@ CREATE INDEX assoccl_elemento_id_elemento ON assoccl_elemento USING btree (id_el
 
 
 --
--- TOC entry 3458 (class 1259 OID 61459332)
+-- TOC entry 3461 (class 1259 OID 61483867)
 -- Dependencies: 259
 -- Name: assoccl_elemento_id_formulario; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11869,7 +11875,7 @@ CREATE INDEX assoccl_elemento_id_formulario ON assoccl_elemento USING btree (id_
 
 
 --
--- TOC entry 3447 (class 1259 OID 61459327)
+-- TOC entry 3450 (class 1259 OID 61483862)
 -- Dependencies: 257
 -- Name: assoccl_evento_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11878,7 +11884,7 @@ CREATE UNIQUE INDEX assoccl_evento_id ON assoccl_evento USING btree (id);
 
 
 --
--- TOC entry 3448 (class 1259 OID 61459330)
+-- TOC entry 3451 (class 1259 OID 61483865)
 -- Dependencies: 257
 -- Name: assoccl_evento_id_acao_evento; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11887,7 +11893,7 @@ CREATE INDEX assoccl_evento_id_acao_evento ON assoccl_evento USING btree (id_aca
 
 
 --
--- TOC entry 3449 (class 1259 OID 61459329)
+-- TOC entry 3452 (class 1259 OID 61483864)
 -- Dependencies: 257
 -- Name: assoccl_evento_id_evento; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11896,7 +11902,7 @@ CREATE INDEX assoccl_evento_id_evento ON assoccl_evento USING btree (id_evento);
 
 
 --
--- TOC entry 3450 (class 1259 OID 61459328)
+-- TOC entry 3453 (class 1259 OID 61483863)
 -- Dependencies: 257
 -- Name: assoccl_evento_id_formulario; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11905,7 +11911,7 @@ CREATE INDEX assoccl_evento_id_formulario ON assoccl_evento USING btree (id_form
 
 
 --
--- TOC entry 3440 (class 1259 OID 61459324)
+-- TOC entry 3443 (class 1259 OID 61483859)
 -- Dependencies: 255
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11914,7 +11920,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3441 (class 1259 OID 61459325)
+-- TOC entry 3444 (class 1259 OID 61483860)
 -- Dependencies: 255
 -- Name: assoccl_include_id_formulario; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11923,7 +11929,7 @@ CREATE INDEX assoccl_include_id_formulario ON assoccl_include USING btree (id_fo
 
 
 --
--- TOC entry 3442 (class 1259 OID 61459326)
+-- TOC entry 3445 (class 1259 OID 61483861)
 -- Dependencies: 255
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11932,7 +11938,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3433 (class 1259 OID 61459321)
+-- TOC entry 3436 (class 1259 OID 61483856)
 -- Dependencies: 253
 -- Name: assoccl_modulo_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11941,7 +11947,7 @@ CREATE UNIQUE INDEX assoccl_modulo_id ON assoccl_modulo USING btree (id);
 
 
 --
--- TOC entry 3434 (class 1259 OID 61459323)
+-- TOC entry 3437 (class 1259 OID 61483858)
 -- Dependencies: 253
 -- Name: assoccl_modulo_id_formulario; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11950,7 +11956,7 @@ CREATE INDEX assoccl_modulo_id_formulario ON assoccl_modulo USING btree (id_form
 
 
 --
--- TOC entry 3435 (class 1259 OID 61459322)
+-- TOC entry 3438 (class 1259 OID 61483857)
 -- Dependencies: 253
 -- Name: assoccl_modulo_id_modulo; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11959,7 +11965,7 @@ CREATE INDEX assoccl_modulo_id_modulo ON assoccl_modulo USING btree (id_modulo);
 
 
 --
--- TOC entry 3426 (class 1259 OID 61459320)
+-- TOC entry 3429 (class 1259 OID 61483855)
 -- Dependencies: 251
 -- Name: decorator_constante_textual; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11968,7 +11974,7 @@ CREATE INDEX decorator_constante_textual ON decorator USING btree (constante_tex
 
 
 --
--- TOC entry 3427 (class 1259 OID 61459316)
+-- TOC entry 3430 (class 1259 OID 61483851)
 -- Dependencies: 251
 -- Name: decorator_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11977,7 +11983,7 @@ CREATE UNIQUE INDEX decorator_id ON decorator USING btree (id);
 
 
 --
--- TOC entry 3428 (class 1259 OID 61459317)
+-- TOC entry 3431 (class 1259 OID 61483852)
 -- Dependencies: 251
 -- Name: decorator_id_categoria; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11986,7 +11992,7 @@ CREATE INDEX decorator_id_categoria ON decorator USING btree (id_categoria);
 
 
 --
--- TOC entry 3429 (class 1259 OID 61459318)
+-- TOC entry 3432 (class 1259 OID 61483853)
 -- Dependencies: 251
 -- Name: decorator_id_componente; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -11995,7 +12001,7 @@ CREATE INDEX decorator_id_componente ON decorator USING btree (id_componente);
 
 
 --
--- TOC entry 3430 (class 1259 OID 61459319)
+-- TOC entry 3433 (class 1259 OID 61483854)
 -- Dependencies: 251
 -- Name: decorator_nome; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12004,7 +12010,7 @@ CREATE UNIQUE INDEX decorator_nome ON decorator USING btree (nome);
 
 
 --
--- TOC entry 3416 (class 1259 OID 61459314)
+-- TOC entry 3419 (class 1259 OID 61483849)
 -- Dependencies: 249
 -- Name: elemento_constante_textual; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12013,7 +12019,7 @@ CREATE INDEX elemento_constante_textual ON elemento USING btree (constante_textu
 
 
 --
--- TOC entry 3417 (class 1259 OID 61459315)
+-- TOC entry 3420 (class 1259 OID 61483850)
 -- Dependencies: 249
 -- Name: elemento_constante_textual_label; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12022,7 +12028,7 @@ CREATE INDEX elemento_constante_textual_label ON elemento USING btree (constante
 
 
 --
--- TOC entry 3418 (class 1259 OID 61459310)
+-- TOC entry 3421 (class 1259 OID 61483845)
 -- Dependencies: 249
 -- Name: elemento_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12031,7 +12037,7 @@ CREATE UNIQUE INDEX elemento_id ON elemento USING btree (id);
 
 
 --
--- TOC entry 3419 (class 1259 OID 61459311)
+-- TOC entry 3422 (class 1259 OID 61483846)
 -- Dependencies: 249
 -- Name: elemento_id_categoria; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12040,7 +12046,7 @@ CREATE INDEX elemento_id_categoria ON elemento USING btree (id_categoria);
 
 
 --
--- TOC entry 3420 (class 1259 OID 61459312)
+-- TOC entry 3423 (class 1259 OID 61483847)
 -- Dependencies: 249
 -- Name: elemento_id_componente; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12049,7 +12055,7 @@ CREATE INDEX elemento_id_componente ON elemento USING btree (id_componente);
 
 
 --
--- TOC entry 3421 (class 1259 OID 61459313)
+-- TOC entry 3424 (class 1259 OID 61483848)
 -- Dependencies: 249
 -- Name: elemento_nome; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12058,7 +12064,7 @@ CREATE INDEX elemento_nome ON elemento USING btree (nome);
 
 
 --
--- TOC entry 3407 (class 1259 OID 61459308)
+-- TOC entry 3410 (class 1259 OID 61483843)
 -- Dependencies: 247
 -- Name: rascunho_form_action; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12067,7 +12073,7 @@ CREATE INDEX rascunho_form_action ON rascunho USING btree (form_action);
 
 
 --
--- TOC entry 3408 (class 1259 OID 61459309)
+-- TOC entry 3411 (class 1259 OID 61483844)
 -- Dependencies: 247
 -- Name: rascunho_form_name; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12076,7 +12082,7 @@ CREATE INDEX rascunho_form_name ON rascunho USING btree (form_name);
 
 
 --
--- TOC entry 3409 (class 1259 OID 61459301)
+-- TOC entry 3412 (class 1259 OID 61483836)
 -- Dependencies: 247
 -- Name: rascunho_id; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12085,7 +12091,7 @@ CREATE UNIQUE INDEX rascunho_id ON rascunho USING btree (id);
 
 
 --
--- TOC entry 3410 (class 1259 OID 61459307)
+-- TOC entry 3413 (class 1259 OID 61483842)
 -- Dependencies: 247
 -- Name: rascunho_id_assoc_visao_origem; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12094,7 +12100,7 @@ CREATE INDEX rascunho_id_assoc_visao_origem ON rascunho USING btree (id_assoc_vi
 
 
 --
--- TOC entry 3411 (class 1259 OID 61459305)
+-- TOC entry 3414 (class 1259 OID 61483840)
 -- Dependencies: 247
 -- Name: rascunho_id_assocag_grupo; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12103,7 +12109,7 @@ CREATE INDEX rascunho_id_assocag_grupo ON rascunho USING btree (id_assocag_grupo
 
 
 --
--- TOC entry 3412 (class 1259 OID 61459304)
+-- TOC entry 3415 (class 1259 OID 61483839)
 -- Dependencies: 247
 -- Name: rascunho_id_assoccl_perfil; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12112,7 +12118,7 @@ CREATE INDEX rascunho_id_assoccl_perfil ON rascunho USING btree (id_assoccl_perf
 
 
 --
--- TOC entry 3413 (class 1259 OID 61459306)
+-- TOC entry 3416 (class 1259 OID 61483841)
 -- Dependencies: 247
 -- Name: rascunho_id_assocsq_acao_aplicacao; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12121,7 +12127,7 @@ CREATE INDEX rascunho_id_assocsq_acao_aplicacao ON rascunho USING btree (id_asso
 
 
 --
--- TOC entry 3414 (class 1259 OID 61459303)
+-- TOC entry 3417 (class 1259 OID 61483838)
 -- Dependencies: 247
 -- Name: rascunho_id_categoria; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12130,7 +12136,7 @@ CREATE INDEX rascunho_id_categoria ON rascunho USING btree (id_categoria);
 
 
 --
--- TOC entry 3415 (class 1259 OID 61459302)
+-- TOC entry 3418 (class 1259 OID 61483837)
 -- Dependencies: 247
 -- Name: rascunho_id_rascunho_pai; Type: INDEX; Schema: basico_formulario; Owner: -; Tablespace: 
 --
@@ -12141,7 +12147,7 @@ CREATE INDEX rascunho_id_rascunho_pai ON rascunho USING btree (id_rascunho_pai);
 SET search_path = basico_formulario_decorator, pg_catalog;
 
 --
--- TOC entry 3398 (class 1259 OID 61459298)
+-- TOC entry 3401 (class 1259 OID 61483833)
 -- Dependencies: 245
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12150,7 +12156,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3399 (class 1259 OID 61459299)
+-- TOC entry 3402 (class 1259 OID 61483834)
 -- Dependencies: 245
 -- Name: assoccl_include_id_decorator; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12159,7 +12165,7 @@ CREATE INDEX assoccl_include_id_decorator ON assoccl_include USING btree (id_dec
 
 
 --
--- TOC entry 3400 (class 1259 OID 61459300)
+-- TOC entry 3403 (class 1259 OID 61483835)
 -- Dependencies: 245
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12168,7 +12174,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3392 (class 1259 OID 61459297)
+-- TOC entry 3395 (class 1259 OID 61483832)
 -- Dependencies: 243
 -- Name: grupo_constante_textual; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12177,7 +12183,7 @@ CREATE INDEX grupo_constante_textual ON grupo USING btree (constante_textual);
 
 
 --
--- TOC entry 3393 (class 1259 OID 61459294)
+-- TOC entry 3396 (class 1259 OID 61483829)
 -- Dependencies: 243
 -- Name: grupo_id; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12186,7 +12192,7 @@ CREATE UNIQUE INDEX grupo_id ON grupo USING btree (id);
 
 
 --
--- TOC entry 3394 (class 1259 OID 61459295)
+-- TOC entry 3397 (class 1259 OID 61483830)
 -- Dependencies: 243
 -- Name: grupo_id_categoria; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12195,7 +12201,7 @@ CREATE INDEX grupo_id_categoria ON grupo USING btree (id_categoria);
 
 
 --
--- TOC entry 3395 (class 1259 OID 61459296)
+-- TOC entry 3398 (class 1259 OID 61483831)
 -- Dependencies: 243
 -- Name: grupo_nome; Type: INDEX; Schema: basico_formulario_decorator; Owner: -; Tablespace: 
 --
@@ -12206,7 +12212,7 @@ CREATE UNIQUE INDEX grupo_nome ON grupo USING btree (nome);
 SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
--- TOC entry 3384 (class 1259 OID 61459289)
+-- TOC entry 3387 (class 1259 OID 61483825)
 -- Dependencies: 241
 -- Name: assoccl_decorator_id; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12215,7 +12221,7 @@ CREATE UNIQUE INDEX assoccl_decorator_id ON assoccl_decorator USING btree (id);
 
 
 --
--- TOC entry 3385 (class 1259 OID 61459291)
+-- TOC entry 3388 (class 1259 OID 61483827)
 -- Dependencies: 241
 -- Name: assoccl_decorator_id_decorator; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12224,7 +12230,7 @@ CREATE INDEX assoccl_decorator_id_decorator ON assoccl_decorator USING btree (id
 
 
 --
--- TOC entry 3386 (class 1259 OID 61459292)
+-- TOC entry 3389 (class 1259 OID 61483828)
 -- Dependencies: 241
 -- Name: assoccl_decorator_id_decorator_grupo; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12233,7 +12239,7 @@ CREATE INDEX assoccl_decorator_id_decorator_grupo ON assoccl_decorator USING btr
 
 
 --
--- TOC entry 3387 (class 1259 OID 61459290)
+-- TOC entry 3390 (class 1259 OID 61483826)
 -- Dependencies: 241
 -- Name: assoccl_decorator_id_elemento; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12242,7 +12248,7 @@ CREATE INDEX assoccl_decorator_id_elemento ON assoccl_decorator USING btree (id_
 
 
 --
--- TOC entry 3377 (class 1259 OID 61459286)
+-- TOC entry 3380 (class 1259 OID 61483822)
 -- Dependencies: 239
 -- Name: assoccl_evento_id; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12251,7 +12257,7 @@ CREATE UNIQUE INDEX assoccl_evento_id ON assoccl_evento USING btree (id);
 
 
 --
--- TOC entry 3378 (class 1259 OID 61459287)
+-- TOC entry 3381 (class 1259 OID 61483823)
 -- Dependencies: 239
 -- Name: assoccl_evento_id_elemento; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12260,7 +12266,7 @@ CREATE INDEX assoccl_evento_id_elemento ON assoccl_evento USING btree (id_elemen
 
 
 --
--- TOC entry 3379 (class 1259 OID 61459288)
+-- TOC entry 3382 (class 1259 OID 61483824)
 -- Dependencies: 239
 -- Name: assoccl_evento_id_evento; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12269,7 +12275,7 @@ CREATE INDEX assoccl_evento_id_evento ON assoccl_evento USING btree (id_evento);
 
 
 --
--- TOC entry 3369 (class 1259 OID 61459282)
+-- TOC entry 3372 (class 1259 OID 61483818)
 -- Dependencies: 237
 -- Name: assoccl_filter_id; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12278,7 +12284,7 @@ CREATE UNIQUE INDEX assoccl_filter_id ON assoccl_filter USING btree (id);
 
 
 --
--- TOC entry 3370 (class 1259 OID 61459283)
+-- TOC entry 3373 (class 1259 OID 61483819)
 -- Dependencies: 237
 -- Name: assoccl_filter_id_elemento; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12287,7 +12293,7 @@ CREATE INDEX assoccl_filter_id_elemento ON assoccl_filter USING btree (id_elemen
 
 
 --
--- TOC entry 3371 (class 1259 OID 61459284)
+-- TOC entry 3374 (class 1259 OID 61483820)
 -- Dependencies: 237
 -- Name: assoccl_filter_id_filter; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12296,7 +12302,7 @@ CREATE INDEX assoccl_filter_id_filter ON assoccl_filter USING btree (id_filter);
 
 
 --
--- TOC entry 3372 (class 1259 OID 61459285)
+-- TOC entry 3375 (class 1259 OID 61483821)
 -- Dependencies: 237
 -- Name: assoccl_filter_id_filter_grupo; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12305,7 +12311,7 @@ CREATE INDEX assoccl_filter_id_filter_grupo ON assoccl_filter USING btree (id_fi
 
 
 --
--- TOC entry 3361 (class 1259 OID 61459278)
+-- TOC entry 3364 (class 1259 OID 61483814)
 -- Dependencies: 235
 -- Name: assoccl_validator_id; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12314,7 +12320,7 @@ CREATE UNIQUE INDEX assoccl_validator_id ON assoccl_validator USING btree (id);
 
 
 --
--- TOC entry 3362 (class 1259 OID 61459279)
+-- TOC entry 3365 (class 1259 OID 61483815)
 -- Dependencies: 235
 -- Name: assoccl_validator_id_elemento; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12323,7 +12329,7 @@ CREATE INDEX assoccl_validator_id_elemento ON assoccl_validator USING btree (id_
 
 
 --
--- TOC entry 3363 (class 1259 OID 61459280)
+-- TOC entry 3366 (class 1259 OID 61483816)
 -- Dependencies: 235
 -- Name: assoccl_validator_id_validator; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12332,7 +12338,7 @@ CREATE INDEX assoccl_validator_id_validator ON assoccl_validator USING btree (id
 
 
 --
--- TOC entry 3364 (class 1259 OID 61459281)
+-- TOC entry 3367 (class 1259 OID 61483817)
 -- Dependencies: 235
 -- Name: assoccl_validator_id_validator_grupo; Type: INDEX; Schema: basico_formulario_elemento; Owner: -; Tablespace: 
 --
@@ -12343,7 +12349,7 @@ CREATE INDEX assoccl_validator_id_validator_grupo ON assoccl_validator USING btr
 SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
--- TOC entry 3357 (class 1259 OID 61459276)
+-- TOC entry 3360 (class 1259 OID 61483812)
 -- Dependencies: 233
 -- Name: assocag_grupo_id; Type: INDEX; Schema: basico_formulario_rascunho; Owner: -; Tablespace: 
 --
@@ -12352,7 +12358,7 @@ CREATE UNIQUE INDEX assocag_grupo_id ON assocag_grupo USING btree (id);
 
 
 --
--- TOC entry 3358 (class 1259 OID 61459277)
+-- TOC entry 3361 (class 1259 OID 61483813)
 -- Dependencies: 233
 -- Name: assocag_grupo_id_assoccl_perfil; Type: INDEX; Schema: basico_formulario_rascunho; Owner: -; Tablespace: 
 --
@@ -12363,7 +12369,7 @@ CREATE INDEX assocag_grupo_id_assoccl_perfil ON assocag_grupo USING btree (id_as
 SET search_path = basico_localizacao, pg_catalog;
 
 --
--- TOC entry 3350 (class 1259 OID 61459273)
+-- TOC entry 3353 (class 1259 OID 61483809)
 -- Dependencies: 231
 -- Name: assoc_bairro_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12372,7 +12378,7 @@ CREATE UNIQUE INDEX assoc_bairro_id ON assoc_bairro USING btree (id);
 
 
 --
--- TOC entry 3351 (class 1259 OID 61459274)
+-- TOC entry 3354 (class 1259 OID 61483810)
 -- Dependencies: 231
 -- Name: assoc_bairro_id_municipio; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12381,7 +12387,7 @@ CREATE INDEX assoc_bairro_id_municipio ON assoc_bairro USING btree (id_municipio
 
 
 --
--- TOC entry 3352 (class 1259 OID 61459275)
+-- TOC entry 3355 (class 1259 OID 61483811)
 -- Dependencies: 231
 -- Name: assoc_bairro_nome; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12390,7 +12396,7 @@ CREATE INDEX assoc_bairro_nome ON assoc_bairro USING btree (nome);
 
 
 --
--- TOC entry 3340 (class 1259 OID 61459267)
+-- TOC entry 3343 (class 1259 OID 61483803)
 -- Dependencies: 229
 -- Name: assoc_estado_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12399,7 +12405,7 @@ CREATE UNIQUE INDEX assoc_estado_id ON assoc_estado USING btree (id);
 
 
 --
--- TOC entry 3341 (class 1259 OID 61459268)
+-- TOC entry 3344 (class 1259 OID 61483804)
 -- Dependencies: 229
 -- Name: assoc_estado_id_categoria; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12408,7 +12414,7 @@ CREATE INDEX assoc_estado_id_categoria ON assoc_estado USING btree (id_categoria
 
 
 --
--- TOC entry 3342 (class 1259 OID 61459269)
+-- TOC entry 3345 (class 1259 OID 61483805)
 -- Dependencies: 229
 -- Name: assoc_estado_id_estado_pai; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12417,7 +12423,7 @@ CREATE INDEX assoc_estado_id_estado_pai ON assoc_estado USING btree (id_estado_p
 
 
 --
--- TOC entry 3343 (class 1259 OID 61459270)
+-- TOC entry 3346 (class 1259 OID 61483806)
 -- Dependencies: 229
 -- Name: assoc_estado_id_pais; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12426,7 +12432,7 @@ CREATE INDEX assoc_estado_id_pais ON assoc_estado USING btree (id_pais);
 
 
 --
--- TOC entry 3344 (class 1259 OID 61459271)
+-- TOC entry 3347 (class 1259 OID 61483807)
 -- Dependencies: 229
 -- Name: assoc_estado_nome; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12435,7 +12441,7 @@ CREATE INDEX assoc_estado_nome ON assoc_estado USING btree (nome);
 
 
 --
--- TOC entry 3345 (class 1259 OID 61459272)
+-- TOC entry 3348 (class 1259 OID 61483808)
 -- Dependencies: 229
 -- Name: assoc_estado_sigla; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12444,7 +12450,7 @@ CREATE INDEX assoc_estado_sigla ON assoc_estado USING btree (sigla);
 
 
 --
--- TOC entry 3332 (class 1259 OID 61459263)
+-- TOC entry 3335 (class 1259 OID 61483799)
 -- Dependencies: 227
 -- Name: assoc_logradouro_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12453,7 +12459,7 @@ CREATE UNIQUE INDEX assoc_logradouro_id ON assoc_logradouro USING btree (id);
 
 
 --
--- TOC entry 3333 (class 1259 OID 61459265)
+-- TOC entry 3336 (class 1259 OID 61483801)
 -- Dependencies: 227
 -- Name: assoc_logradouro_id_bairro; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12462,7 +12468,7 @@ CREATE INDEX assoc_logradouro_id_bairro ON assoc_logradouro USING btree (id_bair
 
 
 --
--- TOC entry 3334 (class 1259 OID 61459264)
+-- TOC entry 3337 (class 1259 OID 61483800)
 -- Dependencies: 227
 -- Name: assoc_logradouro_id_categoria; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12471,7 +12477,7 @@ CREATE INDEX assoc_logradouro_id_categoria ON assoc_logradouro USING btree (id_c
 
 
 --
--- TOC entry 3335 (class 1259 OID 61459266)
+-- TOC entry 3338 (class 1259 OID 61483802)
 -- Dependencies: 227
 -- Name: assoc_logradouro_nome; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12480,7 +12486,7 @@ CREATE INDEX assoc_logradouro_nome ON assoc_logradouro USING btree (nome);
 
 
 --
--- TOC entry 3322 (class 1259 OID 61459262)
+-- TOC entry 3325 (class 1259 OID 61483798)
 -- Dependencies: 225
 -- Name: assoc_municipio_codigo_ddd; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12489,7 +12495,7 @@ CREATE INDEX assoc_municipio_codigo_ddd ON assoc_municipio USING btree (codigo_d
 
 
 --
--- TOC entry 3323 (class 1259 OID 61459256)
+-- TOC entry 3326 (class 1259 OID 61483793)
 -- Dependencies: 225
 -- Name: assoc_municipio_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12498,7 +12504,7 @@ CREATE UNIQUE INDEX assoc_municipio_id ON assoc_municipio USING btree (id);
 
 
 --
--- TOC entry 3324 (class 1259 OID 61459257)
+-- TOC entry 3327 (class 1259 OID 61483794)
 -- Dependencies: 225
 -- Name: assoc_municipio_id_categoria; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12507,7 +12513,7 @@ CREATE INDEX assoc_municipio_id_categoria ON assoc_municipio USING btree (id_cat
 
 
 --
--- TOC entry 3325 (class 1259 OID 61459259)
+-- TOC entry 3328 (class 1259 OID 61483796)
 -- Dependencies: 225
 -- Name: assoc_municipio_id_estado; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12516,7 +12522,7 @@ CREATE INDEX assoc_municipio_id_estado ON assoc_municipio USING btree (id_estado
 
 
 --
--- TOC entry 3326 (class 1259 OID 61459258)
+-- TOC entry 3329 (class 1259 OID 61483795)
 -- Dependencies: 225
 -- Name: assoc_municipio_id_municipio_pai; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12525,7 +12531,7 @@ CREATE INDEX assoc_municipio_id_municipio_pai ON assoc_municipio USING btree (id
 
 
 --
--- TOC entry 3327 (class 1259 OID 61459260)
+-- TOC entry 3330 (class 1259 OID 61483797)
 -- Dependencies: 225
 -- Name: assoc_municipio_nome; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12534,7 +12540,7 @@ CREATE INDEX assoc_municipio_nome ON assoc_municipio USING btree (nome);
 
 
 --
--- TOC entry 3310 (class 1259 OID 61459250)
+-- TOC entry 3313 (class 1259 OID 61483787)
 -- Dependencies: 223
 -- Name: codigo_postal_codigo; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12543,7 +12549,7 @@ CREATE INDEX codigo_postal_codigo ON codigo_postal USING btree (codigo);
 
 
 --
--- TOC entry 3311 (class 1259 OID 61459248)
+-- TOC entry 3314 (class 1259 OID 61483785)
 -- Dependencies: 223
 -- Name: codigo_postal_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12552,7 +12558,7 @@ CREATE UNIQUE INDEX codigo_postal_id ON codigo_postal USING btree (id);
 
 
 --
--- TOC entry 3312 (class 1259 OID 61459254)
+-- TOC entry 3315 (class 1259 OID 61483791)
 -- Dependencies: 223
 -- Name: codigo_postal_id_bairro; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12561,7 +12567,7 @@ CREATE INDEX codigo_postal_id_bairro ON codigo_postal USING btree (id_bairro);
 
 
 --
--- TOC entry 3313 (class 1259 OID 61459249)
+-- TOC entry 3316 (class 1259 OID 61483786)
 -- Dependencies: 223
 -- Name: codigo_postal_id_categoria; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12570,7 +12576,7 @@ CREATE INDEX codigo_postal_id_categoria ON codigo_postal USING btree (id_categor
 
 
 --
--- TOC entry 3314 (class 1259 OID 61459252)
+-- TOC entry 3317 (class 1259 OID 61483789)
 -- Dependencies: 223
 -- Name: codigo_postal_id_estado; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12579,7 +12585,7 @@ CREATE INDEX codigo_postal_id_estado ON codigo_postal USING btree (id_estado);
 
 
 --
--- TOC entry 3315 (class 1259 OID 61459255)
+-- TOC entry 3318 (class 1259 OID 61483792)
 -- Dependencies: 223
 -- Name: codigo_postal_id_logradouro; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12588,7 +12594,7 @@ CREATE INDEX codigo_postal_id_logradouro ON codigo_postal USING btree (id_lograd
 
 
 --
--- TOC entry 3316 (class 1259 OID 61459253)
+-- TOC entry 3319 (class 1259 OID 61483790)
 -- Dependencies: 223
 -- Name: codigo_postal_id_municipio; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12597,7 +12603,7 @@ CREATE INDEX codigo_postal_id_municipio ON codigo_postal USING btree (id_municip
 
 
 --
--- TOC entry 3317 (class 1259 OID 61459251)
+-- TOC entry 3320 (class 1259 OID 61483788)
 -- Dependencies: 223
 -- Name: codigo_postal_id_pais; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12606,7 +12612,7 @@ CREATE INDEX codigo_postal_id_pais ON codigo_postal USING btree (id_pais);
 
 
 --
--- TOC entry 3301 (class 1259 OID 61459246)
+-- TOC entry 3304 (class 1259 OID 61483783)
 -- Dependencies: 221
 -- Name: cpg_endereco_codigo_postal; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12615,7 +12621,7 @@ CREATE INDEX cpg_endereco_codigo_postal ON cpg_endereco USING btree (codigo_post
 
 
 --
--- TOC entry 3302 (class 1259 OID 61459243)
+-- TOC entry 3305 (class 1259 OID 61483780)
 -- Dependencies: 221
 -- Name: cpg_endereco_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12624,7 +12630,7 @@ CREATE UNIQUE INDEX cpg_endereco_id ON cpg_endereco USING btree (id);
 
 
 --
--- TOC entry 3303 (class 1259 OID 61459247)
+-- TOC entry 3306 (class 1259 OID 61483784)
 -- Dependencies: 221
 -- Name: cpg_endereco_id_assoccl_perfil_validador; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12633,7 +12639,7 @@ CREATE INDEX cpg_endereco_id_assoccl_perfil_validador ON cpg_endereco USING btre
 
 
 --
--- TOC entry 3304 (class 1259 OID 61459244)
+-- TOC entry 3307 (class 1259 OID 61483781)
 -- Dependencies: 221
 -- Name: cpg_endereco_id_categoria; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12642,7 +12648,7 @@ CREATE INDEX cpg_endereco_id_categoria ON cpg_endereco USING btree (id_categoria
 
 
 --
--- TOC entry 3305 (class 1259 OID 61459245)
+-- TOC entry 3308 (class 1259 OID 61483782)
 -- Dependencies: 221
 -- Name: cpg_endereco_id_generico_proprietario; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12651,7 +12657,7 @@ CREATE INDEX cpg_endereco_id_generico_proprietario ON cpg_endereco USING btree (
 
 
 --
--- TOC entry 3296 (class 1259 OID 61459241)
+-- TOC entry 3299 (class 1259 OID 61483778)
 -- Dependencies: 219
 -- Name: pais_constante_textual; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12660,7 +12666,7 @@ CREATE UNIQUE INDEX pais_constante_textual ON pais USING btree (constante_textua
 
 
 --
--- TOC entry 3297 (class 1259 OID 61459240)
+-- TOC entry 3300 (class 1259 OID 61483777)
 -- Dependencies: 219
 -- Name: pais_id; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12669,7 +12675,7 @@ CREATE UNIQUE INDEX pais_id ON pais USING btree (id);
 
 
 --
--- TOC entry 3298 (class 1259 OID 61459242)
+-- TOC entry 3301 (class 1259 OID 61483779)
 -- Dependencies: 219
 -- Name: pais_sigla; Type: INDEX; Schema: basico_localizacao; Owner: -; Tablespace: 
 --
@@ -12680,7 +12686,7 @@ CREATE UNIQUE INDEX pais_sigla ON pais USING btree (sigla);
 SET search_path = basico_mensagem, pg_catalog;
 
 --
--- TOC entry 3290 (class 1259 OID 61459238)
+-- TOC entry 3293 (class 1259 OID 61483775)
 -- Dependencies: 217
 -- Name: assoc_email_id; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12689,7 +12695,7 @@ CREATE UNIQUE INDEX assoc_email_id ON assoc_email USING btree (id);
 
 
 --
--- TOC entry 3291 (class 1259 OID 61459239)
+-- TOC entry 3294 (class 1259 OID 61483776)
 -- Dependencies: 217
 -- Name: assoc_email_id_mensagem; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12698,7 +12704,7 @@ CREATE UNIQUE INDEX assoc_email_id_mensagem ON assoc_email USING btree (id_mensa
 
 
 --
--- TOC entry 3282 (class 1259 OID 61459234)
+-- TOC entry 3285 (class 1259 OID 61483771)
 -- Dependencies: 215
 -- Name: assoccl_assoccl_pessoa_perfil_id; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12707,7 +12713,7 @@ CREATE UNIQUE INDEX assoccl_assoccl_pessoa_perfil_id ON assoccl_assoccl_pessoa_p
 
 
 --
--- TOC entry 3283 (class 1259 OID 61459237)
+-- TOC entry 3286 (class 1259 OID 61483774)
 -- Dependencies: 215
 -- Name: assoccl_assoccl_pessoa_perfil_id_assoccl_perfil; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12716,7 +12722,7 @@ CREATE INDEX assoccl_assoccl_pessoa_perfil_id_assoccl_perfil ON assoccl_assoccl_
 
 
 --
--- TOC entry 3284 (class 1259 OID 61459235)
+-- TOC entry 3287 (class 1259 OID 61483772)
 -- Dependencies: 215
 -- Name: assoccl_assoccl_pessoa_perfil_id_categoria; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12725,7 +12731,7 @@ CREATE INDEX assoccl_assoccl_pessoa_perfil_id_categoria ON assoccl_assoccl_pesso
 
 
 --
--- TOC entry 3285 (class 1259 OID 61459236)
+-- TOC entry 3288 (class 1259 OID 61483773)
 -- Dependencies: 215
 -- Name: assoccl_assoccl_pessoa_perfil_id_mensagem; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12734,7 +12740,7 @@ CREATE INDEX assoccl_assoccl_pessoa_perfil_id_mensagem ON assoccl_assoccl_pessoa
 
 
 --
--- TOC entry 3276 (class 1259 OID 61459230)
+-- TOC entry 3279 (class 1259 OID 61483767)
 -- Dependencies: 213
 -- Name: template_id; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12743,7 +12749,7 @@ CREATE UNIQUE INDEX template_id ON template USING btree (id);
 
 
 --
--- TOC entry 3277 (class 1259 OID 61459231)
+-- TOC entry 3280 (class 1259 OID 61483768)
 -- Dependencies: 213
 -- Name: template_id_categoria; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12752,7 +12758,7 @@ CREATE INDEX template_id_categoria ON template USING btree (id_categoria);
 
 
 --
--- TOC entry 3278 (class 1259 OID 61459232)
+-- TOC entry 3281 (class 1259 OID 61483769)
 -- Dependencies: 213
 -- Name: template_id_generico_proprietario; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12761,7 +12767,7 @@ CREATE INDEX template_id_generico_proprietario ON template USING btree (id_gener
 
 
 --
--- TOC entry 3279 (class 1259 OID 61459233)
+-- TOC entry 3282 (class 1259 OID 61483770)
 -- Dependencies: 213
 -- Name: template_nome; Type: INDEX; Schema: basico_mensagem; Owner: -; Tablespace: 
 --
@@ -12772,7 +12778,7 @@ CREATE INDEX template_nome ON template USING btree (nome);
 SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
--- TOC entry 3270 (class 1259 OID 61459228)
+-- TOC entry 3273 (class 1259 OID 61483765)
 -- Dependencies: 211
 -- Name: assoc_dados_id; Type: INDEX; Schema: basico_mensagem_assoc_email; Owner: -; Tablespace: 
 --
@@ -12781,7 +12787,7 @@ CREATE UNIQUE INDEX assoc_dados_id ON assoc_dados USING btree (id);
 
 
 --
--- TOC entry 3271 (class 1259 OID 61459229)
+-- TOC entry 3274 (class 1259 OID 61483766)
 -- Dependencies: 211
 -- Name: assoc_dados_id_assoc_email; Type: INDEX; Schema: basico_mensagem_assoc_email; Owner: -; Tablespace: 
 --
@@ -12792,7 +12798,7 @@ CREATE UNIQUE INDEX assoc_dados_id_assoc_email ON assoc_dados USING btree (id_as
 SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
--- TOC entry 3263 (class 1259 OID 61459225)
+-- TOC entry 3266 (class 1259 OID 61483762)
 -- Dependencies: 209
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -12801,7 +12807,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3264 (class 1259 OID 61459227)
+-- TOC entry 3267 (class 1259 OID 61483764)
 -- Dependencies: 209
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -12810,7 +12816,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3265 (class 1259 OID 61459226)
+-- TOC entry 3268 (class 1259 OID 61483763)
 -- Dependencies: 209
 -- Name: assoccl_include_id_metodo_validacao; Type: INDEX; Schema: basico_metodo_validacao; Owner: -; Tablespace: 
 --
@@ -12821,7 +12827,7 @@ CREATE INDEX assoccl_include_id_metodo_validacao ON assoccl_include USING btree 
 SET search_path = basico_output, pg_catalog;
 
 --
--- TOC entry 3256 (class 1259 OID 61459222)
+-- TOC entry 3259 (class 1259 OID 61483759)
 -- Dependencies: 207
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -12830,7 +12836,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3257 (class 1259 OID 61459224)
+-- TOC entry 3260 (class 1259 OID 61483761)
 -- Dependencies: 207
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -12839,7 +12845,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3258 (class 1259 OID 61459223)
+-- TOC entry 3261 (class 1259 OID 61483760)
 -- Dependencies: 207
 -- Name: assoccl_include_id_output; Type: INDEX; Schema: basico_output; Owner: -; Tablespace: 
 --
@@ -12850,7 +12856,7 @@ CREATE INDEX assoccl_include_id_output ON assoccl_include USING btree (id_output
 SET search_path = basico_perfil, pg_catalog;
 
 --
--- TOC entry 3249 (class 1259 OID 61459219)
+-- TOC entry 3252 (class 1259 OID 61483756)
 -- Dependencies: 205
 -- Name: assoccl_modulo_id; Type: INDEX; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -12859,7 +12865,7 @@ CREATE UNIQUE INDEX assoccl_modulo_id ON assoccl_modulo USING btree (id);
 
 
 --
--- TOC entry 3250 (class 1259 OID 61459220)
+-- TOC entry 3253 (class 1259 OID 61483757)
 -- Dependencies: 205
 -- Name: assoccl_modulo_id_modulo; Type: INDEX; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -12868,7 +12874,7 @@ CREATE INDEX assoccl_modulo_id_modulo ON assoccl_modulo USING btree (id_modulo);
 
 
 --
--- TOC entry 3251 (class 1259 OID 61459221)
+-- TOC entry 3254 (class 1259 OID 61483758)
 -- Dependencies: 205
 -- Name: assoccl_modulo_id_perfil; Type: INDEX; Schema: basico_perfil; Owner: -; Tablespace: 
 --
@@ -12879,7 +12885,7 @@ CREATE INDEX assoccl_modulo_id_perfil ON assoccl_modulo USING btree (id_perfil);
 SET search_path = basico_pessoa, pg_catalog;
 
 --
--- TOC entry 3244 (class 1259 OID 61459216)
+-- TOC entry 3247 (class 1259 OID 61483753)
 -- Dependencies: 203
 -- Name: assoc_dados_id; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12888,7 +12894,7 @@ CREATE UNIQUE INDEX assoc_dados_id ON assoc_dados USING btree (id);
 
 
 --
--- TOC entry 3245 (class 1259 OID 61459217)
+-- TOC entry 3248 (class 1259 OID 61483754)
 -- Dependencies: 203
 -- Name: assoc_dados_id_pessoa; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12897,7 +12903,7 @@ CREATE UNIQUE INDEX assoc_dados_id_pessoa ON assoc_dados USING btree (id_pessoa)
 
 
 --
--- TOC entry 3246 (class 1259 OID 61459218)
+-- TOC entry 3249 (class 1259 OID 61483755)
 -- Dependencies: 203
 -- Name: assoc_dados_nome; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12906,7 +12912,7 @@ CREATE INDEX assoc_dados_nome ON assoc_dados USING btree (nome);
 
 
 --
--- TOC entry 3237 (class 1259 OID 61459213)
+-- TOC entry 3240 (class 1259 OID 61483750)
 -- Dependencies: 201
 -- Name: assoccl_perfil_id; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12915,7 +12921,7 @@ CREATE UNIQUE INDEX assoccl_perfil_id ON assoccl_perfil USING btree (id);
 
 
 --
--- TOC entry 3238 (class 1259 OID 61459215)
+-- TOC entry 3241 (class 1259 OID 61483752)
 -- Dependencies: 201
 -- Name: assoccl_perfil_id_perfil; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12924,7 +12930,7 @@ CREATE INDEX assoccl_perfil_id_perfil ON assoccl_perfil USING btree (id_perfil);
 
 
 --
--- TOC entry 3239 (class 1259 OID 61459214)
+-- TOC entry 3242 (class 1259 OID 61483751)
 -- Dependencies: 201
 -- Name: assoccl_perfil_id_pessoa; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12933,7 +12939,7 @@ CREATE INDEX assoccl_perfil_id_pessoa ON assoccl_perfil USING btree (id_pessoa);
 
 
 --
--- TOC entry 3232 (class 1259 OID 61459210)
+-- TOC entry 3235 (class 1259 OID 61483747)
 -- Dependencies: 199
 -- Name: assoccl_tipo_vinculo_id; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12942,7 +12948,7 @@ CREATE UNIQUE INDEX assoccl_tipo_vinculo_id ON assoccl_tipo_vinculo USING btree 
 
 
 --
--- TOC entry 3233 (class 1259 OID 61459211)
+-- TOC entry 3236 (class 1259 OID 61483748)
 -- Dependencies: 199
 -- Name: assoccl_tipo_vinculo_id_pessoa; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12951,7 +12957,7 @@ CREATE INDEX assoccl_tipo_vinculo_id_pessoa ON assoccl_tipo_vinculo USING btree 
 
 
 --
--- TOC entry 3234 (class 1259 OID 61459212)
+-- TOC entry 3237 (class 1259 OID 61483749)
 -- Dependencies: 199
 -- Name: assoccl_tipo_vinculo_id_tipo_vinculo; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12960,7 +12966,7 @@ CREATE INDEX assoccl_tipo_vinculo_id_tipo_vinculo ON assoccl_tipo_vinculo USING 
 
 
 --
--- TOC entry 3226 (class 1259 OID 61459208)
+-- TOC entry 3229 (class 1259 OID 61483745)
 -- Dependencies: 197
 -- Name: login_id; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12969,7 +12975,7 @@ CREATE UNIQUE INDEX login_id ON login USING btree (id);
 
 
 --
--- TOC entry 3227 (class 1259 OID 61459209)
+-- TOC entry 3230 (class 1259 OID 61483746)
 -- Dependencies: 197
 -- Name: login_id_pessoa; Type: INDEX; Schema: basico_pessoa; Owner: -; Tablespace: 
 --
@@ -12980,7 +12986,7 @@ CREATE UNIQUE INDEX login_id_pessoa ON login USING btree (id_pessoa);
 SET search_path = basico_pessoa_juridica, pg_catalog;
 
 --
--- TOC entry 3220 (class 1259 OID 61459207)
+-- TOC entry 3223 (class 1259 OID 61483744)
 -- Dependencies: 195
 -- Name: assoc_banco_codigo; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -12989,7 +12995,7 @@ CREATE UNIQUE INDEX assoc_banco_codigo ON assoc_banco USING btree (codigo);
 
 
 --
--- TOC entry 3221 (class 1259 OID 61459204)
+-- TOC entry 3224 (class 1259 OID 61483690)
 -- Dependencies: 195
 -- Name: assoc_banco_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -12998,7 +13004,7 @@ CREATE UNIQUE INDEX assoc_banco_id ON assoc_banco USING btree (id);
 
 
 --
--- TOC entry 3222 (class 1259 OID 61459206)
+-- TOC entry 3225 (class 1259 OID 61483692)
 -- Dependencies: 195
 -- Name: assoc_banco_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13007,7 +13013,7 @@ CREATE INDEX assoc_banco_id_categoria ON assoc_banco USING btree (id_categoria);
 
 
 --
--- TOC entry 3223 (class 1259 OID 61459205)
+-- TOC entry 3226 (class 1259 OID 61483691)
 -- Dependencies: 195
 -- Name: assoc_banco_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13016,7 +13022,7 @@ CREATE UNIQUE INDEX assoc_banco_id_pessoa_juridica ON assoc_banco USING btree (i
 
 
 --
--- TOC entry 3213 (class 1259 OID 61459199)
+-- TOC entry 3216 (class 1259 OID 61483685)
 -- Dependencies: 193
 -- Name: assoc_dados_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13025,7 +13031,7 @@ CREATE UNIQUE INDEX assoc_dados_id ON assoc_dados USING btree (id);
 
 
 --
--- TOC entry 3214 (class 1259 OID 61459200)
+-- TOC entry 3217 (class 1259 OID 61483686)
 -- Dependencies: 193
 -- Name: assoc_dados_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13034,7 +13040,7 @@ CREATE UNIQUE INDEX assoc_dados_id_pessoa_juridica ON assoc_dados USING btree (i
 
 
 --
--- TOC entry 3215 (class 1259 OID 61459202)
+-- TOC entry 3218 (class 1259 OID 61483688)
 -- Dependencies: 193
 -- Name: assoc_dados_nome_fantasia; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13043,7 +13049,7 @@ CREATE INDEX assoc_dados_nome_fantasia ON assoc_dados USING btree (nome_fantasia
 
 
 --
--- TOC entry 3216 (class 1259 OID 61459201)
+-- TOC entry 3219 (class 1259 OID 61483687)
 -- Dependencies: 193
 -- Name: assoc_dados_razao_social; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13052,7 +13058,7 @@ CREATE INDEX assoc_dados_razao_social ON assoc_dados USING btree (razao_social);
 
 
 --
--- TOC entry 3217 (class 1259 OID 61459203)
+-- TOC entry 3220 (class 1259 OID 61483689)
 -- Dependencies: 193
 -- Name: assoc_dados_sigla; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13061,7 +13067,7 @@ CREATE INDEX assoc_dados_sigla ON assoc_dados USING btree (sigla);
 
 
 --
--- TOC entry 3205 (class 1259 OID 61459195)
+-- TOC entry 3208 (class 1259 OID 61483681)
 -- Dependencies: 191
 -- Name: assocag_incubadora_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13070,7 +13076,7 @@ CREATE UNIQUE INDEX assocag_incubadora_id ON assocag_incubadora USING btree (id)
 
 
 --
--- TOC entry 3206 (class 1259 OID 61459196)
+-- TOC entry 3209 (class 1259 OID 61483682)
 -- Dependencies: 191
 -- Name: assocag_incubadora_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13079,7 +13085,7 @@ CREATE INDEX assocag_incubadora_id_categoria ON assocag_incubadora USING btree (
 
 
 --
--- TOC entry 3207 (class 1259 OID 61459197)
+-- TOC entry 3210 (class 1259 OID 61483683)
 -- Dependencies: 191
 -- Name: assocag_incubadora_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13088,7 +13094,7 @@ CREATE INDEX assocag_incubadora_id_pessoa_juridica ON assocag_incubadora USING b
 
 
 --
--- TOC entry 3208 (class 1259 OID 61459198)
+-- TOC entry 3211 (class 1259 OID 61483684)
 -- Dependencies: 191
 -- Name: assocag_incubadora_id_pessoa_juridica_incubada; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13097,7 +13103,7 @@ CREATE INDEX assocag_incubadora_id_pessoa_juridica_incubada ON assocag_incubador
 
 
 --
--- TOC entry 3195 (class 1259 OID 61459189)
+-- TOC entry 3198 (class 1259 OID 61483675)
 -- Dependencies: 189
 -- Name: assocag_parceria_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13106,7 +13112,7 @@ CREATE UNIQUE INDEX assocag_parceria_id ON assocag_parceria USING btree (id);
 
 
 --
--- TOC entry 3196 (class 1259 OID 61459193)
+-- TOC entry 3199 (class 1259 OID 61483679)
 -- Dependencies: 189
 -- Name: assocag_parceria_id_assocag_parceria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13115,7 +13121,7 @@ CREATE INDEX assocag_parceria_id_assocag_parceria ON assocag_parceria USING btre
 
 
 --
--- TOC entry 3197 (class 1259 OID 61459190)
+-- TOC entry 3200 (class 1259 OID 61483676)
 -- Dependencies: 189
 -- Name: assocag_parceria_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13124,7 +13130,7 @@ CREATE INDEX assocag_parceria_id_categoria ON assocag_parceria USING btree (id_c
 
 
 --
--- TOC entry 3198 (class 1259 OID 61459191)
+-- TOC entry 3201 (class 1259 OID 61483677)
 -- Dependencies: 189
 -- Name: assocag_parceria_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13133,7 +13139,7 @@ CREATE INDEX assocag_parceria_id_pessoa_juridica ON assocag_parceria USING btree
 
 
 --
--- TOC entry 3199 (class 1259 OID 61459192)
+-- TOC entry 3202 (class 1259 OID 61483678)
 -- Dependencies: 189
 -- Name: assocag_parceria_id_pessoa_juridica_parceira; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13142,7 +13148,7 @@ CREATE INDEX assocag_parceria_id_pessoa_juridica_parceira ON assocag_parceria US
 
 
 --
--- TOC entry 3200 (class 1259 OID 61459194)
+-- TOC entry 3203 (class 1259 OID 61483680)
 -- Dependencies: 189
 -- Name: assocag_parceria_nome; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13151,7 +13157,7 @@ CREATE INDEX assocag_parceria_nome ON assocag_parceria USING btree (nome);
 
 
 --
--- TOC entry 3188 (class 1259 OID 61459186)
+-- TOC entry 3191 (class 1259 OID 61483672)
 -- Dependencies: 187
 -- Name: assoccl_area_economia_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13160,7 +13166,7 @@ CREATE UNIQUE INDEX assoccl_area_economia_id ON assoccl_area_economia USING btre
 
 
 --
--- TOC entry 3189 (class 1259 OID 61459187)
+-- TOC entry 3192 (class 1259 OID 61483673)
 -- Dependencies: 187
 -- Name: assoccl_area_economia_id_area_economia; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13169,7 +13175,7 @@ CREATE INDEX assoccl_area_economia_id_area_economia ON assoccl_area_economia USI
 
 
 --
--- TOC entry 3190 (class 1259 OID 61459188)
+-- TOC entry 3193 (class 1259 OID 61483674)
 -- Dependencies: 187
 -- Name: assoccl_area_economia_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13178,7 +13184,7 @@ CREATE INDEX assoccl_area_economia_id_pessoa_juridica ON assoccl_area_economia U
 
 
 --
--- TOC entry 3181 (class 1259 OID 61459183)
+-- TOC entry 3184 (class 1259 OID 61483669)
 -- Dependencies: 185
 -- Name: assoccl_capital_social_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13187,7 +13193,7 @@ CREATE UNIQUE INDEX assoccl_capital_social_id ON assoccl_capital_social USING bt
 
 
 --
--- TOC entry 3182 (class 1259 OID 61459185)
+-- TOC entry 3185 (class 1259 OID 61483671)
 -- Dependencies: 185
 -- Name: assoccl_capital_social_id_capital_social; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13196,7 +13202,7 @@ CREATE INDEX assoccl_capital_social_id_capital_social ON assoccl_capital_social 
 
 
 --
--- TOC entry 3183 (class 1259 OID 61459184)
+-- TOC entry 3186 (class 1259 OID 61483670)
 -- Dependencies: 185
 -- Name: assoccl_capital_social_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13205,7 +13211,7 @@ CREATE INDEX assoccl_capital_social_id_pessoa_juridica ON assoccl_capital_social
 
 
 --
--- TOC entry 3174 (class 1259 OID 61459180)
+-- TOC entry 3177 (class 1259 OID 61483666)
 -- Dependencies: 183
 -- Name: assoccl_faturamento_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13214,7 +13220,7 @@ CREATE UNIQUE INDEX assoccl_faturamento_id ON assoccl_faturamento USING btree (i
 
 
 --
--- TOC entry 3175 (class 1259 OID 61459181)
+-- TOC entry 3178 (class 1259 OID 61483667)
 -- Dependencies: 183
 -- Name: assoccl_faturamento_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13223,7 +13229,7 @@ CREATE INDEX assoccl_faturamento_id_categoria ON assoccl_faturamento USING btree
 
 
 --
--- TOC entry 3176 (class 1259 OID 61459182)
+-- TOC entry 3179 (class 1259 OID 61483668)
 -- Dependencies: 183
 -- Name: assoccl_faturamento_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13232,7 +13238,7 @@ CREATE INDEX assoccl_faturamento_id_pessoa_juridica ON assoccl_faturamento USING
 
 
 --
--- TOC entry 3166 (class 1259 OID 61459176)
+-- TOC entry 3169 (class 1259 OID 61483662)
 -- Dependencies: 181
 -- Name: assoccl_quadro_funcionario_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13241,7 +13247,7 @@ CREATE UNIQUE INDEX assoccl_quadro_funcionario_id ON assoccl_quadro_funcionario 
 
 
 --
--- TOC entry 3167 (class 1259 OID 61459177)
+-- TOC entry 3170 (class 1259 OID 61483663)
 -- Dependencies: 181
 -- Name: assoccl_quadro_funcionario_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13250,7 +13256,7 @@ CREATE INDEX assoccl_quadro_funcionario_id_categoria ON assoccl_quadro_funcionar
 
 
 --
--- TOC entry 3168 (class 1259 OID 61459178)
+-- TOC entry 3171 (class 1259 OID 61483664)
 -- Dependencies: 181
 -- Name: assoccl_quadro_funcionario_id_pessoa_juridica; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13259,7 +13265,7 @@ CREATE INDEX assoccl_quadro_funcionario_id_pessoa_juridica ON assoccl_quadro_fun
 
 
 --
--- TOC entry 3169 (class 1259 OID 61459179)
+-- TOC entry 3172 (class 1259 OID 61483665)
 -- Dependencies: 181
 -- Name: assoccl_quadro_funcionario_id_titulacao; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13268,7 +13274,7 @@ CREATE INDEX assoccl_quadro_funcionario_id_titulacao ON assoccl_quadro_funcionar
 
 
 --
--- TOC entry 3160 (class 1259 OID 61459175)
+-- TOC entry 3163 (class 1259 OID 61483661)
 -- Dependencies: 179
 -- Name: capital_social_constante_textual; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13277,7 +13283,7 @@ CREATE INDEX capital_social_constante_textual ON capital_social USING btree (con
 
 
 --
--- TOC entry 3161 (class 1259 OID 61459172)
+-- TOC entry 3164 (class 1259 OID 61483658)
 -- Dependencies: 179
 -- Name: capital_social_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13286,7 +13292,7 @@ CREATE UNIQUE INDEX capital_social_id ON capital_social USING btree (id);
 
 
 --
--- TOC entry 3162 (class 1259 OID 61459173)
+-- TOC entry 3165 (class 1259 OID 61483659)
 -- Dependencies: 179
 -- Name: capital_social_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13295,7 +13301,7 @@ CREATE INDEX capital_social_id_categoria ON capital_social USING btree (id_categ
 
 
 --
--- TOC entry 3163 (class 1259 OID 61459174)
+-- TOC entry 3166 (class 1259 OID 61483660)
 -- Dependencies: 179
 -- Name: capital_social_nome; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13304,7 +13310,7 @@ CREATE UNIQUE INDEX capital_social_nome ON capital_social USING btree (nome);
 
 
 --
--- TOC entry 3153 (class 1259 OID 61459171)
+-- TOC entry 3156 (class 1259 OID 61483657)
 -- Dependencies: 177
 -- Name: natureza_codigo; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13313,7 +13319,7 @@ CREATE INDEX natureza_codigo ON natureza USING btree (codigo);
 
 
 --
--- TOC entry 3154 (class 1259 OID 61459170)
+-- TOC entry 3157 (class 1259 OID 61483656)
 -- Dependencies: 177
 -- Name: natureza_constante_textual; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13322,7 +13328,7 @@ CREATE INDEX natureza_constante_textual ON natureza USING btree (constante_textu
 
 
 --
--- TOC entry 3155 (class 1259 OID 61459167)
+-- TOC entry 3158 (class 1259 OID 61483653)
 -- Dependencies: 177
 -- Name: natureza_id; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13331,7 +13337,7 @@ CREATE UNIQUE INDEX natureza_id ON natureza USING btree (id);
 
 
 --
--- TOC entry 3156 (class 1259 OID 61459168)
+-- TOC entry 3159 (class 1259 OID 61483654)
 -- Dependencies: 177
 -- Name: natureza_id_categoria; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13340,7 +13346,7 @@ CREATE INDEX natureza_id_categoria ON natureza USING btree (id_categoria);
 
 
 --
--- TOC entry 3157 (class 1259 OID 61459169)
+-- TOC entry 3160 (class 1259 OID 61483655)
 -- Dependencies: 177
 -- Name: natureza_nome; Type: INDEX; Schema: basico_pessoa_juridica; Owner: -; Tablespace: 
 --
@@ -13351,7 +13357,7 @@ CREATE UNIQUE INDEX natureza_nome ON natureza USING btree (nome);
 SET search_path = basico_sequencia, pg_catalog;
 
 --
--- TOC entry 3142 (class 1259 OID 61459165)
+-- TOC entry 3145 (class 1259 OID 61483651)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_constante_textual; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13360,7 +13366,7 @@ CREATE INDEX assocsq_acao_aplicacao_constante_textual ON assocsq_acao_aplicacao 
 
 
 --
--- TOC entry 3143 (class 1259 OID 61459160)
+-- TOC entry 3146 (class 1259 OID 61483646)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_id; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13369,7 +13375,7 @@ CREATE UNIQUE INDEX assocsq_acao_aplicacao_id ON assocsq_acao_aplicacao USING bt
 
 
 --
--- TOC entry 3144 (class 1259 OID 61459163)
+-- TOC entry 3147 (class 1259 OID 61483649)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_id_acao_aplicacao; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13378,7 +13384,7 @@ CREATE INDEX assocsq_acao_aplicacao_id_acao_aplicacao ON assocsq_acao_aplicacao 
 
 
 --
--- TOC entry 3145 (class 1259 OID 61459161)
+-- TOC entry 3148 (class 1259 OID 61483647)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_id_categoria; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13387,7 +13393,7 @@ CREATE INDEX assocsq_acao_aplicacao_id_categoria ON assocsq_acao_aplicacao USING
 
 
 --
--- TOC entry 3146 (class 1259 OID 61459162)
+-- TOC entry 3149 (class 1259 OID 61483648)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_id_sequencia; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13396,7 +13402,7 @@ CREATE INDEX assocsq_acao_aplicacao_id_sequencia ON assocsq_acao_aplicacao USING
 
 
 --
--- TOC entry 3147 (class 1259 OID 61459164)
+-- TOC entry 3150 (class 1259 OID 61483650)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_nome; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13405,7 +13411,7 @@ CREATE INDEX assocsq_acao_aplicacao_nome ON assocsq_acao_aplicacao USING btree (
 
 
 --
--- TOC entry 3148 (class 1259 OID 61459166)
+-- TOC entry 3151 (class 1259 OID 61483652)
 -- Dependencies: 175
 -- Name: assocsq_acao_aplicacao_passo; Type: INDEX; Schema: basico_sequencia; Owner: -; Tablespace: 
 --
@@ -13416,7 +13422,7 @@ CREATE INDEX assocsq_acao_aplicacao_passo ON assocsq_acao_aplicacao USING btree 
 SET search_path = basico_template, pg_catalog;
 
 --
--- TOC entry 3135 (class 1259 OID 61459157)
+-- TOC entry 3138 (class 1259 OID 61483643)
 -- Dependencies: 173
 -- Name: assoccl_include_id; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13425,7 +13431,7 @@ CREATE UNIQUE INDEX assoccl_include_id ON assoccl_include USING btree (id);
 
 
 --
--- TOC entry 3136 (class 1259 OID 61459159)
+-- TOC entry 3139 (class 1259 OID 61483645)
 -- Dependencies: 173
 -- Name: assoccl_include_id_include; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13434,7 +13440,7 @@ CREATE INDEX assoccl_include_id_include ON assoccl_include USING btree (id_inclu
 
 
 --
--- TOC entry 3137 (class 1259 OID 61459158)
+-- TOC entry 3140 (class 1259 OID 61483644)
 -- Dependencies: 173
 -- Name: assoccl_include_id_template; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13443,7 +13449,7 @@ CREATE INDEX assoccl_include_id_template ON assoccl_include USING btree (id_temp
 
 
 --
--- TOC entry 3128 (class 1259 OID 61459154)
+-- TOC entry 3131 (class 1259 OID 61483640)
 -- Dependencies: 171
 -- Name: assoccl_output_id; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13452,7 +13458,7 @@ CREATE UNIQUE INDEX assoccl_output_id ON assoccl_output USING btree (id);
 
 
 --
--- TOC entry 3129 (class 1259 OID 61459156)
+-- TOC entry 3132 (class 1259 OID 61483642)
 -- Dependencies: 171
 -- Name: assoccl_output_id_output; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13461,7 +13467,7 @@ CREATE INDEX assoccl_output_id_output ON assoccl_output USING btree (id_output);
 
 
 --
--- TOC entry 3130 (class 1259 OID 61459155)
+-- TOC entry 3133 (class 1259 OID 61483641)
 -- Dependencies: 171
 -- Name: assoccl_output_id_template; Type: INDEX; Schema: basico_template; Owner: -; Tablespace: 
 --
@@ -13472,7 +13478,7 @@ CREATE INDEX assoccl_output_id_template ON assoccl_output USING btree (id_templa
 SET search_path = basico_validator, pg_catalog;
 
 --
--- TOC entry 3122 (class 1259 OID 61459153)
+-- TOC entry 3125 (class 1259 OID 61483639)
 -- Dependencies: 169
 -- Name: grupo_constante_textual; Type: INDEX; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -13481,7 +13487,7 @@ CREATE INDEX grupo_constante_textual ON grupo USING btree (constante_textual);
 
 
 --
--- TOC entry 3123 (class 1259 OID 61459150)
+-- TOC entry 3126 (class 1259 OID 61483636)
 -- Dependencies: 169
 -- Name: grupo_id; Type: INDEX; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -13490,7 +13496,7 @@ CREATE UNIQUE INDEX grupo_id ON grupo USING btree (id);
 
 
 --
--- TOC entry 3124 (class 1259 OID 61459151)
+-- TOC entry 3127 (class 1259 OID 61483637)
 -- Dependencies: 169
 -- Name: grupo_id_categoria; Type: INDEX; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -13499,7 +13505,7 @@ CREATE INDEX grupo_id_categoria ON grupo USING btree (id_categoria);
 
 
 --
--- TOC entry 3125 (class 1259 OID 61459152)
+-- TOC entry 3128 (class 1259 OID 61483638)
 -- Dependencies: 169
 -- Name: grupo_nome; Type: INDEX; Schema: basico_validator; Owner: -; Tablespace: 
 --
@@ -13510,7 +13516,7 @@ CREATE UNIQUE INDEX grupo_nome ON grupo USING btree (nome);
 SET search_path = basico_validator_grupo, pg_catalog;
 
 --
--- TOC entry 3116 (class 1259 OID 61459146)
+-- TOC entry 3119 (class 1259 OID 61483632)
 -- Dependencies: 167
 -- Name: assocag_grupo_id; Type: INDEX; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -13519,7 +13525,7 @@ CREATE UNIQUE INDEX assocag_grupo_id ON assocag_grupo USING btree (id);
 
 
 --
--- TOC entry 3117 (class 1259 OID 61459148)
+-- TOC entry 3120 (class 1259 OID 61483634)
 -- Dependencies: 167
 -- Name: assocag_grupo_id_validator; Type: INDEX; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -13528,7 +13534,7 @@ CREATE INDEX assocag_grupo_id_validator ON assocag_grupo USING btree (id_validat
 
 
 --
--- TOC entry 3118 (class 1259 OID 61459147)
+-- TOC entry 3121 (class 1259 OID 61483633)
 -- Dependencies: 167
 -- Name: assocag_grupo_id_validator_grupo; Type: INDEX; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -13537,7 +13543,7 @@ CREATE INDEX assocag_grupo_id_validator_grupo ON assocag_grupo USING btree (id_v
 
 
 --
--- TOC entry 3119 (class 1259 OID 61459149)
+-- TOC entry 3122 (class 1259 OID 61483635)
 -- Dependencies: 167
 -- Name: assocag_grupo_id_validator_grupo_assoc; Type: INDEX; Schema: basico_validator_grupo; Owner: -; Tablespace: 
 --
@@ -13548,8 +13554,8 @@ CREATE INDEX assocag_grupo_id_validator_grupo_assoc ON assocag_grupo USING btree
 SET search_path = basico, pg_catalog;
 
 --
--- TOC entry 4214 (class 2606 OID 61458794)
--- Dependencies: 355 401 3778
+-- TOC entry 4220 (class 2606 OID 61483117)
+-- Dependencies: 3781 355 401
 -- Name: fk_acao_aplicacao_modulo; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13558,8 +13564,8 @@ ALTER TABLE ONLY acao_aplicacao
 
 
 --
--- TOC entry 4213 (class 2606 OID 61458389)
--- Dependencies: 391 3932 399
+-- TOC entry 4219 (class 2606 OID 61483297)
+-- Dependencies: 391 3935 399
 -- Name: fk_acao_evento_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13568,8 +13574,8 @@ ALTER TABLE ONLY acao_evento
 
 
 --
--- TOC entry 4212 (class 2606 OID 61458894)
--- Dependencies: 3932 391 397
+-- TOC entry 4218 (class 2606 OID 61483467)
+-- Dependencies: 397 391 3935
 -- Name: fk_ajuda_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13578,8 +13584,8 @@ ALTER TABLE ONLY ajuda
 
 
 --
--- TOC entry 4210 (class 2606 OID 61458324)
--- Dependencies: 395 3932 391
+-- TOC entry 4217 (class 2606 OID 61483112)
+-- Dependencies: 391 395 3935
 -- Name: fk_area_conhecimento_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13588,8 +13594,8 @@ ALTER TABLE ONLY area_conhecimento
 
 
 --
--- TOC entry 4211 (class 2606 OID 61458729)
--- Dependencies: 395 395 3952
+-- TOC entry 4216 (class 2606 OID 61482957)
+-- Dependencies: 3955 395 395
 -- Name: fk_area_conhecimento_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13598,8 +13604,8 @@ ALTER TABLE ONLY area_conhecimento
 
 
 --
--- TOC entry 4209 (class 2606 OID 61458739)
--- Dependencies: 391 393 3932
+-- TOC entry 4214 (class 2606 OID 61482452)
+-- Dependencies: 3935 393 391
 -- Name: fk_area_economia_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13608,8 +13614,8 @@ ALTER TABLE ONLY area_economia
 
 
 --
--- TOC entry 4208 (class 2606 OID 61458023)
--- Dependencies: 393 3942 393
+-- TOC entry 4215 (class 2606 OID 61483217)
+-- Dependencies: 393 3945 393
 -- Name: fk_area_economia_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13618,8 +13624,8 @@ ALTER TABLE ONLY area_economia
 
 
 --
--- TOC entry 4203 (class 2606 OID 61458359)
--- Dependencies: 3932 391 387
+-- TOC entry 4209 (class 2606 OID 61483577)
+-- Dependencies: 391 387 3935
 -- Name: fk_arquivo_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13628,8 +13634,8 @@ ALTER TABLE ONLY cpg_arquivo
 
 
 --
--- TOC entry 4206 (class 2606 OID 61458799)
--- Dependencies: 3932 391 391
+-- TOC entry 4213 (class 2606 OID 61483507)
+-- Dependencies: 391 391 3935
 -- Name: fk_categoria_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13638,8 +13644,8 @@ ALTER TABLE ONLY categoria
 
 
 --
--- TOC entry 4207 (class 2606 OID 61459031)
--- Dependencies: 391 339 3721
+-- TOC entry 4212 (class 2606 OID 61482722)
+-- Dependencies: 391 3724 339
 -- Name: fk_categoria_tipo_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13648,8 +13654,8 @@ ALTER TABLE ONLY categoria
 
 
 --
--- TOC entry 4202 (class 2606 OID 61458889)
--- Dependencies: 391 385 3932
+-- TOC entry 4208 (class 2606 OID 61483052)
+-- Dependencies: 391 3935 385
 -- Name: fk_codigo_acesso_categoria_acesso; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13658,8 +13664,8 @@ ALTER TABLE ONLY cpg_codigo_acesso
 
 
 --
--- TOC entry 4201 (class 2606 OID 61458464)
--- Dependencies: 3932 391 385
+-- TOC entry 4207 (class 2606 OID 61482897)
+-- Dependencies: 385 391 3935
 -- Name: fk_codigo_acesso_categoria_prop; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13668,8 +13674,8 @@ ALTER TABLE ONLY cpg_codigo_acesso
 
 
 --
--- TOC entry 4204 (class 2606 OID 61458008)
--- Dependencies: 389 391 3932
+-- TOC entry 4210 (class 2606 OID 61482467)
+-- Dependencies: 389 391 3935
 -- Name: fk_componente_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13678,8 +13684,8 @@ ALTER TABLE ONLY componente
 
 
 --
--- TOC entry 4205 (class 2606 OID 61458981)
--- Dependencies: 389 341 3730
+-- TOC entry 4211 (class 2606 OID 61482582)
+-- Dependencies: 389 341 3733
 -- Name: fk_componente_template; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13688,8 +13694,8 @@ ALTER TABLE ONLY componente
 
 
 --
--- TOC entry 4200 (class 2606 OID 61458549)
--- Dependencies: 3932 383 391
+-- TOC entry 4206 (class 2606 OID 61483157)
+-- Dependencies: 3935 391 383
 -- Name: fk_dados_bancarios_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13698,8 +13704,8 @@ ALTER TABLE ONLY cpg_dados_bancarios
 
 
 --
--- TOC entry 4193 (class 2606 OID 61459056)
--- Dependencies: 391 373 3932
+-- TOC entry 4199 (class 2606 OID 61482507)
+-- Dependencies: 373 391 3935
 -- Name: fk_dados_biometricos_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13708,8 +13714,8 @@ ALTER TABLE ONLY dados_biometricos
 
 
 --
--- TOC entry 4192 (class 2606 OID 61458013)
--- Dependencies: 371 3932 391
+-- TOC entry 4198 (class 2606 OID 61483097)
+-- Dependencies: 3935 371 391
 -- Name: fk_dic_expressao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13718,8 +13724,8 @@ ALTER TABLE ONLY dicionario_expressao
 
 
 --
--- TOC entry 4199 (class 2606 OID 61459116)
--- Dependencies: 381 3932 391
+-- TOC entry 4204 (class 2606 OID 61482552)
+-- Dependencies: 381 391 3935
 -- Name: fk_doc_identificacao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13728,8 +13734,8 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 
 --
--- TOC entry 4198 (class 2606 OID 61458364)
--- Dependencies: 347 3755 381
+-- TOC entry 4205 (class 2606 OID 61483202)
+-- Dependencies: 347 3758 381
 -- Name: fk_doc_identificacao_pj_emissor; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13738,8 +13744,8 @@ ALTER TABLE ONLY cpg_documento_identificacao
 
 
 --
--- TOC entry 4191 (class 2606 OID 61458961)
--- Dependencies: 369 3932 391
+-- TOC entry 4197 (class 2606 OID 61483092)
+-- Dependencies: 3935 369 391
 -- Name: fk_evento_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13748,8 +13754,8 @@ ALTER TABLE ONLY evento
 
 
 --
--- TOC entry 4189 (class 2606 OID 61458439)
--- Dependencies: 391 3932 367
+-- TOC entry 4195 (class 2606 OID 61482812)
+-- Dependencies: 391 367 3935
 -- Name: fk_filter_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13758,8 +13764,8 @@ ALTER TABLE ONLY filter
 
 
 --
--- TOC entry 4190 (class 2606 OID 61458951)
--- Dependencies: 389 3922 367
+-- TOC entry 4196 (class 2606 OID 61483227)
+-- Dependencies: 367 389 3925
 -- Name: fk_filter_componente; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13768,8 +13774,8 @@ ALTER TABLE ONLY filter
 
 
 --
--- TOC entry 4188 (class 2606 OID 61459131)
--- Dependencies: 365 397 3963
+-- TOC entry 4191 (class 2606 OID 61482497)
+-- Dependencies: 365 397 3966
 -- Name: fk_formulario_ajuda; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13778,8 +13784,8 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 4185 (class 2606 OID 61458158)
--- Dependencies: 365 3932 391
+-- TOC entry 4192 (class 2606 OID 61482567)
+-- Dependencies: 365 391 3935
 -- Name: fk_formulario_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13788,8 +13794,8 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 4186 (class 2606 OID 61458704)
--- Dependencies: 3922 389 365
+-- TOC entry 4194 (class 2606 OID 61483527)
+-- Dependencies: 365 389 3925
 -- Name: fk_formulario_componente; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13798,8 +13804,8 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 4187 (class 2606 OID 61458976)
--- Dependencies: 365 365 3816
+-- TOC entry 4193 (class 2606 OID 61483342)
+-- Dependencies: 365 365 3819
 -- Name: fk_formulario_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13808,8 +13814,8 @@ ALTER TABLE ONLY formulario
 
 
 --
--- TOC entry 4184 (class 2606 OID 61458649)
--- Dependencies: 391 363 3932
+-- TOC entry 4190 (class 2606 OID 61483072)
+-- Dependencies: 3935 363 391
 -- Name: fk_include_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13818,8 +13824,8 @@ ALTER TABLE ONLY include
 
 
 --
--- TOC entry 4197 (class 2606 OID 61458879)
--- Dependencies: 391 3932 379
+-- TOC entry 4203 (class 2606 OID 61482612)
+-- Dependencies: 379 391 3935
 -- Name: fk_link_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13828,8 +13834,8 @@ ALTER TABLE ONLY cpg_link
 
 
 --
--- TOC entry 4182 (class 2606 OID 61458534)
--- Dependencies: 361 3240 201
+-- TOC entry 4189 (class 2606 OID 61483337)
+-- Dependencies: 361 3243 201
 -- Name: fk_log_assoccl_perfil; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13838,8 +13844,8 @@ ALTER TABLE ONLY log
 
 
 --
--- TOC entry 4183 (class 2606 OID 61458804)
--- Dependencies: 391 3932 361
+-- TOC entry 4188 (class 2606 OID 61482727)
+-- Dependencies: 361 391 3935
 -- Name: fk_log_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13848,8 +13854,8 @@ ALTER TABLE ONLY log
 
 
 --
--- TOC entry 4181 (class 2606 OID 61458504)
--- Dependencies: 3932 391 359
+-- TOC entry 4187 (class 2606 OID 61482662)
+-- Dependencies: 359 391 3935
 -- Name: fk_mensagem_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13858,8 +13864,8 @@ ALTER TABLE ONLY mensagem
 
 
 --
--- TOC entry 4180 (class 2606 OID 61458839)
--- Dependencies: 357 391 3932
+-- TOC entry 4186 (class 2606 OID 61483422)
+-- Dependencies: 357 391 3935
 -- Name: fk_metodo_validacao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13868,8 +13874,8 @@ ALTER TABLE ONLY metodo_validacao
 
 
 --
--- TOC entry 4178 (class 2606 OID 61458028)
--- Dependencies: 3932 391 355
+-- TOC entry 4184 (class 2606 OID 61483102)
+-- Dependencies: 3935 391 355
 -- Name: fk_modulo_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13878,8 +13884,8 @@ ALTER TABLE ONLY modulo
 
 
 --
--- TOC entry 4179 (class 2606 OID 61458854)
--- Dependencies: 355 355 3778
+-- TOC entry 4185 (class 2606 OID 61483512)
+-- Dependencies: 355 355 3781
 -- Name: fk_modulo_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13888,8 +13894,8 @@ ALTER TABLE ONLY modulo
 
 
 --
--- TOC entry 4177 (class 2606 OID 61459046)
--- Dependencies: 353 3932 391
+-- TOC entry 4183 (class 2606 OID 61483627)
+-- Dependencies: 3935 353 391
 -- Name: fk_output_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13898,8 +13904,8 @@ ALTER TABLE ONLY output
 
 
 --
--- TOC entry 4175 (class 2606 OID 61458474)
--- Dependencies: 3932 391 351
+-- TOC entry 4182 (class 2606 OID 61482827)
+-- Dependencies: 351 391 3935
 -- Name: fk_perfil_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13908,8 +13914,8 @@ ALTER TABLE ONLY perfil
 
 
 --
--- TOC entry 4176 (class 2606 OID 61458604)
--- Dependencies: 3778 351 355
+-- TOC entry 4181 (class 2606 OID 61482757)
+-- Dependencies: 355 351 3781
 -- Name: fk_perfil_modulo; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13918,8 +13924,8 @@ ALTER TABLE ONLY perfil
 
 
 --
--- TOC entry 4171 (class 2606 OID 61458399)
--- Dependencies: 305 3599 349
+-- TOC entry 4179 (class 2606 OID 61483302)
+-- Dependencies: 3602 305 349
 -- Name: fk_pessoa_email_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13928,8 +13934,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4169 (class 2606 OID 61457968)
--- Dependencies: 349 221 3306
+-- TOC entry 4175 (class 2606 OID 61482592)
+-- Dependencies: 349 221 3309
 -- Name: fk_pessoa_endereco_corresp; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13938,8 +13944,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4173 (class 2606 OID 61459051)
--- Dependencies: 221 3306 349
+-- TOC entry 4180 (class 2606 OID 61483592)
+-- Dependencies: 3309 349 221
 -- Name: fk_pessoa_endereco_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13948,8 +13954,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4167 (class 2606 OID 61458789)
--- Dependencies: 3158 347 177
+-- TOC entry 4174 (class 2606 OID 61483602)
+-- Dependencies: 347 177 3161
 -- Name: fk_pessoa_juridica_natureza; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13958,8 +13964,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4161 (class 2606 OID 61458188)
--- Dependencies: 347 3755 347
+-- TOC entry 4170 (class 2606 OID 61483172)
+-- Dependencies: 347 347 3758
 -- Name: fk_pessoa_juridica_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13968,8 +13974,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4174 (class 2606 OID 61459111)
--- Dependencies: 379 349 3872
+-- TOC entry 4177 (class 2606 OID 61482712)
+-- Dependencies: 3875 349 379
 -- Name: fk_pessoa_link_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13978,8 +13984,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4170 (class 2606 OID 61458003)
--- Dependencies: 349 351 3764
+-- TOC entry 4176 (class 2606 OID 61482702)
+-- Dependencies: 349 3767 351
 -- Name: fk_pessoa_perfil_padrao; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13988,8 +13994,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4172 (class 2606 OID 61458599)
--- Dependencies: 349 3589 303
+-- TOC entry 4178 (class 2606 OID 61483082)
+-- Dependencies: 349 3592 303
 -- Name: fk_pessoa_telefone_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -13998,8 +14004,8 @@ ALTER TABLE ONLY pessoa
 
 
 --
--- TOC entry 4164 (class 2606 OID 61458283)
--- Dependencies: 187 3191 347
+-- TOC entry 4168 (class 2606 OID 61483022)
+-- Dependencies: 3194 187 347
 -- Name: fk_pj_area_economia_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14008,8 +14014,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4162 (class 2606 OID 61458208)
--- Dependencies: 391 347 3932
+-- TOC entry 4171 (class 2606 OID 61483387)
+-- Dependencies: 347 391 3935
 -- Name: fk_pj_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14018,8 +14024,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4160 (class 2606 OID 61458183)
--- Dependencies: 347 3599 305
+-- TOC entry 4169 (class 2606 OID 61483057)
+-- Dependencies: 3602 347 305
 -- Name: fk_pj_email_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14028,8 +14034,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4165 (class 2606 OID 61458293)
--- Dependencies: 347 221 3306
+-- TOC entry 4165 (class 2606 OID 61482542)
+-- Dependencies: 347 221 3309
 -- Name: fk_pj_endereco_correspond; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14038,8 +14044,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4159 (class 2606 OID 61458088)
--- Dependencies: 221 347 3306
+-- TOC entry 4166 (class 2606 OID 61482772)
+-- Dependencies: 221 347 3309
 -- Name: fk_pj_endereco_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14048,8 +14054,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4166 (class 2606 OID 61458709)
--- Dependencies: 3872 347 379
+-- TOC entry 4173 (class 2606 OID 61483487)
+-- Dependencies: 347 3875 379
 -- Name: fk_pj_link_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14058,8 +14064,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4163 (class 2606 OID 61458218)
--- Dependencies: 349 3758 347
+-- TOC entry 4167 (class 2606 OID 61482777)
+-- Dependencies: 3761 347 349
 -- Name: fk_pj_pessoa_resp_cadastro; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14068,8 +14074,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4168 (class 2606 OID 61459126)
--- Dependencies: 347 303 3589
+-- TOC entry 4172 (class 2606 OID 61483477)
+-- Dependencies: 347 303 3592
 -- Name: fk_pj_telefone_default; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14078,8 +14084,8 @@ ALTER TABLE ONLY pessoa_juridica
 
 
 --
--- TOC entry 4196 (class 2606 OID 61458724)
--- Dependencies: 377 391 3932
+-- TOC entry 4201 (class 2606 OID 61482632)
+-- Dependencies: 377 391 3935
 -- Name: fk_produto_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14088,8 +14094,8 @@ ALTER TABLE ONLY cpg_produto
 
 
 --
--- TOC entry 4195 (class 2606 OID 61458444)
--- Dependencies: 391 377 3932
+-- TOC entry 4202 (class 2606 OID 61483522)
+-- Dependencies: 377 391 3935
 -- Name: fk_produto_categoria_moeda; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14098,8 +14104,8 @@ ALTER TABLE ONLY cpg_produto
 
 
 --
--- TOC entry 4158 (class 2606 OID 61458699)
--- Dependencies: 3932 345 391
+-- TOC entry 4164 (class 2606 OID 61482912)
+-- Dependencies: 3935 391 345
 -- Name: fk_profissao_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14108,8 +14114,8 @@ ALTER TABLE ONLY profissao
 
 
 --
--- TOC entry 4157 (class 2606 OID 61458278)
--- Dependencies: 3932 391 343
+-- TOC entry 4163 (class 2606 OID 61483237)
+-- Dependencies: 391 343 3935
 -- Name: fk_sequencia_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14118,8 +14124,8 @@ ALTER TABLE ONLY sequencia
 
 
 --
--- TOC entry 4156 (class 2606 OID 61458941)
--- Dependencies: 391 3932 341
+-- TOC entry 4162 (class 2606 OID 61482667)
+-- Dependencies: 341 391 3935
 -- Name: fk_template_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14128,8 +14134,8 @@ ALTER TABLE ONLY template
 
 
 --
--- TOC entry 4155 (class 2606 OID 61458404)
--- Dependencies: 339 3721 339
+-- TOC entry 4161 (class 2606 OID 61483277)
+-- Dependencies: 339 3724 339
 -- Name: fk_tipo_categoria_pai; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14138,8 +14144,8 @@ ALTER TABLE ONLY tipo_categoria
 
 
 --
--- TOC entry 4194 (class 2606 OID 61458449)
--- Dependencies: 391 375 3932
+-- TOC entry 4200 (class 2606 OID 61483452)
+-- Dependencies: 375 391 3935
 -- Name: fk_token_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14148,8 +14154,8 @@ ALTER TABLE ONLY cpg_token
 
 
 --
--- TOC entry 4153 (class 2606 OID 61458083)
--- Dependencies: 337 3932 391
+-- TOC entry 4159 (class 2606 OID 61482462)
+-- Dependencies: 337 391 3935
 -- Name: fk_validator_categoria; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14158,8 +14164,8 @@ ALTER TABLE ONLY validator
 
 
 --
--- TOC entry 4154 (class 2606 OID 61459016)
--- Dependencies: 3922 389 337
+-- TOC entry 4160 (class 2606 OID 61482707)
+-- Dependencies: 337 389 3925
 -- Name: fk_validator_componente; Type: FK CONSTRAINT; Schema: basico; Owner: -
 --
 
@@ -14170,8 +14176,8 @@ ALTER TABLE ONLY validator
 SET search_path = basico_acao_aplic_assoc_visao, pg_catalog;
 
 --
--- TOC entry 4151 (class 2606 OID 61457963)
--- Dependencies: 335 333 3701
+-- TOC entry 4157 (class 2606 OID 61482607)
+-- Dependencies: 335 333 3704
 -- Name: fk_atr_met_rec_ref_atr_met_rec_post; Type: FK CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -14180,8 +14186,8 @@ ALTER TABLE ONLY assoccl_atrib_met_rec_post
 
 
 --
--- TOC entry 4150 (class 2606 OID 61458113)
--- Dependencies: 333 391 3932
+-- TOC entry 4156 (class 2606 OID 61483372)
+-- Dependencies: 3935 391 333
 -- Name: fk_atrib_met_rec_post_categoria; Type: FK CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -14190,8 +14196,8 @@ ALTER TABLE ONLY atributo_metodo_recup_post
 
 
 --
--- TOC entry 4152 (class 2606 OID 61458614)
--- Dependencies: 335 3695 331
+-- TOC entry 4158 (class 2606 OID 61483267)
+-- Dependencies: 335 331 3698
 -- Name: fk_atrib_met_rec_post_visao; Type: FK CONSTRAINT; Schema: basico_acao_aplic_assoc_visao; Owner: -
 --
 
@@ -14202,8 +14208,8 @@ ALTER TABLE ONLY assoccl_atrib_met_rec_post
 SET search_path = basico_acao_aplicacao, pg_catalog;
 
 --
--- TOC entry 4149 (class 2606 OID 61458674)
--- Dependencies: 401 331 3981
+-- TOC entry 4154 (class 2606 OID 61482622)
+-- Dependencies: 331 401 3984
 -- Name: fk_assoc_visao_acao_aplicacao; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14212,8 +14218,8 @@ ALTER TABLE ONLY assoc_visao
 
 
 --
--- TOC entry 4148 (class 2606 OID 61457998)
--- Dependencies: 331 391 3932
+-- TOC entry 4155 (class 2606 OID 61483482)
+-- Dependencies: 391 331 3935
 -- Name: fk_assoc_visao_categoria; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14222,8 +14228,8 @@ ALTER TABLE ONLY assoc_visao
 
 
 --
--- TOC entry 4143 (class 2606 OID 61458148)
--- Dependencies: 3764 351 327
+-- TOC entry 4149 (class 2606 OID 61482832)
+-- Dependencies: 327 351 3767
 -- Name: fk_assoccl_acao_aplic_perfil_perfil; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14232,8 +14238,8 @@ ALTER TABLE ONLY assoccl_perfil
 
 
 --
--- TOC entry 4145 (class 2606 OID 61458584)
--- Dependencies: 3981 401 329
+-- TOC entry 4152 (class 2606 OID 61482937)
+-- Dependencies: 329 401 3984
 -- Name: fk_assoccl_met_valid_ac_aplic; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14242,8 +14248,8 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 
 --
--- TOC entry 4147 (class 2606 OID 61458936)
--- Dependencies: 357 3784 329
+-- TOC entry 4151 (class 2606 OID 61482472)
+-- Dependencies: 329 357 3787
 -- Name: fk_assoccl_met_valid_met_valid; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14252,8 +14258,8 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 
 --
--- TOC entry 4146 (class 2606 OID 61458609)
--- Dependencies: 3764 351 329
+-- TOC entry 4153 (class 2606 OID 61483497)
+-- Dependencies: 329 351 3767
 -- Name: fk_assoccl_met_valid_perfil; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14262,8 +14268,8 @@ ALTER TABLE ONLY assoccl_metodo_validacao
 
 
 --
--- TOC entry 4144 (class 2606 OID 61458659)
--- Dependencies: 3981 327 401
+-- TOC entry 4150 (class 2606 OID 61483312)
+-- Dependencies: 327 3984 401
 -- Name: fk_assoccl_perfil_acao_aplicacao; Type: FK CONSTRAINT; Schema: basico_acao_aplicacao; Owner: -
 --
 
@@ -14274,8 +14280,8 @@ ALTER TABLE ONLY assoccl_perfil
 SET search_path = basico_acao_evento, pg_catalog;
 
 --
--- TOC entry 4142 (class 2606 OID 61458454)
--- Dependencies: 3972 399 325
+-- TOC entry 4148 (class 2606 OID 61483352)
+-- Dependencies: 325 399 3975
 -- Name: fk_assoccl_include_evento; Type: FK CONSTRAINT; Schema: basico_acao_evento; Owner: -
 --
 
@@ -14284,8 +14290,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4141 (class 2606 OID 61458108)
--- Dependencies: 363 3805 325
+-- TOC entry 4147 (class 2606 OID 61482692)
+-- Dependencies: 325 363 3808
 -- Name: fk_assoccl_include_include; Type: FK CONSTRAINT; Schema: basico_acao_evento; Owner: -
 --
 
@@ -14296,8 +14302,8 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_ajuda, pg_catalog;
 
 --
--- TOC entry 4140 (class 2606 OID 61458919)
--- Dependencies: 3963 397 323
+-- TOC entry 4146 (class 2606 OID 61483272)
+-- Dependencies: 323 3966 397
 -- Name: fk_assoccl_link_ajuda; Type: FK CONSTRAINT; Schema: basico_ajuda; Owner: -
 --
 
@@ -14306,8 +14312,8 @@ ALTER TABLE ONLY assoccl_link
 
 
 --
--- TOC entry 4139 (class 2606 OID 61457953)
--- Dependencies: 323 379 3872
+-- TOC entry 4145 (class 2606 OID 61482477)
+-- Dependencies: 323 379 3875
 -- Name: fk_assoccl_link_link; Type: FK CONSTRAINT; Schema: basico_ajuda; Owner: -
 --
 
@@ -14318,8 +14324,8 @@ ALTER TABLE ONLY assoccl_link
 SET search_path = basico_assoc_banco, pg_catalog;
 
 --
--- TOC entry 4138 (class 2606 OID 61458654)
--- Dependencies: 3224 195 321
+-- TOC entry 4143 (class 2606 OID 61483407)
+-- Dependencies: 321 195 3227
 -- Name: fk_assoc_tipo_conta_banco; Type: FK CONSTRAINT; Schema: basico_assoc_banco; Owner: -
 --
 
@@ -14328,8 +14334,8 @@ ALTER TABLE ONLY assoc_tipo_conta
 
 
 --
--- TOC entry 4137 (class 2606 OID 61458579)
--- Dependencies: 391 321 3932
+-- TOC entry 4144 (class 2606 OID 61483582)
+-- Dependencies: 321 3935 391
 -- Name: fk_assoc_tipo_conta_categoria; Type: FK CONSTRAINT; Schema: basico_assoc_banco; Owner: -
 --
 
@@ -14340,8 +14346,8 @@ ALTER TABLE ONLY assoc_tipo_conta
 SET search_path = basico_assoc_dados_profis, pg_catalog;
 
 --
--- TOC entry 4135 (class 2606 OID 61458193)
--- Dependencies: 3952 317 395
+-- TOC entry 4142 (class 2606 OID 61482882)
+-- Dependencies: 3955 395 317
 -- Name: fk_assoccl_dados_profis_area_c; Type: FK CONSTRAINT; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -14350,8 +14356,8 @@ ALTER TABLE ONLY assoccl_area_conhecimento
 
 
 --
--- TOC entry 4136 (class 2606 OID 61458253)
--- Dependencies: 3627 317 313
+-- TOC entry 4141 (class 2606 OID 61482562)
+-- Dependencies: 317 313 3630
 -- Name: fk_assoccl_dados_profis_dados; Type: FK CONSTRAINT; Schema: basico_assoc_dados_profis; Owner: -
 --
 
@@ -14362,8 +14368,8 @@ ALTER TABLE ONLY assoccl_area_conhecimento
 SET search_path = basico_assoccl_pessoa_perfil, pg_catalog;
 
 --
--- TOC entry 4134 (class 2606 OID 61458744)
--- Dependencies: 3240 315 201
+-- TOC entry 4140 (class 2606 OID 61482517)
+-- Dependencies: 315 201 3243
 -- Name: fk_assoccl_pessoa_perfil; Type: FK CONSTRAINT; Schema: basico_assoccl_pessoa_perfil; Owner: -
 --
 
@@ -14374,8 +14380,8 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_assoccl_tipo_vinculo, pg_catalog;
 
 --
--- TOC entry 4133 (class 2606 OID 61459106)
--- Dependencies: 199 313 3235
+-- TOC entry 4139 (class 2606 OID 61483257)
+-- Dependencies: 3238 313 199
 -- Name: fk_assoc_dado_assoccl_vin_profi; Type: FK CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -14384,8 +14390,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4130 (class 2606 OID 61458078)
--- Dependencies: 313 3755 347
+-- TOC entry 4135 (class 2606 OID 61483612)
+-- Dependencies: 313 3758 347
 -- Name: fk_assoc_dados_pj_vinculo; Type: FK CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -14394,8 +14400,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4131 (class 2606 OID 61458138)
--- Dependencies: 313 345 3744
+-- TOC entry 4137 (class 2606 OID 61483087)
+-- Dependencies: 345 3747 313
 -- Name: fk_assoc_dados_profi_profissao; Type: FK CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -14404,8 +14410,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4129 (class 2606 OID 61457983)
--- Dependencies: 313 295 3557
+-- TOC entry 4138 (class 2606 OID 61483247)
+-- Dependencies: 313 3560 295
 -- Name: fk_assoc_dados_profis_reg_trab; Type: FK CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -14414,8 +14420,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4132 (class 2606 OID 61458749)
--- Dependencies: 3539 313 291
+-- TOC entry 4136 (class 2606 OID 61482447)
+-- Dependencies: 313 291 3542
 -- Name: fk_assoc_dados_vinc_empreg; Type: FK CONSTRAINT; Schema: basico_assoccl_tipo_vinculo; Owner: -
 --
 
@@ -14426,8 +14432,8 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_categoria, pg_catalog;
 
 --
--- TOC entry 4128 (class 2606 OID 61459096)
--- Dependencies: 391 311 3932
+-- TOC entry 4134 (class 2606 OID 61483532)
+-- Dependencies: 311 391 3935
 -- Name: fk_assoc_chave_estran_categ; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -14436,8 +14442,8 @@ ALTER TABLE ONLY assoc_chave_estrangeira
 
 
 --
--- TOC entry 4127 (class 2606 OID 61458063)
--- Dependencies: 355 3778 311
+-- TOC entry 4133 (class 2606 OID 61482677)
+-- Dependencies: 311 3781 355
 -- Name: fk_assoc_chave_estran_mod; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -14446,8 +14452,8 @@ ALTER TABLE ONLY assoc_chave_estrangeira
 
 
 --
--- TOC entry 4126 (class 2606 OID 61459086)
--- Dependencies: 309 391 3932
+-- TOC entry 4132 (class 2606 OID 61482847)
+-- Dependencies: 309 391 3935
 -- Name: fk_assoc_evento_acao_categoria; Type: FK CONSTRAINT; Schema: basico_categoria; Owner: -
 --
 
@@ -14458,8 +14464,8 @@ ALTER TABLE ONLY assoc_evento_acao
 SET search_path = basico_componente, pg_catalog;
 
 --
--- TOC entry 4125 (class 2606 OID 61459036)
--- Dependencies: 307 363 3805
+-- TOC entry 4131 (class 2606 OID 61482992)
+-- Dependencies: 3808 363 307
 -- Name: fk_assoccl_componente_inc_inc; Type: FK CONSTRAINT; Schema: basico_componente; Owner: -
 --
 
@@ -14468,8 +14474,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4124 (class 2606 OID 61458499)
--- Dependencies: 307 3922 389
+-- TOC entry 4130 (class 2606 OID 61482982)
+-- Dependencies: 389 307 3925
 -- Name: fk_assoccl_include_componente; Type: FK CONSTRAINT; Schema: basico_componente; Owner: -
 --
 
@@ -14480,8 +14486,8 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_contato, pg_catalog;
 
 --
--- TOC entry 4123 (class 2606 OID 61459076)
--- Dependencies: 305 391 3932
+-- TOC entry 4129 (class 2606 OID 61483597)
+-- Dependencies: 305 391 3935
 -- Name: fk_email_categoria; Type: FK CONSTRAINT; Schema: basico_contato; Owner: -
 --
 
@@ -14490,8 +14496,8 @@ ALTER TABLE ONLY cpg_email
 
 
 --
--- TOC entry 4122 (class 2606 OID 61458033)
--- Dependencies: 391 3932 303
+-- TOC entry 4128 (class 2606 OID 61482862)
+-- Dependencies: 391 3935 303
 -- Name: fk_telefone_categoria; Type: FK CONSTRAINT; Schema: basico_contato; Owner: -
 --
 
@@ -14502,8 +14508,8 @@ ALTER TABLE ONLY cpg_telefone
 SET search_path = basico_cvc, pg_catalog;
 
 --
--- TOC entry 4121 (class 2606 OID 61458459)
--- Dependencies: 301 311 3619
+-- TOC entry 4127 (class 2606 OID 61483177)
+-- Dependencies: 301 311 3622
 -- Name: fk_cvc_assoc_chave_estrangeira; Type: FK CONSTRAINT; Schema: basico_cvc; Owner: -
 --
 
@@ -14514,8 +14520,8 @@ ALTER TABLE ONLY cvc
 SET search_path = basico_dados_academicos, pg_catalog;
 
 --
--- TOC entry 4120 (class 2606 OID 61458644)
--- Dependencies: 299 3932 391
+-- TOC entry 4126 (class 2606 OID 61482837)
+-- Dependencies: 3935 299 391
 -- Name: fk_titulacao_categoria; Type: FK CONSTRAINT; Schema: basico_dados_academicos; Owner: -
 --
 
@@ -14526,8 +14532,8 @@ ALTER TABLE ONLY titulacao
 SET search_path = basico_dados_biometricos, pg_catalog;
 
 --
--- TOC entry 4118 (class 2606 OID 61458394)
--- Dependencies: 3932 297 391
+-- TOC entry 4122 (class 2606 OID 61482572)
+-- Dependencies: 297 391 3935
 -- Name: fk_assoc_pessoa_cat_raca; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -14536,8 +14542,8 @@ ALTER TABLE ONLY assoc_pessoa
 
 
 --
--- TOC entry 4119 (class 2606 OID 61459141)
--- Dependencies: 391 297 3932
+-- TOC entry 4123 (class 2606 OID 61482867)
+-- Dependencies: 297 391 3935
 -- Name: fk_assoc_pessoa_cat_sexo; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -14546,8 +14552,8 @@ ALTER TABLE ONLY assoc_pessoa
 
 
 --
--- TOC entry 4117 (class 2606 OID 61458384)
--- Dependencies: 3932 391 297
+-- TOC entry 4124 (class 2606 OID 61482917)
+-- Dependencies: 3935 391 297
 -- Name: fk_assoc_pessoa_cat_tipo_sang; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -14556,8 +14562,8 @@ ALTER TABLE ONLY assoc_pessoa
 
 
 --
--- TOC entry 4116 (class 2606 OID 61458043)
--- Dependencies: 297 3848 373
+-- TOC entry 4125 (class 2606 OID 61483027)
+-- Dependencies: 373 3851 297
 -- Name: fk_assoc_pessoa_dados_bio; Type: FK CONSTRAINT; Schema: basico_dados_biometricos; Owner: -
 --
 
@@ -14568,8 +14574,8 @@ ALTER TABLE ONLY assoc_pessoa
 SET search_path = basico_dados_profissionais, pg_catalog;
 
 --
--- TOC entry 4114 (class 2606 OID 61458639)
--- Dependencies: 3932 295 391
+-- TOC entry 4121 (class 2606 OID 61483382)
+-- Dependencies: 3935 295 391
 -- Name: fk_regime_trabalho_categoria; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -14578,8 +14584,8 @@ ALTER TABLE ONLY regime_trabalho
 
 
 --
--- TOC entry 4115 (class 2606 OID 61459071)
--- Dependencies: 295 295 3557
+-- TOC entry 4120 (class 2606 OID 61482822)
+-- Dependencies: 3560 295 295
 -- Name: fk_regime_trabalho_pai; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -14588,8 +14594,8 @@ ALTER TABLE ONLY regime_trabalho
 
 
 --
--- TOC entry 4112 (class 2606 OID 61458544)
--- Dependencies: 291 391 3932
+-- TOC entry 4118 (class 2606 OID 61482532)
+-- Dependencies: 291 391 3935
 -- Name: fk_vinc_empreg_categoria; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -14598,8 +14604,8 @@ ALTER TABLE ONLY vinculo_empregaticio
 
 
 --
--- TOC entry 4113 (class 2606 OID 61458634)
--- Dependencies: 293 391 3932
+-- TOC entry 4119 (class 2606 OID 61482647)
+-- Dependencies: 293 391 3935
 -- Name: fk_vinculo_categoria; Type: FK CONSTRAINT; Schema: basico_dados_profissionais; Owner: -
 --
 
@@ -14610,8 +14616,8 @@ ALTER TABLE ONLY tipo_vinculo
 SET search_path = basico_filter, pg_catalog;
 
 --
--- TOC entry 4111 (class 2606 OID 61458956)
--- Dependencies: 3932 391 281
+-- TOC entry 4117 (class 2606 OID 61483147)
+-- Dependencies: 3935 281 391
 -- Name: fk_filter_grupo_categoria; Type: FK CONSTRAINT; Schema: basico_filter; Owner: -
 --
 
@@ -14622,8 +14628,8 @@ ALTER TABLE ONLY grupo
 SET search_path = basico_filter_grupo, pg_catalog;
 
 --
--- TOC entry 4110 (class 2606 OID 61458991)
--- Dependencies: 3826 279 367
+-- TOC entry 4114 (class 2606 OID 61482442)
+-- Dependencies: 279 367 3829
 -- Name: fk_assocag_grupo_filter; Type: FK CONSTRAINT; Schema: basico_filter_grupo; Owner: -
 --
 
@@ -14632,8 +14638,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 4109 (class 2606 OID 61458123)
--- Dependencies: 3537 279 281
+-- TOC entry 4116 (class 2606 OID 61483317)
+-- Dependencies: 281 3540 279
 -- Name: fk_assocag_grupo_grupo_assoc; Type: FK CONSTRAINT; Schema: basico_filter_grupo; Owner: -
 --
 
@@ -14642,8 +14648,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 4108 (class 2606 OID 61458068)
--- Dependencies: 279 3537 281
+-- TOC entry 4115 (class 2606 OID 61483047)
+-- Dependencies: 281 3540 279
 -- Name: fk_filter_assocag_grupo_grupo; Type: FK CONSTRAINT; Schema: basico_filter_grupo; Owner: -
 --
 
@@ -14654,8 +14660,8 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_form_assoccl_elem_grupo, pg_catalog;
 
 --
--- TOC entry 4107 (class 2606 OID 61458914)
--- Dependencies: 277 3431 251
+-- TOC entry 4112 (class 2606 OID 61482887)
+-- Dependencies: 277 3434 251
 -- Name: fk_assoccl_decorator_decorator; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
 
@@ -14664,8 +14670,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4106 (class 2606 OID 61458153)
--- Dependencies: 277 3483 265
+-- TOC entry 4113 (class 2606 OID 61483012)
+-- Dependencies: 3486 277 265
 -- Name: fk_assoccl_decorator_grupo; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elem_grupo; Owner: -
 --
 
@@ -14676,8 +14682,8 @@ ALTER TABLE ONLY assoccl_decorator
 SET search_path = basico_form_assoccl_elemento, pg_catalog;
 
 --
--- TOC entry 4102 (class 2606 OID 61458694)
--- Dependencies: 3836 273 369
+-- TOC entry 4106 (class 2606 OID 61483067)
+-- Dependencies: 3839 369 273
 -- Name: fk_assoccl_assoccl_elem_even_even; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14686,8 +14692,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4105 (class 2606 OID 61458784)
--- Dependencies: 275 259 3459
+-- TOC entry 4111 (class 2606 OID 61483412)
+-- Dependencies: 275 259 3462
 -- Name: fk_assoccl_dec_assoccl_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14696,8 +14702,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4104 (class 2606 OID 61458233)
--- Dependencies: 3431 275 251
+-- TOC entry 4110 (class 2606 OID 61483367)
+-- Dependencies: 251 3434 275
 -- Name: fk_assoccl_dec_decorator; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14706,8 +14712,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4100 (class 2606 OID 61458509)
--- Dependencies: 271 259 3459
+-- TOC entry 4104 (class 2606 OID 61483377)
+-- Dependencies: 271 3462 259
 -- Name: fk_assoccl_elem_assoccl_filter_elemento; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14716,8 +14722,8 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 4099 (class 2606 OID 61458258)
--- Dependencies: 3826 271 367
+-- TOC entry 4105 (class 2606 OID 61483392)
+-- Dependencies: 271 367 3829
 -- Name: fk_assoccl_elem_assoccl_filter_filter; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14726,8 +14732,8 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 4103 (class 2606 OID 61458829)
--- Dependencies: 273 399 3972
+-- TOC entry 4108 (class 2606 OID 61483437)
+-- Dependencies: 273 399 3975
 -- Name: fk_assoccl_evento_acao_evento; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14736,8 +14742,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4101 (class 2606 OID 61457988)
--- Dependencies: 273 259 3459
+-- TOC entry 4107 (class 2606 OID 61483152)
+-- Dependencies: 3462 273 259
 -- Name: fk_assoccl_evento_assoccl_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14746,8 +14752,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4098 (class 2606 OID 61458719)
--- Dependencies: 269 259 3459
+-- TOC entry 4102 (class 2606 OID 61483332)
+-- Dependencies: 3462 259 269
 -- Name: fk_assoccl_include_assoccl_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14756,8 +14762,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4096 (class 2606 OID 61459011)
--- Dependencies: 259 3459 267
+-- TOC entry 4100 (class 2606 OID 61483457)
+-- Dependencies: 267 259 3462
 -- Name: fk_assoccl_valid_assoc_elem; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14766,8 +14772,8 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 4095 (class 2606 OID 61458874)
--- Dependencies: 337 3719 267
+-- TOC entry 4099 (class 2606 OID 61482502)
+-- Dependencies: 267 337 3722
 -- Name: fk_assoccl_valid_validator; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14776,8 +14782,8 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 4097 (class 2606 OID 61458559)
--- Dependencies: 363 269 3805
+-- TOC entry 4101 (class 2606 OID 61483292)
+-- Dependencies: 269 3808 363
 -- Name: fk_asssoccl_include_include; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
 --
 
@@ -14785,11 +14791,41 @@ ALTER TABLE ONLY assoccl_include
     ADD CONSTRAINT fk_asssoccl_include_include FOREIGN KEY (id_include) REFERENCES basico.include(id);
 
 
+--
+-- TOC entry 4109 (class 2606 OID 61482527)
+-- Dependencies: 275 243 3399
+-- Name: fk_form_assoccl_elem_assoccl_decorator_grupo; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
+--
+
+ALTER TABLE ONLY assoccl_decorator
+    ADD CONSTRAINT fk_form_assoccl_elem_assoccl_decorator_grupo FOREIGN KEY (id_decorator_grupo) REFERENCES basico_formulario_decorator.grupo(id);
+
+
+--
+-- TOC entry 4103 (class 2606 OID 61483182)
+-- Dependencies: 3540 271 281
+-- Name: fk_form_assoccl_elem_assoccl_filter; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
+--
+
+ALTER TABLE ONLY assoccl_filter
+    ADD CONSTRAINT fk_form_assoccl_elem_assoccl_filter FOREIGN KEY (id_filter_grupo) REFERENCES basico_filter.grupo(id);
+
+
+--
+-- TOC entry 4098 (class 2606 OID 61483622)
+-- Dependencies: 3129 267 169
+-- Name: fk_form_assoccl_elem_assoccl_validator; Type: FK CONSTRAINT; Schema: basico_form_assoccl_elemento; Owner: -
+--
+
+ALTER TABLE ONLY assoccl_validator
+    ADD CONSTRAINT fk_form_assoccl_elem_assoccl_validator FOREIGN KEY (id_validator_grupo) REFERENCES basico_validator.grupo(id);
+
+
 SET search_path = basico_form_decorator_grupo, pg_catalog;
 
 --
--- TOC entry 4094 (class 2606 OID 61458714)
--- Dependencies: 263 3431 251
+-- TOC entry 4097 (class 2606 OID 61483242)
+-- Dependencies: 3434 263 251
 -- Name: fk_assocag_grupo_form_decorator; Type: FK CONSTRAINT; Schema: basico_form_decorator_grupo; Owner: -
 --
 
@@ -14798,8 +14834,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 4092 (class 2606 OID 61458344)
--- Dependencies: 263 3396 243
+-- TOC entry 4095 (class 2606 OID 61482657)
+-- Dependencies: 263 243 3399
 -- Name: fk_assocag_grupo_grupo; Type: FK CONSTRAINT; Schema: basico_form_decorator_grupo; Owner: -
 --
 
@@ -14808,8 +14844,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 4093 (class 2606 OID 61458429)
--- Dependencies: 3396 243 263
+-- TOC entry 4096 (class 2606 OID 61482852)
+-- Dependencies: 243 263 3399
 -- Name: fk_decorator_assocag_grupo_grupo_assoc; Type: FK CONSTRAINT; Schema: basico_form_decorator_grupo; Owner: -
 --
 
@@ -14820,8 +14856,8 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_formulario, pg_catalog;
 
 --
--- TOC entry 4071 (class 2606 OID 61458629)
--- Dependencies: 247 3359 233
+-- TOC entry 4072 (class 2606 OID 61482602)
+-- Dependencies: 247 233 3362
 -- Name: fk_assocag_grupo_rascunho; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14830,8 +14866,8 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 4089 (class 2606 OID 61458168)
--- Dependencies: 261 365 3816
+-- TOC entry 4092 (class 2606 OID 61482797)
+-- Dependencies: 3819 365 261
 -- Name: fk_assoccl_decorator_form; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14840,8 +14876,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4087 (class 2606 OID 61458298)
--- Dependencies: 3963 259 397
+-- TOC entry 4088 (class 2606 OID 61482642)
+-- Dependencies: 259 397 3966
 -- Name: fk_assoccl_elemento_ajuda; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14850,8 +14886,8 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 4085 (class 2606 OID 61457958)
--- Dependencies: 259 249 3422
+-- TOC entry 4091 (class 2606 OID 61483442)
+-- Dependencies: 259 249 3425
 -- Name: fk_assoccl_elemento_elemento; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14860,8 +14896,8 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 4086 (class 2606 OID 61457973)
--- Dependencies: 259 365 3816
+-- TOC entry 4089 (class 2606 OID 61482787)
+-- Dependencies: 365 259 3819
 -- Name: fk_assoccl_elemento_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14870,8 +14906,8 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 4088 (class 2606 OID 61458489)
--- Dependencies: 265 259 3483
+-- TOC entry 4090 (class 2606 OID 61483107)
+-- Dependencies: 259 3486 265
 -- Name: fk_assoccl_elemento_grupo; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14880,8 +14916,8 @@ ALTER TABLE ONLY assoccl_elemento
 
 
 --
--- TOC entry 4084 (class 2606 OID 61458669)
--- Dependencies: 3816 365 257
+-- TOC entry 4087 (class 2606 OID 61483322)
+-- Dependencies: 365 3819 257
 -- Name: fk_assoccl_evento_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14890,8 +14926,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4083 (class 2606 OID 61458539)
--- Dependencies: 257 3836 369
+-- TOC entry 4086 (class 2606 OID 61482927)
+-- Dependencies: 369 3839 257
 -- Name: fk_assoccl_form_evento_evento; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14900,8 +14936,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4081 (class 2606 OID 61458038)
--- Dependencies: 3805 255 363
+-- TOC entry 4085 (class 2606 OID 61482817)
+-- Dependencies: 363 3808 255
 -- Name: fk_assoccl_formulario_inc_inc; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14910,8 +14946,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4082 (class 2606 OID 61458339)
--- Dependencies: 3816 365 255
+-- TOC entry 4084 (class 2606 OID 61482487)
+-- Dependencies: 3819 365 255
 -- Name: fk_assoccl_include_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14920,8 +14956,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4080 (class 2606 OID 61458996)
--- Dependencies: 3816 365 253
+-- TOC entry 4082 (class 2606 OID 61482587)
+-- Dependencies: 253 365 3819
 -- Name: fk_assoccl_modulo_formulario; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14930,8 +14966,8 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 4091 (class 2606 OID 61458759)
--- Dependencies: 261 3431 251
+-- TOC entry 4093 (class 2606 OID 61482987)
+-- Dependencies: 3434 251 261
 -- Name: fk_assocl_decorator_decorator; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14940,8 +14976,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4069 (class 2606 OID 61458314)
--- Dependencies: 3149 247 175
+-- TOC entry 4074 (class 2606 OID 61482922)
+-- Dependencies: 3152 247 175
 -- Name: fk_assocsq_acao_aplic_rascunho; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14950,8 +14986,8 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 4077 (class 2606 OID 61458664)
--- Dependencies: 3932 251 391
+-- TOC entry 4081 (class 2606 OID 61483282)
+-- Dependencies: 251 3935 391
 -- Name: fk_decorator_categoria; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14960,8 +14996,8 @@ ALTER TABLE ONLY decorator
 
 
 --
--- TOC entry 4078 (class 2606 OID 61458859)
--- Dependencies: 389 3922 251
+-- TOC entry 4080 (class 2606 OID 61482617)
+-- Dependencies: 251 389 3925
 -- Name: fk_decorator_componente; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14970,8 +15006,8 @@ ALTER TABLE ONLY decorator
 
 
 --
--- TOC entry 4074 (class 2606 OID 61458374)
--- Dependencies: 397 3963 249
+-- TOC entry 4078 (class 2606 OID 61483037)
+-- Dependencies: 397 3966 249
 -- Name: fk_elemento_ajuda; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14980,8 +15016,8 @@ ALTER TABLE ONLY elemento
 
 
 --
--- TOC entry 4076 (class 2606 OID 61459136)
--- Dependencies: 3932 391 249
+-- TOC entry 4079 (class 2606 OID 61483402)
+-- Dependencies: 249 391 3935
 -- Name: fk_elemento_categoria; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -14990,8 +15026,8 @@ ALTER TABLE ONLY elemento
 
 
 --
--- TOC entry 4075 (class 2606 OID 61458594)
--- Dependencies: 249 389 3922
+-- TOC entry 4077 (class 2606 OID 61482732)
+-- Dependencies: 249 389 3925
 -- Name: fk_elemento_componente; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15000,8 +15036,8 @@ ALTER TABLE ONLY elemento
 
 
 --
--- TOC entry 4090 (class 2606 OID 61458329)
--- Dependencies: 243 3396 261
+-- TOC entry 4094 (class 2606 OID 61483517)
+-- Dependencies: 261 243 3399
 -- Name: fk_form_assoccl_decorator_grupo_decorator; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15010,8 +15046,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4079 (class 2606 OID 61458319)
--- Dependencies: 355 253 3778
+-- TOC entry 4083 (class 2606 OID 61483212)
+-- Dependencies: 355 253 3781
 -- Name: fk_form_assoccl_modulo_modulo; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15020,8 +15056,8 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 4070 (class 2606 OID 61458479)
--- Dependencies: 3695 247 331
+-- TOC entry 4076 (class 2606 OID 61483587)
+-- Dependencies: 3698 331 247
 -- Name: fk_rascunho_assoc_visao; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15030,8 +15066,8 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 4068 (class 2606 OID 61458048)
--- Dependencies: 3240 201 247
+-- TOC entry 4073 (class 2606 OID 61482762)
+-- Dependencies: 247 3243 201
 -- Name: fk_rascunho_assoccl_perfil; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15040,8 +15076,8 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 4073 (class 2606 OID 61459006)
--- Dependencies: 247 391 3932
+-- TOC entry 4071 (class 2606 OID 61482432)
+-- Dependencies: 247 3935 391
 -- Name: fk_rascunho_categoria; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15050,8 +15086,8 @@ ALTER TABLE ONLY rascunho
 
 
 --
--- TOC entry 4072 (class 2606 OID 61458809)
--- Dependencies: 3405 247 247
+-- TOC entry 4075 (class 2606 OID 61483562)
+-- Dependencies: 3408 247 247
 -- Name: fk_rascunho_pai; Type: FK CONSTRAINT; Schema: basico_formulario; Owner: -
 --
 
@@ -15062,8 +15098,8 @@ ALTER TABLE ONLY rascunho
 SET search_path = basico_formulario_decorator, pg_catalog;
 
 --
--- TOC entry 4067 (class 2606 OID 61458574)
--- Dependencies: 3431 245 251
+-- TOC entry 4069 (class 2606 OID 61483137)
+-- Dependencies: 3434 245 251
 -- Name: fk_form_decorator_assoccl_include_decorator; Type: FK CONSTRAINT; Schema: basico_formulario_decorator; Owner: -
 --
 
@@ -15072,8 +15108,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4066 (class 2606 OID 61458203)
--- Dependencies: 3805 363 245
+-- TOC entry 4070 (class 2606 OID 61483357)
+-- Dependencies: 363 245 3808
 -- Name: fk_form_decorator_assoccl_include_include; Type: FK CONSTRAINT; Schema: basico_formulario_decorator; Owner: -
 --
 
@@ -15082,8 +15118,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4065 (class 2606 OID 61458308)
--- Dependencies: 391 243 3932
+-- TOC entry 4068 (class 2606 OID 61483492)
+-- Dependencies: 243 391 3935
 -- Name: fk_grupo_form_decorator_categoria; Type: FK CONSTRAINT; Schema: basico_formulario_decorator; Owner: -
 --
 
@@ -15094,8 +15130,8 @@ ALTER TABLE ONLY grupo
 SET search_path = basico_formulario_elemento, pg_catalog;
 
 --
--- TOC entry 4059 (class 2606 OID 61458018)
--- Dependencies: 249 239 3422
+-- TOC entry 4063 (class 2606 OID 61482952)
+-- Dependencies: 3425 249 239
 -- Name: fk_assoccl_evento_elemento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15104,8 +15140,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4060 (class 2606 OID 61458058)
--- Dependencies: 369 3836 239
+-- TOC entry 4064 (class 2606 OID 61483192)
+-- Dependencies: 369 3839 239
 -- Name: fk_assoccl_evento_evento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15114,8 +15150,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4058 (class 2606 OID 61458824)
--- Dependencies: 3422 237 249
+-- TOC entry 4061 (class 2606 OID 61483572)
+-- Dependencies: 237 249 3425
 -- Name: fk_assoccl_filter_elemento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15124,8 +15160,8 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 4057 (class 2606 OID 61458484)
--- Dependencies: 3826 237 367
+-- TOC entry 4059 (class 2606 OID 61482512)
+-- Dependencies: 237 367 3829
 -- Name: fk_assoccl_filter_filter; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15134,8 +15170,8 @@ ALTER TABLE ONLY assoccl_filter
 
 
 --
--- TOC entry 4055 (class 2606 OID 61458904)
--- Dependencies: 249 235 3422
+-- TOC entry 4058 (class 2606 OID 61483397)
+-- Dependencies: 235 249 3425
 -- Name: fk_assoccl_validator_elem; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15144,8 +15180,8 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 4053 (class 2606 OID 61458053)
--- Dependencies: 235 3719 337
+-- TOC entry 4056 (class 2606 OID 61482482)
+-- Dependencies: 235 337 3722
 -- Name: fk_assoccl_validator_validator; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15154,8 +15190,8 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 4063 (class 2606 OID 61458909)
--- Dependencies: 249 241 3422
+-- TOC entry 4066 (class 2606 OID 61483207)
+-- Dependencies: 3425 241 249
 -- Name: fk_assocl_elemento_elemento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15164,8 +15200,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4064 (class 2606 OID 61458966)
--- Dependencies: 3431 241 251
+-- TOC entry 4067 (class 2606 OID 61483502)
+-- Dependencies: 241 251 3434
 -- Name: fk_form_assoccl_decorator_decorator; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15174,8 +15210,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4054 (class 2606 OID 61458779)
--- Dependencies: 3126 169 235
+-- TOC entry 4057 (class 2606 OID 61482752)
+-- Dependencies: 3129 235 169
 -- Name: fk_form_elem_assoccl_validador_grupo_validator; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15184,8 +15220,8 @@ ALTER TABLE ONLY assoccl_validator
 
 
 --
--- TOC entry 4062 (class 2606 OID 61458834)
--- Dependencies: 243 241 3396
+-- TOC entry 4065 (class 2606 OID 61483197)
+-- Dependencies: 243 241 3399
 -- Name: fk_form_elemen_assoccl_decorator_grupo; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15194,8 +15230,8 @@ ALTER TABLE ONLY assoccl_decorator
 
 
 --
--- TOC entry 4061 (class 2606 OID 61458754)
--- Dependencies: 3972 239 399
+-- TOC entry 4062 (class 2606 OID 61482802)
+-- Dependencies: 3975 399 239
 -- Name: fk_form_element_assoccl_evento_acao_evento; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15204,8 +15240,8 @@ ALTER TABLE ONLY assoccl_evento
 
 
 --
--- TOC entry 4056 (class 2606 OID 61458273)
--- Dependencies: 3537 237 281
+-- TOC entry 4060 (class 2606 OID 61482942)
+-- Dependencies: 281 237 3540
 -- Name: fk_form_elemento_assoccl_filter_grupo_filter; Type: FK CONSTRAINT; Schema: basico_formulario_elemento; Owner: -
 --
 
@@ -15216,8 +15252,8 @@ ALTER TABLE ONLY assoccl_filter
 SET search_path = basico_formulario_rascunho, pg_catalog;
 
 --
--- TOC entry 4052 (class 2606 OID 61458414)
--- Dependencies: 3240 201 233
+-- TOC entry 4055 (class 2606 OID 61483567)
+-- Dependencies: 3243 201 233
 -- Name: fk_assocag_grupo_assoccl_perfil; Type: FK CONSTRAINT; Schema: basico_formulario_rascunho; Owner: -
 --
 
@@ -15228,8 +15264,8 @@ ALTER TABLE ONLY assocag_grupo
 SET search_path = basico_localizacao, pg_catalog;
 
 --
--- TOC entry 4049 (class 2606 OID 61458774)
--- Dependencies: 391 229 3932
+-- TOC entry 4053 (class 2606 OID 61483252)
+-- Dependencies: 391 229 3935
 -- Name: fk_assoc_estado_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15238,8 +15274,8 @@ ALTER TABLE ONLY assoc_estado
 
 
 --
--- TOC entry 4050 (class 2606 OID 61458814)
--- Dependencies: 219 229 3299
+-- TOC entry 4052 (class 2606 OID 61483132)
+-- Dependencies: 229 219 3302
 -- Name: fk_assoc_estado_pais; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15248,8 +15284,8 @@ ALTER TABLE ONLY assoc_estado
 
 
 --
--- TOC entry 4047 (class 2606 OID 61458288)
--- Dependencies: 231 3353 227
+-- TOC entry 4049 (class 2606 OID 61482902)
+-- Dependencies: 227 231 3356
 -- Name: fk_assoc_logradouro_assoc_bairro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15258,8 +15294,8 @@ ALTER TABLE ONLY assoc_logradouro
 
 
 --
--- TOC entry 4046 (class 2606 OID 61458243)
--- Dependencies: 391 227 3932
+-- TOC entry 4050 (class 2606 OID 61482947)
+-- Dependencies: 3935 391 227
 -- Name: fk_assoc_logradouro_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15268,8 +15304,8 @@ ALTER TABLE ONLY assoc_logradouro
 
 
 --
--- TOC entry 4051 (class 2606 OID 61458143)
--- Dependencies: 225 3328 231
+-- TOC entry 4054 (class 2606 OID 61483042)
+-- Dependencies: 231 225 3331
 -- Name: fk_assoc_municipio_assoc_bairro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15278,8 +15314,8 @@ ALTER TABLE ONLY assoc_bairro
 
 
 --
--- TOC entry 4044 (class 2606 OID 61458228)
--- Dependencies: 229 225 3346
+-- TOC entry 4046 (class 2606 OID 61482687)
+-- Dependencies: 225 3349 229
 -- Name: fk_assoc_municipio_assoc_estado; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15288,8 +15324,8 @@ ALTER TABLE ONLY assoc_municipio
 
 
 --
--- TOC entry 4045 (class 2606 OID 61458529)
--- Dependencies: 391 3932 225
+-- TOC entry 4047 (class 2606 OID 61482932)
+-- Dependencies: 225 391 3935
 -- Name: fk_assoc_municipio_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15298,8 +15334,8 @@ ALTER TABLE ONLY assoc_municipio
 
 
 --
--- TOC entry 4039 (class 2606 OID 61458334)
--- Dependencies: 223 3353 231
+-- TOC entry 4041 (class 2606 OID 61482577)
+-- Dependencies: 223 231 3356
 -- Name: fk_cep_assoc_bairro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15308,8 +15344,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4037 (class 2606 OID 61458268)
--- Dependencies: 3346 223 229
+-- TOC entry 4042 (class 2606 OID 61482972)
+-- Dependencies: 3349 223 229
 -- Name: fk_cep_assoc_estado; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15318,8 +15354,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4041 (class 2606 OID 61458689)
--- Dependencies: 223 227 3336
+-- TOC entry 4040 (class 2606 OID 61483607)
+-- Dependencies: 227 223 3339
 -- Name: fk_cep_assoc_logradouro; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15328,8 +15364,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4038 (class 2606 OID 61458303)
--- Dependencies: 223 225 3328
+-- TOC entry 4044 (class 2606 OID 61483232)
+-- Dependencies: 225 223 3331
 -- Name: fk_cep_assoc_municipio; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15338,8 +15374,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4040 (class 2606 OID 61458424)
--- Dependencies: 391 223 3932
+-- TOC entry 4043 (class 2606 OID 61483187)
+-- Dependencies: 223 3935 391
 -- Name: fk_cep_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15348,8 +15384,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4042 (class 2606 OID 61458925)
--- Dependencies: 219 3299 223
+-- TOC entry 4045 (class 2606 OID 61483307)
+-- Dependencies: 3302 223 219
 -- Name: fk_cep_pais; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15358,8 +15394,8 @@ ALTER TABLE ONLY codigo_postal
 
 
 --
--- TOC entry 4036 (class 2606 OID 61458684)
--- Dependencies: 3240 221 201
+-- TOC entry 4038 (class 2606 OID 61482537)
+-- Dependencies: 221 201 3243
 -- Name: fk_endereco_assoc_perfil; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15368,8 +15404,8 @@ ALTER TABLE ONLY cpg_endereco
 
 
 --
--- TOC entry 4035 (class 2606 OID 61458519)
--- Dependencies: 221 3932 391
+-- TOC entry 4039 (class 2606 OID 61482717)
+-- Dependencies: 3935 391 221
 -- Name: fk_endereco_categoria; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15378,8 +15414,8 @@ ALTER TABLE ONLY cpg_endereco
 
 
 --
--- TOC entry 4048 (class 2606 OID 61458128)
--- Dependencies: 229 229 3346
+-- TOC entry 4051 (class 2606 OID 61482872)
+-- Dependencies: 229 3349 229
 -- Name: fk_estado_pai; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15388,8 +15424,8 @@ ALTER TABLE ONLY assoc_estado
 
 
 --
--- TOC entry 4043 (class 2606 OID 61458118)
--- Dependencies: 3328 225 225
+-- TOC entry 4048 (class 2606 OID 61483007)
+-- Dependencies: 225 225 3331
 -- Name: fk_municipio_pai; Type: FK CONSTRAINT; Schema: basico_localizacao; Owner: -
 --
 
@@ -15400,8 +15436,8 @@ ALTER TABLE ONLY assoc_municipio
 SET search_path = basico_mensagem, pg_catalog;
 
 --
--- TOC entry 4031 (class 2606 OID 61458173)
--- Dependencies: 201 3240 215
+-- TOC entry 4035 (class 2606 OID 61482842)
+-- Dependencies: 3243 215 201
 -- Name: fk_assoccl_assoccl_pes_per; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -15410,8 +15446,8 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 
 --
--- TOC entry 4032 (class 2606 OID 61458764)
--- Dependencies: 391 3932 215
+-- TOC entry 4034 (class 2606 OID 61482742)
+-- Dependencies: 391 215 3935
 -- Name: fk_assoccl_assoccl_pes_per_cat; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -15420,8 +15456,8 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 
 --
--- TOC entry 4033 (class 2606 OID 61458844)
--- Dependencies: 3791 359 215
+-- TOC entry 4036 (class 2606 OID 61483347)
+-- Dependencies: 3794 359 215
 -- Name: fk_assoccl_assoccl_pes_per_m; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -15430,8 +15466,8 @@ ALTER TABLE ONLY assoccl_assoccl_pessoa_perfil
 
 
 --
--- TOC entry 4034 (class 2606 OID 61459021)
--- Dependencies: 217 3791 359
+-- TOC entry 4037 (class 2606 OID 61483417)
+-- Dependencies: 217 359 3794
 -- Name: fk_mensagem_email; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -15440,8 +15476,8 @@ ALTER TABLE ONLY assoc_email
 
 
 --
--- TOC entry 4030 (class 2606 OID 61458133)
--- Dependencies: 213 3932 391
+-- TOC entry 4033 (class 2606 OID 61483222)
+-- Dependencies: 3935 213 391
 -- Name: fk_template_mensagem_categoria; Type: FK CONSTRAINT; Schema: basico_mensagem; Owner: -
 --
 
@@ -15452,8 +15488,8 @@ ALTER TABLE ONLY template
 SET search_path = basico_mensagem_assoc_email, pg_catalog;
 
 --
--- TOC entry 4029 (class 2606 OID 61458569)
--- Dependencies: 211 217 3292
+-- TOC entry 4032 (class 2606 OID 61482652)
+-- Dependencies: 211 217 3295
 -- Name: fk_assoc_dados_assoc_email; Type: FK CONSTRAINT; Schema: basico_mensagem_assoc_email; Owner: -
 --
 
@@ -15464,8 +15500,8 @@ ALTER TABLE ONLY assoc_dados
 SET search_path = basico_metodo_validacao, pg_catalog;
 
 --
--- TOC entry 4027 (class 2606 OID 61458564)
--- Dependencies: 209 357 3784
+-- TOC entry 4031 (class 2606 OID 61483077)
+-- Dependencies: 209 357 3787
 -- Name: fk_assoccl_include_met_validacao; Type: FK CONSTRAINT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -15474,8 +15510,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4028 (class 2606 OID 61458619)
--- Dependencies: 209 3805 363
+-- TOC entry 4030 (class 2606 OID 61482637)
+-- Dependencies: 209 363 3808
 -- Name: fk_assoccl_met_valid_inc_inc; Type: FK CONSTRAINT; Schema: basico_metodo_validacao; Owner: -
 --
 
@@ -15486,8 +15522,8 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_output, pg_catalog;
 
 --
--- TOC entry 4026 (class 2606 OID 61459101)
--- Dependencies: 353 3772 207
+-- TOC entry 4029 (class 2606 OID 61483362)
+-- Dependencies: 207 353 3775
 -- Name: fk_assoccl_include_output; Type: FK CONSTRAINT; Schema: basico_output; Owner: -
 --
 
@@ -15496,8 +15532,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 4025 (class 2606 OID 61458514)
--- Dependencies: 207 363 3805
+-- TOC entry 4028 (class 2606 OID 61482627)
+-- Dependencies: 207 363 3808
 -- Name: fk_assoccl_output_inc_inc; Type: FK CONSTRAINT; Schema: basico_output; Owner: -
 --
 
@@ -15508,8 +15544,8 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_perfil, pg_catalog;
 
 --
--- TOC entry 4024 (class 2606 OID 61458864)
--- Dependencies: 3764 205 351
+-- TOC entry 4027 (class 2606 OID 61483287)
+-- Dependencies: 205 351 3767
 -- Name: fk_assoccl_modulo_modulo; Type: FK CONSTRAINT; Schema: basico_perfil; Owner: -
 --
 
@@ -15518,8 +15554,8 @@ ALTER TABLE ONLY assoccl_modulo
 
 
 --
--- TOC entry 4023 (class 2606 OID 61458849)
--- Dependencies: 205 3778 355
+-- TOC entry 4026 (class 2606 OID 61482697)
+-- Dependencies: 205 355 3781
 -- Name: fk_assoccl_modulo_perfil; Type: FK CONSTRAINT; Schema: basico_perfil; Owner: -
 --
 
@@ -15530,8 +15566,8 @@ ALTER TABLE ONLY assoccl_modulo
 SET search_path = basico_pessoa, pg_catalog;
 
 --
--- TOC entry 4022 (class 2606 OID 61459061)
--- Dependencies: 349 203 3758
+-- TOC entry 4025 (class 2606 OID 61483127)
+-- Dependencies: 349 3761 203
 -- Name: fk_assoc_dados_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15540,8 +15576,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4021 (class 2606 OID 61459066)
--- Dependencies: 201 349 3758
+-- TOC entry 4024 (class 2606 OID 61483122)
+-- Dependencies: 3761 201 349
 -- Name: fk_assoccl_perfil_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15550,8 +15586,8 @@ ALTER TABLE ONLY assoccl_perfil
 
 
 --
--- TOC entry 4020 (class 2606 OID 61458589)
--- Dependencies: 201 351 3764
+-- TOC entry 4023 (class 2606 OID 61482672)
+-- Dependencies: 201 3767 351
 -- Name: fk_assoccl_pessoa_perfil_perfil; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15560,8 +15596,8 @@ ALTER TABLE ONLY assoccl_perfil
 
 
 --
--- TOC entry 4019 (class 2606 OID 61458494)
--- Dependencies: 199 349 3758
+-- TOC entry 4022 (class 2606 OID 61483542)
+-- Dependencies: 349 199 3761
 -- Name: fk_assoccl_vinc_profi_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15570,8 +15606,8 @@ ALTER TABLE ONLY assoccl_tipo_vinculo
 
 
 --
--- TOC entry 4018 (class 2606 OID 61458073)
--- Dependencies: 3548 199 293
+-- TOC entry 4021 (class 2606 OID 61482877)
+-- Dependencies: 199 3551 293
 -- Name: fk_assoccl_vinc_profi_tipo_vinc; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15580,8 +15616,8 @@ ALTER TABLE ONLY assoccl_tipo_vinculo
 
 
 --
--- TOC entry 4017 (class 2606 OID 61458769)
--- Dependencies: 349 197 3758
+-- TOC entry 4020 (class 2606 OID 61483162)
+-- Dependencies: 349 3761 197
 -- Name: fk_login_pessoa; Type: FK CONSTRAINT; Schema: basico_pessoa; Owner: -
 --
 
@@ -15592,8 +15628,8 @@ ALTER TABLE ONLY login
 SET search_path = basico_pessoa_juridica, pg_catalog;
 
 --
--- TOC entry 4016 (class 2606 OID 61458869)
--- Dependencies: 391 195 3932
+-- TOC entry 4018 (class 2606 OID 61482767)
+-- Dependencies: 3935 391 195
 -- Name: fk_assoc_banco_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15602,8 +15638,8 @@ ALTER TABLE ONLY assoc_banco
 
 
 --
--- TOC entry 4015 (class 2606 OID 61458238)
--- Dependencies: 3755 347 195
+-- TOC entry 4019 (class 2606 OID 61482857)
+-- Dependencies: 347 195 3758
 -- Name: fk_assoc_banco_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15612,8 +15648,8 @@ ALTER TABLE ONLY assoc_banco
 
 
 --
--- TOC entry 4014 (class 2606 OID 61458198)
--- Dependencies: 347 3755 193
+-- TOC entry 4017 (class 2606 OID 61483557)
+-- Dependencies: 193 347 3758
 -- Name: fk_assoc_dados_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15622,8 +15658,8 @@ ALTER TABLE ONLY assoc_dados
 
 
 --
--- TOC entry 4001 (class 2606 OID 61458419)
--- Dependencies: 183 3932 391
+-- TOC entry 4004 (class 2606 OID 61483617)
+-- Dependencies: 391 183 3935
 -- Name: fk_assoc_faturamento_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15632,8 +15668,8 @@ ALTER TABLE ONLY assoccl_faturamento
 
 
 --
--- TOC entry 4002 (class 2606 OID 61458524)
--- Dependencies: 347 183 3755
+-- TOC entry 4005 (class 2606 OID 61483537)
+-- Dependencies: 347 3758 183
 -- Name: fk_assoc_faturamento_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15642,8 +15678,8 @@ ALTER TABLE ONLY assoccl_faturamento
 
 
 --
--- TOC entry 3998 (class 2606 OID 61458263)
--- Dependencies: 3932 181 391
+-- TOC entry 4000 (class 2606 OID 61482522)
+-- Dependencies: 181 391 3935
 -- Name: fk_assoc_quadro_func_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15652,8 +15688,8 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 
 --
--- TOC entry 4013 (class 2606 OID 61459081)
--- Dependencies: 3755 347 191
+-- TOC entry 4016 (class 2606 OID 61483552)
+-- Dependencies: 347 3758 191
 -- Name: fk_assocag_incub_pj_incubada; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15662,8 +15698,8 @@ ALTER TABLE ONLY assocag_incubadora
 
 
 --
--- TOC entry 4011 (class 2606 OID 61458354)
--- Dependencies: 391 3932 191
+-- TOC entry 4014 (class 2606 OID 61482782)
+-- Dependencies: 191 391 3935
 -- Name: fk_assocag_incubadora_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15672,8 +15708,8 @@ ALTER TABLE ONLY assocag_incubadora
 
 
 --
--- TOC entry 4012 (class 2606 OID 61458409)
--- Dependencies: 191 3755 347
+-- TOC entry 4015 (class 2606 OID 61483547)
+-- Dependencies: 191 347 3758
 -- Name: fk_assocag_incubadora_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15682,8 +15718,8 @@ ALTER TABLE ONLY assocag_incubadora
 
 
 --
--- TOC entry 4010 (class 2606 OID 61459001)
--- Dependencies: 3201 189 189
+-- TOC entry 4011 (class 2606 OID 61482557)
+-- Dependencies: 189 189 3204
 -- Name: fk_assocag_parc_assocag_parc; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15692,8 +15728,8 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 4007 (class 2606 OID 61458103)
--- Dependencies: 391 3932 189
+-- TOC entry 4010 (class 2606 OID 61482492)
+-- Dependencies: 189 391 3935
 -- Name: fk_assocag_parceria_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15702,8 +15738,8 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 4008 (class 2606 OID 61458369)
--- Dependencies: 189 347 3755
+-- TOC entry 4012 (class 2606 OID 61482737)
+-- Dependencies: 189 347 3758
 -- Name: fk_assocag_parceria_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15712,8 +15748,8 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 4009 (class 2606 OID 61458899)
--- Dependencies: 347 189 3755
+-- TOC entry 4013 (class 2606 OID 61483017)
+-- Dependencies: 189 3758 347
 -- Name: fk_assocag_parceria_pj_parc; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15722,8 +15758,8 @@ ALTER TABLE ONLY assocag_parceria
 
 
 --
--- TOC entry 4005 (class 2606 OID 61458679)
--- Dependencies: 393 3942 187
+-- TOC entry 4009 (class 2606 OID 61483002)
+-- Dependencies: 187 3945 393
 -- Name: fk_assoccl_area_econ_area; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15732,8 +15768,8 @@ ALTER TABLE ONLY assoccl_area_economia
 
 
 --
--- TOC entry 4006 (class 2606 OID 61458986)
--- Dependencies: 3755 347 187
+-- TOC entry 4008 (class 2606 OID 61482807)
+-- Dependencies: 347 3758 187
 -- Name: fk_assoccl_area_econ_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15742,8 +15778,8 @@ ALTER TABLE ONLY assoccl_area_economia
 
 
 --
--- TOC entry 4003 (class 2606 OID 61458098)
--- Dependencies: 185 3164 179
+-- TOC entry 4007 (class 2606 OID 61482967)
+-- Dependencies: 3167 179 185
 -- Name: fk_assoccl_cap_social_cap; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15752,8 +15788,8 @@ ALTER TABLE ONLY assoccl_capital_social
 
 
 --
--- TOC entry 4004 (class 2606 OID 61458469)
--- Dependencies: 185 347 3755
+-- TOC entry 4006 (class 2606 OID 61482962)
+-- Dependencies: 185 3758 347
 -- Name: fk_assoccl_cap_social_pj; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15762,8 +15798,8 @@ ALTER TABLE ONLY assoccl_capital_social
 
 
 --
--- TOC entry 4000 (class 2606 OID 61458946)
--- Dependencies: 395 3952 181
+-- TOC entry 4001 (class 2606 OID 61482547)
+-- Dependencies: 181 395 3955
 -- Name: fk_assoccl_quadro_func_area_conh; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15772,8 +15808,8 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 
 --
--- TOC entry 3996 (class 2606 OID 61458213)
--- Dependencies: 3932 391 177
+-- TOC entry 3999 (class 2606 OID 61482682)
+-- Dependencies: 391 3935 177
 -- Name: fk_natureza_categoria; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15782,8 +15818,8 @@ ALTER TABLE ONLY natureza
 
 
 --
--- TOC entry 3999 (class 2606 OID 61458554)
--- Dependencies: 347 181 3755
+-- TOC entry 4002 (class 2606 OID 61482997)
+-- Dependencies: 181 3758 347
 -- Name: fk_pj_quadro_funcionarios; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15792,8 +15828,8 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 
 
 --
--- TOC entry 3997 (class 2606 OID 61458223)
--- Dependencies: 181 3572 299
+-- TOC entry 4003 (class 2606 OID 61483167)
+-- Dependencies: 3575 181 299
 -- Name: fk_quadro_func_titulacao; Type: FK CONSTRAINT; Schema: basico_pessoa_juridica; Owner: -
 --
 
@@ -15804,8 +15840,8 @@ ALTER TABLE ONLY assoccl_quadro_funcionario
 SET search_path = basico_sequencia, pg_catalog;
 
 --
--- TOC entry 3994 (class 2606 OID 61458971)
--- Dependencies: 391 175 3932
+-- TOC entry 3996 (class 2606 OID 61482437)
+-- Dependencies: 3935 391 175
 -- Name: fk_assocsq_acao_apli_categoria; Type: FK CONSTRAINT; Schema: basico_sequencia; Owner: -
 --
 
@@ -15814,8 +15850,8 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 
 
 --
--- TOC entry 3993 (class 2606 OID 61458624)
--- Dependencies: 175 3981 401
+-- TOC entry 3998 (class 2606 OID 61483427)
+-- Dependencies: 175 401 3984
 -- Name: fk_assocsq_acao_aplic_acao_apl; Type: FK CONSTRAINT; Schema: basico_sequencia; Owner: -
 --
 
@@ -15824,8 +15860,8 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 
 
 --
--- TOC entry 3995 (class 2606 OID 61459026)
--- Dependencies: 3736 343 175
+-- TOC entry 3997 (class 2606 OID 61482747)
+-- Dependencies: 175 343 3739
 -- Name: fk_assocsq_acao_aplic_seq; Type: FK CONSTRAINT; Schema: basico_sequencia; Owner: -
 --
 
@@ -15836,8 +15872,8 @@ ALTER TABLE ONLY assocsq_acao_aplicacao
 SET search_path = basico_template, pg_catalog;
 
 --
--- TOC entry 3991 (class 2606 OID 61458819)
--- Dependencies: 341 173 3730
+-- TOC entry 3994 (class 2606 OID 61482792)
+-- Dependencies: 3733 341 173
 -- Name: fk_assoccl_include_template; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -15846,8 +15882,8 @@ ALTER TABLE ONLY assoccl_include
 
 
 --
--- TOC entry 3989 (class 2606 OID 61458349)
--- Dependencies: 3772 171 353
+-- TOC entry 3992 (class 2606 OID 61482977)
+-- Dependencies: 353 171 3775
 -- Name: fk_assoccl_output_output; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -15856,8 +15892,8 @@ ALTER TABLE ONLY assoccl_output
 
 
 --
--- TOC entry 3990 (class 2606 OID 61458379)
--- Dependencies: 171 3730 341
+-- TOC entry 3993 (class 2606 OID 61483142)
+-- Dependencies: 341 171 3733
 -- Name: fk_assoccl_output_template; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -15866,8 +15902,8 @@ ALTER TABLE ONLY assoccl_output
 
 
 --
--- TOC entry 3992 (class 2606 OID 61459121)
--- Dependencies: 363 3805 173
+-- TOC entry 3995 (class 2606 OID 61483447)
+-- Dependencies: 173 363 3808
 -- Name: fk_assoccl_template_inc_inc; Type: FK CONSTRAINT; Schema: basico_template; Owner: -
 --
 
@@ -15878,8 +15914,8 @@ ALTER TABLE ONLY assoccl_include
 SET search_path = basico_validator, pg_catalog;
 
 --
--- TOC entry 3988 (class 2606 OID 61458884)
--- Dependencies: 169 391 3932
+-- TOC entry 3991 (class 2606 OID 61483032)
+-- Dependencies: 169 3935 391
 -- Name: fk_grupo_filter_categoria; Type: FK CONSTRAINT; Schema: basico_validator; Owner: -
 --
 
@@ -15890,8 +15926,8 @@ ALTER TABLE ONLY grupo
 SET search_path = basico_validator_grupo, pg_catalog;
 
 --
--- TOC entry 3985 (class 2606 OID 61458434)
--- Dependencies: 337 167 3719
+-- TOC entry 3989 (class 2606 OID 61482597)
+-- Dependencies: 167 337 3722
 -- Name: fk_assocag_grupo_validator; Type: FK CONSTRAINT; Schema: basico_validator_grupo; Owner: -
 --
 
@@ -15900,8 +15936,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 3987 (class 2606 OID 61459091)
--- Dependencies: 167 3126 169
+-- TOC entry 3990 (class 2606 OID 61483062)
+-- Dependencies: 3129 169 167
 -- Name: fk_grupo_assocag_grupo; Type: FK CONSTRAINT; Schema: basico_validator_grupo; Owner: -
 --
 
@@ -15910,8 +15946,8 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 3986 (class 2606 OID 61459041)
--- Dependencies: 169 167 3126
+-- TOC entry 3988 (class 2606 OID 61482457)
+-- Dependencies: 167 169 3129
 -- Name: fk_validator_assocag_grupo_grupo_assoc; Type: FK CONSTRAINT; Schema: basico_validator_grupo; Owner: -
 --
 
@@ -15920,7 +15956,7 @@ ALTER TABLE ONLY assocag_grupo
 
 
 --
--- TOC entry 4256 (class 0 OID 0)
+-- TOC entry 4262 (class 0 OID 0)
 -- Dependencies: 38
 -- Name: public; Type: ACL; Schema: -; Owner: -
 --
@@ -15931,7 +15967,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2012-07-04 15:17:24 BRT
+-- Completed on 2012-07-06 14:46:52 BRT
 
 --
 -- PostgreSQL database dump complete
