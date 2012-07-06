@@ -126,7 +126,7 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 		foreach ($arrayDadosDecorators as $arrayDadosDecorator) {
 			// re-organizando array
 			$arrayResultado[$arrayDadosDecorator['id']] = array('alias' => $arrayDadosDecorator['alias'], 'attribs' => $arrayDadosDecorator['attribs']);
-			
+
 			// limpando memoria
 			unset($arrayDadosDecorator);
 		}
