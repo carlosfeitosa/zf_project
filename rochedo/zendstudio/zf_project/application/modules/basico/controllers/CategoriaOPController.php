@@ -1321,18 +1321,102 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 
 		// switch para verificar as categorias
 		switch ($objetoCategoriaComponenteFormulario->getRootCategoriaPaiObject()->nome) {
-			case self::CATEGORIA_COMPONENTE_DECORATOR_HTML:
+			case self::CATEGORIA_COMPONENTE_HTML:
 				// retornando o resultado da verificação
-				return $this->verificaCompatibildadeCategoriasComponentesElementosHTML($arrayIdsCategoriasComponentesDecorators);
+				return $this->verificaCompatibildadeCategoriasComponentesDecoratorsHTML($arrayIdsCategoriasComponentesDecorators);
 			break;
-			case self::CATEGORIA_COMPONENTE_DECORATOR_JAVASCRIPT:
+			case self::CATEGORIA_COMPONENTE_HTML_JAVASCRIPT:
 				// retornando o resultado da verificação
-				return $this->verificaCompatibildadeCategoriasComponentesElementosHTMLJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesDecorators);
+				return $this->verificaCompatibildadeCategoriasComponentesDecoratorsJavascript($objetoCategoriaComponenteFormulario->id, $arrayIdsCategoriasComponentesDecorators);
 			break;
 			default:
 				// retornando falso
 				return false;
 			break;
 		}
+	}
+	
+	/**
+	 * Verifica se os ids das categorias de componentes de decorators são compatíveis com formulário HTML básico, sem uso de javascript
+	 * 
+	 * @param Array $arrayIdsCategoriasComponentesDecorators - ids das categorias dos componentes dos decorators
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes de decorators forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 06/07/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesDecoratorsHTML(array $arrayIdsCategoriasComponentesDecorators)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if (!count($arrayIdsCategoriasComponentesDecorators)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesDecorators = implode(',', $arrayIdsCategoriasComponentesDecorators);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesDecorators = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesDecorators})");
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesDecorators as $objetoCategoriaComponenteDecorator) {
+			// verificando a categoria
+			if (self::CATEGORIA_COMPONENTE_DECORATOR_HTML !== $objetoCategoriaComponenteDecorator->getCategoriaPaiObject()->nome) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
+	}
+	
+	/**
+	 * Verifica se os ids das categorias de componentes de decorators são compatíveis com formulário HTML com javascript
+	 * 
+	 * @param Integer $idCategoriaComponenteFormulario - id da categoria do componente do formulário pai
+	 * @param Array $arrayIdsCategoriasComponentesDecorators - ids das categorias dos componentes dos decorators
+	 * 
+	 * @return Boolean - true se todas as categorias de componentes dos decorators forem compatíveis ou false se uma ou mais categorias não forem compatíveis
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 06/07/2012
+	 */
+	private function verificaCompatibildadeCategoriasComponentesDecoratorsJavascript($idCategoriaComponenteFormulario, array $arrayIdsCategoriasComponentesDecorators)
+	{
+		// verificando se foi passado os ids das categorias dos componentes dos sub-formulários
+		if ((!$idCategoriaComponenteFormulario) or (!is_int($idCategoriaComponenteFormulario)) or (!count($arrayIdsCategoriasComponentesDecorators))) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsCategoriasComponentesDecorators = implode(',', $arrayIdsCategoriasComponentesDecorators);
+
+		// recuperando os objetos categorias dos ids das categorias dos componentes dos sub-formulários
+		$arrayObjetosCategoriaComponentesDecorators = $this->_retornaObjetosPorParametros("id in ({$stringIdsCategoriasComponentesDecorators})");
+
+		// recuperando o objeto categoria do id da categoria do componente do formulário pai
+		$objetoCategoriaComponenteFormularioPai = $this->_retornaObjetosPorParametros("id = {$idCategoriaComponenteFormulario}", null, 1, 0);
+
+		// verificando o resultado da recuperação do array de objetos categoria dos componentes dos formulários
+		if (!is_array($arrayObjetosCategoriaComponentesDecorators)) {
+			// transformando o resultado em array
+			$arrayObjetosCategoriaComponentesDecorators = array($arrayObjetosCategoriaComponentesDecorators);
+		}
+
+		// loop para verificar as categorias roots das categorias recuperadas
+		foreach ($arrayObjetosCategoriaComponentesDecorators as $objetoCategoriaComponenteDecorator) {
+			// verificando a categoria
+			if ((self::CATEGORIA_COMPONENTE_DECORATOR_JAVASCRIPT !== $objetoCategoriaComponenteDecorator->getCategoriaPaiObject()->nome) and (self::CATEGORIA_COMPONENTE_DECORATOR_HTML !== $objetoCategoriaComponenteDecorator->getCategoriaPaiObject()->nome)) {
+				// retornando falso
+				return false;
+			}
+		}
+
+		// retornando sucesso
+		return true;
 	}
 }

@@ -97,13 +97,16 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 	 * 
 	 * @param Array $arrayIdsDecorators - array contendo os ids dos decorators que deseja recuperar os dados para montagem
 	 * 
-	 * @return Array|false - array contendo os dados para montagem dos decorators ou false se não conseguir
+	 * @return Array - array contendo os dados para montagem dos decorators ou um array vazio se não encontrar decorators
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 05/07/2012
 	 */
 	public function retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators(array $arrayIdsDecorators)
 	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
 		// verificando se foram passados ids para recuperação
 		if (!count($arrayIdsDecorators)) {
 			// retornando falso
@@ -118,6 +121,20 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 
 		// recuperando os dados dos decorators
 		$arrayDadosDecorators = $this->_retornaArrayDadosObjetosPorParametros("id IN ({$stringIdsDecorators})", null, null, null, array('id', 'alias', 'attribs'));
+		
+		// re-organizando o array para colocar o id do decorator como chave
+		foreach ($arrayDadosDecorators as $decorator) {
+			
+			// re-organizando array
+			$arrayResultado[$decorator['id']] = array('alias' => $decorator['alias'], 'attribs' => $decorator['attribs']);
+			
+			// limpando memoria
+			unset($decorator);
+		}
+		
+		// retornando resultado
+		return $arrayResultado;	
+		
 	}
 
 	/**
