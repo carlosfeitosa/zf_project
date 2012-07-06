@@ -123,12 +123,12 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 		$arrayDadosDecorators = $this->_retornaArrayDadosObjetosPorParametros("id IN ({$stringIdsDecorators})", null, null, null, array('id', 'alias', 'attribs'));
 
 		// re-organizando o array para colocar o id do decorator como chave
-		foreach ($arrayDadosDecorators as $decorator) {
+		foreach ($arrayDadosDecorators as $arrayDadosDecorator) {
 			// re-organizando array
-			$arrayResultado[$decorator['id']] = array('alias' => $decorator['alias'], 'attribs' => $decorator['attribs']);
+			$arrayResultado[$arrayDadosDecorator['id']] = array('alias' => $arrayDadosDecorator['alias'], 'attribs' => $arrayDadosDecorator['attribs']);
 			
 			// limpando memoria
-			unset($decorator);
+			unset($arrayDadosDecorator);
 		}
 
 		// retornando resultado
