@@ -178,7 +178,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	const TAG_SUBSTITUICAO_DECORATOR_FORMULARIO = TAG_DECORATOR_FORMULARIO;
+	const TAG_SUBSTITUICAO_DECORATOR = TAG_DECORATOR_FORMULARIO;
 	
 	/**
 	 * Tag de substituicao da descrição do formulário
@@ -279,6 +279,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 21/06/2012
 	 */
 	const TAG_SUBSTITUICAO_ANO_ATUAL = TAG_ANO_ATUAL_FORMULARIO;
+
+	/**
+	 * Tag de substituicao de instancia
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	const TAG_SUBSTITUICAO_INSTANCIA = TAG_INSTANCIA;
 	
 	/**
 	 * Tag de substituicao do cabecalho da classe do formulario
@@ -529,6 +539,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 05/07/2012
 	 */
 	const COMENTARIO_DECLARACAO_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_ADICIONA_DECORATORS_FORMULARIO_HEADER;
+
+	/**
+	 * Comentário da adiçã e remoção de decorators do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	const COMENTARIO_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_ADD_DECORATOR_COMMENT;
 	
 	/**
 	 * chamada do método adicionaElementos do formulário
@@ -559,6 +579,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 26/06/2012
 	 */
 	const ASSINATURA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION;
+
+	/**
+	 * Representação da instancia do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa/João Vasconcelos (carlos.feitosa@rochedoframework.com/joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	const INSTANCIA_FORMULARIO = TAG_INSTANCIA_FORMULARIO;
 	
 	/**
 	 * Instancia do controlador
@@ -1424,6 +1454,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_SET_ATTRIBS);
 
 		// manipulando o cabeçalho
+		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $chamadaAddAttribs);
 		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_ATRIBUTOS_FORMULARIO, $atributosFormulario, $chamadaAddAttribs);
 
 		// escrevendo o comentario do construtor da classe no arquivo
@@ -1520,7 +1551,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_ADD_DECORATOR);
 
 		// manipulando o cabeçalho
-		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR_FORMULARIO, $atributosFormulario, $chamadaAddDecorator);
+		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $atributosFormulario, $chamadaAddDecorator);
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddDecorator, true);
@@ -1575,7 +1606,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_REMOVE_DECORATOR);
 
 		// manipulando o cabeçalho
-		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR_FORMULARIO, $atributosFormulario, $chamadaRemoveDecorator);
+		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $atributosFormulario, $chamadaRemoveDecorator);
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaRemoveDecorator, true);
@@ -1919,7 +1950,60 @@ class Basico_OPController_GeradorFormularioOPController
 	    // recuperando array com os dados para montagem dos decorators
 	    $arrayDadosMontagemDecorators = $this->_formularioDecorator->retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators($arrayIdsDecoratorsFormulario);
 
-	    Basico_OPController_UtilOPController::print_debug($arrayDadosMontagemDecorators, true, false, true);
+	    // recuperando array com os ids dos decorators que devem ser removidos
+	    $arrayIdsDecoratorsRemoveFormulario = $this->_formularioAssocclDecorator->retornaArrayIdsDecoratorsExcludePorArrayIdsFormulario(array($idFormulario));
+
+	    // escrevendo comentário sobre adição e remoção de decorators
+	    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_ADICIONA_DECORATORS_FORMULARIO), true);
+
+	    // loop para montar os decorators
+	    foreach ($arrayIdsDecoratorsFormulario as $idDecoratorFormulario) {
+	    	// verificando se não se trata de uma remoção de decorator
+	    	if ((!is_array($arrayIdsDecoratorsRemoveFormulario)) or (false === array_search($idDecoratorFormulario, $arrayIdsDecoratorsRemoveFormulario))) { // adicionando decorator
+	    		// verificando se o decorator possui alias para montagem da primeira parte do decorator
+	    		if (null !== $arrayDadosMontagemDecorators[$idDecoratorFormulario]['alias']) {
+	    			// montando primeira parte do decorator
+ 	    			$decorator = "array('{$arrayDadosMontagemDecorators[$idDecoratorFormulario]['alias']}' => '{$arrayDadosMontagemDecorators[$idDecoratorFormulario]['componente']}')"; 
+	    		} else { // não possui alias
+	    			// montando primeira parte do decorator
+	    			$decorator = "'{$arrayDadosMontagemDecorators[$idDecoratorFormulario]['componente']}'";
+	    		}
+
+	    		// verificando se o decorator possui attribs
+	    		if (null !== $arrayDadosMontagemDecorators[$idDecoratorFormulario]['attribs']) {
+	    			// adicionando segunda parte do decorator
+	    			$decorator .= ", {$arrayDadosMontagemDecorators[$idDecoratorFormulario]['attribs']}";
+	    		}
+
+	    		// montando parte final do decorator
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $decorator, self::CHAMADA_FORMULARIO_ADD_DECORATOR);
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $decorator);
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $decorator);    		
+	    	} else { // removendo decorator
+	    		// verificando se o decorator possui alias
+	    		if (null !== $arrayDadosMontagemDecorators[$idDecoratorFormulario]['alias']) {
+	    			// setando o decorator para o nome do alias
+ 	    			$decorator = "'{$arrayDadosMontagemDecorators[$idDecoratorFormulario]['alias']}'";
+	    		} else { // não possui alias
+	    			// setando o decorator para o nome do componente
+	    			$decorator = "'{$arrayDadosMontagemDecorators[$idDecoratorFormulario]['componente']}'";
+	    		}
+
+	    		// montando parte final do decorator
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $decorator, self::CHAMADA_FORMULARIO_REMOVE_DECORATOR);
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $decorator);
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $decorator);
+	    	}
+
+	    	// escrevendo método de adição de decorator
+	    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $decorator, true);
+
+	    	// limpando memória
+	    	unset($idDecoratorFormulario, $decorator);
+	    }
+
+	    // limpando memória
+	    unset($arrayIdsDecoratorsFormulario, $arrayDadosMontagemDecorators, $arrayIdsDecoratorsRemoveFormulario);
 
 	    return true;
 	}

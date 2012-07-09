@@ -151,6 +151,16 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 		return false;
 	}
 
+	/**
+	 * Retorna um componente através de seu id
+	 * 
+	 * @param Integer $idComponente - id do componente que deseja recuperar
+	 * 
+	 * @return String - string contendo o componente
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
 	public function retornaComponentePorIdComponente($idComponente)
 	{
 		// verificando se foi passado o id do componente
@@ -169,6 +179,46 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 		}
 
 		return false;
+	}
+
+	/**
+	 * Retorna um array contendo os componentes que estão contidos no array de ids de componentes
+	 * 
+	 * @param Array $arrayIdsComponentes - array contendo os ids dos componentes que deseja recuperar
+	 * 
+	 * @return Array|false - array contendo os componentes ou false caso não encontre
+	 */
+	public function retornaArrayComponentesPorArrayIdsComponentes(array $arrayIdsComponentes)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se o array contem elementos
+		if (!count($arrayIdsComponentes)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsComponentes = implode(',', $arrayIdsComponentes);
+
+		// recuperando array de dados
+		$arrayDadosComponentes = $this->_retornaArrayDadosObjetosPorParametros("id IN ({$stringIdsComponentes})", null, null, null, array('id', 'componente'));
+
+		// limpando memória
+		unset($stringIdsComponentes);
+
+		// verificando se o foi retornado o array
+		if (is_array($arrayDadosComponentes) and (count($arrayDadosComponentes))) {
+			// loop para montar o array de resposta
+			foreach ($arrayDadosComponentes as $arrayDadoComponente) {
+				// montando retorno
+				$arrayRetorno[$arrayDadoComponente['id']] = $arrayDadoComponente['componente'];
+			}
+		}
+
+		// retornando array de resultados
+		return $arrayRetorno;
 	}
 
 	/**

@@ -38,6 +38,16 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 	const nomeCampoIdModelo = 'id';
 
 	/**
+	 * Controlador de componentes
+	 * 
+	 * @var Basico_OPController_ComponenteOPController object
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	protected $_componenteOPController;
+
+	/**
 	 * Construtor do Controlador Basico_OPController_FormularioDecoratorOPController.
 	 * 
 	 * @return void
@@ -73,6 +83,8 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 	protected function _initControllers()
 	{
 		// inicializando controladores utilizados por este controlador
+		$this->_componenteOPController = Basico_OPController_ComponenteOPController::getInstance();
+
 		return;
 	}
 	
@@ -106,7 +118,7 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 	{
 		// inicializando variaveis
 		$arrayResultado = array();
-		
+
 		// verificando se foram passados ids para recuperação
 		if (!count($arrayIdsDecorators)) {
 			// retornando falso
@@ -115,6 +127,9 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 
 		// recuperando os componentes dos decorators
 		$arrayIdsComponentesDecorators = $this->retornaArrayIdsComponentesDecoratorsPorArrayIdsDecorators($arrayIdsDecorators);
+		
+		// recuperando dados dos componentes dos decorators
+		$arrayDadosComponentes = $this->_componenteOPController->retornaArrayComponentesPorArrayIdsComponentes($arrayIdsComponentesDecorators);
 
 		// transformando o array de ids em string
 		$stringIdsDecorators = implode(',', $arrayIdsDecorators);
@@ -125,7 +140,7 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 		// re-organizando o array para colocar o id do decorator como chave
 		foreach ($arrayDadosDecorators as $arrayDadosDecorator) {
 			// re-organizando array
-			$arrayResultado[$arrayDadosDecorator['id']] = array('alias' => $arrayDadosDecorator['alias'], 'attribs' => $arrayDadosDecorator['attribs']);
+			$arrayResultado[$arrayDadosDecorator['id']] = array('alias' => $arrayDadosDecorator['alias'], 'attribs' => $arrayDadosDecorator['attribs'], 'componente' => $arrayDadosComponentes[$arrayIdsComponentesDecorators[$arrayDadosDecorator['id']]]);
 
 			// limpando memoria
 			unset($arrayDadosDecorator);

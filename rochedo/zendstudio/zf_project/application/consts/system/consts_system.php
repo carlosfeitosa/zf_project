@@ -379,7 +379,6 @@ $header = <<<TEXT
 TEXT;
 define("FORM_GERADOR_INCLUDE_SUB_FORM_TO_FORM_COMMENT", $header);
 
-define("FORM_GERADOR_THIS_INSTANCE", '$this');
 define("FORM_GERADOR_FORM_SET_ENCRYPTED_ACTION", '$this->setAction(Basico_OPController_TokenOPController::getInstance()->gerarTokenPorUrl');
 define("FORM_GERADOR_FORM_ADDELEMENTS", '$this->addElements');
 define("FORM_GERADOR_FORM_ADDPREFIXPATH", '$this->addPrefixPath');

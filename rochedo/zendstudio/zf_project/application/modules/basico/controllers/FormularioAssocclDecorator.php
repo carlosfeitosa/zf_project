@@ -47,7 +47,7 @@ class Basico_OPController_FormularioAssocclDecorator extends Basico_AbstractOPCo
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 05/07/2012
 	 */
-	protected $_formularioDecoratorGrupoAssocagGrupo;
+	protected $_formularioDecoratorGrupoAssocagGrupoOPController;
 	
 	/**
 	 * Construtor do Controlador Basico_OPController_FormularioAssocclDecorator.
@@ -85,7 +85,7 @@ class Basico_OPController_FormularioAssocclDecorator extends Basico_AbstractOPCo
 	protected function _initControllers()
 	{
 		// inicializando controladores
-		$this->_formularioDecoratorGrupoAssocagGrupo  = Basico_OPController_FormularioDecoratorGrupoAssocagGrupo::getInstance();
+		$this->_formularioDecoratorGrupoAssocagGrupoOPController  = Basico_OPController_FormularioDecoratorGrupoAssocagGrupo::getInstance();
 
 		return;
 	}
@@ -150,7 +150,65 @@ class Basico_OPController_FormularioAssocclDecorator extends Basico_AbstractOPCo
 				$arrayRetorno[] = $arrayValores['idDecorator'];
 			} else { // grupo de decorators
 				// adicionando ids dos decorators do grupo no array de retorno
-				$arrayRetorno = array_merge($arrayRetorno, $this->_formularioDecoratorGrupoAssocagGrupo->retornaArrayIdsDecoratorsPorIdGrupoDecorator($arrayValores['idDecoratorGrupo']));
+				$arrayRetorno = array_merge($arrayRetorno, $this->_formularioDecoratorGrupoAssocagGrupoOPController->retornaArrayIdsDecoratorsPorIdGrupoDecorator($arrayValores['idDecoratorGrupo']));
+			}
+
+			// limpando memória
+			unset($arrayValores);
+		}
+
+		// limpando memória
+		unset($arrayIdsAssociados);
+
+		// retornando array de ids
+		return $arrayRetorno;
+	}
+
+	/**
+	 * Retorna um array contendo os ids dos decorators associados a um formulário que devem ser removidos
+	 * 
+	 * @param Array $arrayIdsFormularios - array contendo os ids dos formulários que deseja recuperar os decorators para remoção
+	 * 
+	 * @return Array|false - array contendo os ids dos decorators associados ao id do formulario para remoção ou false se não encontrar associações
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	public function retornaArrayIdsDecoratorsExcludePorArrayIdsFormulario(array $arrayIdsFormularios)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se foi passado o id do formulário
+		if (!count($arrayIdsFormularios)) {
+			// retornando falso
+			return false;
+		}
+
+		// transformando o array em string
+		$stringIdsFormularios = implode(',', $arrayIdsFormularios);
+
+		// recuperando os ids dos decorators associados ao formulário
+		$arrayIdsAssociados = $this->_retornaArrayDadosObjetosPorParametros("id_formulario in ({$stringIdsFormularios}) AND exclude = " . Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true), 'ordem', null, null, array('idDecorator', 'idDecoratorGrupo'));
+
+		// limpando memória
+		unset($stringIdsFormularios);
+
+		// verificando o resultado da recuperação
+		if (!count($arrayIdsAssociados)) {
+			// retornando falso
+			return false;
+		}
+
+		// loop para montar o array de resposta
+		foreach ($arrayIdsAssociados as $arrayValores) {
+			// verificando se trata-se de um decorator ou grupo de decorator
+			if (null !== $arrayValores['idDecorator']) { // decorator
+				// adicionando elemento ao array de retorno
+				$arrayRetorno[] = $arrayValores['idDecorator'];
+			} else { // grupo de decorators
+				// adicionando ids dos decorators do grupo no array de retorno
+				$arrayRetorno = array_merge($arrayRetorno, $this->_formularioDecoratorGrupoAssocagGrupoOPController->retornaArrayIdsDecoratorsPorIdGrupoDecorator($arrayValores['idDecoratorGrupo']));
 			}
 
 			// limpando memória

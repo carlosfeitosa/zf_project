@@ -22,6 +22,10 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	 */
 	protected $_idDecoratorGrupo;
 	/**
+	 * @var Boolean
+	 */
+	protected $_exclude;
+	/**
 	 * @var Integer
 	 */
 	protected $_ordem;	
@@ -118,7 +122,30 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	{
 		return $this->_idDecoratorGrupo;
 	}
-    
+
+	/**
+	* Set exclude
+	* 
+	* @param Boolean $exclude
+	*  
+	* @return Basico_Model_FormularioAssocclDecorator
+	*/
+	public function setExclude($exclude)
+	{
+		$this->_exclude = Basico_OPController_UtilOPController::retornaValorTipado($exclude, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get exclude
+	* 
+	* @return null|Boolean
+	*/
+	public function getExclude()
+	{
+		return $this->_exclude;
+	}
+
     /**
      * Get DecoratorGrupo object
      * 
