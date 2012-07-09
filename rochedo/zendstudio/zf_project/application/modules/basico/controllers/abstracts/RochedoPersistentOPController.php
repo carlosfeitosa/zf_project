@@ -13,6 +13,13 @@
 abstract class Basico_AbstractOPController_RochedoPersistentOPController 
 {
 	/**
+	 * Instancia do controlador utilitário
+	 * 
+	 * @var Basico_OPController_UtilOPController
+	 */
+	protected $_utilOPController;
+
+	/**
 	 * Contrutor do controlador.
 	 * 
 	 * Deve-se tambem chamar o metodo _init(), que deve inicializar o controlador.
@@ -35,6 +42,9 @@ abstract class Basico_AbstractOPController_RochedoPersistentOPController
 	{
 		// inicializando modelo do controlador
 		$this->_initModel();
+
+		// inicializando controlador utilitário
+		$this->_utilOPController = new Basico_OPController_UtilOPController();
 
 		// inicializando controladores
 		$this->_initControllers();
