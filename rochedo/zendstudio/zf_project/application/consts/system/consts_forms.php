@@ -39,6 +39,10 @@ define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormula
 define("FORM_GERADOR_FORM_SETATTRIBS", '@identacao@instancia->setAttribs(array(@atributosFormulario));');
 define("FORM_GERADOR_FORM_ADDDECORATOR", '@identacao@instancia->addDecorator(@decorator);');
 define("FORM_GERADOR_FORM_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
+define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemento);');
+define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
+define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL(@label);');
+define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs)');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -46,6 +50,7 @@ define('TAG_METODO_FORMULARIO', '@metodoFormulario');
 define('TAG_ACAO_FORMULARIO', '@acaoFormulario');
 define('TAG_ATRIBUTOS_FORMULARIO', '@atributosFormulario');
 define('TAG_DECORATOR_FORMULARIO', '@decorator');
+define('TAG_ELEMENTO_FORMULARIO', '@elemento');
 define('TAG_NOME_MODULO', '@nomeModulo');
 define('TAG_DATA_CRIACAO_FORMULARIO', '@dataCriacao');
 define('TAG_TEXTO_LICENCA_USO', '@textoLicencaUso');
@@ -57,6 +62,8 @@ define('TAG_DESCRICAO_FORMULARIO', '@descricaoFormulario');
 define('TAG_AUTOR', '@autor');
 define('TAG_IDENTACAO', '@identacao');
 define('TAG_INSTANCIA', '@instancia');
+define('TAG_LABEL', '@label');
+define('TAG_ATTRIBS', '@attribs');
 define('TAG_INSTANCIA_FORMULARIO', '$this');
 
 
@@ -69,8 +76,9 @@ define("FORM_GERADOR_SET_ACTION_CALL_COMMENT", '@identacao// Setando a ação do
 define("FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT", '@identacao// Adicionando atributos ao formulário');
 define("FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT", '@identacao// Adicionando decorators ao formulário');
 define("FORM_GERADOR_REMOVE_DECORATOR_CALL_COMMENT", '@identacao// Removendo decorator do formulário');
-define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// adicionando elementos ao formulário');
+define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// Adicionando elementos ao formulário');
 define("FORM_GERADOR_ADD_DECORATOR_COMMENT", '@identacao// Adicionando e removendo decorators do formulário');
+define("FORM_GERADOR_ADD_ELEMENT_COMMENT", '@identacao// Adicionando elementos do formulário');
 
 // constantes de cabeçalho
 // cabeçalho de arquivo contendo classe de formulário

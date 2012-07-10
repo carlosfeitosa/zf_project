@@ -368,6 +368,31 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 
 		return null;
 	}
+	
+	/**
+	 * Retorna o formName de um formulario cujo id foi passado por parametro
+	 * 
+	 * @param Integer $idFormulario
+	 * 
+	 * @return String|null
+	 */
+	public function retornaFormNamePorIdFormulario($idFormulario)
+	{
+		// verificando se foi passado o nome do formulario e sua categoria
+		if (!$idFormulario)
+			return null;
+
+		// recuperando o formulario
+		$objsFormulario = $this->_retornaObjetosPorParametros("id = {$idFormulario}", null, 1, 0);
+
+		// verificando se o formulario foi recuperado
+		if (is_object($objsFormulario)) {
+			// retornando o action do formulario
+			return $objsFormulario->formName;
+		}
+
+		return null;
+	}
 
 	/**
 	 * Retorna um array contendo o nome da categoria de include e a uri para o include

@@ -236,4 +236,41 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 		// retornando array
 		return $arrayRetorno;
 	}
+	
+	/**
+	 * Retorna um array com os dados para montagem dos elementos atraves do array de ids de elementos
+	 * 
+	 * @param array $arrayIdsElementos - array com ids dos elementos para recuperacao dos dados
+	 * 
+	 * @return array - array contendo os dados dos elementos encontrados ou um array vazio se não encontrar nenhum elemento
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	public function retornaArrayDadosMontagemElementosPorArrayIdsElementos(array $arrayIdsElementos)
+	{
+		// verificando se foram passados elementos no array de ids de elementos
+		if (!count($arrayIdsElementos)) {
+			// retornando falso
+			return false;
+		}
+
+		// tranformando o array em string
+		$stringIdsElementos = implode(',', $arrayIdsElementos);
+		
+		// inicializando variaveis
+		$arrayDadosElementos = array();
+
+		// recuperando array com os dados dos elementos
+		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsElementos})", null, null, null, array('idElemento', 'idComponente', 'idAjuda', 'constanteTextualLabel', 'element', 'elementName', 'elementAttribs', 'elementValueDefault', 'elementReloadable'));
+
+		// loop para organizar array de retorno
+		foreach ($arrayDadosElementos as $arrayDadoElemento)
+		{
+			$arrayResultado[$arrayDadoElemento['idElemento']] = $arrayDadoElemento;
+		}
+		
+		// retornando array com dados dos elementos
+		return $arrayDadosElementos;
+	}
 }

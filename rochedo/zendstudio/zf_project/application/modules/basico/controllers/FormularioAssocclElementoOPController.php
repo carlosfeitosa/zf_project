@@ -329,4 +329,53 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 		// retornando array
 		return $this->retornaArrayIdsElementosFormularioOrdenadoPorIdFormularioOrdemPorArrayIdsFormularios(array($idFormulario));
 	}
+	
+	/**
+	 * Retorna um array contendo os dados dos elementos associados a um formulário, ordenado pelo atributo "ordem"
+	 * 
+	 * @param Int $idFormulario
+	 * 
+	 * @return Array|false - array contendo os dados dos elementos associados ou um array vazio caso nao existam elementos
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	public function retornaArrayDadosElementosFormularioOrdenadoPorIdFormularioOrdemPorIdFormulario($idFormulario)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// verificando se foi passado o parametro do id do formulario
+		if (!is_int($idFormulario)) {
+			// limpando memória
+			unset($arrayRetorno);
+
+			// retornando falso
+			return false;
+		}
+
+		// recuperando array de dados
+		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", array('id_formulario','ordem'), null, null, array('idElemento', 'idAjuda', 'idGrupo', 'constanteTextualLabel', 'elementName', 'elementAttribs', 'elementValueDefault', 'elementReloadable', 'elementRequired'));
+
+		// verificando o resultado da recuperação
+		if (!count($arrayDadosElementos)) {
+			// retornando falso
+			return false;
+		}
+
+		// loop para montar array de resposta
+		foreach ($arrayDadosElementos as $assocclElemento) {
+			// adicionado elemento no array de resposta
+			$arrayRetorno[$assocclElemento['idElemento']] = $assocclElemento;
+
+			// limpando memória
+			unset($assocclElemento);
+		}
+
+		// limpando memória
+		unset($arrayDadosElementos);
+
+		// retornando array
+		return $arrayRetorno;
+	}
 }

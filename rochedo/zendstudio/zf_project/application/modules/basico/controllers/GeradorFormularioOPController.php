@@ -291,6 +291,36 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_INSTANCIA = TAG_INSTANCIA;
 	
 	/**
+	 * Tag de substituicao de label
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	const TAG_SUBSTITUICAO_LABEL = TAG_LABEL;
+	
+	/**
+	 * Tag de substituicao de attribs
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	const TAG_SUBSTITUICAO_ATTRIBS = TAG_ATTRIBS;
+	
+	/**
+	 * Tag de substituicao do elemento do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	const TAG_SUBSTITUICAO_ELEMENTO_FORMULARIO = TAG_ELEMENTO_FORMULARIO;
+	
+	/**
 	 * Tag de substituicao do cabecalho da classe do formulario
 	 * 
 	 * @var String
@@ -591,6 +621,46 @@ class Basico_OPController_GeradorFormularioOPController
 	const INSTANCIA_FORMULARIO = TAG_INSTANCIA_FORMULARIO;
 	
 	/**
+	 * Comentario da chamada do método adicionaElementos do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const COMENTARIO_CHAMADA_ADD_ELEMENT_FORMULARIO = FORM_GERADOR_ADD_ELEMENT_COMMENT;
+	
+	/**
+	 * Chamada para o metodo addElement do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	const CHAMADA_ADD_ELEMENT = FORM_GERADOR_FORM_ADDELEMENT;
+	
+	/**
+	 * Chamada para o metodo addElement do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	const CHAMADA_SET_LABEL = FORM_GERADOR_SETLABEL;
+	
+	/**
+	 * Chamada para o metodo addElement do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/07/2012
+	 */
+	const CHAMADA_SET_ATTRIBS = FORM_GERADOR_SETATTRIBS;
+	
+	/**
 	 * Instancia do controlador
 	 * 
 	 * @var Basico_OPController_GeradorFormularioOPController object
@@ -609,6 +679,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 18/06/2012
 	 */
 	protected $_formularioOPController;
+	
+	/**
+	 * Controlador de formulários elementos
+	 * 
+	 * @var Basico_OPController_FormularioElementoOPController object
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	protected $_formularioElementoOPController;
 
 	/**
 	 * Controlador de associações entre formulários e decorators
@@ -619,6 +699,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 05/07/2012
 	 */
 	protected $_formularioAssocclDecorator;
+	
+	/**
+	 * Controlador de associações entre formulários e elementos
+	 * 
+	 * @var Basico_OPController_FormularioAssocclElementoOPController object
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/07/2012
+	 */
+	protected $_formularioAssocclElementoOPController;
 
 	/**
 	 * Controlador de decorators
@@ -713,10 +803,11 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// inicializando os controladores utilizados pelo controlador principal
 		$this->_formularioOPController 				  = Basico_OPController_FormularioOPController::getInstance();
+		$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
 		$this->_formularioAssocclDecorator            = Basico_OPController_FormularioAssocclDecorator::getInstance();
 		$this->_formularioDecorator                   = Basico_OPController_FormularioDecoratorOPController::getInstance();
-		//$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
-		//$this->_formularioElementoOPController 		  = Basico_OPController_FormularioElementoOPController::getInstance();
+		$this->_formularioAssocclElementoOPController = Basico_OPController_FormularioAssocclElementoOPController::getInstance();
+		//$this->_formularioElementoOPController      = Basico_OPController_FormularioElementoOPController::getInstance();
 		$this->_categoriaOPController  				  = Basico_OPController_CategoriaOPController::getInstance();
 		$this->_componenteOPController                = Basico_OPController_ComponenteOPController::getInstance();
 
@@ -2088,8 +2179,8 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não
 	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 26/06/2012
+	 * @author João Vasconcelos / Carlos Feitosa (joao.vasconcelos@rochedoframework.com/carlos.feitosa@rochedoframework.com)
+	 * @since 10/07/2012
 	 */
 	private function escreveElemetosFormulario($resourceArquivo, $idFormulario)
 	{
@@ -2099,6 +2190,100 @@ class Basico_OPController_GeradorFormularioOPController
 			return false;
 		}
 
+		// escrevendo comentário sobre adição e remoção de elementos
+	    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_ADD_ELEMENT_FORMULARIO), true);
+	    
+	    // recuperando o nome do formulario
+	    $nomeFormulario = $this->_formularioOPController->retornaFormNamePorIdFormulario($idFormulario);
+	    
+	    // recuperando os ids dos elementos do formulario
+	    $arrayIdsElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario);
+	    
+	    // recuperando dados da relacao do formulario com os elementos
+	    $arrayDadosElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayDadosElementosFormularioOrdenadoPorIdFormularioOrdemPorIdFormulario($idFormulario);
+	    
+	    // recuperando dados dos elementos
+	    $arrayDadosMontagemElementos = $this->_formularioElementoOPController->retornaArrayDadosMontagemElementosPorArrayIdsElementos($arrayIdsElementosFormulario);
+	    
+	    // loop para escrever os elementos
+	    foreach ($arrayDadosMontagemElementos as $idElemento => $arrayDadoElemento) {
+	    	// recuperando o componente do elemento
+	    	$componente = $this->_componenteOPController->retornaComponentePorIdComponente($arrayDadoElemento['idComponente']);
+	    	
+	    	// inicializando elementName com tag de substituicao do nome do modulo e o nome do formulario
+	    	$elementName = self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . ucfirst($nomeFormulario);
+	    	
+	    	// recuperando o elementName
+	    	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementName']) {
+	    		// elementName da especialização com a primeira letra Maiuscula
+	    		$elementName .= ucfirst($arrayDadosElementosFormulario[$idElemento]['elementName']);
+	    	}else{
+	    		// elementName default com a primeira letra Maiuscula
+	    		$elementName .= ucfirst($arrayDadoElemento['elementName']);
+	    	}
+	    	
+	    	// montando string de adicao do elemento
+	    	$addElement = "'{$componente}', '{$elementName}'";
+	    	$addElement = str_replace(self::TAG_SUBSTITUICAO_ELEMENTO_FORMULARIO, $addElement, self::CHAMADA_ADD_ELEMENT);
+	    	$addElement = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addElement);
+			$addElement = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $addElement);
+	    	
+	    	// escrevendo linha que adiciona o elemento no formulario
+	    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addElement, true);
+	    	
+	    	// limpando memoria
+			unset($componente, $addElement);
+			
+	    	// recuperando o label do elemento
+	    	if (null !== $arrayDadosElementosFormulario[$idElemento]['constanteTextualLabel']) {
+	    		// label da especialização
+	    		$constanteTextualLabel = $arrayDadosElementosFormulario[$idElemento]['constanteTextualLabel'];
+	    	}else{
+	    		// label default
+	    		$constanteTextualLabel = $arrayDadoElemento['constanteTextualLabel'];
+	    	}
+	    	
+	    	// verificando se conseguiu recuperar um label
+	    	if (null !== $constanteTextualLabel) {
+		    	// montando string do setLabel do elemento
+		    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_LABEL, "'{$constanteTextualLabel}'", self::CHAMADA_SET_LABEL);
+		    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setLabel);
+				$setLabel = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setLabel);
+		    	
+		    	// escrevendo linha que adiciona o setLabel do elemento
+		    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setLabel, true);
+	    	}
+	    	
+	    	unset($constanteTextualLabel, $setLabel);
+	    	
+	    	// recuperando os attribs do elemento
+	    	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementAttribs']) {
+	    		// attribs da especialização
+	    		$elementAttribs = $arrayDadosElementosFormulario[$idElemento]['elementAttribs'];
+	    	}else{
+	    		// attribs default
+	    		$elementAttribs = $arrayDadoElemento['elementAttribs'];
+	    	}
+	    	
+	    	// verificando se conseguiu recuperar attribs
+	    	if (null !== $elementAttribs) {
+		    	// montando string do setAttribs do elemento
+		    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $elementAttribs, self::CHAMADA_SET_ATTRIBS);
+		    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setAttribs);
+				$setAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setAttribs);
+		    	
+		    	// escrevendo linha que adiciona o setAttribs do elemento
+		    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setAttribs, true);
+	    	}
+	    	
+	    	// limpando memoria
+	    	unset($setAttribs, $elementAttribs);
+	    	
+	    	// escrevendo linha em branco entre os elementos
+		    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, '', true);
+	    }
+	    
+		
 		return true;
 	}
 
