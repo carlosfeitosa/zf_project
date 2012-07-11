@@ -164,7 +164,7 @@ class Basico_OPController_CategoriaAssocChaveEstrangeiraOPController extends Bas
 			// verificando se o tipo de categoria do objeto e o tipo da categoria da categoria pai nao eh do tipo SISTEMA
 			if (($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaObject()->nome != APPLICATION_SYSTEM_PERFIL) and ($objCategoriaChaveEsrtrangeiraObjeto->getCategoriaObject()->getTipoCategoriaRootCategoriaPaiObject()->nome != APPLICATION_SYSTEM_PERFIL))
 				// carregando ids de categoria chave estrangeira e valor do id do objeto
-				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = $idTabela;
+				$arrayIdsCategoriaValorChaveEstrangeiraObjeto[$objCategoriaChaveEsrtrangeiraObjeto->categoria] = $valorId;
 		}
 
 		// retornando o array contendo os ids das categorias e valores do objeto a partir de categoria chave estrangeira
