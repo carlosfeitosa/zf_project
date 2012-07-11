@@ -1642,7 +1642,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_ADD_DECORATOR);
 
 		// manipulando o cabeçalho
-		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $atributosFormulario, $chamadaAddDecorator);
+		$chamadaAddDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $decoratorFormulario, $chamadaAddDecorator);
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddDecorator, true);
@@ -1697,7 +1697,7 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_FORMULARIO_REMOVE_DECORATOR);
 
 		// manipulando o cabeçalho
-		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $atributosFormulario, $chamadaRemoveDecorator);
+		$chamadaRemoveDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $decoratorFormulario, $chamadaRemoveDecorator);
 
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaRemoveDecorator, true);
