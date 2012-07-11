@@ -311,6 +311,26 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_ATTRIBS = TAG_ATTRIBS;
 	
 	/**
+	 * Tag de substituicao de ordem
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	const TAG_SUBSTITUICAO_ORDEM = TAG_ORDEM;
+	
+	/**
+	 * Tag de substituicao de required
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	const TAG_SUBSTITUICAO_REQUIRED = TAG_REQUIRED;
+	
+	/**
 	 * Tag de substituicao do elemento do formulário
 	 * 
 	 * @var String
@@ -659,6 +679,26 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 10/07/2012
 	 */
 	const CHAMADA_SET_ATTRIBS = FORM_GERADOR_SETATTRIBS;
+	
+	/**
+	 * Chamada para o metodo setOrdem
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	const CHAMADA_SET_ORDER = FORM_GERADOR_SETORDER;
+	
+	/**
+	 * Chamada para o metodo setRequired
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	const CHAMADA_SET_REQUIRED = FORM_GERADOR_SETREQUIRED;
 	
 	/**
 	 * Instancia do controlador
@@ -2167,7 +2207,7 @@ class Basico_OPController_GeradorFormularioOPController
 		return ($this->escreveComentarioDeclaracaoAdicionaElementosFormulario($resourceArquivo, $autor) 
 				and $this->escreveAssinaturaAdicionaElementosFormulario($resourceArquivo)
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, false, 1)
-				and $this->escreveElemetosFormulario($resourceArquivo, $idFormulario)
+				and $this->escreveElementosFormulario($resourceArquivo, $idFormulario)
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));		
 	}
 
@@ -2182,7 +2222,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos / Carlos Feitosa (joao.vasconcelos@rochedoframework.com/carlos.feitosa@rochedoframework.com)
 	 * @since 10/07/2012
 	 */
-	private function escreveElemetosFormulario($resourceArquivo, $idFormulario)
+	private function escreveElementosFormulario($resourceArquivo, $idFormulario)
 	{
 		// verificando parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or (!is_int($idFormulario))) {
@@ -2201,15 +2241,15 @@ class Basico_OPController_GeradorFormularioOPController
 	    
 	    // recuperando dados da relacao do formulario com os elementos
 	    $arrayDadosElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayDadosElementosFormularioOrdenadoPorIdFormularioOrdemPorIdFormulario($idFormulario);
-	    
+	    	    
 	    // recuperando dados dos elementos
 	    $arrayDadosElementos = $this->_formularioElementoOPController->retornaArrayDadosElementosPorArrayIdsElementos($arrayIdsElementosFormulario);
 	    
 	    // loop para escrever os elementos
-	    foreach ($arrayDadosElementos as $idElemento => $arrayDadosElemento) {
+	    foreach ($arrayIdsElementosFormulario as $idElemento) {
 	    	
 	    	// recuperando dados para montagem do elemento
-	    	$arrayDadosMontagemElemento = $this->retornaArrayDadosMontagemElementos($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElemento);
+	    	$arrayDadosMontagemElemento = $this->retornaArrayDadosMontagemElemento($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElementos[$idElemento]);
 	    	
 	    	// escrevendo chamada ao metodo que adiciona o elemento
 	    	$this->escreveAddElement($resourceArquivo, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
@@ -2220,8 +2260,17 @@ class Basico_OPController_GeradorFormularioOPController
 	    	// escrevendo chamada ao metodo setAttribs do elemento
 	    	$this->escreveSetAttribsElemento($resourceArquivo, $arrayDadosMontagemElemento['elementAttribs'], $arrayDadosMontagemElemento['elementName']);
 	    	
+	    	// escrevendo chamada ao metodo setOrder do elemento
+	    	$this->escreveSetOrderElemento($resourceArquivo, $arrayDadosMontagemElemento['ordem'], $arrayDadosMontagemElemento['elementName']);
+	    	
+	    	// escrevendo chamada ao metodo setRequired do elemento
+	    	$this->escreveSetRequiredElemento($resourceArquivo, $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['elementName']);
+	    	
 	    	// escrevendo linha em branco entre os elementos
 		    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, '', true);
+		    
+		    // limpando memoria
+		    unset($arrayDadosMontagemElemento, $idElemento);
 	    }
 	    
 		
@@ -2242,7 +2291,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function retornaArrayDadosMontagemElementos($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElemento)
+	private function retornaArrayDadosMontagemElemento($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElemento)
 	{
 		// recuperando o componente do elemento
     	$arrayResultado['componente'] = $this->_componenteOPController->retornaComponentePorIdComponente($arrayDadosElemento['idComponente']);
@@ -2251,13 +2300,13 @@ class Basico_OPController_GeradorFormularioOPController
     	$arrayResultado['elementName'] = self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . ucfirst($nomeFormulario);
     	
     	// recuperando o valor do campo elementRequired
-    	$arrayResultado['elementRequired'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario['elementRequired'], true);
+    	$arrayResultado['elementRequired'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementRequired'], true);
     	
     	// recuperando o valor do campo elementReloadable
-    	$arrayResultado['elementReloadable'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario['elementReloadable'], true);
+    	$arrayResultado['elementReloadable'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementReloadable'], true);
 
     	// recuperando o valor do campo ordem    	
-    	$arrayResultado['ordem'] = $arrayDadosElementosFormulario['ordem'];
+    	$arrayResultado['ordem'] = $arrayDadosElementosFormulario[$idElemento]['ordem'];
 	    	
 		// recuperando o elementName
     	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementName']) {
@@ -2382,7 +2431,63 @@ class Basico_OPController_GeradorFormularioOPController
 			$setAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setAttribs);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
-	    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setAttribs, true);
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setAttribs, true);
+    	}
+    	
+    	return false;
+	}
+	
+	/**
+	 * Escreve o metodo setOrder do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $ordem - ordem do elemento
+	 * @param String $elementName - Nome do elemento que tera os attribs setados
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	private function escreveSetOrderElemento($resourceArquivo, $ordem, $elementName)
+	{
+		// verificando se conseguiu recuperar attribs
+    	if (null !== $ordem) {
+	    	// montando string do setAttribs do elemento
+	    	$setOrder = str_replace(self::TAG_SUBSTITUICAO_ORDEM, $ordem, self::CHAMADA_SET_ORDER);
+	    	$setOrder = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setOrder);
+			$setOrder = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setOrder);
+	    	
+	    	// escrevendo linha que adiciona o setAttribs do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setOrder, true);
+    	}
+    	
+    	return false;
+	}
+	
+	/**
+	 * Escreve o metodo setRequired do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $required - required do elemento
+	 * @param String $elementName - Nome do elemento que tera os attribs setados
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	private function escreveSetRequiredElemento($resourceArquivo, $required, $elementName)
+	{
+		// verificando se conseguiu recuperar attribs
+    	if (null !== $required) {
+	    	// montando string do setAttribs do elemento
+	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_REQUIRED, $required, self::CHAMADA_SET_REQUIRED);
+	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setRequired);
+			$setRequired = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setRequired);
+	    	
+	    	// escrevendo linha que adiciona o setAttribs do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setRequired, true);
     	}
     	
     	return false;

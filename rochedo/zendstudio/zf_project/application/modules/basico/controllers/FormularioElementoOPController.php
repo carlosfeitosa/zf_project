@@ -262,15 +262,15 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 		$arrayDadosElementos = array();
 
 		// recuperando array com os dados dos elementos
-		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsElementos})", null, null, null, array('idElemento', 'idComponente', 'idAjuda', 'constanteTextualLabel', 'element', 'elementName', 'elementAttribs', 'elementValueDefault', 'elementReloadable'));
+		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id in ({$stringIdsElementos})", null, null, null, array('id', 'idComponente', 'idAjuda', 'constanteTextualLabel', 'element', 'elementName', 'elementAttribs', 'elementValueDefault', 'elementReloadable'));
 
 		// loop para organizar array de retorno
 		foreach ($arrayDadosElementos as $arrayDadoElemento)
 		{
-			$arrayResultado[$arrayDadoElemento['idElemento']] = $arrayDadoElemento;
+			$arrayResultado[$arrayDadoElemento['id']] = $arrayDadoElemento;
 		}
 		
 		// retornando array com dados dos elementos
-		return $arrayDadosElementos;
+		return $arrayResultado;
 	}
 }

@@ -42,7 +42,9 @@ define("FORM_GERADOR_FORM_REMOVEDECORATOR", '@identacao@instancia->removeDecorat
 define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemento);');
 define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
 define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL(@label);');
-define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs)');
+define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
+define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
+define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required);');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -64,6 +66,8 @@ define('TAG_IDENTACAO', '@identacao');
 define('TAG_INSTANCIA', '@instancia');
 define('TAG_LABEL', '@label');
 define('TAG_ATTRIBS', '@attribs');
+define('TAG_ORDEM', '@ordem');
+define('TAG_REQUIRED', '@required');
 define('TAG_INSTANCIA_FORMULARIO', '$this');
 
 
