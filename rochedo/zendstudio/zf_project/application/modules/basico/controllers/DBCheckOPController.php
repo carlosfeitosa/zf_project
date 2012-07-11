@@ -267,7 +267,7 @@ class Basico_OPController_DBCheckOPController
 							
 						   FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS c
 						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE k ON (k.constraint_name = c.constraint_name)
-						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE fk ON (c.constraint_name = fk.constraint_name)
+						   INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE fk ON (c.unique_constraint_name = fk.constraint_name)
 
 						   WHERE k.table_schema {$concatenadorDB} '.' {$concatenadorDB} k.table_name = '{$nomeTabela}'";
 
