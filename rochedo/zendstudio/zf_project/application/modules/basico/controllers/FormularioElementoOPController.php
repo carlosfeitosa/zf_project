@@ -238,7 +238,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	}
 	
 	/**
-	 * Retorna um array com os dados para montagem dos elementos atraves do array de ids de elementos
+	 * Retorna um array com os dados dos elementos atraves do array de ids de elementos
 	 * 
 	 * @param array $arrayIdsElementos - array com ids dos elementos para recuperacao dos dados
 	 * 
@@ -247,7 +247,7 @@ class Basico_OPController_FormularioElementoOPController extends Basico_Abstract
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 10/07/2012
 	 */
-	public function retornaArrayDadosMontagemElementosPorArrayIdsElementos(array $arrayIdsElementos)
+	public function retornaArrayDadosElementosPorArrayIdsElementos(array $arrayIdsElementos)
 	{
 		// verificando se foram passados elementos no array de ids de elementos
 		if (!count($arrayIdsElementos)) {

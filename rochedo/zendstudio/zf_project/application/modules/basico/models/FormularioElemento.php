@@ -55,10 +55,6 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	 */
 	protected $_elementValueDefault;
 	/**
-     * @var Boolean
-     */
-    protected $_elementReloadable;
-	/**
      * @var Integer
      */
     protected $_ativo;
@@ -349,29 +345,6 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
     public function getElementValueDefault()
     {
         return $this->_elementValueDefault;
-    }
-	
-    /**
-    * Set elementReloadable
-    * 
-    * @param String $elementReloadable
-    *  
-    * @return Basico_Model_FormularioElemento
-    */
-    public function setElementReloadable($elementReloadable)
-    {
-    	$this->_elementReloadable = Basico_OPController_UtilOPController::retornaValorTipado($elementReloadable, TIPO_STRING,true);
-        return $this;
-    }
-
-    /**
-    * Get elementReloadable
-    * 
-    * @return null|String
-    */
-    public function getElementReloadable()
-    {
-        return $this->_elementReloadable;
     }
       
     /**
