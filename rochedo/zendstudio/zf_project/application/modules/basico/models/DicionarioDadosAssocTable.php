@@ -136,17 +136,6 @@ class Basico_Model_DicionarioDadosAssocTable extends Basico_AbstractModel_Roched
 	{
 		return $this->_idFkDefault;
 	}
- 
-    /**
-     * Get FkDefault object
-     * @return null|FkDefault
-     */
-    public function getFkDefaultObject()
-    {
-        $model = new Basico_Model_DicionarioDadosFkDefault();
-        $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idFkDefault);
-        return $object;
-    }
     
 	/**
 	* Set tableName

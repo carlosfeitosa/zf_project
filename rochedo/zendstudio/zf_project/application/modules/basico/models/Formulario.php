@@ -571,32 +571,6 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
         // retornando array de objetos formulario elemento
         return $arrayObjectsFormularioElemento;
     }
-
-    /**
-     * Get template objects
-     * 
-     * @return null|array
-     */
-    public function getTemplatesObjects()
-    {
-        $modelTemplateFormulario = new Basico_Model_FormularioAssocclTemplate();
-        $arrayTemplatesFormularios = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelTemplateFormulario, "id_formulario = {$this->_id}");
-        $modelTemplate = new Basico_Model_Template();
-
-        $arrayIdsTemplates = array();
-        foreach($arrayTemplatesFormularios as $templateFormularioObject){
-        	$arrayIdsTemplates[] = $templateFormularioObject->template;
-        }
-        
-        $arrayObjects = array();
-        
-        if (count($arrayIdsTemplates)){
-			$stringIdsTemplates = implode(',', $arrayIdsTemplates);
-        	$arrayObjects = Basico_OPController_PersistenceOPController::bdObjectFetchList($modelTemplate, "id IN ({$stringIdsTemplates})");
-        } 
-        
-        return $arrayObjects;
-    }
 	
 	/**
 	* Get data mapper

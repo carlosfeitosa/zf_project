@@ -55,7 +55,7 @@ class Basico_Model_FormularioDecoratorGrupoAssocagGrupo extends Basico_AbstractM
      */
     public function getFormularioDecoratorGrupoObject()
     {
-        $model = new Basico_Model_FormularioDecoratorFormularioDecoratorGrupo();
+        $model = new Basico_Model_FormularioDecoratorGrupo();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idFormularioDecoratorGrupo);
         return $object;
     }
