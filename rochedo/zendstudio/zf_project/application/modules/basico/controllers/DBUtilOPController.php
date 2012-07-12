@@ -1021,7 +1021,7 @@ class Basico_OPController_DBUtilOPController
     	}
     	
     }
-    
+
     /**
      * Retorna se a tabela existe ou nao
      * 
@@ -1035,10 +1035,45 @@ class Basico_OPController_DBUtilOPController
 		$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
 		// verificando se a tabela existe
     	if (count($auxDb->describeTable($nomeTabela, $schema)) > 0) {
+    		// retornando verdadeiro
     		return true;
     	}
-    	
+
+    	// retornando falso
     	return false;
+    }
+
+    /**
+     * Verifica se o campo de uma tabela existe
+     * 
+     * @param String $nomecampo - nome do campo que deseja verificar se existe
+     * @param String $nomeTabela - nome da tabela do campo que deseja verificar se existe
+     * @param String $schema - nome do schema da tabela do campo que deseja verificar se existe
+     * 
+     * @return Boolean - true se o campo existir, false se não
+     * 
+     * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+     * @since 10/07/2012
+     */
+    public static function campoExiste($nomecampo, $nomeTabela, $schema = null)
+    {
+    	// verificando se não foi passado o nome do campo e tabela
+    	if ((!$nomecampo) or (!$nomeTabela)) {
+    		// retornando falso
+    		return false;
+    	}
+
+    	// recuperando informações sobre a tabela
+    	$arrayDescricaoTabela = $auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao()->describeTable($nomeTabela, $schema);
+
+    	// recuperando os nomes dos campos da tabela
+    	$arrayNomesCamposTabela = array_keys($arrayDescricaoTabela);
+
+    	// limpando memória
+    	unset($arrayDescricaoTabela);
+
+    	// retornando o resultado da verificação se o campo existe no array de campos da tabela
+    	return (array_search($nomecampo, $arrayNomesCamposTabela) > 0);
     }
 
 	/**

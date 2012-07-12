@@ -945,7 +945,16 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando se o formulário pode ser gerado
 		if (!$this->verificaPossibilidadeGeracaoFormulario($idFormulario)) {
 			// retornando mensagens de erro
-			return array('Existem sub-formulários ou elementos associados a este formulário que possuem problemas de compatibilidade.');
+			return array('Existem sub-formulários ou elementos associados a este formulário (ou elementos associados a sub-formulários) que possuem problemas de compatibilidade.');
+		}
+
+		// recuperando associações que não estao ativadas
+		$arrayRelacoesDesativadas = $this->verificaRelacoesDesativadasPorIdFormulario($idFormulario);
+
+		// verificando se foi retornando alguma associação desativada
+		if ((is_array($arrayRelacoesDesativadas)) and (count($arrayRelacoesDesativadas))) {
+			// retornando mensagens de erro
+			return array('Existem associações (diretas ou indiretas) com o formulário desativadas.<br><br>' . Basico_OPController_UtilOPController::print_debug($arrayRelacoesDesativadas, true, true));
 		}
 
 		// limpando do array de módulos os módulos que foram passados para serem excluídos da geração
@@ -2661,13 +2670,19 @@ class Basico_OPController_GeradorFormularioOPController
 		         ($this->_formularioOPController->verificaCompatibilidadeDecoratorsFomularioPorIdFormulario($idFormulario)));
 	}
 
-	private function verificaElementosFormulario($idFormulario)
+	/**
+	 * Verifica se todas as relações com o formulário estão ativas
+	 * 
+	 * @param Integer $idFormulario - id do formulário que deseja descobrir informações sobre as relações desativadas
+	 * 
+	 * @return Array|Boolean - array contendo o nome das entidades e ids com registros desativados, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.fetiosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 11/07/2012
+	 */
+	private function verificaRelacoesDesativadasPorIdFormulario($idFormulario)
 	{
-		
-	}
-
-	private function retornaElementosFormulario($idFormulario)
-	{
-		
+		// retornando resultado
+		return Basico_OPController_DBCheckOPController::checaRegistrosDesativadosporArrayNomesTabelasArrayIdsRegistros(array('basico.formulario' => array($idFormulario)));
 	}
 }
