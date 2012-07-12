@@ -41,10 +41,11 @@ define("FORM_GERADOR_FORM_ADDDECORATOR", '@identacao@instancia->addDecorator(@de
 define("FORM_GERADOR_FORM_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
 define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemento);');
 define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
-define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL(@label);');
+define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()->tradutor(@label)@ajudaButton);');
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
 define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
 define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required);');
+define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -68,6 +69,8 @@ define('TAG_LABEL', '@label');
 define('TAG_ATTRIBS', '@attribs');
 define('TAG_ORDEM', '@ordem');
 define('TAG_REQUIRED', '@required');
+define('TAG_AJUDA_BUTTON', '@ajudaButton');
+define('TAG_CONSTANTE_TEXTUAL', '@constanteTextual');
 define('TAG_INSTANCIA_FORMULARIO', '$this');
 
 

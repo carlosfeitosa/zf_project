@@ -32,6 +32,7 @@ class Basico_Model_AjudaMapper extends Basico_AbstractMapper_RochedoMapper imple
 		$this->_arrayMapper['nome'] 					 = 'nome';
 		$this->_arrayMapper['constanteTextual'] 		 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
+		$this->_arrayMapper['constanteTextualAjuda'] 	 = 'constante_textual_ajuda';
 		$this->_arrayMapper['constanteTextualHint'] 	 = 'constante_textual_hint';
 		$this->_arrayMapper['ativo'] 					 = 'ativo';
 		$this->_arrayMapper['datahoraCriacao'] 			 = 'datahora_criacao';

@@ -331,6 +331,26 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_REQUIRED = TAG_REQUIRED;
 	
 	/**
+	 * Tag de substituicao do botão de ajuda
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	const TAG_SUBSTITUICAO_AJUDA_BUTTON = TAG_AJUDA_BUTTON;
+	
+	/**
+	 * Tag de substituicao de constante textual
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	const TAG_SUBSTITUICAO_CONSTANTE_TEXTUAL = TAG_CONSTANTE_TEXTUAL;
+	
+	/**
 	 * Tag de substituicao do elemento do formulário
 	 * 
 	 * @var String
@@ -699,6 +719,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 11/07/2012
 	 */
 	const CHAMADA_SET_REQUIRED = FORM_GERADOR_SETREQUIRED;
+	
+	/**
+	 * Script para montagem do botao de ajuda
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	const SCRIPT_AJUDA_BUTTON = FORM_GERADOR_AJUDA_BUTTON_SCRIPT;
 	
 	/**
 	 * Instancia do controlador
@@ -2255,7 +2285,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	$this->escreveAddElement($resourceArquivo, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escreve chamada ao metodo setLabel do elemento
-	    	$this->escreveSetLabelElemento($resourceArquivo, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveSetLabelElemento($resourceArquivo, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['idAjuda']);
 	    	
 	    	// escrevendo chamada ao metodo setAttribs do elemento
 	    	$this->escreveSetAttribsElemento($resourceArquivo, $arrayDadosMontagemElemento['elementAttribs'], $arrayDadosMontagemElemento['elementName']);
@@ -2385,20 +2415,40 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo setLabel do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $nomeFormulario - nome do formulario para ser usado na montagem do botao de ajuda
 	 * @param String $constanteTextualLabel - Constante textual a ser traduzida para o label do elemento
 	 * @param String $elementName - Nome do elemento que tera o label setado
+	 * @param String $arrayDadosAjudaElemento - array com os dados da ajuda do elemento se ela existir
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não conseguir
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetLabelElemento($resourceArquivo, $constanteTextualLabel, $elementName)
+	private function escreveSetLabelElemento($resourceArquivo, $nomeFormulario, $constanteTextualLabel, $elementName, $idAjuda = null)
 	{
 		// verificando se conseguiu recuperar um label
     	if (null !== $constanteTextualLabel) {
+    		
+    		// inicializando variaveis
+    		$ajudaButton = "";
+    		
+    		// verificando se o elemento possui ajuda
+    		if (null !== $idAjuda) {
+    			// recuperando dados da ajuda
+    			$constanteTextualAjuda = Basico_OPController_AjudaOPController::getInstance()->retornaConstanteTextualAjudaPorIdAjuda($idAjuda);
+    			
+    			// verificando se recuperou a constante
+    			if (null !== $constanteTextualAjuda) {
+    				// montando string do botao de ajuda
+	    			$ajudaButton = " . " . str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, self::SCRIPT_AJUDA_BUTTON);
+	    			$ajudaButton = str_replace(self::TAG_SUBSTITUICAO_CONSTANTE_TEXTUAL, $constanteTextualAjuda, $ajudaButton);
+    			}	
+    		}
+    		
 	    	// montando string do setLabel do elemento
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_LABEL, "'{$constanteTextualLabel}'", self::CHAMADA_SET_LABEL);
+	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_AJUDA_BUTTON, $ajudaButton, $setLabel);
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setLabel);
 			$setLabel = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setLabel);
 	    	
