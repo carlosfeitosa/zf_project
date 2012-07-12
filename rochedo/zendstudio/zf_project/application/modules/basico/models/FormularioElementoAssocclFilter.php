@@ -25,6 +25,10 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
      * @var Int
      */
     protected $_ordem;
+    /**
+     * @var Boolean
+     */
+    protected $_removeFlag;
 
     /**
     * Set formularioElemento
@@ -147,6 +151,28 @@ class Basico_Model_FormularioElementoAssocclFilter extends Basico_AbstractModel_
     public function getOrdem()
     {
         return $this->_ordem;
+    }
+    
+	/**
+    * Set removeFlag
+    * 
+    * @param Boolean $removeFlag
+    * @return Basico_Model_FormularioElementoAssocclFilter
+    */
+    public function setRemoveFlag($removeFlag)
+    {
+        $this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_BOOLEAN, true);
+        return $this;
+    }
+
+    /**
+    * Get removeFlag
+    * 
+    * @return Boolean
+    */
+    public function getRemoveFlag()
+    {
+        return $this->_removeFlag;
     }
 
     /**

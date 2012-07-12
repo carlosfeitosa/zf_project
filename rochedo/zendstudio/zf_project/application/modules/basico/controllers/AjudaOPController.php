@@ -6,6 +6,8 @@
  * 
  * @package Basico
  * 
+ * @uses Basico_Model_Ajuda
+ * 
  * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
  * 
  * @since 12/07/2012
@@ -94,9 +96,9 @@ class Basico_OPController_AjudaOPController extends Basico_AbstractOPController_
 	/**
 	 * Retorna a constanteTextualAjuda pelo id da ajuda passado como parametro
 	 * 
-	 * @param Int $idAjuda
+	 * @param Int $idAjuda - id da ajuda que tera o valor do atributo constanteTextualAjuda retornado
 	 * 
-	 * @return String
+	 * @return String|null - valor do atributo constanteTextualAjuda ou null se não encontrar
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 12/07/2012
@@ -108,6 +110,7 @@ class Basico_OPController_AjudaOPController extends Basico_AbstractOPController_
 		
 		// verificando se a ajuda foi encontrada
 		if (is_array($arrayDadosAjuda)) {
+			// retornando constanteTextualAjuda
 			return $arrayDadosAjuda['constanteTextualAjuda'];
 		}
 		

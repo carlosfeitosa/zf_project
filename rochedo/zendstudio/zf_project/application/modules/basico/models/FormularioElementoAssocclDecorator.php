@@ -25,6 +25,10 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
      * @var Integer
      */
 	protected $_ordem;
+	/**
+	 * @var Boolean
+	 */
+	protected $_removeFlag;
 
     /**
     * Set idElemento
@@ -156,6 +160,29 @@ class Basico_Model_FormularioElementoAssocclDecorator extends Basico_AbstractMod
     {
         return $this->_ordem;
     }
+    
+	/**
+	* Set removeFlag
+	* 
+	* @param Boolean $removeFlag
+	*  
+	* @return Basico_Model_FormularioElementoAssocclDecorator
+	*/
+	public function setRemoveFlag($removeFlag)
+	{
+		$this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get removeFlag
+	* 
+	* @return null|Boolean
+	*/
+	public function getRemoveFlag()
+	{
+		return $this->_removeFlag;
+	}
     
 	/**
 	* Get data mapper

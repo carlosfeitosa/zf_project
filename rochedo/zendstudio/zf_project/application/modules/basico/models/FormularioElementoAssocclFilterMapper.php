@@ -32,6 +32,7 @@ class Basico_Model_FormularioElementoAssocclFilterMapper extends Basico_Abstract
 		$this->_arrayMapper['idFilter']	  	   = 'id_filter';
 		$this->_arrayMapper['idFilterGrupo']   = 'id_filter_grupo';
 		$this->_arrayMapper['ordem']	 	   = 'ordem';
+		$this->_arrayMapper['removeFlag']	   = 'remove_flag';
 		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
 		$this->_arrayMapper['rowinfo'] 		   = 'rowinfo'; 
 	}

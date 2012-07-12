@@ -162,7 +162,7 @@ class Basico_Model_FormularioAssocclElementoAssocclFilter extends Basico_Abstrac
     */
     public function setRemoveFlag($removeFlag)
     {
-        $this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_INTEIRO, true);
+        $this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_BOOLEAN, true);
         return $this;
     }
 

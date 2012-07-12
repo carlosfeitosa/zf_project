@@ -21,6 +21,10 @@ class Basico_Model_FormularioElementoAssocclValidator extends Basico_AbstractMod
      * @var Int
      */
     protected $_idValidatorGrupo;
+    /**
+     * @var Boolean
+     */
+    protected $_removeFlag;
     
 	/**
     * Set entry idElemento
@@ -119,6 +123,28 @@ class Basico_Model_FormularioElementoAssocclValidator extends Basico_AbstractMod
         $model = new Basico_Model_ValidatorGrupo();
         $object = Basico_OPController_PersistenceOPController::bdObjectFind($model, $this->_idValidatorGrupo);
         return $object;
+    }
+    
+	/**
+    * Set removeFlag
+    * 
+    * @param Boolean $removeFlag
+    * @return Basico_Model_FormularioElementoAssocclValidator
+    */
+    public function setRemoveFlag($removeFlag)
+    {
+        $this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_BOOLEAN, true);
+        return $this;
+    }
+
+    /**
+    * Get removeFlag
+    * 
+    * @return Boolean
+    */
+    public function getRemoveFlag()
+    {
+        return $this->_removeFlag;
     }
 
     /**

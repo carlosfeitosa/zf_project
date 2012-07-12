@@ -25,7 +25,7 @@ class Basico_Model_FormularioAssocclElementoAssocclValidator extends Basico_Abst
      */
     protected $_idValidatorGrupo;
 	/**
-     * @var int
+     * @var Boolean
      */
     protected $_removeFlag;
    

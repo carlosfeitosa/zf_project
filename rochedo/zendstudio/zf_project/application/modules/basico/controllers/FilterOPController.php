@@ -2,6 +2,15 @@
 /**
  * Controlador Filter.
  *
+ * Controlador responsável pelos filters do sistema
+ *
+ * @package Basico
+ * 
+ * @uses Basico_Model_Filter
+ * 
+ * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+ * 
+ * @since 12/07/2012
  */
 class Basico_OPController_FilterOPController extends Basico_AbstractOPController_RochedoPersistentOPController
 {
@@ -82,5 +91,29 @@ class Basico_OPController_FilterOPController extends Basico_AbstractOPController
 		}
 		// retornando instancia
 		return self::$_singleton;
+	}
+	
+	/**
+	 * Retorna os dados do filter pelo id passado como parametro
+	 * 
+	 * @param Int $idFilter - id do filter que tera os dados retornados
+	 * 
+	 * @return Array|null - array se encontrar o filter ou null se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	public function retornaDadosFilterPorId($idFilter)
+	{
+		// recuperando constanteTextualAjuda
+		$arrayDadosFilter = $this->_retornaArrayDadosObjetoPorId($idFilter);
+		
+		// verificando se a ajuda foi encontrada
+		if (is_array($arrayDadosFilter)) {
+			// retornando array com os dados do filter
+			return $arrayDadosFilter;
+		}
+		
+		return null;
 	}
 }

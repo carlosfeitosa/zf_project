@@ -22,13 +22,13 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	 */
 	protected $_idDecoratorGrupo;
 	/**
-	 * @var Boolean
-	 */
-	protected $_exclude;
-	/**
 	 * @var Integer
 	 */
-	protected $_ordem;	
+	protected $_ordem;
+	/**
+	 * @var Boolean
+	 */
+	protected $_removeFlag;	
     
 	/**
 	* Set idFormulario
@@ -123,29 +123,6 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 		return $this->_idDecoratorGrupo;
 	}
 
-	/**
-	* Set exclude
-	* 
-	* @param Boolean $exclude
-	*  
-	* @return Basico_Model_FormularioAssocclDecorator
-	*/
-	public function setExclude($exclude)
-	{
-		$this->_exclude = Basico_OPController_UtilOPController::retornaValorTipado($exclude, TIPO_BOOLEAN, true);
-		return $this;
-	}
-
-	/**
-	* Get exclude
-	* 
-	* @return null|Boolean
-	*/
-	public function getExclude()
-	{
-		return $this->_exclude;
-	}
-
     /**
      * Get DecoratorGrupo object
      * 
@@ -179,6 +156,29 @@ class Basico_Model_FormularioAssocclDecorator extends Basico_AbstractModel_Roche
 	public function getOrdem()
 	{
 		return $this->_ordem;
+	}
+	
+	/**
+	* Set removeFlag
+	* 
+	* @param Boolean $removeFlag
+	*  
+	* @return Basico_Model_FormularioAssocclDecorator
+	*/
+	public function setRemoveFlag($removeFlag)
+	{
+		$this->_removeFlag = Basico_OPController_UtilOPController::retornaValorTipado($removeFlag, TIPO_BOOLEAN, true);
+		return $this;
+	}
+
+	/**
+	* Get removeFlag
+	* 
+	* @return null|Boolean
+	*/
+	public function getRemoveFlag()
+	{
+		return $this->_removeFlag;
 	}
 
 	/**
