@@ -2392,6 +2392,12 @@ class Basico_OPController_GeradorFormularioOPController
     		$arrayResultado['idAjuda'] = $arrayDadosElemento['idAjuda'];
     	}
     	
+    	// recuperando filters default do elemento
+    	// $arrayDadosFiltersDefault = Basico_OPController_FormularioElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersOrdenadoPorOrdemPorIdElemento($idElemento);
+    	
+    	// recuperando os filter da especializacao do elemento no formulario
+    	// $arrayDadosFilterEspecializacao = Basico_OPController_FormularioAssocclElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdElemento($arrayDadosElementosFormulario['id'], $idElemento);
+    	
     	// retornando array com dados para montagem do elemento
     	return $arrayResultado;
 	}
