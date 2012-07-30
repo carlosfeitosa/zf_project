@@ -50,6 +50,8 @@ if (Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {
            		$arrayInfo['MVC anterior']             		   		  = Basico_OPController_SessionOPController::retornaUltimaUrlPoolRequests();
            		$arrayInfo['Chave post']                              = Basico_OPController_SessionOPController::retornaChavePostUltimoRequest();
            		$arrayInfo['Tempo de execução do PHP'] 		   		  = $tempoExecucaoPHP;
+           		$arrayInfo['Memória máxima para execução do PHP'] 	  = ini_get('memory_limit');
+           		$arrayInfo['Memória alocada para execução do PHP'] 	  = ((memory_get_usage(true) / 1024) / 1024) . 'M';
 
            		// carregando o caminho para a acao de debug, caso ambiente de desenvolvimento
            		$chamadaJavaScriptDebugInfo = Basico_OPController_UtilOPController::retornaJavaScriptDojoDialogMensagemViaArrayInfoDebugInfo($arrayInfo);

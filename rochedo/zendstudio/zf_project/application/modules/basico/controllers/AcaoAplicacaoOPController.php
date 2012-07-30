@@ -233,6 +233,22 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 	}
 
 	/**
+	 * Verifica se o request esta relacionado a acao decode do controlador de tokens
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com
+	 * @since 30/07/2012
+	 */
+	public function verificaAcaoDecodeTokenControllerPorRequest(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando resultado da verificacao
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and ($request->getActionName() === 'decode'));
+	}
+
+	/**
 	 * Verifica se o request esta relacionado a acao desautenticausuario do controlador de autenticacao
 	 * 
 	 * @param Zend_Controller_Request_Abstract $request

@@ -209,7 +209,7 @@ class Basico_OPController_DBCheckOPController
 	 * 
 	 * @return Array|Boolean - array contendo o nome das entidades e ids com registros desativados, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
 	 * 
-	 * @author Carlos Feitosa / João Vasconcelos (carlos.fetiosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 * 
 	 * @todo terminar os métodos auxiliares
@@ -217,7 +217,6 @@ class Basico_OPController_DBCheckOPController
 	public static function checaRegistrosDesativadosporArrayNomesTabelasArrayIdsRegistros(array $arrayNomesTabelasIdsRegistros)
 	{
 		return true;
-
 		// verificando se foi passado o array de parametros no formato certo
 		if (!count($arrayNomesTabelasIdsRegistros)) {
 			// retornando falso

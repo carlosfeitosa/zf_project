@@ -198,6 +198,7 @@ class Basico_OPController_DicionarioDadosOPController
 		unset($tempoExecucaoPhp);
 		unset($limiteMemoriaPhp);
 
+		// retornando falso
 		return false;
 	}
 

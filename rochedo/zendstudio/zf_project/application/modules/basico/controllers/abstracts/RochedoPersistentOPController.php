@@ -410,14 +410,15 @@ abstract class Basico_AbstractOPController_RochedoPersistentOPController
 	 * @param Integer $idCategoriaLog - id da categoria de log da operacao
 	 * @param String $mensagemLog - mensagem de log
 	 * @param Integer $versaoUpdate - versao para update
-	 * @param Integer $idPessoaPerfilCriador - id do PessoaAssocclPerfil responsavel pelo save. Se for passado null eh assumido o perfil do sistema.
+	 * @param Integer $idPessoaPerfilCriador - id do PessoaAssocclPerfil responsavel pelo save. Se for passado null eh assumido o perfil do sistema
+	 * @param Boolean $limpaObjeto - limpa o objeto após salva-lo se true.
 	 * 
 	 * @return Boolean
 	 * 
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
-	 * @since 02/05/2012
+	 * @since 30/07/2012
 	 */
-	protected function _salvarObjeto($objeto, $idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null)
+	protected function _salvarObjeto($objeto, $idCategoriaLog, $mensagemLog, $versaoUpdate = null, $idPessoaAssocclPerfilSave = null, $limpaObjeto = false)
 	{
 	    try {
 	    	// verificando se o objeto é da mesma classe do objeto do controlador
@@ -435,10 +436,17 @@ abstract class Basico_AbstractOPController_RochedoPersistentOPController
 			// salvando o objeto através do controlador Save
 	    	Basico_OPController_PersistenceOPController::bdSave($objeto, $versaoUpdate, $idPessoaAssocclPerfilSave, $idCategoriaLog, $mensagemLog);
 
+	    	// verificando se deve limpar o objeto da memória
+	    	if ($limpaObjeto) {
+	    		// limpando objeto
+	    		unset($objeto);
+	    	}
+
 	    	// retornando sucesso
 			return true;
     	} catch (Exception $e) {
 
+    		// estourando excessão
     		throw new Exception($e);
     	}
 	}

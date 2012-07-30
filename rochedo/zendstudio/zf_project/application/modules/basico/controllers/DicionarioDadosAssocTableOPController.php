@@ -137,7 +137,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$novoObjeto->ativo                     = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::_salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", null, $idPessoaAssocclPerfilCreate);
+		return parent::_salvarObjeto($novoObjeto, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_NOVO_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", null, $idPessoaAssocclPerfilCreate, true);
 	}
 
 	/**
@@ -170,7 +170,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$objetoUpdate->ativo = false;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilDeactivate, true);
 	}
 
 	/**
@@ -203,7 +203,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		$objetoUpdate->ativo = true;
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilActivate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilActivate, true);
 	}
 
 	/**
@@ -240,7 +240,7 @@ class Basico_OPController_DicionarioDadosAssocTableOPController extends Basico_A
 		unset($schemaname);
 
 		// retornando o resultado do metodo de salvar o objeto
-		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilUpdate);
+		return parent::_salvarObjeto($objetoUpdate, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE, true), LOG_MSG_UPDATE_DICIONARIO_DADOS_ASSOC_TABLE . "(id_schema = {$idSchema} | {$tablename})", $versaoObjeto, $idPessoaAssocclPerfilUpdate, true);
 	}
 
 	/**

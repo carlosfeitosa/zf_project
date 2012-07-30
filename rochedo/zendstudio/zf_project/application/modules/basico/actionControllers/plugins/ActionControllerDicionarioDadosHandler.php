@@ -48,6 +48,7 @@ class Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler extends Ze
 		// retornando se o request deve ser processado
 		return (($this->_pluginAtivo) and
 				(!$this->verificaRequestErrorController($request)) and
+				(!$this->verificaRequestDecodeTokenController($request)) and
 				(!$this->verificaRequestSucessoResetaDb($request)) and
 				(!$this->verificaRequestResetaDb($request)));
 	}
@@ -66,6 +67,22 @@ class Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler extends Ze
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
 		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'error') and ($request->getActionName() === 'error'));
+	}
+
+	/**
+	 * Verifica se o request esta relacionado a acao decote do modulo basico, controlador token
+	 * 
+	 * @param Zend_Controller_Request_Abstract $request
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 30/07/2012
+	 */
+	private function verificaRequestDecodeTokenController(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
+		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and ($request->getActionName() === 'decode'));
 	}
 
 	/**
