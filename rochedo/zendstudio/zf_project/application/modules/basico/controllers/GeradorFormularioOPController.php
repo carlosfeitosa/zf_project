@@ -954,7 +954,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando se foi retornando alguma associação desativada
 		if ((is_array($arrayRelacoesDesativadas)) and (count($arrayRelacoesDesativadas))) {
 			// retornando mensagens de erro
-			return array('Existem associações (diretas ou indiretas) com o formulário desativadas.<br><br>' . Basico_OPController_UtilOPController::print_debug($arrayRelacoesDesativadas, true, true));
+			return array('Existem associações (diretas ou indiretas) com o formulário que estão desativadas.<br><br>' . Basico_OPController_UtilOPController::print_debug($arrayRelacoesDesativadas, true, true));
 		}
 
 		// limpando do array de módulos os módulos que foram passados para serem excluídos da geração

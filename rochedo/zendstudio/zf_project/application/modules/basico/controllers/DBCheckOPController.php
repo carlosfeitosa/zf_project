@@ -203,38 +203,6 @@ class Basico_OPController_DBCheckOPController
 	}
 
 	/**
-	 * Verifica se algum registro dentro de um grupo de registros das entidades passadas por parametro estão desativadas
-	 * 
-	 * @param $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
-	 * 
-	 * @return Array|Boolean - array contendo o nome das entidades e ids com registros desativados, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
-	 * 
-	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
-	 * @since 11/07/2012
-	 * 
-	 * @todo terminar os métodos auxiliares
-	 */
-	public static function checaRegistrosDesativadosporArrayNomesTabelasArrayIdsRegistros(array $arrayNomesTabelasIdsRegistros)
-	{
-		return true;
-		// verificando se foi passado o array de parametros no formato certo
-		if (!count($arrayNomesTabelasIdsRegistros)) {
-			// retornando falso
-			return false;
-		}
-
-		// recuperando associacoes diretas
-		$arrayNomesTabelasIdsRegistrosAssociacaoDireta = self::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistros);
-		// recuperando associacoes indiretas
-		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = self::recuperaArrayRelacoesIndiretas($arrayNomesTabelasIdsRegistros);
-
-		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistros, true);
- 		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDireta, true, false, true);
- 		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndireta, true);
- 		Basico_OPController_UtilOPController::print_debug(array_merge_recursive($arrayNomesTabelasIdsRegistros, $arrayNomesTabelasIdsRegistrosAssociacaoDireta, $arrayNomesTabelasIdsRegistrosAssociacaoIndireta), true, false, true);
-	}
-
-	/**
 	 * Retorna um array com as relações diretas de uma entidade e registos passados por parametro
 	 * 
 	 * @param $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
@@ -244,7 +212,7 @@ class Basico_OPController_DBCheckOPController
 	 * @author Carlos Feitosa / João Vasconcelos (carlos.fetiosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private static function recuperaArrayRelacoesDiretas(array $arrayNomesTabelasIdsRegistros)
+	public static function recuperaArrayRelacoesDiretas(array $arrayNomesTabelasIdsRegistros)
 	{
 		// verificando se foi passado o array de parametros no formato certo
 		if (!count($arrayNomesTabelasIdsRegistros)) {
@@ -272,10 +240,19 @@ class Basico_OPController_DBCheckOPController
 				unset($arrayDados);
 			}
 
-			// verificnado se existe relação direta
+			// verificando se existe relação direta
 			if (isset($arrayCamposConsulta)) {
+				// verificando se existem ids já localizados para este entidade, no array de resultados
+				if (isset($arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabela])) {
+					// recuperando condição de exclusão
+					$excludeCondition = " AND id NOT IN (" . implode(',', $arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabela]) . ")";
+				} else {
+					// limpando condição de exclusão
+					$excludeCondition = '';
+				}
+
 				// recuperando array com os valores dos campos de associação direta
-				$arrayValoresCamposConsulta = Basico_OPController_DBUtilOPController::retornaArrayDadosViaSQL($nomeTabela, $arrayCamposConsulta, "id IN ({$stringIdsEntidade})");
+				$arrayValoresCamposConsulta = Basico_OPController_DBUtilOPController::retornaArrayDadosViaSQL($nomeTabela, $arrayCamposConsulta, "id IN ({$stringIdsEntidade}){$excludeCondition}");
 
 				// verificando a recuperação dos dados
 				if (count($arrayValoresCamposConsulta)) {
@@ -291,7 +268,8 @@ class Basico_OPController_DBCheckOPController
 									$arrayIdsEntidadesAssociacaoDireta = $arrayNomesTabelasIdsRegistrosAssociacaoDireta[$arrayDados['fk_schema'] . '.' . $arrayDados['fk_table_name']];
 
 									// verificando se o elemento não existe dentro do array
-									if (false !== array_search($arrayValorCampoConsulta[$arrayDados['column_name']], $arrayIdsEntidadesAssociacaoDireta)) {
+									if ((false === array_search($arrayValorCampoConsulta[$arrayDados['column_name']], $arrayNomesTabelasIdsRegistrosAssociacaoDireta[$arrayDados['fk_schema'] . '.' . $arrayDados['fk_table_name']])) and
+									    (false === array_search($arrayValorCampoConsulta[$arrayDados['column_name']], $arrayIdsEntidadesAssociacaoDireta))) {
 										// adicionando elemento
 										$arrayIdsEntidadesAssociacaoDireta[] = $arrayValorCampoConsulta[$arrayDados['column_name']];
 									}
@@ -311,12 +289,33 @@ class Basico_OPController_DBCheckOPController
 
 								// verificando se foi recuperado as associacoes diretas das associacoes diretas (recursividade)
 								if (count($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesDireta)) {
-									// juntando array de resultados das associacoes diretas com o array de resultados das associacoes diretas das associacoes diretas
-									$arrayNomesTabelasIdsRegistrosAssociacaoDireta = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoDireta, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesDireta);
+									// loop para percorrer as tabelas recuperadas
+									foreach ($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesDireta as $nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta => $arrayIdsRegistrosAssociacaoDiretaAssociacoesDireta) {
+										// verificando se a entidade existe no array de resultados
+										if (isset($arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta])) {
+											// loop para percorrer os valores das tabelas recuperadas
+											foreach ($arrayIdsRegistrosAssociacaoDiretaAssociacoesDireta as $idRegistroAssociacaoDiretaAssociacoesDireta) {
+												// verificando se o valor não existe no array de resultados
+												if (false === array_search($idRegistroAssociacaoDiretaAssociacoesDireta, $arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta])) {
+													// adicionando id ao array de resultados
+													$arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta][] = $idRegistroAssociacaoDiretaAssociacoesDireta;
+												}
+
+												// limpando a memória
+												unset($idRegistroAssociacaoDiretaAssociacoesDireta);
+											}
+										} else {
+											// juntando array de resultados das associacoes diretas com o array de resultados das associacoes diretas das associacoes diretas
+											$arrayNomesTabelasIdsRegistrosAssociacaoDireta[$nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta] = $arrayIdsRegistrosAssociacaoDiretaAssociacoesDireta;											
+										}
+
+										// limpando memória
+										unset($nomeTabelaIdsRegistrosAssociacaoDiretaAssociacoesDireta, $arrayIdsRegistrosAssociacaoDiretaAssociacoesDireta);
+									}
 								}
 
 								// limpando memória
-								unset($chaveArrayNomesTabelasIdsRegistrosAssociacaoDireta, $arrayIdsEntidadesAssociacaoDireta);
+								unset($chaveArrayNomesTabelasIdsRegistrosAssociacaoDireta, $arrayIdsEntidadesAssociacaoDireta, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesDireta);
 							}
 	
 							// limpando memória
@@ -330,7 +329,7 @@ class Basico_OPController_DBCheckOPController
 			}
 
 			// limpando memória
-			unset($nomeTabela, $arrayIdsEntidade);
+			unset($nomeTabela, $arrayIdsEntidade, $arrayCamposConsulta, $excludeCondition);
 		}
 
 		// retornando array de resultados
@@ -347,7 +346,7 @@ class Basico_OPController_DBCheckOPController
 	 * @author Carlos Feitosa (carlos.fetiosa@rochedoframework.com)
 	 * @since 12/07/2012
 	 */
-	private static function recuperaArrayRelacoesIndiretas(array $arrayNomesTabelasIdsRegistros)
+	public static function recuperaArrayRelacoesIndiretas(array $arrayNomesTabelasIdsRegistros)
 	{
 		// verificando se foi passado o array de parametros no formato certo
 		if (!count($arrayNomesTabelasIdsRegistros)) {
@@ -358,18 +357,27 @@ class Basico_OPController_DBCheckOPController
 		// inicializando variáveis
 		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array();
 
-		// loop para recuperar informações sobre as entidades diretamente relacionadas com as entidades
+		// loop para recuperar informações sobre as entidades indiretamente relacionadas com as entidades
 		foreach ($arrayNomesTabelasIdsRegistros as $nomeTabela => $arrayIdsEntidade) {
 			// transformando array de ids em string
 			$stringIdsEntidade = implode(',', $arrayIdsEntidade);
 
-			// recuperando associações diretas
+			// recuperando associações indiretas
 			$arrayEntidadesAssociacaoIndireta = self::retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela);
 
-			// loop para montar o array de entidades de associação direta
+			// loop para montar o array de entidades de associação indireta
 			foreach ($arrayEntidadesAssociacaoIndireta as $arrayDados) {
+				// verificando se existem ids já localizados para este entidade, no array de resultados
+				if (isset($arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$arrayDados['fk_table']])) {
+					// recuperando condição de exclusão
+					$excludeCondition = " AND id NOT IN (" . implode(',', $arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$arrayDados['fk_table']]) . ")";
+				} else {
+					// limpando condição de exclusão
+					$excludeCondition = '';
+				}
+
 				// recuperando array com os valores dos campos de associação direta
-				$arrayValoresCamposConsulta = Basico_OPController_DBUtilOPController::retornaArrayDadosViaSQL($arrayDados['fk_table'], array('id'), "{$arrayDados['fk_column']} IN ({$stringIdsEntidade})");
+				$arrayValoresCamposConsulta = Basico_OPController_DBUtilOPController::retornaArrayDadosViaSQL($arrayDados['fk_table'], array('id'), "{$arrayDados['fk_column']} IN ({$stringIdsEntidade}){$excludeCondition}");
 
 				// verificando se existe relação indireta
 				if (count($arrayValoresCamposConsulta)) {
@@ -388,10 +396,23 @@ class Basico_OPController_DBCheckOPController
 					// limpando a memória
 					unset($arrayValoresCamposConsultaTemp);
 
+					// inicializando variáveis
+					$arrayIdsEntidadesAssociacaoIndireta = array();
+
 					// verificando se a chave existe
 					if (isset($arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$arrayDados['fk_table']])) {
-						// recuperando array de ids
-						$arrayIdsEntidadesAssociacaoIndireta = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$arrayDados['fk_table']], $arrayValoresCamposConsulta);
+						// loop para recuperação de ids
+						foreach ($arrayValoresCamposConsulta as $valorCampoConsulta) {
+							// verificando se o valor não existe no array de resultados
+							if ((false === array_search($valorCampoConsulta, $arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$arrayDados['fk_table']])) and
+								(false === array_search($valorCampoConsulta, $arrayIdsEntidadesAssociacaoIndireta))) {
+								// adicionando valor ao array
+								$arrayIdsEntidadesAssociacaoIndireta[] = $valorCampoConsulta;
+							}
+
+							// limpando memória
+							unset($valorCampoConsulta);
+						}
 					} else {
 						// setando array de ids
 						$arrayIdsEntidadesAssociacaoIndireta = $arrayValoresCamposConsulta;
@@ -403,21 +424,12 @@ class Basico_OPController_DBCheckOPController
 					// adicionando elemento ao array de associações diretas
 					$arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta] = $arrayIdsEntidadesAssociacaoIndireta;
 
-					// recuperando array com as associacoes diretas das associacoes indiretas (recursividade)
-					$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesIndireta = self::recuperaArrayRelacoesDiretas(array($chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta => $arrayIdsEntidadesAssociacaoIndireta));
-
-					// verificando se foi recuperado as associacoes diretas das associacoes diretas (recursividade)
-					if (count($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesIndireta)) {
-						// juntando array de resultados das associacoes diretas com o array de resultados das associacoes diretas das associacoes diretas
-						$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoIndireta, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacoesIndireta);
-					}
-
 					// limpando memória
 					unset($chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta, $arrayIdsEntidadesAssociacaoIndireta);						
 				}
 
 				// limpando memória
-				unset($arrayDados);
+				unset($arrayDados, $excludeCondition);
 			}
 
 			// limpando memória

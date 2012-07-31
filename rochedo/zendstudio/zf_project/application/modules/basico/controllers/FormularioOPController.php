@@ -797,4 +797,31 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		// retornando sucesso
 		return true;
 	}
+
+	/**
+	 * Verifica se algum registro dentro de um grupo de registros das entidades passadas por parametro estão desativadas
+	 * 
+	 * @param $arrayIdsRegistros - array contendo os ids dos registros que deseja verificar.
+	 * 
+	 * @return Array|Boolean - array contendo o nome das entidades e ids com registros desativados, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 31/07/2012
+	 */
+	public static function checaRegistrosAssociadosDesativadosPorArrayIdsRegistros(array $arrayIdsRegistros)
+	{
+		return true;
+		// verificando se foi passado o array de parametros
+		if (!count($arrayIdsRegistros)) {
+			// retornando falso
+			return false;
+		}
+
+		// recuperando associações diretas
+		$arrayNomesTabelasIdsRegistrosAssociacaoDireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistros);
+		// recuperando associações indiretas
+		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas($arrayNomesTabelasIdsRegistros);
+		// recuperando associações diretas das associações indiretas
+		$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndireta);
+	}
 }
