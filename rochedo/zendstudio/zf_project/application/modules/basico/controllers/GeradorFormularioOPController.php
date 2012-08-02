@@ -2689,6 +2689,6 @@ class Basico_OPController_GeradorFormularioOPController
 	private function verificaRelacoesDesativadasPorIdFormulario($idFormulario)
 	{
 		// retornando resultado
-		return Basico_OPController_DBCheckOPController::checaRegistrosDesativadosporArrayNomesTabelasArrayIdsRegistros(array('basico.formulario' => array($idFormulario)));
+		return $this->_formularioOPController->checaRegistrosAssociadosDesativadosPorArrayIdsRegistros(array($idFormulario));
 	}
 }

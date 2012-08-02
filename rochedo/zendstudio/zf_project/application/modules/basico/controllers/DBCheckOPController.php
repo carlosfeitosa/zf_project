@@ -564,8 +564,14 @@ class Basico_OPController_DBCheckOPController
 			foreach ($arrayResultadoFKs as $chave => $arrayValores) {
 				// criando nova chave
 				$arrayResultado[$arrayValores['column_name']] = $arrayValores;
+
+				// limpando memória
+				unset($chave, $arrayValores);
 			}
 		}
+
+		// limpando memória
+		unset($concatenadorDB, $arrayResultadoFKs);
 
 		// retornando array contendo as fks da tabela
 		return $arrayResultado;

@@ -91,9 +91,11 @@ class Basico_OPController_DBTransactionOPController
 		// cria/recuperando a sessao de banco de dados
 		$session = Basico_OPController_SessionOPController::registraSessaoBD();
 
-		// verificando se o banco de dados existe na sessao
-		if (isset($session->$sessionDbAttribute))
+		// verificando se a conexão com o banco de dados existe na sessao
+		if (isset($session->$sessionDbAttribute)) {
+			// retornando a conexão
 			return $session->$sessionDbAttribute;
+		}
 
 		return null;
 	}
@@ -198,12 +200,11 @@ class Basico_OPController_DBTransactionOPController
     private function salvaTransacaoBD()
     {
     	// verificando o numero de transacoes inicializadas
-    	if (self::retornaNumeroTransacoesInicializadas() > 1)
-    	
+    	if (self::retornaNumeroTransacoesInicializadas() > 1) {  	
     		// decrementando o numero de transacoes inicializadas
     		return self::decrementaTransacao();
-    	else if (self::retornaNumeroTransacoesInicializadas() === 1) {
 
+    	} else if (self::retornaNumeroTransacoesInicializadas() === 1) {
 	    	// recuperando o resource do banco de dados
 			$dbResource = self::recuperaBDSessao();
 			
@@ -214,10 +215,13 @@ class Basico_OPController_DBTransactionOPController
 				// resetando o contador de transacoes inicializadas
 				return self::resetaContadorTransacoes();
 			} catch (Exception $e) {
+				// retornando falso (não conseguiu commitar)
 				return false;
 			}	
-    	} else
+    	} else {
+    		// estourando excessão
     		throw new Exception(MSG_ERRO_BD_TRANSACAO_COMMIT_SEM_TRANSACAO);
+    	}
     }
     
     /**

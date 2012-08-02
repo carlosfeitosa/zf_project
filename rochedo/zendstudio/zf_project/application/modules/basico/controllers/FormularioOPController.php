@@ -818,10 +818,19 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		}
 
 		// recuperando associações diretas
-		$arrayNomesTabelasIdsRegistrosAssociacaoDireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistros);
+		$arrayNomesTabelasIdsRegistrosAssociacaoDireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas(array('basico.formulario' => $arrayIdsRegistros));
 		// recuperando associações indiretas
-		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas($arrayNomesTabelasIdsRegistros);
+		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico.formulario' => $arrayIdsRegistros));
 		// recuperando associações diretas das associações indiretas
 		$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndireta);
+
+		echo 'formularios (ids):';
+		Basico_OPController_UtilOPController::print_debug($arrayIdsRegistros, true);
+		echo 'relacoes diretas:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDireta, true);
+		echo 'relacoes indiretas:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndireta, true);
+		echo 'relacoes diretas das relacoes indiretas:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta, true, false, true);
 	}
 }

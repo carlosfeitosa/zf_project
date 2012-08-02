@@ -527,10 +527,15 @@ class Basico_OPController_DBUtilOPController
 		    	// recuperando resource do bando de dados.
 		    	$auxDb  = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
 
-		    	//executando script SQL
+		    	// verificando se o script possui conteúdo
 		    	if ($script != "") {
+		    		// executando script SQL
 		    		$auxDb->getConnection()->exec($script);
 		    	}
+
+		    	// limpando memória
+		    	unset($auxDb);
+
 				return true;
     		}
 
@@ -561,6 +566,9 @@ class Basico_OPController_DBUtilOPController
 			// rodando query
 			$stmt = $auxDb->query($sqlQuery);
 
+			// limpando memória
+			unset($auxDb);
+
 			// retornando resultado
 			return $stmt->fetchAll();
 
@@ -581,8 +589,9 @@ class Basico_OPController_DBUtilOPController
     public static function insereDadosViaSQL($nomeTabela, $arrayChaveNomesCamposValorValores)
     {
 		// verificando se foram passados os parametros corretamente
-		if ((!isset($nomeTabela)) or (!is_array($arrayChaveNomesCamposValorValores)))
+		if ((!isset($nomeTabela)) or (!is_array($arrayChaveNomesCamposValorValores))) {
 			return false;
+		}
 
 		// recuperando os nomes dos campos e valores
 		$nomesCamposInsert = implode(",", array_keys($arrayChaveNomesCamposValorValores));
@@ -590,6 +599,9 @@ class Basico_OPController_DBUtilOPController
 
 		// preparando instrucao SQL
 		$insertSQL = "INSERT INTO {$nomeTabela} ({$nomesCamposInsert}) VALUES ({$valoresInsert})";
+
+		// limpando memória
+		unset($nomesCamposInsert, $valoresInsert);
 
 		// retornando o resultado do insert no banco de dados via SQL
 		return self::executaScriptSQL($insertSQL);
@@ -641,6 +653,9 @@ class Basico_OPController_DBUtilOPController
 			// setando ordenacao na instrucao SQL
 			$selectSQL .= " ORDER BY {$camposOrdenacaoSelect}";
 		}
+
+		// limpando memória
+		unset($nomesCamposSelect, $camposOrdenacaoSelect);
 
 		// retornando o resultado da consulta
 		return Basico_OPController_PersistenceOPController::bdRetornaArraySQLQuery($selectSQL);
