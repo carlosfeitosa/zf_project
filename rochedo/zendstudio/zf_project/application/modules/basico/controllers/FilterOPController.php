@@ -116,4 +116,31 @@ class Basico_OPController_FilterOPController extends Basico_AbstractOPController
 		
 		return null;
 	}
+	
+	/**
+	 * Retorna um array com os filters defaults e especializacao (exclude e include) do elemento 
+	 * atraves do id do elemento e do id da associacao do elemento com o formulario
+	 * 
+	 * @param int $idElemento - id do elemento do formulario
+	 * @param int $idAssocclElemento - id da associacao entre o elemento e o formulario
+	 * 
+	 * @return Array
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 31/07/2012
+	 */
+	public function retornaArrayFiltersElemento($idElemento, $idAssocclElemento)
+	{
+		// recuperando filters includes default do elemento
+    	$arrayDadosFiltersDefault = Basico_OPController_FormularioElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersDefaultOrdenadoPorOrdemPorIdElemento($idElemento);
+    	
+    	// recuperando os filters da especializacao do elemento no formulario
+    	$arrayDadosFiltersEspecializacao = Basico_OPController_FormularioAssocclElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdAssocclElementoIdElemento($idAssocclElemento, $idElemento);
+
+    	var_dump(array_merge($arrayDadosFiltersDefault, $arrayDadosFiltersEspecializacao)); exit;
+    	
+    	// retornando array com os filtros do elemento
+    	return $arrayFilters;
+    	
+	}
 }

@@ -97,13 +97,16 @@ class Basico_OPController_FormularioElementoAssocclFilterOPController extends Ba
 	 * 
 	 * @param Int $idElemento - id do elemento que tera os dados dos filters retornados
 	 * 
-	 * @return Array|null - array se encontrar filters para o elemento ou null se não encontrar
+	 * @return Array - array com filters para o elemento ou um array vazio se não encontrar
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 12/07/2012
 	 */
-	public function retornaArrayDadosFiltersOrdenadoPorOrdemPorIdElemento($idElemento)
+	public function retornaArrayDadosFiltersDefaultOrdenadoPorOrdemPorIdElemento($idElemento)
 	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
 		// recuperando constanteTextualAjuda
 		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento}", 'ordem', null, null, array('idElemento', 'idFilter', 'idFilterGrupo', 'exclude', 'ordem'));
 		
@@ -115,11 +118,79 @@ class Basico_OPController_FormularioElementoAssocclFilterOPController extends Ba
 				// criando novo array utilizando o idElemento como chave
 				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
 			}
-			
-			// retornando array com os dados do filter
-			return $arrayResultado;
 		}
 		
-		return null;
+		// retornando array com os dados do filter
+		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna os dados dos filters includes default do elemento pelo id do elemento passado como parametro
+	 * 
+	 * @param Int $idElemento - id do elemento que tera os dados dos filters retornados
+	 * 
+	 * @return Array - array com filters para o elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	public function retornaArrayDadosFiltersIncludesOrdenadoPorOrdemPorIdElemento($idElemento)
+	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
+		// recuperando o valor boolean false
+		$booleanFalse = Basico_OPController_DBUtilOPController::retornaBooleanDB(false, true);
+		
+		// recuperando constanteTextualAjuda
+		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento} AND remove_flag = {$booleanFalse}", 'ordem', null, null, array('idElemento', 'idFilter', 'idFilterGrupo', 'exclude', 'ordem'));
+		
+		// verificando se a ajuda foi encontrada
+		if (count($arrayDadosFiltersElemento)) {
+			
+			// colocando o id do elemento como chave do array para facilitar manipulação
+			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
+				// criando novo array utilizando o idElemento como chave
+				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
+			}
+		}
+		
+		// retornando array com os dados do filter
+		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna os dados dos filters excludes default do elemento pelo id do elemento passado como parametro
+	 * 
+	 * @param Int $idElemento - id do elemento que tera os dados dos filters retornados
+	 * 
+	 * @return Array - array com filters default para o elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	public function retornaArrayDadosFiltersExcludesOrdenadoPorOrdemPorIdElemento($idElemento)
+	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
+		// recuperando o valor boolean false
+		$booleanTrue = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
+		
+		// recuperando constanteTextualAjuda
+		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento} AND remove_flag = {$booleanTrue}", 'ordem', null, null, array('idElemento', 'idFilter', 'idFilterGrupo', 'exclude', 'ordem'));
+		
+		// verificando se a ajuda foi encontrada
+		if (count($arrayDadosFiltersElemento)) {
+			
+			// colocando o id do elemento como chave do array para facilitar manipulação
+			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
+				// criando novo array utilizando o idElemento como chave
+				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
+			}
+		}
+		
+		// retornando array com os dados do filter
+		return $arrayResultado;
 	}
 }

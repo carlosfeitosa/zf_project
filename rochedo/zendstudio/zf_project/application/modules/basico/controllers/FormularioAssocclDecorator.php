@@ -189,7 +189,7 @@ class Basico_OPController_FormularioAssocclDecorator extends Basico_AbstractOPCo
 		$stringIdsFormularios = implode(',', $arrayIdsFormularios);
 
 		// recuperando os ids dos decorators associados ao formulário
-		$arrayIdsAssociados = $this->_retornaArrayDadosObjetosPorParametros("id_formulario in ({$stringIdsFormularios}) AND exclude = " . Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true), 'ordem', null, null, array('idDecorator', 'idDecoratorGrupo'));
+		$arrayIdsAssociados = $this->_retornaArrayDadosObjetosPorParametros("id_formulario in ({$stringIdsFormularios}) AND remove_flag = " . Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true), 'ordem', null, null, array('idDecorator', 'idDecoratorGrupo'));
 
 		// limpando memória
 		unset($stringIdsFormularios);

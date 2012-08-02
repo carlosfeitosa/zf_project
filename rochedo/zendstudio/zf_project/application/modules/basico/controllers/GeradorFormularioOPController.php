@@ -2148,8 +2148,10 @@ class Basico_OPController_GeradorFormularioOPController
 	    		// montando parte final do decorator
 	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $decorator, self::CHAMADA_FORMULARIO_ADD_DECORATOR);
 	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $decorator);
-	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $decorator);    		
+	    		$decorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $decorator);
+	    		   		
 	    	} else { // removendo decorator
+	    		
 	    		// verificando se o decorator possui alias
 	    		if (null !== $arrayDadosMontagemDecorators[$idDecoratorFormulario]['alias']) {
 	    			// setando o decorator para o nome do alias
@@ -2392,11 +2394,10 @@ class Basico_OPController_GeradorFormularioOPController
     		$arrayResultado['idAjuda'] = $arrayDadosElemento['idAjuda'];
     	}
     	
-    	// recuperando filters default do elemento
-    	// $arrayDadosFiltersDefault = Basico_OPController_FormularioElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersOrdenadoPorOrdemPorIdElemento($idElemento);
+    	// tratando arrays de filters para montagem no elemento
+    	$arrayFiltersElemento = Basico_OPController_FilterOPController::getInstance()->retornaArrayFiltersElemento($idElemento, $arrayDadosElementosFormulario[$idElemento]['id']);
+
     	
-    	// recuperando os filter da especializacao do elemento no formulario
-    	// $arrayDadosFilterEspecializacao = Basico_OPController_FormularioAssocclElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdElemento($arrayDadosElementosFormulario['id'], $idElemento);
     	
     	// retornando array com dados para montagem do elemento
     	return $arrayResultado;

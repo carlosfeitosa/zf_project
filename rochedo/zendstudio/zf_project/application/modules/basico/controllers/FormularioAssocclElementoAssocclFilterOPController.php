@@ -93,18 +93,21 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 	}
 	
 	/**
-	 * Retorna os dados dos filters da especializacao do elemento pelo id do elemento passado como parametro
+	 * Retorna os dados dos filters da especializacao do elemento pelo id da associacao do elemento com o formulario e o id do elemento passado como parametro
 	 * 
 	 * @param Int $idAssocclElemento - id do assoccl elemento que tera os dados dos filters retornados
 	 * @param Int $idElemento - id do elemento para auxiliar na montagem do array de retorno
 	 * 
-	 * @return Array|null - array se encontrar filters para o assoccl elemento ou null se não encontrar
+	 * @return Array - array com filters da especialização do elemento ou um array vazio se não encontrar
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 12/07/2012
 	 */
-	public function retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento, $idElemento)
+	public function retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdAssocclElementoIdElemento($idAssocclElemento, $idElemento)
 	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
 		// recuperando constanteTextualAjuda
 		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento}", 'ordem', null, null, array('idAssocclElemento', 'idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
 		
@@ -116,11 +119,81 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 				// criando novo array utilizando o idElemento como chave
 				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
 			}
-			
-			// retornando array com os dados do filter
-			return $arrayResultado;
 		}
 		
-		return null;
+		// retornando array com os dados do filter
+		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna os dados dos filters includes da especializacao do elemento pelo id da associacao do elemento com o formulario e o id do elemento passado como parametro
+	 * 
+	 * @param Int $idAssocclElemento - id do assoccl elemento que tera os dados dos filters retornados
+	 * @param Int $idElemento - id do elemento para auxiliar na montagem do array de retorno
+	 * 
+	 * @return Array - array com filters da especialização do elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 12/07/2012
+	 */
+	public function retornaArrayDadosFiltersIncludesEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento, $idElemento)
+	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
+		// recuperando valor boolean false
+		$stringBooleanFalse = Basico_OPController_DBUtilOPController::retornaBooleanDB(false, true);
+		
+		// recuperando constanteTextualAjuda
+		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento} AND remove_flag = {$stringBooleanFalse}", 'ordem', null, null, array('idAssocclElemento', 'idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
+		
+		// verificando se a ajuda foi encontrada
+		if (count($arrayDadosFiltersElemento)) {
+			
+			// colocando o id do elemento como chave do array para facilitar manipulação
+			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
+				// criando novo array utilizando o idElemento como chave
+				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
+			}
+		}
+		
+		// retornando array com os dados do filter
+		return $arrayResultado;
+	}
+	
+	/**
+	 * Retorna os dados dos filters excludes da especializacao do elemento pelo id da associacao do elemento com o formulario e o id do elemento passado como parametro
+	 * 
+	 * @param Int $idAssocclElemento - id do assoccl elemento que tera os dados dos filters retornados
+	 * @param Int $idElemento - id do elemento para auxiliar na montagem do array de retorno
+	 * 
+	 * @return Array - array com filters da especialização do elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 31/07/2012
+	 */
+	public function retornaArrayDadosFiltersExcludesEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento, $idElemento)
+	{
+		// inicializando variaveis
+		$arrayResultado = array();
+		
+		// recuperando valor boolean false
+		$stringBooleanTrue = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
+		
+		// recuperando constanteTextualAjuda
+		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento} AND remove_flag = {$stringBooleanTrue}", 'ordem', null, null, array('idAssocclElemento', 'idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
+		
+		// verificando se a ajuda foi encontrada
+		if (count($arrayDadosFiltersElemento)) {
+			
+			// colocando o id do elemento como chave do array para facilitar manipulação
+			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
+				// criando novo array utilizando o idElemento como chave
+				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
+			}
+		}
+		
+		// retornando array com os dados do filter
+		return $arrayResultado;
 	}
 }

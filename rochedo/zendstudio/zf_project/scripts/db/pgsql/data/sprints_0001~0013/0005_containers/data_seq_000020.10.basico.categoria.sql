@@ -1036,3 +1036,49 @@ LEFT JOIN basico.categoria cpai on (c.id_categoria_pai = cpai.id)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_FORMULARIO_ELEMENTO_DECORATOR'
 AND cpai.nome = 'FORMULARIO_DECORATOR';
+
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 1 AS nivel, 
+    'EVENTO_HTML' AS nome, 'EVENTO_HTML' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'EVENTO';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'EVENTO_HTML_BODY_FRAMESET' AS nome, 'EVENTO_HTML_BODY_FRAMESET' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EVENTO'
+AND c.nome = 'EVENTO_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'EVENTO_HTML_FORM' AS nome, 'EVENTO_HTML_FORM' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EVENTO'
+AND c.nome = 'EVENTO_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'EVENTO_HTML_IMAGE' AS nome, 'EVENTO_HTML_IMAGE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EVENTO'
+AND c.nome = 'EVENTO_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'EVENTO_HTML_TECLADO' AS nome, 'EVENTO_HTML_TECLADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EVENTO'
+AND c.nome = 'EVENTO_HTML';
+
+INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, c.id AS id_categoria_pai, 2 AS nivel, 
+    'EVENTO_HTML_MOUSE' AS nome, 'EVENTO_HTML_MOUSE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+    LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
+WHERE t.nome = 'EVENTO'
+AND c.nome = 'EVENTO_HTML';
