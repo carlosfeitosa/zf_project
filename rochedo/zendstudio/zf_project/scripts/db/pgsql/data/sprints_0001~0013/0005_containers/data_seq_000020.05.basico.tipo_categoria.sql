@@ -52,3 +52,6 @@ VALUES ('VISAO', 'NOME_TIPO_CATEGORIA_VISAO', true, 'SYSTEM_STARTUP');
 
 INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
 VALUES ('EVENTO', 'NOME_TIPO_CATEGORIA_EVENTO', true, 'SYSTEM_STARTUP');
+
+INSERT INTO basico.tipo_categoria (nome, constante_textual, ativo, rowinfo)
+VALUES ('ACAO', 'NOME_TIPO_CATEGORIA_ACAO', true, 'SYSTEM_STARTUP');

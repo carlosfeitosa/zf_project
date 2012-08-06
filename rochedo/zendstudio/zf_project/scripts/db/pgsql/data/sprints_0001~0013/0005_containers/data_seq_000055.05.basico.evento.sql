@@ -6,7 +6,8 @@
 * versao: 1.0 (POSTGRESQL 9.1.1)
 * por: JOÃO VASCONCELOS (joao.vasconcelos@rochedoframework.com)
 * criacao: 22/03/2012
-* ultimas modificacoes:
+* ultimas modificacoes: 
+* 						- 02/08/2012 - criação dos inserts dos eventos html existentes (João Vasconcelos - joao.vasconcelos@rochedoframework.com) 					
 */
 
 INSERT INTO basico.evento (id_categoria, nome, constante_textual, constante_textual_descricao, evento, ativo, rowinfo)
