@@ -105,24 +105,17 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 	 */
 	public function retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdAssocclElementoIdElemento($idAssocclElemento, $idElemento)
 	{
-		// inicializando variaveis
-		$arrayResultado = array();
-		
 		// recuperando constanteTextualAjuda
 		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento}", 'ordem', null, null, array('idAssocclElemento', 'idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
 		
-		// verificando se a ajuda foi encontrada
+		// verificando se foram encontrados filters 
 		if (count($arrayDadosFiltersElemento)) {
-			
-			// colocando o id do elemento como chave do array para facilitar manipulação
-			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
-				// criando novo array utilizando o idElemento como chave
-				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
-			}
+		 	// retornando filters encontrados
+			return $arrayDadosFiltersElemento;
 		}
 		
-		// retornando array com os dados do filter
-		return $arrayResultado;
+		// retornando array vazio se não for encontrado nenhum filter
+		return array();
 	}
 	
 	/**
@@ -138,27 +131,20 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 	 */
 	public function retornaArrayDadosFiltersIncludesEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento, $idElemento)
 	{
-		// inicializando variaveis
-		$arrayResultado = array();
-		
 		// recuperando valor boolean false
 		$stringBooleanFalse = Basico_OPController_DBUtilOPController::retornaBooleanDB(false, true);
 		
 		// recuperando constanteTextualAjuda
 		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento} AND remove_flag = {$stringBooleanFalse}", 'ordem', null, null, array('idAssocclElemento', 'idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
 		
-		// verificando se a ajuda foi encontrada
+		// verificando se foram encontrados filters
 		if (count($arrayDadosFiltersElemento)) {
-			
-			// colocando o id do elemento como chave do array para facilitar manipulação
-			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
-				// criando novo array utilizando o idElemento como chave
-				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
-			}
+			// retornando filter encontrados
+			return $arrayDadosFiltersElemento;
 		}
 		
-		// retornando array com os dados do filter
-		return $arrayResultado;
+		// retornando array vazio
+		return array();
 	}
 	
 	/**
@@ -174,9 +160,6 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 	 */
 	public function retornaArrayDadosFiltersExcludesEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento, $idElemento)
 	{
-		// inicializando variaveis
-		$arrayResultado = array();
-		
 		// recuperando valor boolean false
 		$stringBooleanTrue = Basico_OPController_DBUtilOPController::retornaBooleanDB(true, true);
 		
@@ -185,15 +168,11 @@ class Basico_OPController_FormularioAssocclElementoAssocclFilterOPController ext
 		
 		// verificando se a ajuda foi encontrada
 		if (count($arrayDadosFiltersElemento)) {
-			
-			// colocando o id do elemento como chave do array para facilitar manipulação
-			foreach ($arrayDadosFiltersElemento as $arrayFilterElemento) {
-				// criando novo array utilizando o idElemento como chave
-				$arrayResultado[$arrayFilterElemento['idElemento']] = $arrayFilterElemento;
-			}
+			// retornando array de filters encontrados
+			return $arrayDadosFiltersElemento;
 		}
 		
-		// retornando array com os dados do filter
-		return $arrayResultado;
+		// retornando array vazio
+		return array();
 	}
 }

@@ -331,6 +331,16 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_REQUIRED = TAG_REQUIRED;
 	
 	/**
+	 * Tag de substituicao de filter
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/08/2012
+	 */
+	const TAG_SUBSTITUICAO_FILTER = TAG_FILTER;
+	
+	/**
 	 * Tag de substituicao do botão de ajuda
 	 * 
 	 * @var String
@@ -719,6 +729,26 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 11/07/2012
 	 */
 	const CHAMADA_SET_REQUIRED = FORM_GERADOR_SETREQUIRED;
+	
+	/**
+	 * Chamada para o metodo RemoveFilter
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/08/2012
+	 */
+	const CHAMADA_REMOVE_FILTER = FORM_GERADOR_REMOVEFILTER;
+	
+	/**
+	 * Chamada para o metodo addFilter
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/08/2012
+	 */
+	const CHAMADA_ADD_FILTER = FORM_GERADOR_ADDFILTER;
 	
 	/**
 	 * Script para montagem do botao de ajuda
@@ -2307,6 +2337,9 @@ class Basico_OPController_GeradorFormularioOPController
 	    	// escrevendo chamada ao metodo setRequired do elemento
 	    	$this->escreveSetRequiredElemento($resourceArquivo, $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['elementName']);
 	    	
+	    	// escrevendo filters do elemento
+	    	$this->escreveFiltersElemento($resourceArquivo, $arrayDadosMontagemElemento['filters'], $arrayDadosMontagemElemento['elementName']);
+	    	
 	    	// escrevendo linha em branco entre os elementos
 		    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, '', true);
 		    
@@ -2395,10 +2428,8 @@ class Basico_OPController_GeradorFormularioOPController
     	}
     	
     	// tratando arrays de filters para montagem no elemento
-    	$arrayFiltersElemento = Basico_OPController_FilterOPController::getInstance()->retornaArrayFiltersElemento($idElemento, $arrayDadosElementosFormulario[$idElemento]['id']);
-
-    	
-    	
+    	$arrayResultado['filters'] = Basico_OPController_FilterOPController::getInstance()->retornaArrayDadosFiltersElemento($idElemento, $arrayDadosElementosFormulario[$idElemento]['id']);
+	
     	// retornando array com dados para montagem do elemento
     	return $arrayResultado;
 	}
@@ -2554,6 +2585,165 @@ class Basico_OPController_GeradorFormularioOPController
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
 	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setRequired, true);
+    	}
+    	
+    	return false;
+	}
+	
+	/**
+	 * Escreve os filters do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Array $arrayFilters - array com os filters do elemento
+	 * @param String $elementName - Nome do elemento que tera os attribs setados
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 07/08/2012
+	 */
+	private function escreveFiltersElemento($resourceArquivo, $arrayFilters, $elementName)
+	{
+		// verificando se existem filters no array
+    	if (isset($arrayFilters['default']) && isset($arrayFilters['especializacao'])) {
+    		
+    		// percorrendo array dos filtros default para escrever filtros
+    		foreach ($arrayFilters['default'] as $filtroDefault) {
+    			
+    			// verificando se e um grupo
+    			if (isset($filtroDefault['idFilterGrupo']) && $filtroDefault['idFilterGrupo'] > 0) {
+    				
+    				// processando e escrevendo grupos de filtros default do elemento (recursividade)
+    				$this->processaGruposFiltersDefaultElemento($resourceArquivo, $elementName, $filtroDefault['idFilterGrupo'], $filtroDefault['removeFlag']);
+    				
+    			}else{ // se nao for um grupo
+    				
+    				// recuperando o id do componente do filter pelo id
+    				$idComponenteFilter = Basico_OPController_FilterOPController::getInstance()->retornaIdComponenteFilterPorIdFilter($filtroDefault['idFilter']);
+    					
+    				// recuperando o componente do filter
+    				$componenteFilter = Basico_OPController_ComponenteOPController::getInstance()->retornaComponentePorIdComponente($idComponenteFilter);
+    					
+    				// verificando se o grupo eh para remocao
+    				if ($filtroDefault['removeFlag'] == true) {
+    					// escrevendo metodo remove filter
+    					$this->escreveRemoveFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+    				}else{
+    					// escrevendo metodo addFilter
+    					$this->escreveAddFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+    				}
+    			}
+    				
+    		} 
+    	}
+    	
+    	return false;
+	}
+	
+	/**
+	 * Processa e escreve os grupos de filtros do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $elementName - Nome do elemento que tera os attribs setados
+	 * @param Int $idFilterGrupo - id do grupo de filters a ser inserido
+	 * @param Int $removeFlag - informa se e pra remocao ou insercao do grupo
+	 * @param Array $arrayIdsGruposJaProcessados - array que registra os grupos que ja foram processados para impedir loops infinitos
+	 * 
+	 * @return void
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 14/08/2012
+	 */
+	private function processaGruposFiltersDefaultElemento($resourceArquivo, $elementName, $idFilterGrupo, $removeFlag, $arrayIdsGruposJaProcessados = array())
+	{
+		// verificando se o grupo ja foi processado
+		if (array_search($idFilterGrupo, $arrayIdsGruposJaProcessados) !== false) {
+			// levantando excessao para grupos repitidos no elemento
+			throw new Exception('Grupo de filtros ja processado.');
+		}
+		
+		// registrando id do grupo como ja processado
+		$arrayIdsGruposJaProcessados[] = $idFilterGrupo;
+		
+		// recuperando filtros do grupo
+    	$arrayFiltrosGrupo = Basico_OPController_FilterGrupoAssocagGrupoOPController::getInstance()->retornaArrayIdsFiltersOrdenadoPorOrdemPorIdGrupo($idFilterGrupo);
+    				
+    	// percorrendo filters do grupo
+    	foreach ($arrayFiltrosGrupo as $filter) {
+
+    		// verificando se o filter e um grupo
+    		if (isset($filter['idFilterGrupoAssoc']) && $filter['idFilterGrupoAssoc'] > 0) {
+    			// processando grupos de filtros (recursividade)
+    			$this->processaGruposFiltersDefaultElemento($resourceArquivo, $elementName , $filter['idFilterGrupoAssoc'], $removeFlag, $arrayIdsGruposJaProcessados);	
+    		}else{
+	    		// recuperando o id do componente do filter pelo id
+	    		$idComponenteFilter = Basico_OPController_FilterOPController::getInstance()->retornaIdComponenteFilterPorIdFilter($filter['idFilter']);
+	    				
+	    		// recuperando o componente do filter
+	    		$componenteFilter = Basico_OPController_ComponenteOPController::getInstance()->retornaComponentePorIdComponente($idComponenteFilter);
+	    					
+	    		// verificando se o grupo eh para remocao
+	    		if ($removeFlag == true) {
+	    			// escrevendo metodo remove filter
+	    			$this->escreveRemoveFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+	    		}else{
+	    			$this->escreveAddFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+	    		}
+    		}
+    	}
+	}
+	
+	/**
+	 * Escreve o metodo removeFilter do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $filter - filter a ser removido do elemento
+	 * @param String $elementName - Nome do elemento que tera o filter removido
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/08/2012
+	 */
+	private function escreveRemoveFilterElemento($resourceArquivo, $filter, $elementName)
+	{
+		// verificando se conseguiu recuperar attribs
+    	if (null !== $filter) {
+	    	// montando string do setAttribs do elemento
+	    	$removeFilter = str_replace(self::TAG_SUBSTITUICAO_FILTER, Basico_OPController_UtilOPController::retornaStringEntreCaracter($filter, "'"), self::CHAMADA_REMOVE_FILTER);
+	    	$removeFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $removeFilter);
+			$removeFilter = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $removeFilter);
+	    	
+	    	// escrevendo linha que adiciona o setAttribs do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $removeFilter, true);
+    	}
+    	
+    	return false;
+	}
+	
+	/**
+	 * Escreve o metodo addFilter do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $filter - filter a ser adicionado no elemento
+	 * @param String $elementName - Nome do elemento que tera o filter adicionado
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 13/08/2012
+	 */
+	private function escreveAddFilterElemento($resourceArquivo, $filter, $elementName)
+	{
+		// verificando se conseguiu recuperar attribs
+    	if (null !== $filter) {
+	    	// montando string do setAttribs do elemento
+	    	$addFilter = str_replace(self::TAG_SUBSTITUICAO_FILTER, Basico_OPController_UtilOPController::retornaStringEntreCaracter($filter, "'"), self::CHAMADA_ADD_FILTER);
+	    	$addFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addFilter);
+			$addFilter = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addFilter);
+	    	
+	    	// escrevendo linha que adiciona o setAttribs do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addFilter, true);
     	}
     	
     	return false;

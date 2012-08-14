@@ -45,6 +45,8 @@ define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
 define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
 define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required);');
+define("FORM_GERADOR_REMOVEFILTER", '@identacao@instancia->removeFilter(@filter);');
+define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 
 // tags de substituição
@@ -69,6 +71,7 @@ define('TAG_LABEL', '@label');
 define('TAG_ATTRIBS', '@attribs');
 define('TAG_ORDEM', '@ordem');
 define('TAG_REQUIRED', '@required');
+define('TAG_FILTER', '@filter');
 define('TAG_AJUDA_BUTTON', '@ajudaButton');
 define('TAG_CONSTANTE_TEXTUAL', '@constanteTextual');
 define('TAG_INSTANCIA_FORMULARIO', '$this');

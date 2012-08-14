@@ -1171,9 +1171,7 @@ class Basico_OPController_CrudOPController
 							height: {$alturaGrid},
 							width: {$larguraGrid},
 						   	colNames: [{$stringColNames}],
-						   	colModel: [
-						   		{$stringColModel}
-						   	],
+						   	colModel: [{$stringColModel}],
 						   	rowNum: {$linhasPorPagina},
 						   	rowList: {$opcoesLinhasPorPagina},
 						   	pager: '#{$nomePaginacao}',

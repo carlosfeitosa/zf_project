@@ -34,7 +34,6 @@ class Basico_Model_FormularioAssocclElementoAssocclFilterMapper extends Basico_A
 		$this->_arrayMapper['ordem']               		 = 'ordem';
 		$this->_arrayMapper['removeFlag']                = 'remove_flag';
 		$this->_arrayMapper['datahoraCriacao']           = 'datahora_criacao';
-		$this->_arrayMapper['datahoraUltimaAtualizacao'] = 'datahora_ultima_atualizacao';
 		$this->_arrayMapper['rowinfo']                   = 'rowinfo'; 
 	}
 	
@@ -45,7 +44,7 @@ class Basico_Model_FormularioAssocclElementoAssocclFilterMapper extends Basico_A
      * 
      * @return Zend_Db_Table_Abstract
     */ 
-    public function getDbTable($dbTable = 'Basico_Model_FormularioAssocclElementoAssocclFilter')
+    public function getDbTable($dbTable = 'Basico_Model_DbTable_FormularioAssocclElementoAssocclFilter')
     {
     	// chamando método do pai
         return parent::getDbTable($dbTable);

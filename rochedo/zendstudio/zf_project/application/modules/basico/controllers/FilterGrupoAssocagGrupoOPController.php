@@ -91,4 +91,29 @@ class Basico_OPController_FilterGrupoAssocagGrupoOPController extends Basico_Abs
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna os ids dos filters ordenados por ordem pelo id do grupo passado como parametro
+	 * 
+	 * @param Int $idGrupo
+	 * 
+	 * @return array - array com os filtros ou array vazio se nao encontrar nenhum filtro
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/08/2012
+	 */
+	public function retornaArrayIdsFiltersOrdenadoPorOrdemPorIdGrupo($idGrupo)
+	{
+		// recuperando constanteTextualAjuda
+		$arrayIdsFilters = $this->_retornaArrayDadosObjetosPorParametros("id_filter_grupo = {$idGrupo}", 'ordem', null, null, array('idFilter', 'idFilterGrupoAssoc'));
+		
+		// verificando se foram encontrados filters
+		if (count($arrayIdsFilters)) {
+			// retornando filters do grupo pesquisado
+			return $arrayIdsFilters;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }
