@@ -34,7 +34,7 @@ class Basico_Model_FormularioAssocclEvento extends Basico_AbstractModel_RochedoP
 	* 
 	* @return Basico_Model_FormularioAssocclEvento
 	*/
-	public function setIdElemento($idFormulario)
+	public function setIdFormulario($idFormulario)
 	{
 		$this->_idFormulario = Basico_OPController_UtilOPController::retornaValorTipado($idFormulario,TIPO_INTEIRO,true);
 		return $this;
@@ -45,7 +45,7 @@ class Basico_Model_FormularioAssocclEvento extends Basico_AbstractModel_RochedoP
 	* 
 	* @return null|int
 	*/
-	public function getIdElemento()
+	public function getIdFormulario()
 	{
 		if ($this->_idFormulario)
 			return $this->_idFormulario;
