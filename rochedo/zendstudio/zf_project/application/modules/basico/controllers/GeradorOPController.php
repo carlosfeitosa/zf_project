@@ -59,7 +59,7 @@ class Basico_OPController_GeradorOPController
 	 * 
 	 * @return Boolean
 	 * 
-	 * @author Carlos Feitosa (carlos.feitosa@rochedoframewoek.com)
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 18/06/2012
 	 */
 	public static function geradorFormularioGerarFormulario($idFormulario, array $arrayExcludeIdModules = array())

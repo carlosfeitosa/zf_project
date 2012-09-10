@@ -201,4 +201,77 @@ class Basico_OPController_FormularioDecoratorOPController extends Basico_Abstrac
 		// retornando array de resultados
 		return $arrayRetorno;
 	}
+	
+	/**
+	 * Retorna o id do componente do decorator pelo id passado como parametro
+	 * 
+	 * @param Int $idDecorator - id do decorator que tera os dados retornados
+	 * 
+	 * @return Array|null - array se encontrar o decorator ou null se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaIdComponenteDecoratorPorIdDecorator($idDecorator)
+	{
+		// recuperando o id componente do decorator
+		$arrayDadosDecorator = $this->_retornaArrayDadosObjetoPorId($idDecorator, array('idComponente'));
+		
+		// verificando se o decorator foi encontrado
+		if (is_array($arrayDadosDecorator)) {
+			// retornando o id do componente do decorator
+			return $arrayDadosDecorator['idComponente'];
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna os attribs do decorator pelo id passado como parametro
+	 * 
+	 * @param Int $idDecorator - id do decorator que tera os attribs retornados
+	 * 
+	 * @return String|null - attribs do decorator
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaAttribsDecoratorPorIdDecorator($idDecorator)
+	{
+		// recuperando o id componente do decorator
+		$arrayDadosDecorator = $this->_retornaArrayDadosObjetoPorId($idDecorator, array('attribs'));
+		
+		// verificando se o decorator foi encontrado
+		if (is_array($arrayDadosDecorator)) {
+			// retornando os attribs do decorator
+			return $arrayDadosDecorator['attribs'];
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna um array com os decorators defaults e especializacao (exclude e include) do elemento 
+	 * atraves do id do elemento e do id da associacao do elemento com o formulario
+	 * 
+	 * @param int $idElemento - id do elemento do formulario
+	 * @param int $idAssocclElemento - id da associacao entre o elemento e o formulario
+	 * 
+	 * @return Array
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/08/2012
+	 */
+	public function retornaArrayDadosDecoratorsElemento($idElemento, $idAssocclElemento)
+	{
+		// recuperando decorators includes default do elemento
+    	$arrayDadosDecorators['default'] = Basico_OPController_FormularioElementoAssocclDecoratorOPController::getInstance()->retornaArrayDadosDecoratorsDefaultOrdenadoPorOrdemPorIdElemento($idElemento);
+    	
+    	// recuperando os decorators da especializacao do elemento no formulario
+    	$arrayDadosDecorators['especializacao'] = Basico_OPController_FormularioAssocclElementoAssocclDecoratorOPController::getInstance()->retornaArrayDadosDecoratorsEspecializacaoOrdenadoPorOrdemPorIdElemento($idAssocclElemento);
+
+    	// retornando array com os decorators do elemento
+    	return $arrayDadosDecorators;
+    	
+	}
 }

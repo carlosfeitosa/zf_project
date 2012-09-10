@@ -104,8 +104,8 @@ class Basico_OPController_FormularioElementoAssocclFilterOPController extends Ba
 	 */
 	public function retornaArrayDadosFiltersDefaultOrdenadoPorOrdemPorIdElemento($idElemento)
 	{
-		// recuperando constanteTextualAjuda
-		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento}", 'ordem', null, null, array('idElemento', 'idFilter', 'idFilterGrupo', 'exclude', 'ordem'));
+		// recuperando dados dos filters do elemento
+		$arrayDadosFiltersElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento}", 'ordem', null, null, array('idFilter', 'idFilterGrupo', 'removeFlag', 'ordem'));
 		
 		// verificando se a ajuda foi encontrada
 		if (count($arrayDadosFiltersElemento)) {

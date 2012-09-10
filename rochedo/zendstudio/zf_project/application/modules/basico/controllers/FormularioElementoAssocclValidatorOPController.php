@@ -91,4 +91,29 @@ class Basico_OPController_FormularioElementoAssocclValidatorOPController extends
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna os dados dos validators default do elemento pelo id do elemento passado como parametro
+	 * 
+	 * @param Int $idElemento - id do elemento que tera os dados dos validators retornados
+	 * 
+	 * @return Array - array com validators para o elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaArrayDadosValidatorsDefaultPorIdElemento($idElemento)
+	{
+		// recuperando dados dos validators dos elementos
+		$arrayDadosValidatorsElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento}", null, null, null, array('idValidator', 'idValidatorGrupo', 'removeFlag'));
+		
+		// verificando se a ajuda foi encontrada
+		if (count($arrayDadosValidatorsElemento)) {
+			// retornando array com os validators encontrados
+			return $arrayDadosValidatorsElemento;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }

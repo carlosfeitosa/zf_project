@@ -27,12 +27,13 @@ class Basico_Model_FormularioElementoAssocclValidatorMapper extends Basico_Abstr
 	public function __construct()
 	{
 		// montando array de mapeamento
-		$this->_arrayMapper['id']		       = 'id';
-		$this->_arrayMapper['idElemento']	   = 'id_elemento';
-		$this->_arrayMapper['idValidator']	   = 'id_validator';
-		$this->_arrayMapper['removeFlag']	   = 'remove_flag';
-		$this->_arrayMapper['datahoraCriacao'] = 'datahora_criacao';
-		$this->_arrayMapper['rowinfo']		   = 'rowinfo'; 
+		$this->_arrayMapper['id']		        = 'id';
+		$this->_arrayMapper['idElemento']	    = 'id_elemento';
+		$this->_arrayMapper['idValidator']	    = 'id_validator';
+		$this->_arrayMapper['idValidatorGrupo']	= 'id_validator_grupo';
+		$this->_arrayMapper['removeFlag']	    = 'remove_flag';
+		$this->_arrayMapper['datahoraCriacao']  = 'datahora_criacao';
+		$this->_arrayMapper['rowinfo']		    = 'rowinfo'; 
 	}
 
    	/**

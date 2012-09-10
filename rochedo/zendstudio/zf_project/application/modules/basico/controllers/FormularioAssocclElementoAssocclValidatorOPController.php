@@ -91,4 +91,29 @@ class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController 
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna os dados dos validators da especializacao do elemento pelo id da associacao do elemento com o formulario e o id do elemento passado como parametro
+	 * 
+	 * @param Int $idAssocclElemento - id do assoccl elemento que tera os dados dos filters retornados
+	 * 
+	 * @return Array - array com validators da especialização do elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaArrayDadosValidatorsEspecializacaoPorIdAssocclElemento($idAssocclElemento)
+	{
+		// recuperando dados da especializacao dos validators do elemento no formulario
+		$arrayDadosValidatorsElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento}", null, null, null, array('idValidator', 'idValidatorGrupo', 'removeFlag'));
+		
+		// verificando se foram encontrados validators 
+		if (count($arrayDadosValidatorsElemento)) {
+		 	// retornando validators encontrados
+			return $arrayDadosValidatorsElemento;
+		}
+		
+		// retornando array vazio se não for encontrado nenhum validator
+		return array();
+	}
 }

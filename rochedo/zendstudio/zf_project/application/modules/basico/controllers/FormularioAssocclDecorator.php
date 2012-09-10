@@ -221,4 +221,29 @@ class Basico_OPController_FormularioAssocclDecorator extends Basico_AbstractOPCo
 		// retornando array de ids
 		return $arrayRetorno;
 	}
+	
+	/**
+	 * Retorna os dados dos decorators do formulario pelo id do formulario passado como parametro
+	 * 
+	 * @param Int $idFormulario - id do formulario que tera os dados dos decorators retornados
+	 * 
+	 * @return Array - array com decorators para o elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 30/08/2012
+	 */
+	public function retornaArrayDadosDecoratorsOrdenadoPorOrdemPorIdFormulario($idFormulario)
+	{
+		// recuperando decorator do formulario
+		$arrayDadosDecoratorsFormulario = $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", 'ordem', null, null, array('idDecorator', 'idDecoratorGrupo', 'removeFlag', 'ordem'));
+		
+		// verificando se os decorators foram encontrados
+		if (count($arrayDadosDecoratorsFormulario)) {
+			// retornando array com os decorators encontrados
+			return $arrayDadosDecoratorsFormulario;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }

@@ -37,16 +37,20 @@ define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\
 define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
 define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
 define("FORM_GERADOR_FORM_SETATTRIBS", '@identacao@instancia->setAttribs(array(@atributosFormulario));');
-define("FORM_GERADOR_FORM_ADDDECORATOR", '@identacao@instancia->addDecorator(@decorator);');
-define("FORM_GERADOR_FORM_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
+define("FORM_GERADOR_ADDDECORATOR", '@identacao@instancia->addDecorator(@decorator);');
+define("FORM_GERADOR_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
 define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemento);');
 define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
 define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()->tradutor(@label)@ajudaButton);');
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
+define("FORM_GERADOR_ADDATTRIB", '@identacao@instancia->addAttrib(@attribName, @attribValue);');
+define("FORM_GERADOR_REMOVEATTRIB", '@identacao@instancia->removeAttrib(@attribName);');
 define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
 define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required);');
 define("FORM_GERADOR_REMOVEFILTER", '@identacao@instancia->removeFilter(@filter);');
 define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
+define("FORM_GERADOR_REMOVEVALIDATOR", '@identacao@instancia->removeValidator(@validator);');
+define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator);');
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 
 // tags de substituição
@@ -69,9 +73,12 @@ define('TAG_IDENTACAO', '@identacao');
 define('TAG_INSTANCIA', '@instancia');
 define('TAG_LABEL', '@label');
 define('TAG_ATTRIBS', '@attribs');
+define('TAG_ATTRIB_NAME', '@attribName');
+define('TAG_ATTRIB_VALUE', '@attribValue');
 define('TAG_ORDEM', '@ordem');
 define('TAG_REQUIRED', '@required');
 define('TAG_FILTER', '@filter');
+define('TAG_VALIDATOR', '@validator');
 define('TAG_AJUDA_BUTTON', '@ajudaButton');
 define('TAG_CONSTANTE_TEXTUAL', '@constanteTextual');
 define('TAG_INSTANCIA_FORMULARIO', '$this');

@@ -146,7 +146,7 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
 				unset($metodoAtributo);
 			}
 
-			// carregando aray de resultados
+			// carregando array de resultados
 			$entries[] = $entry;
 
 			// limpando memória

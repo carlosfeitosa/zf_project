@@ -91,45 +91,54 @@ class Basico_OPController_EventoOPController extends Basico_AbstractOPController
 		// retornando instancia
 		return self::$_singleton;
 	}
-		
+	
 	/**
-	 * Retorna um array onde a chave é o id do elemento e o valor é a mascara a ser aplicada
+	 * Retorna um array com os eventos defaults e especializacao (exclude e include) do elemento 
+	 * atraves do id do elemento e do id da associacao do elemento com o formulario
 	 * 
-	 * @param String $nomeModulo
-	 * @param String $nomeForm
+	 * @param int $idElemento - id do elemento do formulario
+	 * @param int $idAssocclElemento - id da associacao entre o elemento e o formulario
 	 * 
-	 * @return Array|false
+	 * @return Array
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 05/09/2012
 	 */
-	public static function retornaArrayEventosElementosPorNomeFormularioViaSQL($nomeModulo, $nomeForm)
+	public function retornaArrayDadosEventosElemento($idElemento, $idAssocclElemento)
 	{
-		// montando query para recuperacao de elementos com mascara por nomeForm
-		$sql = "SELECT f.form_name,  fe.element_name, m.mascara
-				FROM basico.formulario f
-				LEFT JOIN basico_formulario.assoccl_modulo mf ON (f.id = mf.id_formulario)
-				LEFT JOIN basico.modulo mod ON (mf.id_modulo = mod.id)
-				LEFT JOIN basico_formulario.assoccl_elemento ffe ON (f.id = ffe.id_formulario)
-				LEFT JOIN basico_formulario.elemento fe ON (ffe.id_formulario_elemento = fe.id)
-				LEFT JOIN basico_form_assoccl_elemento.assoccl_evento fem ON (fem.id_formulario_elemento = fe.id)
-				LEFT JOIN basico.evento m ON (m.id = fem.id_mascara)
-				WHERE f.nome = '{$nomeForm}'
-				AND mod.nome = '{$nomeModulo}'
-				AND evento IS NOT NULL";
+		// recuperando eventos default do elemento
+    	$arrayDadosEventos['default'] = Basico_OPController_FormularioElementoAssocclEventoOPController::getInstance()->retornaArrayDadosEventosDefaultOrdenadoPorOrdemPorIdElemento($idElemento);
+    	
+    	// recuperando os eventos da especializacao do elemento no formulario
+    	$arrayDadosEventos['especializacao'] = Basico_OPController_FormularioAssocclElementoAssocclEventoOPController::getInstance()->retornaArrayDadosEventosEspecializacaoOrdenadoPorOrdemPorIdAssocclElemento($idAssocclElemento);
+
+    	// retornando array com os eventos do elemento
+    	return $arrayDadosEventos;
+    	
+	}
+	
+	/**
+	 * Retorna a string do evento pelo id passado como parametro
+	 * 
+	 * @param Int $idEvento - id do evento que tera os attribs retornados
+	 * 
+	 * @return String|null - evento
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 06/09/2012
+	 */
+	public function retornaStringEventoPorIdEvento($idEvento)
+	{
+		// recuperando o id componente do filter
+		$arrayDadosEvento = $this->_retornaArrayDadosObjetoPorId($idEvento, array('evento'));
 		
-		// executando a query
-		$result = Basico_OPController_DBUtilOPController::retornaArraySQLQuery($sql);
-		
-		// inicializando array do resultado
-		$arrayResultado = array();
-		
-		// montando array de resultado
-		foreach ($result as $row) {
-			$arrayResultado[$row['form_name'] . "-" . ucfirst(strtolower($nomeModulo)) . $row['form_name'] . ucfirst($row['element_name'])] = $row['evento']; 
+		// verificando se o evento foi encontrado
+		if (is_array($arrayDadosEvento)) {
+			// retornando o evento
+			return $arrayDadosEvento['evento'];
 		}
 		
-		if (count($arrayResultado) > 0)
-			return $arrayResultado;
-		else
-			return false;
+		return null;
 	}
 
 }

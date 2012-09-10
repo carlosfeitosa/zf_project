@@ -142,6 +142,30 @@ class Basico_OPController_FilterOPController extends Basico_AbstractOPController
 	}
 	
 	/**
+	 * Retorna os attribs do filter pelo id passado como parametro
+	 * 
+	 * @param Int $idFilter - id do filter que tera os attribs retornados
+	 * 
+	 * @return String|null - attribs do filter
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 16/08/2012
+	 */
+	public function retornaAttribsFilterPorIdFilter($idFilter)
+	{
+		// recuperando o id componente do filter
+		$arrayDadosFilter = $this->_retornaArrayDadosObjetoPorId($idFilter, array('attribs'));
+		
+		// verificando se o filter foi encontrado
+		if (is_array($arrayDadosFilter)) {
+			// retornando os attribs do filter
+			return $arrayDadosFilter['attribs'];
+		}
+		
+		return null;
+	}
+	
+	/**
 	 * Retorna um array com os filters defaults e especializacao (exclude e include) do elemento 
 	 * atraves do id do elemento e do id da associacao do elemento com o formulario
 	 * 
@@ -159,7 +183,7 @@ class Basico_OPController_FilterOPController extends Basico_AbstractOPController
     	$arrayDadosFilters['default'] = Basico_OPController_FormularioElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersDefaultOrdenadoPorOrdemPorIdElemento($idElemento);
     	
     	// recuperando os filters da especializacao do elemento no formulario
-    	$arrayDadosFilters['especializacao'] = Basico_OPController_FormularioAssocclElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdAssocclElementoIdElemento($idAssocclElemento, $idElemento);
+    	$arrayDadosFilters['especializacao'] = Basico_OPController_FormularioAssocclElementoAssocclFilterOPController::getInstance()->retornaArrayDadosFiltersEspecializacaoOrdenadoPorOrdemPorIdAssocclElemento($idAssocclElemento);
 
     	// retornando array com os filtros do elemento
     	return $arrayDadosFilters;

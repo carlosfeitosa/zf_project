@@ -22,7 +22,7 @@ SELECT c.id AS id_categoria,
 		 AND tcat.nome = 'COMPONENTE'
 		 AND catpai.nome = 'COMPONENTE_VALIDATOR') AS id_componente,
         'REGEX_LOGIN' AS nome, 'NOME_VALIDATOR_REGEX_LOGIN' AS constante_textual, 'DESCRICAO_VALIDATOR_REGEX_LOGIN' AS constante_textual_descricao,
-        true AS parar_validacao_apos_falha, 'array(''pattern'' => ''/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/'', ''messages'' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'')))' AS attribs, 
+        true AS parar_validacao_apos_falha, '''pattern'' => ''/^[(a-zA-Z)]+[(a-zA-Z0-9_@\.)]*$/'', ''messages'' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE''))' AS attribs, 
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -63,7 +63,7 @@ SELECT c.id AS id_categoria,
 		 AND tcat.nome = 'COMPONENTE'
 		 AND catpai.nome = 'COMPONENTE_VALIDATOR') AS id_componente,
         'IDENTICO' AS nome, 'NOME_VALIDATOR_IDENTICO' AS constante_textual, 'DESCRICAO_VALIDATOR_IDENTICO' AS constante_textual_descricao,
-        'array(''token'' => ''@identicalElementName'', ''invalidMessage'' => ''@identicalInvalidMessage'')' AS attribs, 
+        '''token'' => ''@identicalElementName'', ''invalidMessage'' => ''@identicalInvalidMessage''' AS attribs, 
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -84,7 +84,7 @@ SELECT c.id AS id_categoria,
 		 AND tcat.nome = 'COMPONENTE'
 		 AND catpai.nome = 'COMPONENTE_VALIDATOR') AS id_componente,
         'STRING_ENTRE_6_E_100_CARACTERES' AS nome, 'NOME_VALIDATOR_STRING_ENTRE_6_E_100_CARACTERES' AS constante_textual, 'DESCRICAO_VALIDATOR_STRING_ENTRE_6_E_100_CARACTERES' AS constante_textual_descricao,
-        'array(6, 100)' AS attribs, 
+        '6, 100' AS attribs, 
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -105,7 +105,7 @@ SELECT c.id AS id_categoria,
 		 AND tcat.nome = 'COMPONENTE'
 		 AND catpai.nome = 'COMPONENTE_VALIDATOR') AS id_componente,
         'STRING_ENTRE_3_E_100_CARACTERES' AS nome, 'NOME_VALIDATOR_STRING_ENTRE_3_E_100_CARACTERES' AS constante_textual, 'DESCRICAO_VALIDATOR_STRING_ENTRE_3_E_100_CARACTERES' AS constante_textual_descricao,
-        'array(3, 100)' AS attribs, 
+        '3, 100' AS attribs, 
         true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -186,7 +186,7 @@ SELECT c.id AS id_categoria,
 		 AND tcat.nome = 'COMPONENTE'
 		 AND catpai.nome = 'COMPONENTE_VALIDATOR') AS id_componente,
         'ENDERECO_EMAIL_COM_VERIFICACAO_MX' AS nome, 'NOME_VALIDATOR_ENDERECO_EMAIL_COM_VERIFICACAO_MX' AS constante_textual, 'DESCRICAO_VALIDATOR_ENDERECO_EMAIL_COM_VERIFICACAO_MX' AS constante_textual_descricao,
-        true AS parar_validacao_apos_falha, 'array(''mx'' => true, ''deep'' => true)' AS attribs, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+        true AS parar_validacao_apos_falha, '''mx'' => true, ''deep'' => true' AS attribs, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT JOIN basico.categoria c ON (t.id = c.id_tipo_categoria)
 LEFT JOIN basico.categoria cpai ON (c.id_categoria_pai = cpai.id)

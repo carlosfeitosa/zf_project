@@ -91,4 +91,29 @@ class Basico_OPController_FormularioElementoAssocclDecoratorOPController extends
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna os dados dos decorators default do elemento pelo id do elemento passado como parametro
+	 * 
+	 * @param Int $idElemento - id do elemento que tera os dados dos decorators retornados
+	 * 
+	 * @return Array - array com decorators para o elemento ou um array vazio se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 27/08/2012
+	 */
+	public function retornaArrayDadosDecoratorsDefaultOrdenadoPorOrdemPorIdElemento($idElemento)
+	{
+		// recuperando decorators do elemento
+		$arrayDadosDecoratorsElemento = $this->_retornaArrayDadosObjetosPorParametros("id_elemento = {$idElemento}", 'ordem', null, null, array('idDecorator', 'idDecoratorGrupo', 'removeFlag', 'ordem'));
+		
+		// verificando se os decorators foram encontrados
+		if (count($arrayDadosDecoratorsElemento)) {
+			// retornando array com os decorators encontrados
+			return $arrayDadosDecoratorsElemento;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }

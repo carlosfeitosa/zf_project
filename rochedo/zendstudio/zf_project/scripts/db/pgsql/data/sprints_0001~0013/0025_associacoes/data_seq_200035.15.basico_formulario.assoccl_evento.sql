@@ -1,6 +1,6 @@
 /*
 * @exclude
-* SCRIPT DE POPULACAO DA TABELA ANEXO_MENSAGEM
+* SCRIPT DE POPULACAO DA TABELA basico_formulario.assoccl_evento
 * 
 * versao: 1.0 (POSTGRESQL 8.4.1)
 * por: Igor Pinho (igor.pinho.souza@rochedoframework.com)

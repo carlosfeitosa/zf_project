@@ -91,4 +91,29 @@ class Basico_OPController_ValidatorGrupoAssocagGrupoOPController extends Basico_
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna os dados dos validators ordenados por ordem pelo id do grupo passado como parametro
+	 * 
+	 * @param Int $idGrupo
+	 * 
+	 * @return array - array com os validators ou array vazio se nao encontrar nenhum validator
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/08/2012
+	 */
+	public function retornaArrayDadosValidatorsOrdenadoPorOrdemPorIdGrupo($idGrupo)
+	{
+		// recuperando constanteTextualAjuda
+		$arrayDadosValidators = $this->_retornaArrayDadosObjetosPorParametros("id_validator_grupo = {$idGrupo}", 'ordem', null, null, array('idValidator', 'idValidatorGrupoAssoc'));
+		
+		// verificando se foram encontrados validators
+		if (count($arrayDadosValidators)) {
+			// retornando validators do grupo pesquisado
+			return $arrayDadosValidators;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }

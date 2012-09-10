@@ -92,4 +92,77 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractOPControl
 		// retornando instancia
 		return self::$_singleton;
 	}
+	
+	/**
+	 * Retorna o id do componente do validator pelo id passado como parametro
+	 * 
+	 * @param Int $idValidator - id do validator que tera os dados retornados
+	 * 
+	 * @return Array|null - array se encontrar o validator ou null se não encontrar
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaIdComponenteValidatorPorIdValidator($idValidator)
+	{
+		// recuperando o id componente do validator
+		$arrayDadosValidator = $this->_retornaArrayDadosObjetoPorId($idValidator, array('idComponente'));
+		
+		// verificando se a ajuda foi encontrada
+		if (is_array($arrayDadosValidator)) {
+			// retornando o id do componente do validator
+			return $arrayDadosValidator['idComponente'];
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna os attribs do validator pelo id passado como parametro
+	 * 
+	 * @param Int $idValidator - id do validator que tera os attribs retornados
+	 * 
+	 * @return String|null - attribs do validator
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaAttribsValidatorPorIdValidator($idValidator)
+	{
+		// recuperando o id componente do validator
+		$arrayDadosValidator = $this->_retornaArrayDadosObjetoPorId($idValidator, array('attribs'));
+		
+		// verificando se o validator foi encontrada
+		if (is_array($arrayDadosValidator)) {
+			// retornando attribs do validator
+			return $arrayDadosValidator['attribs'];
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Retorna um array com os validators defaults e especializacao (exclude e include) do elemento 
+	 * atraves do id do elemento e do id da associacao do elemento com o formulario
+	 * 
+	 * @param int $idElemento - id do elemento do formulario
+	 * @param int $idAssocclElemento - id da associacao entre o elemento e o formulario
+	 * 
+	 * @return Array
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaArrayDadosValidatorsElemento($idElemento, $idAssocclElemento)
+	{
+		// recuperando validators includes default do elemento
+    	$arrayDadosValidators['default'] = Basico_OPController_FormularioElementoAssocclValidatorOPController::getInstance()->retornaArrayDadosValidatorsDefaultPorIdElemento($idElemento);
+    	
+    	// recuperando os validators da especializacao do elemento no formulario
+    	$arrayDadosValidators['especializacao'] = Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController::getInstance()->retornaArrayDadosValidatorsEspecializacaoPorIdAssocclElemento($idAssocclElemento);
+
+    	// retornando array com os validators do elemento
+    	return $arrayDadosValidators;
+    	
+	}
 }

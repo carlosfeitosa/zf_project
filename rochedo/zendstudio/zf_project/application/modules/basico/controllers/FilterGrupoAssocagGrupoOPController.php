@@ -93,7 +93,7 @@ class Basico_OPController_FilterGrupoAssocagGrupoOPController extends Basico_Abs
 	}
 	
 	/**
-	 * Retorna os ids dos filters ordenados por ordem pelo id do grupo passado como parametro
+	 * Retorna um array com os ids dos filters ordenados por ordem pelo id do grupo passado como parametro
 	 * 
 	 * @param Int $idGrupo
 	 * 
@@ -102,15 +102,15 @@ class Basico_OPController_FilterGrupoAssocagGrupoOPController extends Basico_Abs
 	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 10/08/2012
 	 */
-	public function retornaArrayIdsFiltersOrdenadoPorOrdemPorIdGrupo($idGrupo)
+	public function retornaArrayDadosFiltersOrdenadoPorOrdemPorIdGrupo($idGrupo)
 	{
-		// recuperando constanteTextualAjuda
-		$arrayIdsFilters = $this->_retornaArrayDadosObjetosPorParametros("id_filter_grupo = {$idGrupo}", 'ordem', null, null, array('idFilter', 'idFilterGrupoAssoc'));
+		// recuperando dados dos filters do grupo
+		$arrayDadosFilters = $this->_retornaArrayDadosObjetosPorParametros("id_filter_grupo = {$idGrupo}", 'ordem', null, null, array('idFilter', 'idFilterGrupoAssoc'));
 		
 		// verificando se foram encontrados filters
-		if (count($arrayIdsFilters)) {
+		if (count($arrayDadosFilters)) {
 			// retornando filters do grupo pesquisado
-			return $arrayIdsFilters;
+			return $arrayDadosFilters;
 		}
 		
 		// retornando array vazio

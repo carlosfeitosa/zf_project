@@ -144,4 +144,29 @@ class Basico_OPController_FormularioDecoratorGrupoAssocagGrupo extends Basico_Ab
 		// retornando array de ids
 		return $arrayRetorno;
 	}
+	
+	/**
+	 * Retorna os dados dos decorators ordenados por ordem pelo id do grupo passado como parametro
+	 * 
+	 * @param Int $idGrupo - id do grupo de decorators
+	 * 
+	 * @return array - array com os dados dos decorators ou array vazio se nao encontrar nenhum decorator
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/08/2012
+	 */
+	public function retornaArrayDadosDecoratorsOrdenadoPorOrdemPorIdGrupo($idGrupo)
+	{
+		// recuperando dados dos decorators do grupo
+		$arrayDadosDecorators = $this->_retornaArrayDadosObjetosPorParametros("id_form_decorator_grupo = {$idGrupo}", 'ordem', null, null, array('idFormularioDecorator', 'idFormDecoratorGrupoAssoc'));
+		
+		// verificando se foram encontrados filters
+		if (count($arrayDadosDecorators)) {
+			// retornando filters do grupo pesquisado
+			return $arrayDadosDecorators;
+		}
+		
+		// retornando array vazio
+		return array();
+	}
 }

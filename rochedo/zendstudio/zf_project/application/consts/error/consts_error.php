@@ -102,7 +102,7 @@ define("MSG_ERRO_CATEGORIA_LOG_ACAO_NAO_PERMITIDA", "Categoria de log tentativa 
 define("MSG_ERRO_CATEGORIA_LOG_ACAO_INDISPONIVEL_ATRAVES_DE_URL", "Categoria de log tentativa de acesso a acao indisponivel atraves de url não encontrado no banco de dados");
 define("MSG_ERRO_ABRIR_LOG_FS", "Não foi possível abrir o arquivo de LOG: ");
 
-// definições de erros de formulário
+// definições de erros de categorias para formulário
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO", "Categoria de log novo formulario não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_FORMULARIO", "Categoria de log atualizacao de formulario não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_GRUPO_FORMULARIO_ELEMENTO", "Categoria de log novo grupo formulario elemento não encontrado no banco de dados");
@@ -126,7 +126,13 @@ define("MSG_ERRO_CATEGORIA_LOG_DELETE_FORMULARIO_FORMULARIO_ELEMENTO", "Categori
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_FORMULARIO_TEMPLATE", "Categoria de log novo formulario template não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_NOVO_OUTPUT", "Categoria de log novo output não encontrado no banco de dados");
 define("MSG_ERRO_CATEGORIA_LOG_UPDATE_OUTPUT", "Categoria de log atualizao de output não encontrado no banco de dados");
+
+
+// definições de erros do gerador de formulários
 define("MSG_ERRO_AO_TENTAR_ADICIONAR_ELEMENTO_AO_FORMULARIO", "Não foi possivel adicionar elemento ao formulario: ");
+define("MSG_ERRO_GRUPO_DECORATOR_JA_PROCESSADO", "Grupo de decorators ja processado.");
+define("MSG_ERRO_GRUPO_FILTER_JA_PROCESSADO", "Grupo de filters ja processado.");
+define("MSG_ERRO_GRUPO_VALIDATOR_JA_PROCESSADO", "Grupo de validators ja processado.");
 
 // definições de erros de token
 define("MSG_ERRO_TOKEN_CHECK_CONSTRAINT", "Chave estrangeira do token não confere.");
