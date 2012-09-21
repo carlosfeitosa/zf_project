@@ -1114,7 +1114,7 @@ class Basico_OPController_CrudOPController
 			}
 			
 			// setando string colNames
-			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($tituloColuna, "'");
+			$stringColNames .= Basico_OPController_UtilOPController::retornaStringEntreCaracter($tituloColuna, '"');
 
 			// recuperando a largura da coluna
 			$larguraColuna = $arrayLarguraColunas[$nomeAtributoBD];
@@ -1278,10 +1278,10 @@ class Basico_OPController_CrudOPController
 	public static function retornaModeloColunaJqGrid($nomeAtributo, $nomeAtributoBD, $larguraColuna, array $arrayAtributosNaoEditaveis, array $arrayDetalhesAtributos)
 	{
 		// inicializando variaveis
-		$optionEditable         = "editable: false";
-		$optionElementRequired  = "required: false";
+		$optionEditable         = '"editable": false';
+		$optionElementRequired  = '"required": false';
 		$optionElementType      = "text";
-		$optionElementSize      = "size: 4,";
+		$optionElementSize      = '"size": "4",';
 		$elementSelectOptions   = "";
 		$optionElementMaxLength = "";
 		$optionRowsCols         = "";
@@ -1293,12 +1293,12 @@ class Basico_OPController_CrudOPController
 		// verificando se o atributo é editavel
 		if (array_search($nomeAtributo, $arrayAtributosNaoEditaveis) === false) {
 			// setando atributo para nao editavel
-			$optionEditable = "editable: true";
+			$optionEditable = '"editable": true';
 			
 			// se o atributo aceitar nulo
 			if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE]) && $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_NULLABLE] == true) {
 				// recuperando tamanho do elemento
-				$optionElementRequired = "required: false";
+				$optionElementRequired = '"required": false';
 			}
 		
 			// determinando o tipo de elemento HTML a ser criado no form de edição
@@ -1309,18 +1309,20 @@ class Basico_OPController_CrudOPController
 					// verificando se o atributo é uma chave estrangeira
 					if (isset($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK])) {
 						// se for chave estrangeira seta o tipo do elemento para select
-						$optionElementType = "select";
+						$optionElementType = 'select';
 						
 						// recuperando array de options do campo fk
 						$optionsCampoFk = Basico_OPController_DicionarioDadosAssocclFkOPController::getInstance()->retornaOptionsCampoFkPorNomeSchemaNomeTabelaNomeCampo($arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_schema'], $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_table_name'], $arrayDetalhesAtributo[Basico_OPController_DBUtilOPController::ATRIBUTO_CAMPO_TABELA_FK]['fk_column_name']);
 						
 						// iniciando montagem da string com os options
-						$elementSelectOptions = " value: '";
+						$elementSelectOptions = '"value": ';
+						$existemOptions = false;
 						
 						// loop para criar string com options do campo fk
 						foreach ($optionsCampoFk as $chave => $valor) {
 							// montando option com separador
-							$elementSelectOptions .= "{$chave}:{$valor};";
+							$elementSelectOptions .= '"{$chave}":"{$valor}";';
+							$existemOptions = true;
 						}
 						
 						// removendo ultimo separador da string de options
@@ -1328,6 +1330,10 @@ class Basico_OPController_CrudOPController
 						
 						// finalizando string de options
 						$elementSelectOptions .= "',";
+						
+						if (!$existemOptions) {
+							$elementSelectOptions = '';
+						}
 					}
 					break;
 				case 'timestamp':
@@ -1358,25 +1364,25 @@ class Basico_OPController_CrudOPController
 				
 				// recuperando tamanho do elemento se o elemento nao for do tipo select
 				if ($elementSelectOptions == "") {
-					$optionElementSize      = 'size: ' . $tamanhoCampo . ',';
-					$optionElementMaxLength = "maxlength: " . $tamanhoCampo . ",";
+					$optionElementSize      = '"size": "' . $tamanhoCampo . '",';
+					$optionElementMaxLength = '"maxlength": "' . $tamanhoCampo . '",';
 				}else{
 					$optionElementSize      = '';
 				}
 				
 				// se tamanho do campo maior que 50
 				if ($tamanhoCampo > 50) {
-					$optionElementSize = 'size: 50,';
+					$optionElementSize = '"size": "50",';
 						
 					if ($tamanhoCampo > 200) {
-						$optionElementType = "textarea";
-						$optionRowsCols    = 'rows: 3, cols: 50,';
+						$optionElementType = 'textarea';
+						$optionRowsCols    = '"rows": "3", "cols": "50",';
 					}
 				}
 			}
 		}
 		
 		// montando e retornando array json com as propriedades da coluna e do campo para edicao do atributo do modelo para o jqGrid
-		return "{name: '{$nomeAtributo}', index: '{$nomeAtributoBD}', width:{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, edittype: '{$optionElementType}', editoptions:{{$optionRowsCols} {$optionDataInit} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
+		return "{\"name\": \"{$nomeAtributo}\", \"index\": \"{$nomeAtributoBD}\", \"width\":{$larguraColuna}, {$optionEditable}, {$optionElementRequired}, \"edittype\": \"{$optionElementType}\", \"editoptions\":{{$optionRowsCols} {$optionDataInit} {$elementSelectOptions} {$optionElementSize} {$optionElementMaxLength}}}";
 	}
 }
