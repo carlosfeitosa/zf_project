@@ -27,12 +27,14 @@ define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
 // constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '@identacaopublic function __construct($options = null)');
 define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '@identacaoparent::__construct($options);');
-define("FORM_GERADOR_FORM_INIT_DECLARATION", '@identacaoprivate function init()');
-define("FORM_GERADOR_FORM_INIT_CALL", '@identacao$this->init();');
+define("FORM_GERADOR_FORM_INIT_DECLARATION", '@identacaoprivate function initForm()');
+define("FORM_GERADOR_FORM_INIT_CALL", '@identacao$this->initForm();');
 define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_DECLARATION", '@identacaoprivate function adicionaElementos()');
 define("FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL", '@identacao$this->adicionaElementos();');
 define("FORM_GERADOR_FORM_ADICIONA_DECORATOS_CALL", '@identacao$this->adicionaDecorators();');
+define("FORM_GERADOR_FORM_ADICIONA_DISPLAYGROUPS_CALL", '@identacao$this->adicionaDisplayGroups();');
 define("FORM_GERADOR_FORM_ADICIONA_DECORATORS_DECLARATION", '@identacaoprivate function adicionaDecorators()');
+define("FORM_GERADOR_FORM_ADICIONA_DISPLAYGROUPS_DECLARATION", '@identacaoprivate function adicionaDisplayGroups()');
 define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\');');
 define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
 define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
@@ -43,6 +45,7 @@ define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemen
 define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
 define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()->tradutor(@label)@ajudaButton);');
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
+define("FORM_GERADOR_SETOPTIONS", '@identacao@instancia->setOptions(@options);');
 define("FORM_GERADOR_ADDATTRIB", '@identacao@instancia->addAttrib(@attribName, @attribValue);');
 define("FORM_GERADOR_REMOVEATTRIB", '@identacao@instancia->removeAttrib(@attribName);');
 define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
@@ -52,6 +55,8 @@ define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
 define("FORM_GERADOR_REMOVEVALIDATOR", '@identacao@instancia->removeValidator(@validator);');
 define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator);');
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
+define("TRADUTOR_CALL", '$this->getView()->tradutor');
+define("FORM_GERADOR_GETELEMENTS", '@identacao@instancia->getElements()');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -73,6 +78,7 @@ define('TAG_IDENTACAO', '@identacao');
 define('TAG_INSTANCIA', '@instancia');
 define('TAG_LABEL', '@label');
 define('TAG_ATTRIBS', '@attribs');
+define('TAG_OPTIONS', '@options');
 define('TAG_ATTRIB_NAME', '@attribName');
 define('TAG_ATTRIB_VALUE', '@attribValue');
 define('TAG_ORDEM', '@ordem');
@@ -82,6 +88,8 @@ define('TAG_VALIDATOR', '@validator');
 define('TAG_AJUDA_BUTTON', '@ajudaButton');
 define('TAG_CONSTANTE_TEXTUAL', '@constanteTextual');
 define('TAG_INSTANCIA_FORMULARIO', '$this');
+define("TAG_TITLE", '@title');
+define("TAG_MESSAGE", '@message');
 
 
 // constantes de comentarios de metodos ou chamadas de metodos
@@ -94,10 +102,16 @@ define("FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT", '@identacao// Adicionando atribu
 define("FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT", '@identacao// Adicionando decorators ao formulário');
 define("FORM_GERADOR_REMOVE_DECORATOR_CALL_COMMENT", '@identacao// Removendo decorator do formulário');
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// Adicionando elementos ao formulário');
+define("FORM_GERADOR_ADICIONA_DISPLAYGROUPS_CALL_COMMENT", '@identacao// Adicionando display groups ao formulario');
 define("FORM_GERADOR_ADD_DECORATOR_COMMENT", '@identacao// Adicionando e removendo decorators do formulário');
 define("FORM_GERADOR_ADD_ELEMENT_COMMENT", '@identacao// Adicionando elementos do formulário');
 
 // constantes de cabeçalho
+$header = <<<TEXT
+@identacao// Adicionando paths para localizacao de componentes nao ZF.
+TEXT;
+define("FORM_GERADOR_ADDPREFIXPATH_COMMENT", $header);
+
 // cabeçalho de arquivo contendo classe de formulário
 $header = <<<TEXT
 /**
@@ -211,3 +225,15 @@ $header = <<<TEXT
 @identacao*/
 TEXT;
 define("FORM_GERADOR_ADICIONA_DECORATORS_FORMULARIO_HEADER", $header);
+
+$header = <<<TEXT
+@identacao/**
+@identacao* Adiciona diplayGroups ao Formulário
+@identacao*
+@identacao* @return void - não espera retorno
+@identacao*
+@identacao* @author @autor
+@identacao* @since @dataCriacao
+@identacao*/
+TEXT;
+define("FORM_GERADOR_ADICIONA_DISPLAY_GROUPS_FORMULARIO_HEADER", $header);

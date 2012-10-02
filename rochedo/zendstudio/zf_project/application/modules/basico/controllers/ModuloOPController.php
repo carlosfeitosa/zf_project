@@ -112,6 +112,26 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractOPController
 
 		return null;
 	}
+	
+	/**
+	 * Retorna o nome do modulo pelo id passado como parametro
+	 * 
+	 * @param Int $idModulo
+	 * 
+	 * @return null|String
+	 */
+	public function retornaNomeModuloPorId($idModulo)
+	{
+		// recuperando objeto
+		$objModulo = $this->_retornaObjetosPorParametros("id = {$idModulo}", null, 1, 0);
+
+		// verificando resultado da recuperacao
+		if (is_object($objModulo))
+			return $objModulo->nome;
+
+		return null;
+	}
+	
 
 	public function retornaIdModuloPorNomeViaSQL($nomeModulo)
 	{

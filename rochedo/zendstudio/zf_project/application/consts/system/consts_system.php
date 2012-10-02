@@ -334,11 +334,6 @@ TEXT;
 define("FORM_GERADOR_CONSTRUCTOR_HEADER", $header);
 
 $header = <<<TEXT
-@identacao// Adicionando paths para localizacao de componentes nao ZF.
-TEXT;
-define("FORM_GERADOR_ADDPREFIXPATH_COMMENT", $header);
-
-$header = <<<TEXT
 @identacao// Adicionando displays groups.
 TEXT;
 define("FORM_GERADOR_ADDDISPLAYGROUP_COMMENT", $header);
@@ -347,8 +342,6 @@ $header = <<<TEXT
 @identacao// Inicializando o sub-formulário.
 TEXT;
 define("FORM_GERADOR_SUB_FORM_INIT_COMMENT", $header);
-
-define("FORM_GERADOR_ELEMENTS", '$elements');
 define("FORM_CLASS_EXTENDS_DOJO_FORM", "Zend_Dojo_Form");
 define("FORM_CLASS_EXTENDS_DOJO_FORM_SUB_FORM", "Zend_Dojo_Form_SubForm");
 define("FORM_CLASS_EXTENDS_ZEND_FORM", "Zend_Form");
@@ -398,10 +391,6 @@ define("FORM_GERADOR_FORM_SUB_FORM_GETDISPLAYGROUP", FORM_GERADOR_FORM_SUB_FORM_
 define("FORM_GERADOR_FORM_SUB_FORM_ADDSUBFORM", '->addSubForm');
 define("FORM_GERADOR_FORM_ELEMENT_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento())');
 define("FORM_GERADOR_FORM_ELEMENT_CREATEELEMENT", '$this->createElement');
-define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_FORMNAME_TAG", "@nomeForm");
-define("FORM_GERADOR_FORM_ELEMENT_FORM_NAME", "@nomeForm");
-define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_TITLE_TAG", '@title');
-define("FORM_GERADOR_FORM_ELEMENT_SETATTRIBS_VALIDATION_MESSAGE_TAG", '@message');
 define("FORM_GERADOR_FORM_ELEMENT_ADDFILTERS", '->addFilters');
 define("FORM_GERADOR_FORM_ELEMENT_ADDVALIDATOR", '->addValidator');
 define("FORM_GERADOR_FORM_ELEMENT_ADDDECORATOR", '->addDecorator');
@@ -411,7 +400,6 @@ define("FORM_GERADOR_FORM_ELEMENT_SETINVALIDMESSAGE", '->setInvalidMessage');
 define("FORM_GERADOR_FORM_ELEMENT_CHECK_RELOADABLE", 'if (($options!=null) and ');
 define("FORM_GERADOR_FORM_ELEMENT_SETVALUE", '->setValue');
 define("FORM_GERADOR_FORM_ELEMENT_SETVALUE_VARIABLE", '$options[');
-define("FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_FORM_ELEMENT_LABEL_REQUIRED", "* ");
 define("FORM_GERADOR_FORM_TEMP_VARIABLE", '$tempVariable');
 define("FORM_GERADOR_FORM_ELEMENT_GET_DIJITPARAM", "->getDijitParam");

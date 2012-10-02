@@ -241,19 +241,19 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 
 	/**
 	 * Retorna um array de objetos Basico_Model_FormularioFormularioElemento, que possuem GrupoFormularioElemento, relacionados 
-	 * ao formulario passado como parametro
+	 * ao id do formulario passado como parametro
 	 * 
-	 * @param Basico_Model_Formulario $objFormulario
+	 * @param Int $idFormulario
 	 * 
 	 * @return Array
 	 */
-	public function retornaObjetosFormularioFormularioElementoGrupoFormularioElemento(Basico_Model_Formulario $objFormulario)
+	public function retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($idFormulario)
 	{
 		// recuperando objetos
-		$objsFormularioFormularioElemento = $this->_retornaObjetosPorParametros("id_formulario = {$objFormulario->id} and id_grupo_formulario_elemento is not null", array('ordem', 'id_grupo_formulario_elemento'));
+		$arrayFormularioFormularioElemento = $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario} and id_grupo is not null", array('ordem', 'id_grupo'), null, null, array('id', 'idElemento', 'ordem', 'idGrupo'));
 
 		// retornando array de objetos
-		return $objsFormularioFormularioElemento;
+		return $arrayFormularioFormularioElemento;
 	}
 
 	/**

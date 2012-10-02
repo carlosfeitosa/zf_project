@@ -311,6 +311,16 @@ class Basico_OPController_GeradorFormularioOPController
 	const TAG_SUBSTITUICAO_ATTRIBS = TAG_ATTRIBS;
 	
 	/**
+	 * Tag de substituicao de options
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/09/2012
+	 */
+	const TAG_SUBSTITUICAO_OPTIONS = TAG_OPTIONS;
+	
+	/**
 	 * Tag de substituicao de nome de atributo
 	 * 
 	 * @var String
@@ -629,6 +639,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 26/06/2012
 	 */
 	const COMENTARIO_CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT;
+	
+	/**
+	 * Comentario da chamada do método adicionaDisplayGroups
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 26/06/2012
+	 */
+	const COMENTARIO_CHAMADA_ADICIONA_DISPLAYGROUPS_FORMULARIO = FORM_GERADOR_ADICIONA_DISPLAYGROUPS_CALL_COMMENT;
 
 	/**
 	 * chamada do método adicionaDecorators do formulário
@@ -649,6 +669,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 05/07/2012
 	 */
 	const ASSINATURA_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_DECORATORS_DECLARATION;
+	
+	/**
+	 * Assinatura do método adicionaDisplayGroups do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	const ASSINATURA_ADICIONA_DISPLAYGROUPS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_DISPLAYGROUPS_DECLARATION;
 
 	/**
 	 * Comentário da declaração do método adicionaDecorators do formulário
@@ -659,6 +689,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 05/07/2012
 	 */
 	const COMENTARIO_DECLARACAO_ADICIONA_DECORATORS_FORMULARIO = FORM_GERADOR_ADICIONA_DECORATORS_FORMULARIO_HEADER;
+	
+	/**
+	 * Comentário da declaração do método adicionaDisplayGroups do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	const COMENTARIO_DECLARACAO_ADICIONA_DISPLAYGROUPS_FORMULARIO = FORM_GERADOR_ADICIONA_DISPLAY_GROUPS_FORMULARIO_HEADER;
 
 	/**
 	 * Comentário da adiçã e remoção de decorators do formulário
@@ -679,6 +719,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 26/06/2012
 	 */
 	const CHAMADA_ADICIONA_ELEMENTOS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_ELEMENTOS_CALL;
+	
+	/**
+	 * chamada do método adicionaDisplayGroups do formulário
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	const CHAMADA_ADICIONA_DISPLAYGROUPS_FORMULARIO = FORM_GERADOR_FORM_ADICIONA_DISPLAYGROUPS_CALL;
 	
 	/**
 	 * Comentário da declaração do método adicionaElementos do formulário
@@ -749,6 +799,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 10/07/2012
 	 */
 	const CHAMADA_SET_ATTRIBS = FORM_GERADOR_SETATTRIBS;
+	
+	/**
+	 * Chamada para o metodo setOptions
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 25/09/2012
+	 */
+	const CHAMADA_SET_OPTIONS = FORM_GERADOR_SETOPTIONS;
 	
 	/**
 	 * Chamada para o metodo setOrdem
@@ -1059,7 +1119,7 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// limpando do array de módulos os módulos que foram passados para serem excluídos da geração
 		$arrayModulosAssociados = $this->limpaElementosArrayIdsModulosNomesModulosArrayIdsModulesExclude($arrayIdsModulesExcludeGeneration, $arrayModulosAssociados);
-
+		
 		// recuperando dados sobre a versão do formulário
 		$arrayDadosVersao = $this->_formularioOPController->retornaArrayDadosVersaoFormularioPorIdFormulario($idFormulario);
 
@@ -1124,6 +1184,12 @@ class Basico_OPController_GeradorFormularioOPController
 				// retornando mensagens de erro
 				return array('Não foi possível escrever o método adicionaElementos no formulário.');
 			}
+			
+			// escrevendo o metodo que adiciona os display groups do formulario e verificando o resultado da operação
+			if (!$this->escreveAdicionaDisplayGroupsFormulario($resourceArquivoTemporario, $idFormulario, $arrayDadosFormulario['formName'], false, $autorFormulario)) {
+				// retornando mensagens de erro
+				return array('Não foi possível escrever os displays groups no formulário.');
+			}
 
 			// escrevendo a tag de fechamento do bloco de codigo principal da classe
 			if (!$this->escreveTagInicioOuFimBlocoCodigo($resourceArquivoTemporario, true)) {
@@ -1135,6 +1201,28 @@ class Basico_OPController_GeradorFormularioOPController
 			if (!$this->escreveTagFechamentoArquivo($resourceArquivoTemporario)) {
 				// retornando mensagens de erro
 				return array('Não foi possível escrever a tag de fechamento do arquivo.');
+			}
+			
+			// recuperando conteudo do arquivo
+			$conteudoArquivo = file_get_contents($nomeArquivoFormularioTemporario);
+			
+			// percorrendo array de modulos para criacao dos arquivos
+			foreach ($arrayModulosAssociados as $idModulo => $nomeModulo) {
+				// copiando conteudo do arquivo para variavel 
+				$copiaConteudoArquivo = $conteudoArquivo;
+
+				// substituindo nome do modulo no conteudo do arquivo
+				$copiaConteudoArquivo = str_replace(TAG_NOME_MODULO, ucfirst($nomeModulo), $copiaConteudoArquivo);
+				
+				// recuperando caminho para os modulos do sistema
+				$formModulePath = APPLICATION_MODULES_PATH . "/" . $nomeModulo . "/forms/" . $arrayDadosFormulario['formName'] . ".php";
+				
+				// criando ou atualizando arquivo 
+				file_put_contents($formModulePath, $copiaConteudoArquivo);
+				
+				// excluíndo arquivo temporário e verificando o resultado da operação
+		   	 	$this->excluiArquivoFormularioTemporario($nomeArquivoFormularioTemporario);
+				
 			}
 
 		} catch (Exception $e) {
@@ -1711,7 +1799,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	private function escreveChamadaAddAttribsFormulario($resourceArquivo, $atributosFormulario)
+	private function escreveChamadaAddAttribsFormulario($resourceArquivo, $atributosFormulario, $nomeFormulario)
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
@@ -1727,6 +1815,14 @@ class Basico_OPController_GeradorFormularioOPController
 		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $chamadaAddAttribs);
 		$chamadaAddAttribs = str_replace(self::TAG_SUBSTITUICAO_ATRIBUTOS_FORMULARIO, $atributosFormulario, $chamadaAddAttribs);
 
+		// carregando chamadas ao tradutor para textos de caixas de dialogo de validacao
+	    $tituloDialogValidacao = "{" . TRADUTOR_CALL . "('FORM_VALIDATION_TITLE')}";
+	    $labelDialogValidacao = "{" . TRADUTOR_CALL . "('FORM_VALIDATION_MESSAGE')}";
+		
+		$chamadaAddAttribs = str_replace(TAG_NOME_FORMULARIO, self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . $nomeFormulario, $chamadaAddAttribs);
+		$chamadaAddAttribs = str_replace(TAG_TITLE, $tituloDialogValidacao, $chamadaAddAttribs);
+		$chamadaAddAttribs = str_replace(TAG_MESSAGE, $labelDialogValidacao, $chamadaAddAttribs); 
+		
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaAddAttribs, true);
 	}
@@ -1973,9 +2069,57 @@ class Basico_OPController_GeradorFormularioOPController
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, null, 1)
 				and $this->escreveInicializacaoFormulario($resourceArquivo, $arrayAtributosFormulario)
 				and $this->escreveComentarioEChamadaAddDecoratorFormulario($resourceArquivo)
-				and $this->escreveComentarioEChamadaAdicionaELementosFormulario($resourceArquivo)
+				and $this->escreveComentarioEChamadaAdicionaElementosFormulario($resourceArquivo)
+				and $this->escreveComentarioEChamadaAdicionaDisplayGroupsFormulario($resourceArquivo)
 				and $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
 	}
+	
+	/**
+     * Retorna string contendo os addPrefixPath dos componentes nao ZF
+     * 
+     * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a inicialização do formulário
+     * @param Integer $nivelIdentacaoInicial
+     * @param Integer $idFormulario
+     * @param String $addPrefixComment
+     * 
+     * @return String
+     */
+	private static function escreveAddPrefixPathElementosNaoZFFormulario($resourceArquivo, $nivelIdentacaoInicial, $idFormulario, $addPrefixComment)
+	{
+		// inicializando variaveis
+		$tempReturn = '';
+		$arrayPrefixPaths = array();
+		$nivelIdentacao = $nivelIdentacaoInicial;
+
+		$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
+		
+		// recuperando array de prefixos e paths de componentes nao ZF
+		$arrayNomesCategoriasComponentesNaoZFFormulario = Basico_OPController_CategoriaOPController::retornaArrayNomesCategoriasComponentesNaoZFPorIdFormularioViaSQL($idFormulario);
+		
+		// verificando o resultado da recuperacao do array
+		if ((isset($arrayNomesCategoriasComponentesNaoZFFormulario)) and (count($arrayNomesCategoriasComponentesNaoZFFormulario > 0)))
+			// recuperando array
+			$arrayPrefixPaths = Basico_OPController_ComponenteOPController::retornaArrayPrefixPathComponentesNaoZF($arrayNomesCategoriasComponentesNaoZFFormulario);
+
+		// verificando o resultado da recuperacao do array de prefixos e paths
+		if (count($arrayPrefixPaths) <= 0)
+			return null;
+
+		// adicionando comentario
+		if ($addPrefixComment)
+			// montando retorno
+			$tempReturn .= str_replace('@identacao', $identacao, $addPrefixComment) . QUEBRA_DE_LINHA;
+
+		// loop para preencher string de retorno
+		foreach ($arrayPrefixPaths as $arrayPrefixPath) {
+			// montando retorno			
+			$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDPREFIXPATH . "('{$arrayPrefixPath[COMPONENTE_NAO_ZF_PREFIX]}', '{$arrayPrefixPath[COMPONENTE_NAO_ZF_PATH]}');" . QUEBRA_DE_LINHA;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $tempReturn, true);
+	}
+	
 
 	/**
 	 * Escreve a inicialização do formulário
@@ -1998,6 +2142,12 @@ class Basico_OPController_GeradorFormularioOPController
 	    	return false;
 	    }
 
+		// escrevendo o comentário para o método de setar o nome do formulário e verificando o resultado
+	    if (!$this->escreveAddPrefixPathElementosNaoZFFormulario($resourceArquivo, 2, $arrayAtributosFormulario['id'], FORM_GERADOR_ADDPREFIXPATH_COMMENT)) {
+	    	// retornando falso
+	    	return false;
+	    }
+	    
 	    // escrevendo o comentário para o método de setar o nome do formulário e verificando o resultado
 	    if (!$this->escreveComentarioChamadaSetNameFormulario($resourceArquivo)) {
 	    	// retornando falso
@@ -2048,8 +2198,8 @@ class Basico_OPController_GeradorFormularioOPController
 	    		return false;
 	    	}
 	    	
-	    	// escrevendo a chamada do setAction para setar a url de envio de dados e verificando o resultado
-	    	if (!$this->escreveChamadaAddAttribsFormulario($resourceArquivo, $arrayAtributosFormulario['formAttribs'])) {
+	    	// escrevendo a chamada do add attribs do formulario
+	    	if (!$this->escreveChamadaAddAttribsFormulario($resourceArquivo, $arrayAtributosFormulario['formAttribs'], $arrayAtributosFormulario['formName'])) {
 	    		// retornando falso
 	    		return false;
 	    	}
@@ -2064,7 +2214,65 @@ class Basico_OPController_GeradorFormularioOPController
 	    // retornando o resultado
 	    return true;
 	}
+	
+	/**
+	 * Escreve o comentario da chamada para o metodo adicionaDisplayGroups() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveComentarioChamadaAdicionaDisplayGroupsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
 
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_ADICIONA_DISPLAYGROUPS_FORMULARIO), true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo adicionaDisplayGroups() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveChamadaAdicionaDisplayGroupsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_ADICIONA_DISPLAYGROUPS_FORMULARIO), true);
+	}
+	
+	/**
+	 * Escreve o comentário e a chamada do metodo adicionaDisplayGroups do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo
+	 *
+	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveComentarioEChamadaAdicionaDisplayGroupsFormulario($resourceArquivo)
+	{
+		// escrevendo comentario e chamada e retornando resultado
+		return ($this->escreveComentarioChamadaAdicionaDisplayGroupsFormulario($resourceArquivo) and $this->escreveChamadaAdicionaDisplayGroupsFormulario($resourceArquivo));		
+	}
+	
 	/**
 	 * Escreve o comentario da chamada para o metodo adicionaElementos() do formulario
 	 * 
@@ -2117,7 +2325,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @authorJoão Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 26/06/2012
 	 */
-	private function escreveComentarioEChamadaAdicionaELementosFormulario($resourceArquivo)
+	private function escreveComentarioEChamadaAdicionaElementosFormulario($resourceArquivo)
 	{
 		// escrevendo comentario e chamada e retornando resultado
 		return ($this->escreveComentarioChamadaAdicionaElementosFormulario($resourceArquivo) and $this->escreveChamadaAdicionaElementosFormulario($resourceArquivo));		
@@ -2285,6 +2493,34 @@ class Basico_OPController_GeradorFormularioOPController
 
 	    return true;
 	}
+	
+	/**
+	 * Escreve o comentário da declaração do método adicionaDisplayGroups do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveComentarioDeclaracaoAdicionaDisplayGroupsFormulario($resourceArquivo, $autor = self::AUTOR_PADRAO)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+	    	// retornando falso
+	    	return false;
+	    }
+
+		// recuperando cabeçalho do arquivo
+		$comentarioAdicionaDisplayGroups = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(1), self::COMENTARIO_DECLARACAO_ADICIONA_DISPLAYGROUPS_FORMULARIO);
+		$comentarioAdicionaDisplayGroups = str_replace(self::TAG_SUBSTITUICAO_AUTOR_FORMULARIO, $autor, $comentarioAdicionaDisplayGroups);
+		$comentarioAdicionaDisplayGroups = str_replace(self::TAG_SUBSTITUICAO_DATA_CRIACAO_FORMULARIO, Basico_OPController_UtilOPController::retornaDateTimeAtual(LOCALE_PT_BR, DEFAULT_DATETIME_FORMAT_PT_BR), $comentarioAdicionaDisplayGroups);
+		
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, QUEBRA_DE_LINHA . $comentarioAdicionaDisplayGroups, true);
+	}
 
 	/**
 	 * Escreve o comentário da declaração do método adicionaDecorators do formulário
@@ -2312,6 +2548,28 @@ class Basico_OPController_GeradorFormularioOPController
 		
 		// escrevendo o comentario do construtor da classe no arquivo
 		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, QUEBRA_DE_LINHA . $comentarioAdicionaDecorators, true);
+	}
+	
+	/**
+	 * Escreve a assinatura do método adicionaDisplayGroups do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o texto
+	 * 
+	 * @return Boolean - true se conseguir escrever a assinatura no arquivo ou false se não
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveAssinaturaAdicionaDisplayGroupsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if (!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) {
+	    	// retornando falso
+	    	return false;
+		}
+
+		// escrevendo a assinatura do construtor do formulario no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(1), self::ASSINATURA_ADICIONA_DISPLAYGROUPS_FORMULARIO), true);
 	}
 
 	/**
@@ -3376,7 +3634,7 @@ class Basico_OPController_GeradorFormularioOPController
     			$stringAttribs   = "array({$decoratorAttribs})";
     		
 	    		// montando attribs do addDecorator do elemento
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $stringAttribs, self::CHAMADA_SET_ATTRIBS);
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, $stringAttribs, self::CHAMADA_SET_OPTIONS);
 		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $attribs);
 				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName . "->getDecorator('{$decorator}')" , $attribs);
 	    		
@@ -3681,7 +3939,7 @@ class Basico_OPController_GeradorFormularioOPController
     			$stringAttribs   = "array({$decoratorAttribs})";
     		
 	    		// montando attribs do addDecorator do formulario
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $stringAttribs, self::CHAMADA_SET_ATTRIBS);
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, $stringAttribs, self::CHAMADA_SET_OPTIONS);
 		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $attribs);
 				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->getDecorator('{$decorator}')" , $attribs);
 	    		
@@ -3791,6 +4049,235 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// retornando array de elementos filtrados
 		return $arrayRetorno;
+	}
+	
+	/**
+	 * Escreve o método adicionaDisplayGroups do formulário
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Integer $idFormulario - id do formulário que deseja adicionar os display groups
+	 * @param Integer $nomeFormulario - nome do formulário que deseja adicionar os display groups
+	 * @param String $subFormVariableInstance
+	 * @param String $autor - nome do autor do formulário para ser utilizado no cabeçalho da assinatura da classe
+	 * 
+	 * @return Boolean - true se conseguir escrever todos os códigos, false se não
+	 *
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 02/10/2012
+	 */
+	private function escreveAdicionaDisplayGroupsFormulario($resourceArquivo, $idFormulario, $nomeFormulario, $subFormVariableInstance = false, $autor = self::AUTOR_PADRAO)
+	{
+		// escrevendo comentário, assinatura e métodos e retornando o resultado
+		return ($this->escreveComentarioDeclaracaoAdicionaDisplayGroupsFormulario($resourceArquivo, $autor) and
+				 $this->escreveAssinaturaAdicionaDisplayGroupsFormulario($resourceArquivo) and
+				 $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, false, 1) and
+				 $this->escreveDisplaysGroupsFormulario($resourceArquivo, 2, $idFormulario, $nomeFormulario, $subFormVariableInstance) and
+				 $this->escreveTagInicioOuFimBlocoCodigo($resourceArquivo, true, 1));
+	}
+	
+	/**
+     * Escreve os displays groups no formulario
+     * 
+     * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+     * @param Integer $nivelIdentacaoInicial
+     * @param $idFormulario
+     * @param $nomeFormulario
+     * @param String $subFormVariableInstance
+     * 
+     * @return Boolean
+     */
+    private function escreveDisplaysGroupsFormulario($resourceArquivo, $nivelIdentacaoInicial, $idFormulario, $nomeFormulario, $subFormVariableInstance)
+    {
+    	// inicializacao das variaveis
+    	$nivelIdentacao = $nivelIdentacaoInicial;
+    	$arrayDisplaysGroups = array();
+    	$arrayDecoratorsDisplayGroups = array();
+    	$tempReturn = '';
+
+    	$identacao = Basico_OPController_UtilOPController::retornaIdentacao($nivelIdentacao);
+
+    	// recuperando elementos que possuem display group
+    	$arrayDadosFormularioFormularioElemento = Basico_OPController_FormularioAssocclElementoOPController::getInstance()->retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($idFormulario);
+
+    	// verificando o resultado da recuperacao
+    	if (count($arrayDadosFormularioFormularioElemento) <= 0)
+    		return null;
+    	
+    	// recuperando os ids dos elementos do formulario
+	    $arrayIdsElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario);
+    	
+    	// recuperando dados da relacao do formulario com os elementos
+	    $arrayDadosElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayDadosElementosFormularioOrdenadoPorIdFormularioOrdemPorIdFormulario($idFormulario);
+	    	    
+	    // recuperando dados dos elementos
+	    $arrayDadosElementos = $this->_formularioElementoOPController->retornaArrayDadosElementosPorArrayIdsElementos($arrayIdsElementosFormulario);
+
+		// loop para identificar os elementos dentro dos displays groups
+		foreach ($arrayDadosFormularioFormularioElemento as $formularioFormularioElemento) {
+
+			// verificando se o id do display group existe no array de displays groups
+			if (null != $formularioFormularioElemento['idGrupo'] and !array_key_exists($formularioFormularioElemento['idGrupo'], $arrayDisplaysGroups)) {
+				// inicializando array dentro do array de displays groups
+				$arrayDisplaysGroups[$formularioFormularioElemento['idGrupo']] = array();
+				// recuperando decorator do primeiro elemento do grupo
+				$arrayDecoratorsDisplayGroups[$formularioFormularioElemento['idGrupo']] = Basico_OPController_FormularioAssocclElementoGrupoAssocclDecoratorOPController::getInstance()->retornaArrayDadosFormularioAssocclElementoGrupoAssocclDecoratorPorIdGrupo($formularioFormularioElemento['idGrupo']);
+			}
+
+			// carregando array com os elementos do grupo
+			$arrayDisplaysGroups[$formularioFormularioElemento['idGrupo']][] = $formularioFormularioElemento;
+		}
+
+		// inicializando variaveis
+		$arrayDadosDisplayGroup = null;
+
+		// loop para escrever os display groups
+		foreach ($arrayDisplaysGroups as $idDisplayGroup => $arrayDadosElementosDisplayGroup) {
+			// inicializando array para preenchimento de elementos do grupo
+			$arrayElementosDisplayGroup = array();
+			
+			// carregando objeto GrupoFormularioElemento
+			$arrayDadosDisplayGroup = Basico_OPController_FormularioAssocclElementoGrupoOPController::getInstance()->retornaArrayDadosFormularioAssocclElementoGrupoPorId($idDisplayGroup);
+
+			// loop para descarregar os elementos do grupo
+			foreach ($arrayDadosElementosDisplayGroup as $elementoDisplayGroup) {
+				
+			// inicializando elementName com tag de substituicao do nome do modulo e o nome do formulario
+	    	$nomeElemento = self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . ucfirst($nomeFormulario);
+	    		
+			// recuperando o elementName
+	    	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementName']) {
+	    		// elementName da especialização com a primeira letra Maiuscula
+	    		$nomeElemento .= ucfirst($arrayDadosElementosFormulario[$idElemento]['elementName']);
+	    	}else{
+	    		// elementName default com a primeira letra Maiuscula
+	    		$nomeElemento .= ucfirst($arrayDadosElementos[$elementoDisplayGroup['idElemento']]['elementName']);
+	    	}
+				
+				// carregando array com os elementos do grupo
+				$arrayElementosDisplayGroup[] = Basico_OPController_UtilOPController::retornaStringEntreCaracter($nomeElemento, "'");				
+			}
+
+			// estourando array em string
+			$stringElementos = implode(',', $arrayElementosDisplayGroup);
+
+			// recuperando o nome do display group
+			$nomeDisplayGroup = strtolower($arrayDadosDisplayGroup['nome']);
+
+			// escrevendo display group
+			$tempReturn .= str_replace('@identacao', $identacao, FORM_GERADOR_ADDDISPLAYGROUP_COMMENT) . QUEBRA_DE_LINHA;
+			
+			// verificando se eh um subform
+			if (!$subFormVariableInstance) { // se nao for subform
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . TRADUTOR_CALL . "('{$arrayDadosDisplayGroup['constanteTextualLabel']}'), 'order' => {$arrayDadosElementosDisplayGroup[0]['ordem']}));" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+			}
+			else { // se for subform
+				$tempReturn .= $identacao . FORM_GERADOR_FORM_SUB_FORM_ADDDISPLAYGROUP . "(array({$stringElementos}), '{$nomeDisplayGroup}', array('legend' => " . TRADUTOR_CALL . "('{$arrayDadosDisplayGroup['constanteTextualLabel']}'), 'order' => {$arrayDadosElementosDisplayGroup[0]['ordem']}));" . QUEBRA_DE_LINHA;
+				$tempReturn .= $identacao . "\${$nomeDisplayGroup} = " . FORM_GERADOR_FORM_SUB_FORM_GETDISPLAYGROUP . "('{$nomeDisplayGroup}');" . QUEBRA_DE_LINHA;
+				$tempReturn = str_replace(FORM_GERADOR_FORM_SUB_FORM_VARIABLE_INSTANCE, $subFormVariableInstance, $tempReturn);
+			}
+			
+			// adicionando chamada para remocao do decorator DtDdWrapper
+			$tempReturn .= $identacao . "\${$nomeDisplayGroup}" . FORM_GERADOR_FORM_ELEMENT_REMOVEDECORATOR . "('DtDdWrapper');" . QUEBRA_DE_LINHA;
+			
+			// verificando se existem decorators para o displayGroup
+			if (count($arrayDecoratorsDisplayGroups)) {
+				
+				// percorrendo array dos displayGroups com decorators para carregar variavel com retorno
+				foreach ($arrayDecoratorsDisplayGroups[$idDisplayGroup] as $decoratorsDisplayGroup) {
+
+					// verificando se so retornou um decorator
+					if (isset($decoratorsDisplayGroup['idDecorator'])) {
+
+						// recuperando dados do decorator
+		    			$arrayDadosDecorator = Basico_OPController_FormularioDecoratorOPController::getInstance()->retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators(array($decoratorsDisplayGroup['idDecorator']));
+		    			
+		    			// adicionando string com chamada para adicao do decorator
+		    			$tempReturn .= $this->retornaAddDecoratorDisplayGroup($resourceArquivo, $nomeDisplayGroup, $identacao, $arrayDadosDecorator[$decoratorsDisplayGroup['idDecorator']]['componente'], $arrayDadosDecorator[$decoratorsDisplayGroup['idDecorator']]['attribs'], $arrayDadosDecorator[$decoratorsDisplayGroup['idDecorator']]['alias']);
+			    			
+					}else{
+					
+						// percorrendo os decorators do displayGroup
+						foreach ($decoratorsDisplayGroup as $decoratorDisplayGroup) {
+							// recuperando dados do decorator
+			    			$arrayDadosDecorator = Basico_OPController_FormularioDecoratorOPController::getInstance()->retornaArrayDadosMontagemDecoratorsPorArrayIdsDecorators(array($decoratorDisplayGroup['idDecorator']));
+			    			
+			    			// adicionando string com chamada para adicao do decorator
+			    			$tempReturn .= $this->retornaAddDecoratorDisplayGroup($resourceArquivo, $nomeDisplayGroup, $identacao, $arrayDadosDecorator[$decoratorDisplayGroup['idDecorator']]['componente'], $arrayDadosDecorator[$decoratorDisplayGroup['idDecorator']]['attribs'], $arrayDadosDecorator[$decoratorDisplayGroup['idDecorator']]['alias']);
+		    			}
+					}
+				}
+			}			
+		}
+		
+		// escrevendo linha que adiciona os displays groups do formulario
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $tempReturn, true);
+    }
+    
+	/**
+	 * retorna uma string contendo o codigo para adicao do decorator ao display group
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param String $nomeDisplayGroup - nome do display group que tera o decorator adicionado
+	 * @param String $identacao - identacao que sera utilizada para escrever
+	 * @param String $decorator - decorator a ser adicionado no elemento
+	 * @param String $decoratorAlias - alias do decorator a ser adicionado no elemento
+	 * @param String $decoratorAttribs - string com os attribs do decorator
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 01/10/2012
+	 * 
+	 */
+	private function retornaAddDecoratorDisplayGroup($resourceArquivo, $nomeDisplayGroup, $identacao, $decorator, $decoratorAttribs, $decoratorAlias)
+	{
+		// verificando se o decorator foi passado
+    	if (null !== $decorator) {
+    		
+    		// utilizando o nome do decorator (componente)
+    		$stringDecorator = Basico_OPController_UtilOPController::retornaStringEntreCaracter($decorator, "'");
+    		
+    		// montando string do nome do decorator
+    		if (null != $decoratorAlias) {
+    			// utilizando alias do decorator
+    			$stringDecorator = Basico_OPController_UtilOPController::retornaStringEntreCaracter($decoratorAlias, "'");
+
+    			// montando decorator com alias e componente
+    			$stringDecorator = "array({$stringDecorator} => '{$decorator}')";
+    			
+    			// setando alias como nome do decorator
+    			$decorator = $decoratorAlias;
+    		}
+    		
+	    	// montando string do addDecorator do formulario
+	    	$addDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $stringDecorator, self::CHAMADA_ADD_DECORATOR);
+	    	$addDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, $identacao, $addDecorator);
+			$addDecorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, "\${$nomeDisplayGroup}", $addDecorator);
+	    	
+	    	// escrevendo linha que adiciona o addDecorator do formulario
+	    	$return = $addDecorator . QUEBRA_DE_LINHA;
+	    	
+	    	// verificando se o decorator possui attribs
+    		if ($decoratorAttribs != '' and $decoratorAttribs != null) {
+    			
+    			// adicionando attribs a string do decorator
+    			$stringAttribs   = "array({$decoratorAttribs})";
+    		
+	    		// montando attribs do addDecorator do formulario
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, $stringAttribs, self::CHAMADA_SET_OPTIONS);
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, $identacao, $attribs);
+				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, "\${$nomeDisplayGroup}" . "->getDecorator('{$decorator}')" , $attribs);
+	    		
+				// escrevendo linha que adiciona o setAttribs do decorator do formulario
+		    	$return .= $attribs . QUEBRA_DE_LINHA;
+	    	
+    		}
+    		
+    		return $return;
+    	}
+    	
+    	return "";
 	}
 
 	/**

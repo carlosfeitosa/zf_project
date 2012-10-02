@@ -9,26 +9,59 @@
  */
 class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico_AbstractModel_RochedoPersistentModeloAssociacao implements Basico_InterfaceModel_RochedoPersistentModeloGenerico
 {
+	/**
+     * Referência a classe Basico_Model_FormularioAssocclElementoGrupo
+     * @var Int
+     */
+    protected $_idGrupo;
     /**
      * Referência a classe Basico_Model_FormularioDecorator
      * @var int
      */
     protected $_idDecorator;
 	/**
-     * Referência a classe Basico_Model_Include
-     * @var Int
-     */
-    protected $_idInclude;
-	/**
      * @var int
      */
     protected $_ordem;
 
+	/**
+    * Set idGrupo
+    * 
+    * @param int $idGrupo 
+    * @return Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator
+    */
+    public function setIdGrupo($idGrupo)
+    {
+        $this->_idGrupo = Basico_OPController_UtilOPController::retornaValorTipado($idGrupo, TIPO_INTEIRO, true);
+        return $this;
+    }
+
+    /**
+    * Get idGrupo
+    * 
+    * @return null|int
+    */
+    public function getIdGrupo()
+    {
+        return $this->_idGrupo;
+    }
+    
+	/**
+     * Get Grupo object
+     * @return null|Basico_Model_Include
+     */
+    public function getGrupoObject()
+    {
+        $model = new Basico_Model_FormularioAssocclElementoGrupo();
+        $object = $model->find($this->_idGrupo);
+        return $object;
+    }
+    
     /**
     * Set idDecorator
     * 
     * @param int $ 
-    * @return Basico_Model_DecoratorAssocclInclude
+    * @return Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator
     */
     public function setIdDecorator($idDecorator)
     {
@@ -54,39 +87,6 @@ class Basico_Model_FormularioAssocclElementoGrupoAssocclDecorator extends Basico
     {
         $model = new Basico_Model_FormularioDecorator();
         $object = $model->find($this->_idDecorator);
-        return $object;
-    }
-
-    /**
-    * Set idInclude
-    * 
-    * @param int $idInclude
-    * @return Basico_Model_DecoratorAssocclInclude
-    */
-    public function setIdInclude($idInclude)
-    {
-        $this->_idInclude = Basico_OPController_UtilOPController::retornaValorTipado($idInclude, TIPO_INTEIRO, true);
-        return $this;
-    }
-
-    /**
-    * Get idInclude
-    * 
-    * @return null|int
-    */
-    public function getIdInclude()
-    {
-        return $this->_idInclude;
-    }
- 
-    /**
-     * Get Include object
-     * @return null|Basico_Model_Include
-     */
-    public function getIncludeObject()
-    {
-        $model = new Basico_Model_Include();
-        $object = $model->find($this->_idInclude);
         return $object;
     }
 
