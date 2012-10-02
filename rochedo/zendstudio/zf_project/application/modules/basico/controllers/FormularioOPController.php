@@ -316,7 +316,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 	public function retornaArrayIdsFormsNamesTodosFormulariosOrdenadoPorFormName()
 	{
 		// retornando array com o resultado
-		return $this->_retornaArrayDadosObjetosPorParametros(null, 'form_name', null, null, array('id', 'formName'));
+		return $this->_retornaArrayDadosObjetosPorParametros("id_formulario_pai is null", 'form_name', null, null, array('id', 'formName'));
 	}
 
 	/**
@@ -702,7 +702,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		$arrayIdsSubFormularios = array();
 
 		// recuperando a categoria do componente do formulário
-		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaCompoentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
+		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaComponentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
 
 		// verificando se o formulário possui sub-formulários
 		if ($this->existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)) {
@@ -765,7 +765,7 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 		$arrayIdsSubFormularios = array();
 
 		// recuperando a categoria do componente do formulário
-		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaCompoentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
+		$idCategoriaComponenteFormulario = $this->_componenteOPController->retornaIdCategoriaComponentePorIdComponente($this->retornaIdComponenteFormularioPorIdFormulario($idFormulario));
 
 		// verificando se o formulário possui sub-formulários
 		if ($this->existeFormulariosFilhosPorIdFormularioViaSQL($idFormulario)) {
@@ -819,18 +819,145 @@ class Basico_OPController_FormularioOPController extends Basico_AbstractOPContro
 
 		// recuperando associações diretas
 		$arrayNomesTabelasIdsRegistrosAssociacaoDireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas(array('basico.formulario' => $arrayIdsRegistros));
+
+		// montando o array de associações globais
+		$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive(array('basico.formulario' => $arrayIdsRegistros), $arrayNomesTabelasIdsRegistrosAssociacaoDireta);
+
+		// verificando se foi recuperado algum componente
+		if (array_key_exists('basico.componente', $arrayNomesTabelasIdsRegistrosAssociacaoDireta)) {
+			// recuperando relações indiretas do componente (includes)
+			$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico.componente' => $arrayNomesTabelasIdsRegistrosAssociacaoDireta['basico.componente']));
+
+			// verificando se foi recuperado algum include
+			if (array_key_exists('basico_componente.assoccl_include', $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario)) {
+				// setando o array
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario = array('basico_componente.assoccl_include' => $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario['basico_componente.assoccl_include']);
+
+				// eliminando elemetos já recuperados na associação global
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario);
+				// adicionando elementos no array de associações globais
+				$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario);
+
+				// recuperando associações diretas das associações indiretas do componente do formulario, excluindo informações sobre o componente
+				$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario, array('basico.componente'));
+
+				// eliminando elementos já recuperados na associação global
+				$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+				// adicionando elementos no array de associações globais
+				$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+			}
+		}
+
 		// recuperando associações indiretas
 		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico.formulario' => $arrayIdsRegistros));
-		// recuperando associações diretas das associações indiretas
-		$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndireta);
 
-		echo 'formularios (ids):';
+//$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico.formulario' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico.formulario']);
+$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico_formulario.assoccl_decorator' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico_formulario.assoccl_decorator']);
+//$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico_formulario.assoccl_modulo' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico_formulario.assoccl_modulo']);
+//$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico_formulario.assoccl_include' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico_formulario.assoccl_include']);
+//$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico_formulario.assoccl_evento' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico_formulario.assoccl_evento']);
+//$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = array('basico_formulario.assoccl_elemento' => $arrayNomesTabelasIdsRegistrosAssociacaoIndireta['basico_formulario.assoccl_elemento']);
+
+		// eliminando elementos já recuperados na associação global
+		$arrayNomesTabelasIdsRegistrosAssociacaoIndireta = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndireta);
+		// adicionando elementos no array de associações globais
+		$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndireta);
+
+		// recuperando associações diretas das associações indiretas, excluindo associações com o formulário
+		$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndireta, array('basico.formulario'));
+
+		// eliminando elementos já recuperados na associação global
+		$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta);
+		// adicionando elementos no array de associações globais
+		$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta);
+
+		// verificando se foi recuperado algum componente
+		if (array_key_exists('basico.componente', $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta)) {
+			// recuperando relações indiretas do componente (includes), excluindo informações sobre o formulário
+			$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico.componente' => $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta['basico.componente']), array('basico.formulario'));
+
+			// verificando se foi recuperado algum include
+			if (array_key_exists('basico_componente.assoccl_include', $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario)) {
+				// setando o array
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = array('basico_componente.assoccl_include' => $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario['basico_componente.assoccl_include']);
+
+				// eliminando elementos já recuperados na associação global
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+				// adicionando elementos no array de associações globais
+				$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+
+				// recuperando associações diretas das associações indiretas do componente do formulario, excluindo informações sobre o componente
+				$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario, array('basico.componente'));
+
+				// eliminando elementos já recuperados na associação global
+				$arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+				// adicionando elementos no array de associações globais
+				$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario);
+			}
+		}
+
+		// verificando se foi recuperado algum grupo de decorator
+		if (array_key_exists('basico_formulario_decorator.grupo', $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta)) {
+			// inicializando variáveis
+			$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaDecorators = array();
+
+			// recuperando relações indiretas do grupo (decorators), excluindo informações sobre o basico_formulario.assoccl_decorator
+			$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico_formulario_decorator.grupo' => $arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta['basico_formulario_decorator.grupo']), array('basico_formulario.assoccl_decorator'));
+
+			// eliminando elementos já recuperados na associação global
+			$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+
+			// loop para recuperar recursivamente os grupos de decoratos associados a outros grupos
+			while (array_key_exists('basico_form_decorator_grupo.assocag_grupo', $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators)) {
+				// setando o array
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = array('basico_form_decorator_grupo.assocag_grupo' => $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators['basico_form_decorator_grupo.assocag_grupo']);
+
+				// adicionando elementos no array de associações globais
+				$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+
+				// recuperando associações diretas das associacoes indiretas das associações diretas das associações indiretas com grupo decorators
+				$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesDiretas($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+
+				// verificando o resultado da recuperação
+				if (false !== $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators) {
+					// eliminando elementos já recuperados na associação global
+					$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = Basico_OPController_UtilOPController::retornaArrayDiffBiDimensional($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+					// adicionando elementos no array de associações globais
+					$arrayNomesTabelasIdsRegistrosAssociacaoGlobal = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+				
+					// fazendo merge nos arrays de resultados
+					$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaDecorators = array_merge($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaDecorators, $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators);
+
+					// verificando se foi recuperado algum grupo de decorator
+					if (array_key_exists('basico_formulario_decorator.grupo', $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators)) {
+						// recuperando relações indiretas do grupo (decorators), excluindo informações sobre o basico_formulario.assoccl_decorator
+						$arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators = Basico_OPController_DBCheckOPController::recuperaArrayRelacoesIndiretas(array('basico_formulario_decorator.grupo' => $arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators['basico_formulario_decorator.grupo']), array('basico_formulario.assoccl_decorator'));
+					}
+				}
+			}
+		}
+
+		echo '01 formularios (ids):';
 		Basico_OPController_UtilOPController::print_debug($arrayIdsRegistros, true);
-		echo 'relacoes diretas:';
+		echo '02 relacoes diretas:';
 		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDireta, true);
-		echo 'relacoes indiretas:';
+		echo '03 relacoes indiretas com os componentes do formulario:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaComponenteFormulario, true);
+		echo '04 relacoes diretas das relacoes indiretas com os componentes do formulario:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndiretaComponenteFormulario, true);
+		echo '05 relacoes indiretas:';
 		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndireta, true);
-		echo 'relacoes diretas das relacoes indiretas:';
-		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta, true, false, true);
+		echo '06 relacoes diretas das relacoes indiretas:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoIndireta, true);
+		echo '07 relacoes indiretas com os componentes do formulario com relacao indireta:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario, true);
+		echo '08 relacoes diretas das relacoes indiretas com os componentes do formulario com relacao indireta:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoDiretaAssociacaoDiretaAssociacaoIndiretaComponenteFormulario, true);
+		echo '09 relacoes indiretas das relacoes diretas das relacoes indiretas com os grupo decorators do formulario:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaGrupoDecorators, true);
+		echo '10 relacoes diretas das relacoes indiretas das relacoes diretas das relacoes indiretas com os grupo decorators do formulario:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoIndiretaAssociacaoDiretaAssociacaoIndiretaDecorators, true);
+		echo 'GLOBAL:';
+		Basico_OPController_UtilOPController::print_debug($arrayNomesTabelasIdsRegistrosAssociacaoGlobal, true, false, true);
 	}
 }

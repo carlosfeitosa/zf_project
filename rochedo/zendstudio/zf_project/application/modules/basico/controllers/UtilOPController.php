@@ -956,6 +956,48 @@ class Basico_OPController_UtilOPController
 		}
 	}
 
+	/**
+	 * Retorna o resultado da diferença entre dois arrays, levando em consideração as chaves. 
+	 * Esta função retorna tudo o que está no $arrayToCompareAgainst e não está no $arrayToCompareFrom. 
+	 * 
+	 * @param array $arrayToCompareAgainst - array contendo os elementos que deseja comparar contra
+	 * @param array $arrayToCompareFrom - array contendo os elementos que deseja comparar a partir
+	 * 
+	 * @return Array - array contendo a diferença entre os arrays $arrayToCompareAgainst e $arrayToCompareFrom
+	 * 
+	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
+	 * @since 26/09/2012
+	 */
+	public static function retornaArrayDiffBiDimensional(array $arrayToCompareAgainst, array $arrayToCompareFrom)
+	{
+		// inicializando variáveis
+		$arrayRetorno = array();
+
+		// percorrendo o $arrayToCompareFrom para localizar elementos no $arrayToCompareAgainst
+		foreach ($arrayToCompareFrom as $chave => $arrayValor) {
+			// verificando se a chave existe no $arrayToCompareAgainst
+			if (array_key_exists($chave, $arrayToCompareAgainst)) {
+				// recuperando resultado da diferença entre os arrays
+				$arrayTemp = array_diff($arrayValor, $arrayToCompareAgainst[$chave]);
+
+				// verificando o resultado da recuperação
+				if (count($arrayTemp)) {
+					// populando array de resultados
+					$arrayRetorno[$chave] = $arrayTemp;
+				}
+
+				// limpando memória
+				unset($arrayTemp, $arrayValor);
+			} else { // a chave não existe em $arrayToCompareAgainst
+				// populando o array de resultados
+				$arrayRetorno[$chave] = $arrayValor;
+			}
+		}
+
+		// retornando resultados
+		return $arrayRetorno;
+	}
+
     /**
      * Codifica um valor
      * 

@@ -205,14 +205,15 @@ class Basico_OPController_DBCheckOPController
 	/**
 	 * Retorna um array com as relações diretas de uma entidade e registos passados por parametro
 	 * 
-	 * @param $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
+	 * @param Array $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
+	 * @param Array $arrayExclusaoTabelas - array contendo as entidades que serão excluídas do resultado
 	 * 
 	 * @return Array|Boolean - array contendo o nome das entidades e ids de registros, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
 	 * 
 	 * @author Carlos Feitosa / João Vasconcelos (carlos.fetiosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	public static function recuperaArrayRelacoesDiretas(array $arrayNomesTabelasIdsRegistros)
+	public static function recuperaArrayRelacoesDiretas(array $arrayNomesTabelasIdsRegistros, array $arrayExclusaoTabelas = array())
 	{
 		// verificando se foi passado o array de parametros no formato certo
 		if (!count($arrayNomesTabelasIdsRegistros)) {
@@ -232,12 +233,18 @@ class Basico_OPController_DBCheckOPController
 			$arrayEntidadesAssociacaoDireta = self::retornaArrayChavesEstrangeirasPorNomeTabela($nomeTabela);
 
 			// loop para recuperar os nomes dos campos que se deseja recuperar os dados
-			foreach ($arrayEntidadesAssociacaoDireta as $arrayDados) {
-				// montando array de campos para consulta
-				$arrayCamposConsulta[] = $arrayDados['column_name'];
+			foreach ($arrayEntidadesAssociacaoDireta as $chaveNomeCampo => $arrayDados) {
+				// verificando se a entidade recuperada está listada no array de entidades para exclusão
+				if (false === array_search("{$arrayDados['fk_schema']}.{$arrayDados['fk_table_name']}", $arrayExclusaoTabelas)) {
+					// montando array de campos para consulta
+					$arrayCamposConsulta[] = $arrayDados['column_name'];
+				} else {
+					// removendo elemento do array
+					unset($arrayEntidadesAssociacaoDireta[$chaveNomeCampo]);
+				}
 
 				// limpando memória
-				unset($arrayDados);
+				unset($chaveNomeCampo, $arrayDados);				
 			}
 
 			// verificando se existe relação direta
@@ -339,14 +346,15 @@ class Basico_OPController_DBCheckOPController
 	/**
 	 * Retorna um array com as relações indiretas de uma entidade e registos passados por parametro
 	 * 
-	 * @param $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
+	 * @param Arary $arrayNomesTabelasIdsRegistros - array contendo as entidades e ids dos registros que deseja verificar. Formato: array('nome_entidade1' => array(1, 5, 6, 7), 'nome_entidade2' => array(9, 3, 7, 1))
+	 * @param Array $arrayExclusaoTabelas - array contendo as entidades que serão excluídas do resultado
 	 * 
-	 * @return Array|Boolean - array contendo o nome das entidades e ids de registros, false se não conseguir recuperar a infomração e true se todos os registros estiverem ativados
+	 * @return Array|Boolean - array contendo o nome das entidades e ids de registros, false se não conseguir recuperar a informação
 	 * 
 	 * @author Carlos Feitosa (carlos.fetiosa@rochedoframework.com)
 	 * @since 12/07/2012
 	 */
-	public static function recuperaArrayRelacoesIndiretas(array $arrayNomesTabelasIdsRegistros)
+	public static function recuperaArrayRelacoesIndiretas(array $arrayNomesTabelasIdsRegistros, array $arrayExclusaoTabelas = array())
 	{
 		// verificando se foi passado o array de parametros no formato certo
 		if (!count($arrayNomesTabelasIdsRegistros)) {
@@ -359,11 +367,28 @@ class Basico_OPController_DBCheckOPController
 
 		// loop para recuperar informações sobre as entidades indiretamente relacionadas com as entidades
 		foreach ($arrayNomesTabelasIdsRegistros as $nomeTabela => $arrayIdsEntidade) {
+			// verificando se foi passado algum ID no array
+			if (!count($arrayIdsEntidade)) {
+				// retornando falso
+				return false;
+			}
+
 			// transformando array de ids em string
 			$stringIdsEntidade = implode(',', $arrayIdsEntidade);
 
 			// recuperando associações indiretas
 			$arrayEntidadesAssociacaoIndireta = self::retornaArrayDependenciasTabelaFKPorNomeTabela($nomeTabela);
+
+			// loop para remover os elementos indesejados
+			foreach ($arrayEntidadesAssociacaoIndireta as $chave => $arrayDados) {
+				// verificando se a entidade está relacionada no array de entidades para exclusão
+				if (false !== array_search($arrayDados['fk_table'], $arrayExclusaoTabelas)) {
+					// limpando elemento indesejado
+					unset($arrayEntidadesAssociacaoIndireta[$chave]);
+				}
+				// limpando memória
+				unset($chave, $arrayDados);
+			}
 
 			// loop para montar o array de entidades de associação indireta
 			foreach ($arrayEntidadesAssociacaoIndireta as $arrayDados) {
@@ -421,8 +446,14 @@ class Basico_OPController_DBCheckOPController
 					// montando elementos do array
 					$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta = $arrayDados['fk_table']; 
 
-					// adicionando elemento ao array de associações diretas
-					$arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta] = $arrayIdsEntidadesAssociacaoIndireta;
+					// verificando se a entidade já se encontra no array de resultados
+					if (array_key_exists($chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta, $arrayNomesTabelasIdsRegistrosAssociacaoIndireta)) {
+						// fazendo merge dos elementos
+						$arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta] = array_merge_recursive($arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta], $arrayIdsEntidadesAssociacaoIndireta);
+					} else {
+						// adicionando elemento ao array de associações diretas
+						$arrayNomesTabelasIdsRegistrosAssociacaoIndireta[$chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta] = $arrayIdsEntidadesAssociacaoIndireta;
+					}
 
 					// limpando memória
 					unset($chaveArrayNomesTabelasIdsRegistrosAssociacaoIndireta, $arrayIdsEntidadesAssociacaoIndireta);						

@@ -131,7 +131,7 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 20/06/2012
 	 */
-	public function retornaIdCategoriaCompoentePorIdComponente($idComponente)
+	public function retornaIdCategoriaComponentePorIdComponente($idComponente)
 	{
 		// verificando se foi passado o id do componente
 		if ((!$idComponente) or (!is_int($idComponente))) {

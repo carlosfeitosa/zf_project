@@ -172,6 +172,7 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 				// setando o tempo de expiracao da sessao
 				$session = new Zend_Session_Namespace('user_session');
 				$session->setExpirationSeconds(TEMPO_EXPIRACAO_SESSAO_SEGUNDOS);
+				Zend_Session::forgetMe();
 			}
 
 			// efetuando o logon
