@@ -589,12 +589,14 @@ class Basico_OPController_CategoriaOPController extends Basico_AbstractOPControl
 
 		// query para retornar os nomes das categorias dos componentes nao ZF
 		$queryNomesCategoriasComponentesNaoZFFormulario = "SELECT DISTINCT ccomp.nome
-														   FROM basico_formulario.assoccl_elemento ffe
-														   LEFT JOIN basico.formulario f ON (ffe.id_formulario = f.id)
-														   LEFT JOIN basico_formulario.elemento fe ON (ffe.id_elemento = fe.id)
-														   LEFT JOIN basico.componente comp ON (fe.id_componente = comp.id)
-														   LEFT JOIN basico.categoria ccomp ON (comp.id_categoria = ccomp.id)
-														   WHERE ccomp.nome NOT IN ('COMPONENTE_DOJO', 'COMPONENTE_ZF')
+															FROM basico_formulario.assoccl_elemento ffe
+															LEFT JOIN basico.formulario f ON (ffe.id_formulario = f.id)
+															LEFT JOIN basico_formulario.assoccl_decorator fad ON (f.id = fad.id_formulario)
+															LEFT JOIN basico_formulario.decorator fd ON (fad.id_decorator = fd.id)
+															LEFT JOIN basico_formulario.elemento fe ON (ffe.id_elemento = fe.id)
+															LEFT JOIN basico.componente comp ON (fe.id_componente = comp.id OR fd.id_componente = comp.id)
+															LEFT JOIN basico.categoria ccomp ON (comp.id_categoria = ccomp.id)
+															WHERE ccomp.nome NOT IN ('COMPONENTE_DOJO', 'COMPONENTE_ZF')
 														   AND f.id = {$idFormulario}";
 
 		// recuperando resultado da query

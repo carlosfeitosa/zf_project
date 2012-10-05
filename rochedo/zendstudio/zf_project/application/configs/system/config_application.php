@@ -82,11 +82,6 @@ define("SMTP_USERNAME", "nao.responda@rochedoframework.com");
 define("SMTP_PASSWORD", "nao#respond@");
 define("EMAIL_CHARSET", "utf-8");
 
-// definições do captcha
-define("CAPTCHA_IMAGE_DIR", "/images/captcha/");
-define("CAPTCHA_IMAGE_URL", "/images/captcha/");
-define("CAPTCHA_FONT_PATH", "/fonts/typewcond_bold.otf");
-
 // definições do DOJO
 define("DOJO_LOCAL_PATH", "/js/library/dojo/dojo.js");
 define("DOJO_STYLE_SHEET_PATH", "/js/library/dijit/themes/rochedo/rochedo.css");

@@ -24,6 +24,19 @@ define("CODE_END_TAG", "}");
 define('FORM_GERADOR_CLASS_KEYWORD', 'class');
 define("FORM_GERADOR_CLASS_EXTENDS_KEYWORD", "extends");
 
+// definições do captcha
+define("NOME_COMPONENTE_CAPTCHA", "Captcha");
+define("CAPTCHA_IMAGE_DIR", PUBLIC_PATH . "/images/captcha/");
+define("CAPTCHA_IMAGE_URL", "/images/captcha/");
+define("CAPTCHA_FONT_PATH", PUBLIC_PATH . "/fonts/typewcond_bold.otf");
+define("CAPTCHA_WORDLEN", 6);
+define("CAPTCHA_TYPE", "Image");
+define("CAPTCHA_WIDTH", 250);
+define("CAPTCHA_HEIGHT", 250);
+define("CAPTCHA_FONT_SIZE", 50);
+define("CAPTCHA_EXPIRATION", 300);
+define("CAPTCHA_GCFREQ", 100);
+
 // constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '@identacaopublic function __construct($options = null)');
 define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '@identacaoparent::__construct($options);');
@@ -46,17 +59,18 @@ define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@
 define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()->tradutor(@label)@ajudaButton);');
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
 define("FORM_GERADOR_SETOPTIONS", '@identacao@instancia->setOptions(@options);');
-define("FORM_GERADOR_ADDATTRIB", '@identacao@instancia->addAttrib(@attribName, @attribValue);');
+define("FORM_GERADOR_SETATTRIB", '@identacao@instancia->setAttrib(@attribName, @attribValue);');
 define("FORM_GERADOR_REMOVEATTRIB", '@identacao@instancia->removeAttrib(@attribName);');
 define("FORM_GERADOR_SETORDER", '@identacao@instancia->setOrder(@ordem);');
 define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required);');
 define("FORM_GERADOR_REMOVEFILTER", '@identacao@instancia->removeFilter(@filter);');
 define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
 define("FORM_GERADOR_REMOVEVALIDATOR", '@identacao@instancia->removeValidator(@validator);');
-define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator);');
+define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator, @attribs);');
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 define("TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_GETELEMENTS", '@identacao@instancia->getElements()');
+define("FORM_GERADOR_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento())');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');

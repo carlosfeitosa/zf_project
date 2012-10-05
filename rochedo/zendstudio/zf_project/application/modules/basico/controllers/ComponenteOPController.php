@@ -110,8 +110,16 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 		// loop para preencher array de resultados
 		foreach ($arrayNomesCategoriasComponentesNaoZF as $nomeCategoriaComponenteNaoZF) {
 			
-			// manipulando string para recuperar o nome da biblioteca
-			$nomeCategoriaComponenteNaoZF = ucfirst(strtolower(str_replace('COMPONENTE_', '', $nomeCategoriaComponenteNaoZF)));
+			// verificando se o componente nao zf e um decorator javascript
+			if (strpos($nomeCategoriaComponenteNaoZF, 'COMPONENTE_DECORATOR_JAVASCRIPT') !== false) {
+				// manipulando string para recuperar o nome da biblioteca
+				$nomeCategoriaComponenteNaoZF = ucfirst(strtolower(str_replace('COMPONENTE_DECORATOR_JAVASCRIPT_', '', $nomeCategoriaComponenteNaoZF)));	
+			}else{
+				// manipulando string para recuperar o nome da biblioteca
+				$nomeCategoriaComponenteNaoZF = ucfirst(strtolower(str_replace('COMPONENTE_', '', $nomeCategoriaComponenteNaoZF)));
+			}
+			
+			
 			
 			// preenchendo array de resultados
 			$arrayRetorno[] = array(COMPONENTE_NAO_ZF_PREFIX => "{$nomeCategoriaComponenteNaoZF}_Form", COMPONENTE_NAO_ZF_PATH => "{$nomeCategoriaComponenteNaoZF}/Form");

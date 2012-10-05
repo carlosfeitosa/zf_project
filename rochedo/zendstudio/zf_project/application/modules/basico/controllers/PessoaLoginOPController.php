@@ -1212,6 +1212,9 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 		// setando o label do campo confirmacao do aceite
 		$form->getElement('BasicoAceiteTermosUsoAceiteTermosUso')->setLabel($elementoAceiteLabel);
 		
+		// ajustando tamanho do textarea dos termos
+		$form->getElement('BasicoAceiteTermosUsoTermosUso')->setAttrib('style', 'width: 472px; margin-left: 5px;');
+		
 		return $form;
     }
 	

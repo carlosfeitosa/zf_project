@@ -548,7 +548,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 04/09/2012
 	 */
-	const CHAMADA_ADD_ATTRIB = FORM_GERADOR_ADDATTRIB;
+	const CHAMADA_SET_ATTRIB = FORM_GERADOR_SETATTRIB;
 	
 	/**
 	 * Comentario da chamada ao metodo addDecorator do formulario
@@ -879,7 +879,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 22/08/2012
 	 */
 	const CHAMADA_ADD_VALIDATOR = FORM_GERADOR_ADDVALIDATOR;
-	
+		
 	/**
 	 * Script para montagem do botao de ajuda
 	 * 
@@ -1170,7 +1170,7 @@ class Basico_OPController_GeradorFormularioOPController
 			// escrevendo o método init do formulário e verificando o resultado da operação
 			if (!$this->escreveInitFormulario($resourceArquivoTemporario, $arrayDadosFormulario, $autorFormulario)) {
 				// retornando mensagens de erro
-				return array('Não foi possível escrever o construtor da classe do formulário.');
+				return array('Não foi possível escrever o metodo de inicializacao do formulário.');
 			}
 
 			// escrevendo o método adicionaDecorators e verificando o resultado da operação
@@ -1219,10 +1219,6 @@ class Basico_OPController_GeradorFormularioOPController
 				
 				// criando ou atualizando arquivo 
 				file_put_contents($formModulePath, $copiaConteudoArquivo);
-				
-				// excluíndo arquivo temporário e verificando o resultado da operação
-		   	 	$this->excluiArquivoFormularioTemporario($nomeArquivoFormularioTemporario);
-				
 			}
 
 		} catch (Exception $e) {
@@ -1773,7 +1769,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	private function escreveComentarioChamadaAddAttribsFormulario($resourceArquivo)
+	private function escreveComentarioChamadaSetAttribsFormulario($resourceArquivo)
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
@@ -1799,7 +1795,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/06/2012
 	 */
-	private function escreveChamadaAddAttribsFormulario($resourceArquivo, $atributosFormulario, $nomeFormulario)
+	private function escreveChamadaSetAttribsFormulario($resourceArquivo, $atributosFormulario, $nomeFormulario)
 	{
 		// verificando os parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
@@ -2103,7 +2099,7 @@ class Basico_OPController_GeradorFormularioOPController
 
 		// verificando o resultado da recuperacao do array de prefixos e paths
 		if (count($arrayPrefixPaths) <= 0)
-			return null;
+			return true;
 
 		// adicionando comentario
 		if ($addPrefixComment)
@@ -2148,6 +2144,27 @@ class Basico_OPController_GeradorFormularioOPController
 	    	return false;
 	    }
 	    
+		// verificando se o formulário possui ação (url para envio dos dados)
+	    if (isset($arrayAtributosFormulario['formAttribs'])) {
+	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
+	    	if (!$this->escreveComentarioChamadaSetAttribsFormulario($resourceArquivo)) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    	
+	    	// escrevendo a chamada do add attribs do formulario
+	    	if (!$this->escreveChamadaSetAttribsFormulario($resourceArquivo, $arrayAtributosFormulario['formAttribs'], $arrayAtributosFormulario['formName'])) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    	
+	    	// escrevendo os eventos do formulario
+	    	if (!$this->escreveEventosFormulario($resourceArquivo, Basico_OPController_FormularioAssocclEvento::getInstance()->retornaArrayDadosEventosFormularioOrdenadoPorOrdemPorIdFormulario($arrayAtributosFormulario['id']))) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    }
+	    
 	    // escrevendo o comentário para o método de setar o nome do formulário e verificando o resultado
 	    if (!$this->escreveComentarioChamadaSetNameFormulario($resourceArquivo)) {
 	    	// retornando falso
@@ -2185,27 +2202,6 @@ class Basico_OPController_GeradorFormularioOPController
 	    	
 	    	// escrevendo a chamada do setAction para setar a url de envio de dados e verificando o resultado
 	    	if (!$this->escreveChamadaSetActionFormulario($resourceArquivo, $arrayAtributosFormulario['formAction'])) {
-	    		// retornando falso
-	    		return false;
-	    	}
-	    }
-	    
-		// verificando se o formulário possui ação (url para envio dos dados)
-	    if (isset($arrayAtributosFormulario['formAttribs'])) {
-	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
-	    	if (!$this->escreveComentarioChamadaAddAttribsFormulario($resourceArquivo)) {
-	    		// retornando falso
-	    		return false;
-	    	}
-	    	
-	    	// escrevendo a chamada do add attribs do formulario
-	    	if (!$this->escreveChamadaAddAttribsFormulario($resourceArquivo, $arrayAtributosFormulario['formAttribs'], $arrayAtributosFormulario['formName'])) {
-	    		// retornando falso
-	    		return false;
-	    	}
-	    	
-	    	// escrevendo os eventos do formulario
-	    	if (!$this->escreveEventosFormulario($resourceArquivo, Basico_OPController_FormularioAssocclEvento::getInstance()->retornaArrayDadosEventosFormularioOrdenadoPorOrdemPorIdFormulario($arrayAtributosFormulario['id']))) {
 	    		// retornando falso
 	    		return false;
 	    	}
@@ -2800,14 +2796,53 @@ class Basico_OPController_GeradorFormularioOPController
 	 */
 	private function escreveAddElement($resourceArquivo, $componente, $elementName)
 	{
+		// inicializando variaveis
+		$captchaOptions = "";
+		
+		// verificando se o elemento e um captcha
+		if ($componente === NOME_COMPONENTE_CAPTCHA) {
+			// adicionando array de options nos parametros para criacao do elemento
+			$captchaOptions = ", " . $this->retornaSetOptionsCaptcha();
+		}
+		
 		// montando string de adicao do elemento
-    	$addElement = "'{$componente}', '{$elementName}'";
+    	$addElement = "'{$componente}', '{$elementName}'{$captchaOptions}";
     	$addElement = str_replace(self::TAG_SUBSTITUICAO_ELEMENTO_FORMULARIO, $addElement, self::CHAMADA_ADD_ELEMENT);
     	$addElement = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addElement);
 		$addElement = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $addElement);
     	
-    	// escrevendo linha que adiciona o elemento no formulario
-    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addElement, true);
+		// escrevendo linha que adiciona o elemento no formulario
+    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addElement, true);
+	}
+	
+	/**
+	 * Escreve a chamada ao metodo setOptions() para elementos do tipo captcha 
+	 * 
+	 * @return Boolean - true se conseguir escrever e false se não
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 04/10/2012
+	 */
+	private function retornaSetOptionsCaptcha()
+	{
+		// montando string dos options do captcha
+		$stringOptionsCaptcha = "array('required'=> true, 
+							     	   			'captcha' => array('captcha'=>'Image',
+                                       					  				    'imgDir' => CAPTCHA_IMAGE_DIR,
+                                       					  				    'imgUrl' => Basico_OPController_UtilOPController::retornaBaseUrl() . CAPTCHA_IMAGE_URL,
+                                       					  				    'wordLen'=> CAPTCHA_WORDLEN,
+                                       					  				    'width'  => CAPTCHA_WIDTH,
+                                       					  				    'height' => CAPTCHA_HEIGHT,
+                                       					  				    'font'   => CAPTCHA_FONT_PATH,
+                                       					  				    'fontSize' => CAPTCHA_FONT_SIZE,
+                                       					  				    'expiration' => CAPTCHA_EXPIRATION,
+                                       					  				    'gcFreq' => CAPTCHA_GCFREQ,
+                                       					  				    'messages' => array(Zend_Captcha_Word::BAD_CAPTCHA => \$this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'), 
+											 					 Zend_Captcha_Word::MISSING_ID => \$this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'), 
+											 					 Zend_Captcha_Word::MISSING_VALUE => \$this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_CAPTCHA_BAD_CAPTCHA'))),)";
+		
+    	// retornando string do array de options do captcha
+    	return $stringOptionsCaptcha;
 	}
 	
 	/**
@@ -2875,7 +2910,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// verificando se conseguiu recuperar attribs
     	if (null !== $elementAttribs) {
 	    	// montando string do setAttribs do elemento
-	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $elementAttribs, self::CHAMADA_SET_ATTRIBS);
+	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, "array({$elementAttribs})", self::CHAMADA_SET_ATTRIBS);
 	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setAttribs);
 			$setAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setAttribs);
 	    	
@@ -3289,8 +3324,6 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
-	 * 
-	 * @todo Adicionar setAttribs do validator - Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 */
 	private function escreveAddValidatorElemento($resourceArquivo, $validator, $validatorAttribs, $elementName)
 	{
@@ -3302,30 +3335,22 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    	// montando string do addValidator do elemento
 	    	$addValidator = str_replace(self::TAG_SUBSTITUICAO_VALIDATOR, $stringValidator, self::CHAMADA_ADD_VALIDATOR);
-	    	$addValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addValidator);
-			$addValidator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addValidator);
-	    	
-	    	// escrevendo linha que adiciona o setAttribs do elemento
-	    	Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addValidator, true);
 	    	
 	    	// verificando se o filter possui attribs
     		if ($validatorAttribs != '' and $validatorAttribs != null) {
-    			
-    			// adicionando attribs a string do filter
-    			$stringValidator   = "array({$validatorAttribs})";
-    		
-	    		// montando attribs do addFilter do elemento
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $stringValidator, self::CHAMADA_SET_ATTRIBS);
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $attribs);
-				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName . "->getValidator('{$validator}')" , $attribs);
-	    		
-				// escrevendo linha que adiciona o setAttribs do elemento
-		    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $attribs, true);
-	    	
+    			// substituindo tag pelos attribs do validator
+	    		$addValidator = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, "array({$validatorAttribs})", $addValidator);
+    		}else{
+    			// removendo virgula e tag dos attribs do validator
+    			$addValidator = str_replace(", " . self::TAG_SUBSTITUICAO_ATTRIBS, "", $addValidator);
     		}
     		
-    		return true;
-    	}
+	    	$addValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addValidator);
+			$addValidator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addValidator);
+	    	
+	    	// escrevendo linha que adiciona o validator do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $addValidator, true);
+	    }
     	
     	return false;
 	}
@@ -3366,7 +3391,7 @@ class Basico_OPController_GeradorFormularioOPController
     			}else{
     					
     				// escrevendo metodo addFilter
-    				$this->escreveAddAttribElemento($resourceArquivo, $stringEvento, $stringAcaoEvento, $elementName);
+    				$this->escreveSetAttribElemento($resourceArquivo, $stringEvento, $stringAcaoEvento, $elementName);
     			}
     				
     		}
@@ -3416,7 +3441,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 06/09/2012
 	 */
-	private function escreveAddAttribElemento($resourceArquivo, $attrib, $attribValue, $elementName)
+	private function escreveSetAttribElemento($resourceArquivo, $attrib, $attribValue, $elementName)
 	{
 		// verificando se conseguiu recuperar attrib
     	if (null !== $attrib) {
@@ -3426,7 +3451,7 @@ class Basico_OPController_GeradorFormularioOPController
     		$stringAttribValue = Basico_OPController_UtilOPController::retornaStringEntreCaracter($attribValue, '"');
     		
 	    	// montando string do addValidator do elemento
-	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_ADD_ATTRIB);
+	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_SET_ATTRIB);
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_VALUE, $stringAttribValue, $addAttrib);
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addAttrib);
 			$addAttrib = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addAttrib);
@@ -3737,7 +3762,7 @@ class Basico_OPController_GeradorFormularioOPController
     		$stringAttribValue = Basico_OPController_UtilOPController::retornaStringEntreCaracter($attribValue, '"');
     		
 	    	// montando string do addValidator do elemento
-	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_ADD_ATTRIB);
+	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_SET_ATTRIB);
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_VALUE, $stringAttribValue, $addAttrib);
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addAttrib);
 			$addAttrib = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $addAttrib);
@@ -4008,7 +4033,6 @@ class Basico_OPController_GeradorFormularioOPController
 	 */
 	private function excluiArquivoFormularioTemporario($nomeArquivoFormularioTemporario)
 	{
-		return true;
 		// retornando o resultado do método de exclusão de arquivos
 		return Basico_OPController_UtilOPController::excluiArquivo($nomeArquivoFormularioTemporario);
 	}
@@ -4099,9 +4123,9 @@ class Basico_OPController_GeradorFormularioOPController
     	// recuperando elementos que possuem display group
     	$arrayDadosFormularioFormularioElemento = Basico_OPController_FormularioAssocclElementoOPController::getInstance()->retornaObjetosFormularioFormularioElementoGrupoFormularioElemento($idFormulario);
 
-    	// verificando o resultado da recuperacao
+    	// verificando o resultado da recuperacao se nao existirem displaygroups para o formulario retorna true
     	if (count($arrayDadosFormularioFormularioElemento) <= 0)
-    		return null;
+    		return true;
     	
     	// recuperando os ids dos elementos do formulario
 	    $arrayIdsElementosFormulario = $this->_formularioAssocclElementoOPController->retornaArrayIdsElementosFormularioOrdenadoPorOrdemPorIdFormulario($idFormulario);
