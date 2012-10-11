@@ -110,7 +110,7 @@ class Basico_TokenController extends Basico_AbstractActionController_RochedoGene
         		break;
         	
         	default:
-        		;
+        		throw new Exception('Codigo de operacao do token nao encontrado.');
         	break;
         }
     }

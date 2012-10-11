@@ -49,6 +49,10 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	/**
 	 * @var String
 	 */
+	protected $_elementOptions;
+	/**
+	 * @var String
+	 */
 	protected $_elementAttribs;
 	/**
 	 * @var String
@@ -322,6 +326,29 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	public function getElementAttribs()
 	{
 		return $this->_elementAttribs;
+	}
+	
+	/**
+	* Set elementOptions
+	* 
+	* @param String $elementOptions
+	* 
+	* @return String
+	*/
+	public function setElementOptions($elementOptions)
+	{
+		$this->_elementOptions = Basico_OPController_UtilOPController::retornaValorTipado($elementOptions, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get elementOptions
+	* 
+	* @return null|String
+	*/
+	public function getElementOptions()
+	{
+		return $this->_elementOptions;
 	}
 
     /**

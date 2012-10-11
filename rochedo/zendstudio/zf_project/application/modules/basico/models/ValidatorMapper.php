@@ -33,7 +33,7 @@ class Basico_Model_ValidatorMapper extends Basico_AbstractMapper_RochedoMapper i
 		$this->_arrayMapper['nome']						 = 'nome';
 		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
-		$this->_arrayMapper['attribs']				 	 = 'attribs';
+		$this->_arrayMapper['options']				 	 = 'options';
 		$this->_arrayMapper['pararValidacaoAposFalha']	 = 'parar_validacao_apos_falha';
 		$this->_arrayMapper['ativo']					 = 'ativo';
 		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';

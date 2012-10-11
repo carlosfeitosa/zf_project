@@ -50,7 +50,7 @@ define("FORM_GERADOR_FORM_ADICIONA_DECORATORS_DECLARATION", '@identacaoprivate f
 define("FORM_GERADOR_FORM_ADICIONA_DISPLAYGROUPS_DECLARATION", '@identacaoprivate function adicionaDisplayGroups()');
 define("FORM_GERADOR_FORM_SETNAME", '@identacao$this->setName(\'@nomeFormulario\');');
 define("FORM_GERADOR_FORM_SETMETHOD", '@identacao$this->setMethod(\'@metodoFormulario\');');
-define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(\'@acaoFormulario\');');
+define("FORM_GERADOR_FORM_SETACTION", '@identacao$this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(Basico_OPController_UtilOPController::retornaBaseUrl() . \'@acaoFormulario\'));');
 define("FORM_GERADOR_FORM_SETATTRIBS", '@identacao@instancia->setAttribs(array(@atributosFormulario));');
 define("FORM_GERADOR_ADDDECORATOR", '@identacao@instancia->addDecorator(@decorator);');
 define("FORM_GERADOR_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
@@ -70,7 +70,7 @@ define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validat
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 define("TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_GETELEMENTS", '@identacao@instancia->getElements()');
-define("FORM_GERADOR_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento())');
+define("FORM_GERADOR_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {');
 
 // tags de substituição
 define('TAG_NOME_FORMULARIO', '@nomeFormulario');
@@ -113,6 +113,7 @@ define("FORM_GERADOR_SET_NAME_CALL_COMMENT", '@identacao// Setando o nome do for
 define("FORM_GERADOR_SET_METHOD_CALL_COMMENT", '@identacao// Setando o método do formulário');
 define("FORM_GERADOR_SET_ACTION_CALL_COMMENT", '@identacao// Setando a ação do formulário');
 define("FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT", '@identacao// Adicionando atributos ao formulário');
+define("FORM_GERADOR_SET_OPTIONS_CALL_COMMENT", '@identacao// Setando options do formulário');
 define("FORM_GERADOR_ADD_DECORATOR_CALL_COMMENT", '@identacao// Adicionando decorators ao formulário');
 define("FORM_GERADOR_REMOVE_DECORATOR_CALL_COMMENT", '@identacao// Removendo decorator do formulário');
 define("FORM_GERADOR_ADICIONA_ELEMENTOS_CALL_COMMENT", '@identacao// Adicionando elementos ao formulário');

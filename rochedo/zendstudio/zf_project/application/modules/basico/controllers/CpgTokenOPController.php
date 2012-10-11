@@ -316,14 +316,16 @@ class Basico_OPController_CpgTokenOPController
 		// recuperando o objeto categoria relacionado ao token
 		$objCategoria = $this->retornaObjetoCategoriaTokenPorToken($token);
 		
-		// verificando se token é para validação de email de usuario
-		if ('MENSAGEM_EMAIL_VALIDACAO_USUARIO' === $objCategoria->getCategoriaPaiObject()->nome     &&
-			'MENSAGEM_EMAIL'                   === $objCategoria->getRootCategoriaPaiObject()->nome &&
-			'MENSAGEM'                         === $objCategoria->getTipoCategoriaObject()->nome) {
-			
-			// retornando constante com codigo da operacao
-			return self::EMAIL_VALIDACAO_USUARIO;
+		if (null !== $objCategoria) {
+			// verificando se token é para validação de email de usuario
+			if ('MENSAGEM_EMAIL_VALIDACAO_USUARIO' === $objCategoria->getCategoriaPaiObject()->nome     &&
+				'MENSAGEM_EMAIL'                   === $objCategoria->getRootCategoriaPaiObject()->nome &&
+				'MENSAGEM'                         === $objCategoria->getTipoCategoriaObject()->nome) {
+				
+				// retornando constante com codigo da operacao
+				return self::EMAIL_VALIDACAO_USUARIO;
 		
+			}
 		}
 		
 		return null;

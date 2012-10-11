@@ -531,6 +531,16 @@ class Basico_OPController_GeradorFormularioOPController
 	const COMENTARIO_CHAMADA_FORMULARIO_ADD_ATTRIBS = FORM_GERADOR_ADD_ATTRIBS_CALL_COMMENT;
 	
 	/**
+	 * Comentario da chamada ao metodo setOptions do formulario
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/10/2012
+	 */
+	const COMENTARIO_CHAMADA_FORMULARIO_SET_OPTIONS = FORM_GERADOR_SET_OPTIONS_CALL_COMMENT;
+	
+	/**
 	 * Chamada ao metodo setAttribs do formulario
 	 * 
 	 * @var String
@@ -1217,6 +1227,15 @@ class Basico_OPController_GeradorFormularioOPController
 				// recuperando caminho para os modulos do sistema
 				$formModulePath = APPLICATION_MODULES_PATH . "/" . $nomeModulo . "/forms/" . $arrayDadosFormulario['formName'] . ".php";
 				
+				// se o arquivo ja existir cria o lastKnowGood
+				if (file_exists($formModulePath)) {
+					// recuperando o nome do arquivo do lastKnowGood
+					$lkgNome = APPLICATION_MODULES_PATH . "/" . $nomeModulo . "/forms/_lkg/" . $arrayDadosFormulario['formName'] . ".php";
+					
+					// criando/atualizando o arquivo do lastKnowGood
+					file_put_contents($lkgNome, file_get_contents($formModulePath));
+				}
+				
 				// criando ou atualizando arquivo 
 				file_put_contents($formModulePath, $copiaConteudoArquivo);
 			}
@@ -1760,6 +1779,60 @@ class Basico_OPController_GeradorFormularioOPController
 	}
 	
 	/**
+	 * Escreve o comentario da chamada para o metodo setOptions() do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
+	 * 
+	 * @return Boolean - true se conseguir escrever o cabeçalho no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/10/2012
+	 */
+	private function escreveComentarioChamadaSetOptionsFormulario($resourceArquivo)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// recuperando cabeçalho da chamada
+		$cabecalhoChamadaSetOptions = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::COMENTARIO_CHAMADA_FORMULARIO_SET_OPTIONS);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $cabecalhoChamadaSetOptions, true);
+	}
+	
+	/**
+	 * Escreve a chamada para o metodo setOptions() do formulario substituindo uma flag pelos options do formulario
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir a chamada
+	 * @param String $optionsFormulario - options do formulário
+	 * 
+	 * @return Boolean - true se conseguir escrever a chamada no arquivo ou false se não
+	 * 
+	 * @author João Vaconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/10/2012
+	 */
+	private function escreveChamadaSetOptionsFormulario($resourceArquivo, $optionsFormulario, $nomeFormulario)
+	{
+		// verificando os parametros
+		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or 
+		    (!$optionsFormulario) or (!is_string($optionsFormulario))) {
+		    	// retornando falso
+		    	return false;
+		    }
+
+		// manipulando o cabeçalho
+		$chamadaSetOptions = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), self::CHAMADA_SET_OPTIONS);
+		$chamadaSetOptions = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $chamadaSetOptions);
+		$chamadaSetOptions = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, $optionsFormulario, $chamadaSetOptions);
+
+		// escrevendo o comentario do construtor da classe no arquivo
+		return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $chamadaSetOptions, true);
+	}
+	
+	/**
 	 * Escreve o comentario da chamada para o metodo addAttribs() do formulario
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que deseja incluir o cabecalho
@@ -2144,7 +2217,22 @@ class Basico_OPController_GeradorFormularioOPController
 	    	return false;
 	    }
 	    
-		// verificando se o formulário possui ação (url para envio dos dados)
+		// verificando se o formulário possui attribs
+	    if (isset($arrayAtributosFormulario['formOptions'])) {
+	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
+	    	if (!$this->escreveComentarioChamadaSetOptionsFormulario($resourceArquivo)) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    	
+	    	// escrevendo a chamada do add attribs do formulario
+	    	if (!$this->escreveChamadaSetOptionsFormulario($resourceArquivo, $arrayAtributosFormulario['formOptions'], $arrayAtributosFormulario['formName'])) {
+	    		// retornando falso
+	    		return false;
+	    	}
+	    }
+	    
+		// verificando se o formulário possui attribs
 	    if (isset($arrayAtributosFormulario['formAttribs'])) {
 	    	// escrevendo o comentário sobre a ação para envio de dados e verificando o resultado
 	    	if (!$this->escreveComentarioChamadaSetAttribsFormulario($resourceArquivo)) {
@@ -2617,13 +2705,14 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
 	 * @param Integer $idFormulario - id do formulário cujo elementos serão recuperados
+	 * @param Integer $identacao - identacao utilizada para escrever o codigo no arquivo
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não
 	 * 
 	 * @author João Vasconcelos / Carlos Feitosa (joao.vasconcelos@rochedoframework.com/carlos.feitosa@rochedoframework.com)
 	 * @since 10/07/2012
 	 */
-	private function escreveElementosFormulario($resourceArquivo, $idFormulario)
+	private function escreveElementosFormulario($resourceArquivo, $idFormulario, $identacao = 2)
 	{
 		// verificando parametros
 		if ((!Basico_OPController_UtilOPController::verificaStreamResource($resourceArquivo)) or (!is_int($idFormulario))) {
@@ -2652,32 +2741,50 @@ class Basico_OPController_GeradorFormularioOPController
 	    	// recuperando dados para montagem do elemento
 	    	$arrayDadosMontagemElemento = $this->retornaArrayDadosMontagemElemento($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElementos[$idElemento]);
 	    	
+	    	// verificando se o componente do elemento e um captcha
+	    	if ($arrayDadosMontagemElemento['componente'] === NOME_COMPONENTE_CAPTCHA) {
+	    		// escreve condicao de ambiente de desenvolvimento
+	    		Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, Basico_OPController_UtilOPController::retornaIdentacao(2) . FORM_GERADOR_CHECK_DEVELOP, true);
+	    		
+	    		// incrementando identacao do bloco de adicao do elemento
+	    		$identacao++;
+	    	}
+	    	
 	    	// escrevendo chamada ao metodo que adiciona o elemento
-	    	$this->escreveAddElement($resourceArquivo, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveAddElement($resourceArquivo, $identacao, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escreve chamada ao metodo setLabel do elemento
-	    	$this->escreveSetLabelElemento($resourceArquivo, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['idAjuda']);
+	    	$this->escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['idAjuda']);
 	    	
 	    	// escrevendo chamada ao metodo setAttribs do elemento
-	    	$this->escreveSetAttribsElemento($resourceArquivo, $arrayDadosMontagemElemento['elementAttribs'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveSetOptionsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementOptions'], $arrayDadosMontagemElemento['elementName']);
+	    	
+	    	// escrevendo chamada ao metodo setAttribs do elemento
+	    	$this->escreveSetAttribsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementAttribs'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo eventos do elemento
-	    	$this->escreveEventosElemento($resourceArquivo, $arrayDadosMontagemElemento['eventos'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveEventosElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['eventos'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo chamada ao metodo setOrder do elemento
-	    	$this->escreveSetOrderElemento($resourceArquivo, $arrayDadosMontagemElemento['ordem'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveSetOrderElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['ordem'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo chamada ao metodo setRequired do elemento
-	    	$this->escreveSetRequiredElemento($resourceArquivo, $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveSetRequiredElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo filters do elemento
-	    	$this->escreveFiltersElemento($resourceArquivo, $arrayDadosMontagemElemento['filters'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveFiltersElemento($resourceArquivo,  $identacao, $arrayDadosMontagemElemento['filters'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo validators do elemento
-	    	$this->escreveValidatorsElemento($resourceArquivo, $arrayDadosMontagemElemento['validators'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveValidatorsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['validators'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo decorators do elemento
-	    	$this->escreveDecoratorsElemento($resourceArquivo, $arrayDadosMontagemElemento['decorators'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveDecoratorsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['decorators'], $arrayDadosMontagemElemento['elementName']);
+	    	
+	    	// verificando se o componente do elemento e um captcha
+	    	if ($arrayDadosMontagemElemento['componente'] === NOME_COMPONENTE_CAPTCHA) {
+	    		// fecha a condicao de ambiente de desenvolvimento e decrementando a identacao
+	    		Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, Basico_OPController_UtilOPController::retornaIdentacao(--$identacao) . CODE_END_TAG, true);
+	    	}
 	    	
 	    	// escrevendo linha em branco entre os elementos
 		    Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, '', true);
@@ -2748,6 +2855,15 @@ class Basico_OPController_GeradorFormularioOPController
     		$arrayResultado['elementAttribs'] = $arrayDadosElemento['elementAttribs'];
     	}
     	
+		// recuperando os options do elemento
+    	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementOptions']) {
+    		// attribs da especialização
+    		$arrayResultado['elementOptions'] = $arrayDadosElementosFormulario[$idElemento]['elementOptions'];
+    	}else{
+    		// attribs default
+    		$arrayResultado['elementOptions'] = $arrayDadosElemento['elementOptions'];
+    	}
+    	
 		// recuperando o elementValueDefault do elemento
     	if (null !== $arrayDadosElementosFormulario[$idElemento]['elementValueDefault']) {
     		// elementValueDefault da especialização
@@ -2786,6 +2902,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve a chamada ao metodo addElement() que adiciona um elemento ao formulario
 	 *
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $componente - componente do elemento (determina o tipo do elemento a ser adicionado)
 	 * @param String $elementName - nome do elemento a ser adicionado
 	 * 
@@ -2794,7 +2911,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveAddElement($resourceArquivo, $componente, $elementName)
+	private function escreveAddElement($resourceArquivo, $identacao, $componente, $elementName)
 	{
 		// inicializando variaveis
 		$captchaOptions = "";
@@ -2808,7 +2925,7 @@ class Basico_OPController_GeradorFormularioOPController
 		// montando string de adicao do elemento
     	$addElement = "'{$componente}', '{$elementName}'{$captchaOptions}";
     	$addElement = str_replace(self::TAG_SUBSTITUICAO_ELEMENTO_FORMULARIO, $addElement, self::CHAMADA_ADD_ELEMENT);
-    	$addElement = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addElement);
+    	$addElement = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $addElement);
 		$addElement = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO, $addElement);
     	
 		// escrevendo linha que adiciona o elemento no formulario
@@ -2849,17 +2966,18 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo setLabel do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $nomeFormulario - nome do formulario para ser usado na montagem do botao de ajuda
 	 * @param String $constanteTextualLabel - Constante textual a ser traduzida para o label do elemento
 	 * @param String $elementName - Nome do elemento que tera o label setado
-	 * @param String $arrayDadosAjudaElemento - array com os dados da ajuda do elemento se ela existir
+	 * @param String $idAjuda - id da ajuda que sera exibida
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não conseguir
 	 * 
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetLabelElemento($resourceArquivo, $nomeFormulario, $constanteTextualLabel, $elementName, $idAjuda = null)
+	private function escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $constanteTextualLabel, $elementName, $idAjuda = null)
 	{
 		// verificando se conseguiu recuperar um label
     	if (null !== $constanteTextualLabel) {
@@ -2883,7 +3001,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	// montando string do setLabel do elemento
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_LABEL, "'{$constanteTextualLabel}'", self::CHAMADA_SET_LABEL);
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_AJUDA_BUTTON, $ajudaButton, $setLabel);
-	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setLabel);
+	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setLabel);
 			$setLabel = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setLabel);
 	    	
 	    	// escrevendo linha que adiciona o setLabel do elemento
@@ -2894,9 +3012,39 @@ class Basico_OPController_GeradorFormularioOPController
 	}
 	
 	/**
+	 * Escreve o metodo setOptions do elemento
+	 * 
+	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
+	 * @param String $elementOptions - Options para serem setados no elemento
+	 * @param String $elementName - Nome do elemento que tera os options setados
+	 * 
+	 * @return Boolean - true se conseguir escrever, false se não conseguir
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 10/10/2012
+	 */
+	private function escreveSetOptionsElemento($resourceArquivo, $identacao, $elementOptions, $elementName)
+	{
+		// verificando se conseguiu recuperar options
+    	if (null !== $elementOptions) {
+	    	// montando string do setOptions do elemento
+	    	$setOptions = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, "array({$elementOptions})", self::CHAMADA_SET_OPTIONS);
+	    	$setOptions = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setOptions);
+			$setOptions = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setOptions);
+	    	
+	    	// escrevendo linha que adiciona o setOptions do elemento
+	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setOptions, true);
+    	}
+    	
+    	return false;
+	}
+	
+	/**
 	 * Escreve o metodo setAttribs do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $elementAttribs - Attribs para serem setados no elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -2905,13 +3053,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetAttribsElemento($resourceArquivo, $elementAttribs, $elementName)
+	private function escreveSetAttribsElemento($resourceArquivo, $identacao, $elementAttribs, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $elementAttribs) {
 	    	// montando string do setAttribs do elemento
 	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, "array({$elementAttribs})", self::CHAMADA_SET_ATTRIBS);
-	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setAttribs);
+	    	$setAttribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setAttribs);
 			$setAttribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setAttribs);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -2925,6 +3073,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo setOrder do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $ordem - ordem do elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -2933,13 +3082,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetOrderElemento($resourceArquivo, $ordem, $elementName)
+	private function escreveSetOrderElemento($resourceArquivo, $identacao, $ordem, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $ordem) {
 	    	// montando string do setAttribs do elemento
 	    	$setOrder = str_replace(self::TAG_SUBSTITUICAO_ORDEM, $ordem, self::CHAMADA_SET_ORDER);
-	    	$setOrder = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setOrder);
+	    	$setOrder = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setOrder);
 			$setOrder = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setOrder);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -2953,6 +3102,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo setRequired do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $required - required do elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -2961,13 +3111,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetRequiredElemento($resourceArquivo, $required, $elementName)
+	private function escreveSetRequiredElemento($resourceArquivo, $identacao, $required, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $required) {
 	    	// montando string do setAttribs do elemento
 	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_REQUIRED, $required, self::CHAMADA_SET_REQUIRED);
-	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $setRequired);
+	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setRequired);
 			$setRequired = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setRequired);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -2981,6 +3131,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve os filters do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param Array $arrayFilters - array com os filters do elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -2989,7 +3140,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 07/08/2012
 	 */
-	private function escreveFiltersElemento($resourceArquivo, $arrayFilters, $elementName)
+	private function escreveFiltersElemento($resourceArquivo, $identacao, $arrayFilters, $elementName)
 	{
 		// verificando se as chaves obrigatorias estao no array de filters
     	if (isset($arrayFilters['default']) && isset($arrayFilters['especializacao'])) {
@@ -3004,7 +3155,7 @@ class Basico_OPController_GeradorFormularioOPController
     			if (isset($filter['idFilterGrupo']) && $filter['idFilterGrupo'] > 0) {
     				
     				// processando e escrevendo grupos de filtros default do elemento (recursividade)
-    				$this->processaGruposFiltersElemento($resourceArquivo, $elementName, $filter['idFilterGrupo'], $filter['removeFlag']);
+    				$this->processaGruposFiltersElemento($resourceArquivo, $identacao, $elementName, $filter['idFilterGrupo'], $filter['removeFlag']);
     				
     			}else{ // se nao for um grupo
     				
@@ -3017,14 +3168,14 @@ class Basico_OPController_GeradorFormularioOPController
     				// verificando se o grupo eh para remocao
     				if ($filter['removeFlag'] == true) {
     					// escrevendo metodo remove filter 
-    					$this->escreveRemoveFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+    					$this->escreveRemoveFilterElemento($resourceArquivo, $identacao, $componenteFilter, $elementName);
     				}else{
     					
     					// recuperando os attribs do filtro a ser inserido
 	    				$filterAttribs = Basico_OPController_FilterOPController::getInstance()->retornaAttribsFilterPorIdFilter($filter['idFilter']);
     					
     					// escrevendo metodo addFilter
-    					$this->escreveAddFilterElemento($resourceArquivo, $componenteFilter, $filterAttribs, $elementName);
+    					$this->escreveAddFilterElemento($resourceArquivo, $identacao, $componenteFilter, $filterAttribs, $elementName);
     				}
     			}
     				
@@ -3038,6 +3189,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Processa e escreve os grupos de filtros do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * @param Int $idFilterGrupo - id do grupo de filters a ser inserido
 	 * @param Int $removeFlag - informa se e pra remocao ou insercao do grupo
@@ -3048,7 +3200,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 14/08/2012
 	 */
-	private function processaGruposFiltersElemento($resourceArquivo, $elementName, $idFilterGrupo, $removeFlag, $arrayIdsGruposJaProcessados = array())
+	private function processaGruposFiltersElemento($resourceArquivo, $identacao, $elementName, $idFilterGrupo, $removeFlag, $arrayIdsGruposJaProcessados = array())
 	{
 		// verificando se o grupo ja foi processado
 		if (array_search($idFilterGrupo, $arrayIdsGruposJaProcessados) !== false) {
@@ -3068,7 +3220,7 @@ class Basico_OPController_GeradorFormularioOPController
     		// verificando se o filter e um grupo
     		if (isset($filter['idFilterGrupoAssoc']) && $filter['idFilterGrupoAssoc'] > 0) {
     			// processando grupos de filtros (recursividade)
-    			$this->processaGruposFiltersElemento($resourceArquivo, $elementName , $filter['idFilterGrupoAssoc'], $removeFlag, $arrayIdsGruposJaProcessados);	
+    			$this->processaGruposFiltersElemento($resourceArquivo, $identacao, $elementName , $filter['idFilterGrupoAssoc'], $removeFlag, $arrayIdsGruposJaProcessados);	
     		}else{
 	    		// recuperando o id do componente do filter pelo id
 	    		$idComponenteFilter = Basico_OPController_FilterOPController::getInstance()->retornaIdComponenteFilterPorIdFilter($filter['idFilter']);
@@ -3079,12 +3231,12 @@ class Basico_OPController_GeradorFormularioOPController
 	    		// verificando se o grupo eh para remocao
 	    		if ($removeFlag == true) {
 	    			// escrevendo metodo remove filter
-	    			$this->escreveRemoveFilterElemento($resourceArquivo, $componenteFilter, $elementName);
+	    			$this->escreveRemoveFilterElemento($resourceArquivo, $identacao, $componenteFilter, $elementName);
 	    		}else{
 	    			// recuperando os attribs do filtro a ser inserido
 	    			$filterAttribs = Basico_OPController_FilterOPController::getInstance()->retornaAttribsFilterPorIdFilter($filter['idFilter']);
 	    			// escrevendo metodo para adicao de filter
-	    			$this->escreveAddFilterElemento($resourceArquivo, $componenteFilter, $filterAttribs, $elementName);
+	    			$this->escreveAddFilterElemento($resourceArquivo, $identacao, $componenteFilter, $filterAttribs, $elementName);
 	    		}
     		}
     	}
@@ -3094,6 +3246,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo removeFilter do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $filter - filter a ser removido do elemento
 	 * @param String $elementName - Nome do elemento que tera o filter removido
 	 * 
@@ -3102,13 +3255,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 10/08/2012
 	 */
-	private function escreveRemoveFilterElemento($resourceArquivo, $filter, $elementName)
+	private function escreveRemoveFilterElemento($resourceArquivo, $identacao, $filter, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $filter) {
 	    	// montando string do setAttribs do elemento
 	    	$removeFilter = str_replace(self::TAG_SUBSTITUICAO_FILTER, Basico_OPController_UtilOPController::retornaStringEntreCaracter($filter, "'"), self::CHAMADA_REMOVE_FILTER);
-	    	$removeFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $removeFilter);
+	    	$removeFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $removeFilter);
 			$removeFilter = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $removeFilter);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -3122,6 +3275,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo addFilter do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $filter - filter a ser adicionado no elemento
 	 * @param String $filterAttribs - string com os attribs do filter
 	 * @param String $elementName - Nome do elemento que tera o filter adicionado
@@ -3133,7 +3287,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @todo Adicionar setAttribs do filter - Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 */
-	private function escreveAddFilterElemento($resourceArquivo, $filter, $filterAttribs, $elementName)
+	private function escreveAddFilterElemento($resourceArquivo, $identacao, $filter, $filterAttribs, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $filter) {
@@ -3143,7 +3297,7 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    	// montando string do addFilter do elemento
 	    	$addFilter = str_replace(self::TAG_SUBSTITUICAO_FILTER, $stringFilter, self::CHAMADA_ADD_FILTER);
-	    	$addFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addFilter);
+	    	$addFilter = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $addFilter);
 			$addFilter = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addFilter);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -3157,7 +3311,7 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    		// montando attribs do addFilter do elemento
 		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_ATTRIBS, $stringFilter, self::CHAMADA_SET_ATTRIBS);
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $attribs);
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $attribs);
 				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName . "->getFilter('{$filter}')" , $attribs);
 	    		
 				// escrevendo linha que adiciona o setAttribs do elemento
@@ -3175,6 +3329,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve os validators do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param Array $arrayValidators - array com os validators do elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -3183,7 +3338,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function escreveValidatorsElemento($resourceArquivo, $arrayValidators, $elementName)
+	private function escreveValidatorsElemento($resourceArquivo, $identacao, $arrayValidators, $elementName)
 	{
 		// verificando se as chaves obrigatorias estao no array de filters
     	if (isset($arrayValidators['default']) && isset($arrayValidators['especializacao'])) {
@@ -3198,7 +3353,7 @@ class Basico_OPController_GeradorFormularioOPController
     			if (isset($validator['idValidatorGrupo']) && $validator['idValidatorGrupo'] > 0) {
     				
     				// processando e escrevendo grupos de filtros default do elemento (recursividade)
-    				$this->processaGruposValidatorsElemento($resourceArquivo, $elementName, $validator['idValidatorGrupo'], $validator['removeFlag']);
+    				$this->processaGruposValidatorsElemento($resourceArquivo, $identacao, $elementName, $validator['idValidatorGrupo'], $validator['removeFlag']);
     				
     			}else{ // se nao for um grupo
     				
@@ -3211,14 +3366,14 @@ class Basico_OPController_GeradorFormularioOPController
     				// verificando se o grupo eh para remocao
     				if ($validator['removeFlag'] == true) {
     					// escrevendo metodo remove filter 
-    					$this->escreveRemoveValidatorElemento($resourceArquivo, $componenteValidator, $elementName);
+    					$this->escreveRemoveValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $elementName);
     				}else{
     					
     					// recuperando os attribs do filtro a ser inserido
 	    				$validatorAttribs = Basico_OPController_ValidatorOPController::getInstance()->retornaAttribsValidatorPorIdValidator($validator['idValidator']);
     					
     					// escrevendo metodo addFilter
-    					$this->escreveAddValidatorElemento($resourceArquivo, $componenteValidator, $validatorAttribs, $elementName);
+    					$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorAttribs, $elementName);
     				}
     			}
     				
@@ -3232,6 +3387,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Processa e escreve os grupos de validators do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * @param Int $idValidatorGrupo - id do grupo de validators a ser inserido
 	 * @param Int $removeFlag - informa se e pra remocao ou insercao do grupo
@@ -3242,7 +3398,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function processaGruposValidatorsElemento($resourceArquivo, $elementName, $idValidatorGrupo, $removeFlag, $arrayIdsGruposJaProcessados = array())
+	private function processaGruposValidatorsElemento($resourceArquivo, $identacao, $elementName, $idValidatorGrupo, $removeFlag, $arrayIdsGruposJaProcessados = array())
 	{
 		// verificando se o grupo ja foi processado
 		if (array_search($idValidatorGrupo, $arrayIdsGruposJaProcessados) !== false) {
@@ -3262,7 +3418,7 @@ class Basico_OPController_GeradorFormularioOPController
     		// verificando se o validator e um grupo
     		if (isset($validator['idValidatorGrupoAssoc']) && $validator['idValidatorGrupoAssoc'] > 0) {
     			// processando grupos de validators (recursividade)
-    			$this->processaGruposValidatorsElemento($resourceArquivo, $elementName , $validator['idValidatorGrupoAssoc'], $removeFlag, $arrayIdsGruposJaProcessados);	
+    			$this->processaGruposValidatorsElemento($resourceArquivo, $identacao, $elementName , $validator['idValidatorGrupoAssoc'], $removeFlag, $arrayIdsGruposJaProcessados);	
     		}else{
 	    		// recuperando o id do componente do validator pelo id
 	    		$idComponenteValidator = Basico_OPController_ValidatorOPController::getInstance()->retornaIdComponenteValidatorPorIdValidator($validator['idValidator']);
@@ -3273,12 +3429,12 @@ class Basico_OPController_GeradorFormularioOPController
 	    		// verificando se o grupo eh para remocao
 	    		if ($removeFlag == true) {
 	    			// escrevendo metodo remove filter
-	    			$this->escreveRemoveValidatorElemento($resourceArquivo, $componenteValidator, $elementName);
+	    			$this->escreveRemoveValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $elementName);
 	    		}else{
 	    			// recuperando os attribs do filtro a ser inserido
 	    			$validatorAttribs = Basico_OPController_ValidatorOPController::getInstance()->retornaAttribsValidatorPorIdValidator($validator['idValidator']);
 	    			// escrevendo metodo para adicao de filter
-	    			$this->escreveAddValidatorElemento($resourceArquivo, $componenteValidator, $validatorAttribs, $elementName);
+	    			$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorAttribs, $elementName);
 	    		}
     		}
     	}
@@ -3288,6 +3444,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo removeValidator do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $filter - validator a ser removido do elemento
 	 * @param String $elementName - Nome do elemento que tera o filter removido
 	 * 
@@ -3296,13 +3453,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function escreveRemoveValidatorElemento($resourceArquivo, $validator, $elementName)
+	private function escreveRemoveValidatorElemento($resourceArquivo, $identacao, $validator, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $validator) {
 	    	// montando string do setAttribs do elemento
 	    	$removeValidator = str_replace(self::TAG_SUBSTITUICAO_VALIDATOR, Basico_OPController_UtilOPController::retornaStringEntreCaracter($validator, "'"), self::CHAMADA_REMOVE_VALIDATOR);
-	    	$removeValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $removeValidator);
+	    	$removeValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $removeValidator);
 			$removeValidator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $removeValidator);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -3316,6 +3473,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo addValidator do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $validator - filter a ser adicionado no elemento
 	 * @param String $validatorAttribs - string com os attribs do validator
 	 * @param String $elementName - Nome do elemento que tera o validator adicionado
@@ -3325,7 +3483,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function escreveAddValidatorElemento($resourceArquivo, $validator, $validatorAttribs, $elementName)
+	private function escreveAddValidatorElemento($resourceArquivo, $identacao, $validator, $validatorAttribs, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $validator) {
@@ -3345,7 +3503,7 @@ class Basico_OPController_GeradorFormularioOPController
     			$addValidator = str_replace(", " . self::TAG_SUBSTITUICAO_ATTRIBS, "", $addValidator);
     		}
     		
-	    	$addValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addValidator);
+	    	$addValidator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $addValidator);
 			$addValidator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addValidator);
 	    	
 	    	// escrevendo linha que adiciona o validator do elemento
@@ -3359,6 +3517,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve os eventos do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param Array $arrayEventos - array com os dados das associacoes (default e especializacao) dos eventos com o elemento
 	 * @param String $elementName - Nome do elemento que tera o attrib do evento setado
 	 * 
@@ -3367,7 +3526,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 05/09/2012
 	 */
-	private function escreveEventosElemento($resourceArquivo, $arrayEventos, $elementName)
+	private function escreveEventosElemento($resourceArquivo, $identacao, $arrayEventos, $elementName)
 	{
 		// verificando se as chaves obrigatorias estao no array de eventos
     	if (isset($arrayEventos['default']) && isset($arrayEventos['especializacao'])) {
@@ -3387,11 +3546,11 @@ class Basico_OPController_GeradorFormularioOPController
     			// verificando se o grupo eh para remocao
     			if ($assocclEvento['removeFlag'] == true) {
     				// escrevendo metodo remove eventos 
-    				$this->escreveRemoveAttribElemento($resourceArquivo, $stringEvento, $elementName);
+    				$this->escreveRemoveAttribElemento($resourceArquivo, $identacao, $stringEvento, $elementName);
     			}else{
     					
     				// escrevendo metodo addFilter
-    				$this->escreveSetAttribElemento($resourceArquivo, $stringEvento, $stringAcaoEvento, $elementName);
+    				$this->escreveSetAttribElemento($resourceArquivo, $identacao, $stringEvento, $stringAcaoEvento, $elementName);
     			}
     				
     		}
@@ -3404,6 +3563,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo removeAttrib do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $attrib - atributo a ser removido do elemento
 	 * @param String $elementName - Nome do elemento que tera o atributo removido
 	 * 
@@ -3412,13 +3572,13 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 06/09/2012
 	 */
-	private function escreveRemoveAttribElemento($resourceArquivo, $attrib, $elementName)
+	private function escreveRemoveAttribElemento($resourceArquivo, $identacao, $attrib, $elementName)
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $attrib) {
 	    	// montando string do setAttribs do elemento
 	    	$removeAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, Basico_OPController_UtilOPController::retornaStringEntreCaracter($attrib, "'"), self::CHAMADA_REMOVE_ATTRIB);
-	    	$removeAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $removeAttrib);
+	    	$removeAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $removeAttrib);
 			$removeAttrib = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $removeAttrib);
 	    	
 	    	// escrevendo linha que adiciona o removeAttrib do elemento
@@ -3432,6 +3592,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo addAttrib do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $attrib - atributo a ser adicionado no elemento
 	 * @param String $attribValue - string com o valor do atributo a ser adicionado
 	 * @param String $elementName - Nome do elemento que tera o atributo adicionado
@@ -3441,7 +3602,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 06/09/2012
 	 */
-	private function escreveSetAttribElemento($resourceArquivo, $attrib, $attribValue, $elementName)
+	private function escreveSetAttribElemento($resourceArquivo, $identacao, $attrib, $attribValue, $elementName)
 	{
 		// verificando se conseguiu recuperar attrib
     	if (null !== $attrib) {
@@ -3453,7 +3614,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	// montando string do addValidator do elemento
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_SET_ATTRIB);
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_VALUE, $stringAttribValue, $addAttrib);
-	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addAttrib);
+	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $addAttrib);
 			$addAttrib = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addAttrib);
 	    	
 	    	// escrevendo linha que adiciona o setAttribs do elemento
@@ -3469,6 +3630,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve os decorators do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param Array $arrayDecorators - array com os dados das associacoes (default e especializacao) dos decorators com o elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
@@ -3477,7 +3639,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function escreveDecoratorsElemento($resourceArquivo, $arrayDecorators, $elementName)
+	private function escreveDecoratorsElemento($resourceArquivo, $identacao, $arrayDecorators, $elementName)
 	{
 		// verificando se as chaves obrigatorias estao no array de filters
     	if (isset($arrayDecorators['default']) && isset($arrayDecorators['especializacao'])) {
@@ -3495,18 +3657,18 @@ class Basico_OPController_GeradorFormularioOPController
     			if (isset($assocclDecorator['idDecoratorGrupo']) && $assocclDecorator['idDecoratorGrupo'] > 0) {
     				
     				// processando e escrevendo grupos de filtros default do elemento (recursividade)
-    				$this->processaGruposDecoratorsElemento($resourceArquivo, $elementName, $assocclDecorator['idDecoratorGrupo'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $assocclDecorator['removeFlag']);
+    				$this->processaGruposDecoratorsElemento($resourceArquivo, $identacao, $elementName, $assocclDecorator['idDecoratorGrupo'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $assocclDecorator['removeFlag']);
     				
     			}else{ // se nao for um grupo
     					
     				// verificando se o grupo eh para remocao
     				if ($assocclDecorator['removeFlag'] == true) {
     					// escrevendo metodo remove filter 
-    					$this->escreveRemoveDecoratorElemento($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+    					$this->escreveRemoveDecoratorElemento($resourceArquivo, $identacao, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
     				}else{
     					
     					// escrevendo metodo addFilter
-    					$this->escreveAddDecoratorElemento($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+    					$this->escreveAddDecoratorElemento($resourceArquivo, $identacao, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
     				}
     			}
     				
@@ -3520,6 +3682,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Processa e escreve os grupos de decorators do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * @param Int $idDecoratorGrupo - id do grupo de decorators a ser inserido
 	 * @param String $decoratorAlias - alias do decorator
@@ -3531,7 +3694,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	private function processaGruposDecoratorsElemento($resourceArquivo, $elementName, $idDecoratorGrupo, $decoratorAlias, $removeFlag, $arrayIdsGruposJaProcessados = array())
+	private function processaGruposDecoratorsElemento($resourceArquivo, $identacao, $elementName, $idDecoratorGrupo, $decoratorAlias, $removeFlag, $arrayIdsGruposJaProcessados = array())
 	{
 		// verificando se o grupo ja foi processado
 		if (array_search($idDecoratorGrupo, $arrayIdsGruposJaProcessados) !== false) {
@@ -3554,16 +3717,16 @@ class Basico_OPController_GeradorFormularioOPController
     		// verificando se o decorator e um grupo
     		if (isset($assocclDecorator['idDecoratorGrupoAssoc']) && $assocclDecorator['idDecoratorGrupoAssoc'] > 0) {
     			// processando grupos de decorators (recursividade)
-    			$this->processaGruposDecoratorsElemento($resourceArquivo, $elementName , $assocclDecorator['idFormularioDecoratorGrupoAssoc'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $removeFlag, $arrayIdsGruposJaProcessados);	
+    			$this->processaGruposDecoratorsElemento($resourceArquivo, $identacao, $elementName , $assocclDecorator['idFormularioDecoratorGrupoAssoc'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $removeFlag, $arrayIdsGruposJaProcessados);	
     		}else{
 	    					
 	    		// verificando se o grupo eh para remocao
 	    		if ($removeFlag == true) {
 	    			// escrevendo metodo remove decorator
-	    			$this->escreveRemoveDecoratorElemento($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+	    			$this->escreveRemoveDecoratorElemento($resourceArquivo, $identacao, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
 	    		}else{
 	    			// escrevendo metodo para adicao de decorator
-	    			$this->escreveAddDecoratorElemento($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+	    			$this->escreveAddDecoratorElemento($resourceArquivo, $identacao, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
 	    		}
     		}
     	}
@@ -3573,6 +3736,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo removeDecorator do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $decorator - decorator a ser removido do elemento
 	 * @param String $decoratorAlias - alias do decorator a ser removido
 	 * @param String $elementName - Nome do elemento que tera o decorator removido
@@ -3582,7 +3746,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 27/08/2012
 	 */
-	private function escreveRemoveDecoratorElemento($resourceArquivo, $decorator, $decoratorAlias, $elementName)
+	private function escreveRemoveDecoratorElemento($resourceArquivo, $identacao, $decorator, $decoratorAlias, $elementName)
 	{
 		// verificando se passou o decorator
     	if (null !== $decorator) {
@@ -3598,7 +3762,7 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    	// montando string do decorator do elemento
 	    	$removeDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, Basico_OPController_UtilOPController::retornaStringEntreCaracter($stringDecorator, "'"), self::CHAMADA_REMOVE_DECORATOR);
-	    	$removeDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $removeDecorator);
+	    	$removeDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $removeDecorator);
 			$removeDecorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $removeDecorator);
 	    	
 	    	// escrevendo linha que adiciona o removeDecorator do elemento
@@ -3612,6 +3776,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * Escreve o metodo addDecorator do elemento
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
+	 * @param Int $identacao
 	 * @param String $decorator - decorator a ser adicionado no elemento
 	 * @param String $decoratorAlias - alias do decorator a ser adicionado no elemento
 	 * @param String $decoratorAttribs - string com os attribs do decorator
@@ -3623,7 +3788,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 27/08/2012
 	 * 
 	 */
-	private function escreveAddDecoratorElemento($resourceArquivo, $decorator, $decoratorAttribs, $decoratorAlias, $elementName)
+	private function escreveAddDecoratorElemento($resourceArquivo, $identacao, $decorator, $decoratorAttribs, $decoratorAlias, $elementName)
 	{
 		// verificando se o decorator foi passado
     	if (null !== $decorator) {
@@ -3646,7 +3811,7 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    	// montando string do addFilter do elemento
 	    	$addDecorator = str_replace(self::TAG_SUBSTITUICAO_DECORATOR, $stringDecorator, self::CHAMADA_ADD_DECORATOR);
-	    	$addDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $addDecorator);
+	    	$addDecorator = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $addDecorator);
 			$addDecorator = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $addDecorator);
 	    	
 	    	// escrevendo linha que adiciona o addDecorator do elemento
@@ -3660,7 +3825,7 @@ class Basico_OPController_GeradorFormularioOPController
     		
 	    		// montando attribs do addDecorator do elemento
 		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_OPTIONS, $stringAttribs, self::CHAMADA_SET_OPTIONS);
-		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao(2), $attribs);
+		    	$attribs = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $attribs);
 				$attribs = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName . "->getDecorator('{$decorator}')" , $attribs);
 	    		
 				// escrevendo linha que adiciona o setAttribs do elemento

@@ -42,6 +42,7 @@ class Basico_Model_FormularioMapper extends Basico_AbstractMapper_RochedoMapper 
 		$this->_arrayMapper['formAction']				 = 'form_action';
 		$this->_arrayMapper['formEnctype']				 = 'form_enctype';
 		$this->_arrayMapper['formAttribs']				 = 'form_attribs';
+		$this->_arrayMapper['formOptions']				 = 'form_options';
 		$this->_arrayMapper['ordem']					 = 'ordem';
 		$this->_arrayMapper['permiteRascunho']			 = 'permite_rascunho';
 		$this->_arrayMapper['datahoraCriacao']			 = 'datahora_criacao';

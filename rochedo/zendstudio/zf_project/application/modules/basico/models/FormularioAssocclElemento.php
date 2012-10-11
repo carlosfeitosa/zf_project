@@ -40,6 +40,10 @@ class Basico_Model_FormularioAssocclElemento extends Basico_AbstractModel_Roched
 	/**
 	 * @var String
 	 */
+	protected $_elementOptions;
+	/**
+	 * @var String
+	 */
 	protected $_elementAttribs;
 	/**
 	 * @var String
@@ -232,6 +236,28 @@ class Basico_Model_FormularioAssocclElemento extends Basico_AbstractModel_Roched
 	public function getElementName()
 	{
 		return $this->_elementName;
+	}
+	
+	/**
+	* Set elementOptions
+	* 
+	* @param String $elementOptions
+	* @return Basico_Model_FormularioAssocclElemento
+	*/
+	public function setElementOptions($elementOptions)
+	{
+		$this->_elementOptions = Basico_OPController_UtilOPController::retornaValorTipado($elementOptions, TIPO_STRING,true);
+		return $this;
+	}
+
+	/**
+	* Get elementOptions
+	* 
+	* @return null|String
+	*/
+	public function getElementOptions()
+	{
+		return $this->_elementOptions;
 	}
 	
     /**

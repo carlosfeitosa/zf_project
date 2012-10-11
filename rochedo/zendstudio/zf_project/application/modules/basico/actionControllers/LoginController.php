@@ -141,7 +141,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
 		
 		//adicionando chamada a função do password strength checker para o campo senha
-		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")"));
+		//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")"));
 		
 		//adicionando multi-options para o radioButton sexo
 	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));
@@ -155,10 +155,10 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	    $urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
 	    	
 	    // adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
-	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
+	   //$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
 	    
 	    // colocando o div do password strenght checker
-	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
+	   // $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
     }
 
     /**

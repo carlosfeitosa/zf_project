@@ -65,6 +65,10 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
 	/**
      * @var String
      */
+    protected $_formOptions;
+	/**
+     * @var String
+     */
     protected $_formAttribs;
     /**
 	* @var int
@@ -425,6 +429,28 @@ class Basico_Model_Formulario extends Basico_AbstractModel_RochedoPersistentMode
     public function getFormAttribs()
     {
        	return $this->_formAttribs;
+    }
+    
+	/**
+    * Set formOptions
+    * 
+    * @param String $formOptions 
+    * @return Basico_Model_Formulario
+    */
+    public function setFormOptions($formOptions)
+    {
+        $this->_formOptions = Basico_OPController_UtilOPController::retornaValorTipado($formOptions, TIPO_STRING, true);
+        return $this;
+    }
+
+    /**
+    * Get formOptions
+    * 
+    * @return null|String
+    */
+    public function getFormOptions()
+    {
+       	return $this->_formOptions;
     }
 	
 	/**

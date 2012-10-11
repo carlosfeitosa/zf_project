@@ -24,6 +24,10 @@ class Basico_Model_FormularioAssocclElementoAssocclValidator extends Basico_Abst
      * @var int
      */
     protected $_idValidatorGrupo;
+    /**
+     * @var String
+     */
+    protected $_options;
 	/**
      * @var Boolean
      */
@@ -126,6 +130,28 @@ class Basico_Model_FormularioAssocclElementoAssocclValidator extends Basico_Abst
         $model = new Basico_Model_ValidatorGrupo();
         $object = $model->find($this->_idValidatorGrupo);
         return $object;
+    }
+    
+	/**
+    * Set options
+    * 
+    * @param String $options
+    * @return Basico_Model_FormularioAssocclElementoAssocclValidator
+    */
+    public function setOptions($options)
+    {
+        $this->_options = Basico_OPController_UtilOPController::retornaValorTipado($options, TIPO_STRING, true);
+        return $this;
+    }
+
+    /**
+    * Get options
+    * 
+    * @return String
+    */
+    public function getOptions()
+    {
+        return $this->_options;
     }
 
    /**

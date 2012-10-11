@@ -37,7 +37,7 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	/**
 	 * @var String
 	 */
-	protected $_attribs;
+	protected $_options;
 	/**
 	 * @var Boolean
 	 */
@@ -203,25 +203,25 @@ class Basico_Model_Validator extends Basico_AbstractModel_RochedoPersistentModel
 	}
 
 	/**
-	* Set attribs
+	* Set options
 	* 
-	* @param String $attribs 
+	* @param String $options 
 	* @return Basico_Model_Validator
 	*/
-	public function setAttribs($attribs)
+	public function setOptions($options)
 	{
-		$this->_attribs = Basico_OPController_UtilOPController::retornaValorTipado($attribs,TIPO_STRING,true);
+		$this->_options = Basico_OPController_UtilOPController::retornaValorTipado($options,TIPO_STRING,true);
 		return $this;
 	}
 
 	/**
-	* Get attribs
+	* Get options
 	* 
 	* @return null|String
 	*/
-	public function getAttribs()
+	public function getOptions()
 	{
-		return $this->_attribs;
+		return $this->_options;
 	}
 
 	/**

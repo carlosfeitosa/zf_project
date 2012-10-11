@@ -34,6 +34,7 @@ class Basico_Model_FormularioAssocclElementoMapper extends Basico_AbstractMapper
 		$this->_arrayMapper['idGrupo'] 					 = 'id_grupo';
 		$this->_arrayMapper['constanteTextualLabel'] 	 = 'constante_textual_label';
 		$this->_arrayMapper['elementName'] 				 = 'element_name';
+		$this->_arrayMapper['elementOptions'] 			 = 'element_options';
 		$this->_arrayMapper['elementAttribs'] 			 = 'element_attribs';
 		$this->_arrayMapper['elementValueDefault'] 		 = 'element_value_default';
 		$this->_arrayMapper['elementReloadable']   		 = 'element_reloadable';

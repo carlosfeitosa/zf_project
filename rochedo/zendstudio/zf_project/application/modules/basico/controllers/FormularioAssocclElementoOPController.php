@@ -355,7 +355,7 @@ class Basico_OPController_FormularioAssocclElementoOPController extends Basico_A
 		}
 
 		// recuperando array de dados
-		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", array('id_formulario','ordem'), null, null, array('id', 'idElemento', 'idAjuda', 'idGrupo', 'constanteTextualLabel', 'elementName', 'elementAttribs', 'elementValueDefault', 'elementReloadable', 'elementRequired', 'ordem'));
+		$arrayDadosElementos = $this->_retornaArrayDadosObjetosPorParametros("id_formulario = {$idFormulario}", array('id_formulario','ordem'), null, null, array('id', 'idElemento', 'idAjuda', 'idGrupo', 'constanteTextualLabel', 'elementName', 'elementAttribs', 'elementOptions', 'elementValueDefault', 'elementReloadable', 'elementRequired', 'ordem'));
 
 		// verificando o resultado da recuperação
 		if (!count($arrayDadosElementos)) {

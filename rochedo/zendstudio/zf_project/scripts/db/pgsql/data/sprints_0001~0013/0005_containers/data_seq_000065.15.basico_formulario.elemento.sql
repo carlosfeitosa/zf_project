@@ -374,7 +374,7 @@ WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
-								 element_name, element_attribs, element, rowinfo)
+								 element_name, element_options, element, rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT cp.id
                               from basico.componente cp
@@ -385,15 +385,15 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
                               'FORM_FIELD_HTML_PASSWORD_STRENGTH_CHECKER' AS nome,
                               'FORM_FIELD_HTML_PASSWORD_STRENGTH_CHECKER' AS constante_textual, true AS ativo,
-                              'passwordStrengthChecker' AS element_name, NULL AS element_attribs,
-                              '''passwordStrengthChecker'', array(''value'' => "<div id=''scorebarBorder''><div id=''score''>0%</div><div id=''scorebar''>&nbsp;</div></div><div id=''complexity''></div>")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'passwordStrengthChecker' AS element_name, '''value'' => "<div id=''scorebarBorder''><div id=''score''>0%</div><div id=''scorebar''>&nbsp;</div></div><div id=''complexity''></div>"' AS element_options,
+                              'passwordStrengthChecker' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
-								 element_name, element_attribs, element, rowinfo)
+								 element_name, element_options, element, rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT cp.id
                               from basico.componente cp
@@ -404,15 +404,15 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
                               'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS nome, 
                               'FORM_FIELD_HTML_LOGIN_DISPONIBILIDADE' AS constante_textual, true AS ativo,
-                              'loginDisponivel' AS element_name, NULL AS element_attribs,
-                              '''loginDisponivel'', array(''value'' => "")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'loginDisponivel' AS element_name, '''value'' => ""' AS element_options,
+                              'loginDisponivel' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, constante_textual_label, 
-								 element_name, element_attribs, element, rowinfo)
+								 element_name, element_options, element, rowinfo)
 
 
 SELECT c.id AS id_categoria,(SELECT cp.id
@@ -425,15 +425,15 @@ SELECT c.id AS id_categoria,(SELECT cp.id
                               'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS nome,
                               'FORM_FIELD_RADIO_BUTTON_SUGESTAO_LOGIN' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SUGESTAO_LOGIN' AS constante_textual_label,
-                              'sugestaoLogin' AS element_name, NULL AS element_attribs,
-                              '''sugestaoLogin'', array(''separator'' => "<br>")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'sugestaoLogin' AS element_name, '''separator'' => ''<br>''' AS element_options,
+                              'sugestaoLogin' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
 AND c.nome = 'FORMULARIO_ELEMENTO';
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
-								 element_name, element_attribs, element, rowinfo)
+								 element_name, element_options, element, rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT cp.id
                               from basico.componente cp
@@ -444,8 +444,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               AND cp.nome = 'ROCHEDO_html') AS id_componente,
                               'FORM_FIELD_HTML_CONTENT_DINAMICO' AS nome,
                               'FORM_FIELD_HTML_CONTENT_DINAMICO' AS constante_textual, true AS ativo,
-                              'contentDinamico' AS element_name, NULL AS element_attribs,
-                              '''contentDinamico'', array(''value'' => "")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'contentDinamico' AS element_name, 'array(''value'' => "")' AS element_options,
+                              'contentDinamico' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'
@@ -457,7 +457,7 @@ AND c.nome = 'FORMULARIO_ELEMENTO_HTML';
 
 
 INSERT INTO basico_formulario.elemento(id_categoria, id_componente, nome, constante_textual, ativo, 
-								 element_name, element_attribs, element, rowinfo)
+								 element_name, element_options, element, rowinfo)
 
 SELECT c.id AS id_categoria, (SELECT cp.id
                               from basico.componente cp
@@ -468,8 +468,8 @@ SELECT c.id AS id_categoria, (SELECT cp.id
                               AND cp.nome = 'ROCHEDO_javascript') AS id_componente,
                               'FORM_FIELD_HTML_JAVASCRIPT' AS nome,
                               'FORM_FIELD_HTML_JAVASCRIPT' AS constante_textual, true AS ativo,
-                              'javaScript' AS element_name, NULL AS element_attribs,
-                              '''javaScript'', array(''value'' => "")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'javaScript' AS element_name, 'array(''value'' => "")' AS element_options,
+                              'javaScript' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

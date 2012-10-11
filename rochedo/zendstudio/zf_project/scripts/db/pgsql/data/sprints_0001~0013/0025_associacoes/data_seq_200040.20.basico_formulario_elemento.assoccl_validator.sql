@@ -183,7 +183,7 @@ SELECT (SELECT fe.id
         AND fev.nome = 'NAO_VAZIO') AS id_formulario_elemento_validator,
        'SYSTEM_STARTUP' AS rowinfo;
        
-INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
+INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, options, rowinfo)
 SELECT (SELECT fe.id
         FROM basico_formulario.elemento fe
         LEFT JOIN basico.categoria c ON (fe.id_categoria = c.id)
@@ -200,6 +200,7 @@ SELECT (SELECT fe.id
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
         AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
         AND fev.nome = 'IDENTICO') AS id_formulario_elemento_validator,
+        '''token'' => ''@nomeModuloCadastrarUsuarioValidadoSenha'', ''invalidMessage'' => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO'')' AS options,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)
