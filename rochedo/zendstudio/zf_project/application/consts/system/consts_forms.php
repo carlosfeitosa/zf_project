@@ -66,7 +66,7 @@ define("FORM_GERADOR_SETREQUIRED", '@identacao@instancia->setRequired(@required)
 define("FORM_GERADOR_REMOVEFILTER", '@identacao@instancia->removeFilter(@filter);');
 define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
 define("FORM_GERADOR_REMOVEVALIDATOR", '@identacao@instancia->removeValidator(@validator);');
-define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator, @attribs);');
+define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator, false, @attribs);');
 define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
 define("TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_GETELEMENTS", '@identacao@instancia->getElements()');

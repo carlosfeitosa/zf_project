@@ -105,7 +105,7 @@ class Basico_OPController_FormularioAssocclElementoAssocclValidatorOPController 
 	public function retornaArrayDadosValidatorsEspecializacaoPorIdAssocclElemento($idAssocclElemento)
 	{
 		// recuperando dados da especializacao dos validators do elemento no formulario
-		$arrayDadosValidatorsElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento}", null, null, null, array('idValidator', 'idValidatorGrupo', 'removeFlag'));
+		$arrayDadosValidatorsElemento = $this->_retornaArrayDadosObjetosPorParametros("id_assoccl_elemento = {$idAssocclElemento}", null, null, null, array('idValidator', 'idValidatorGrupo', 'options', 'removeFlag'));
 		
 		// verificando se foram encontrados validators 
 		if (count($arrayDadosValidatorsElemento)) {

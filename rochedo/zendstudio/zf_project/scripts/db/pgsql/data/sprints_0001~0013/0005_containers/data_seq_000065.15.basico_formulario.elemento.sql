@@ -526,8 +526,8 @@ SELECT c.id AS id_categoria,  (SELECT a.id
                               'FORM_FIELD_RADIO_BUTTON_SEXO' AS nome,
                               'FORM_FIELD_RADIO_BUTTON_SEXO' AS constante_textual, true AS ativo,
                               'FORM_FIELD_SEXO' AS constante_textual_label,
-                              'sexo' AS element_name, NULL AS element_attribs,
-                              '''sexo'', array(''separator'' => " ")' AS element, 'SYSTEM_STARTUP' AS rowinfo
+                              'sexo' AS element_name, '''separator'' => " "' AS element_options,
+                              'sexo' AS element, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
 WHERE t.nome = 'FORMULARIO'

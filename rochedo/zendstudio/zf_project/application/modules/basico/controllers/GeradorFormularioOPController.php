@@ -3369,11 +3369,18 @@ class Basico_OPController_GeradorFormularioOPController
     					$this->escreveRemoveValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $elementName);
     				}else{
     					
-    					// recuperando os attribs do filtro a ser inserido
-	    				$validatorAttribs = Basico_OPController_ValidatorOPController::getInstance()->retornaAttribsValidatorPorIdValidator($validator['idValidator']);
+    					// verificando se existe options no array do validator
+    					if (isset($validator['options']) and null !== $validator['options']) {
+	    					// recuperando os options do validator a ser inserido
+		    				$validatorOptions = $validator['options'];
+    					}else{
+	    					// recuperando os options do filtro a ser inserido
+		    				$validatorOptions = Basico_OPController_ValidatorOPController::getInstance()->retornaOptionsValidatorPorIdValidator($validator['idValidator']);
+    					} 
+    					
     					
     					// escrevendo metodo addFilter
-    					$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorAttribs, $elementName);
+    					$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorOptions, $elementName);
     				}
     			}
     				
@@ -3431,10 +3438,18 @@ class Basico_OPController_GeradorFormularioOPController
 	    			// escrevendo metodo remove filter
 	    			$this->escreveRemoveValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $elementName);
 	    		}else{
-	    			// recuperando os attribs do filtro a ser inserido
-	    			$validatorAttribs = Basico_OPController_ValidatorOPController::getInstance()->retornaAttribsValidatorPorIdValidator($validator['idValidator']);
+	    			
+		    		// verificando se existe options no array do validator
+    				if (isset($validator['options']) and null !== $validator['options']) {
+	    				// recuperando os options do validator a ser inserido
+		    			$validatorOptions = $validator['options'];
+    				}else{
+	    				// recuperando os options do filtro a ser inserido
+		    			$validatorOptions = Basico_OPController_ValidatorOPController::getInstance()->retornaOptionsValidatorPorIdValidator($validator['idValidator']);
+    				}
+	    			
 	    			// escrevendo metodo para adicao de filter
-	    			$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorAttribs, $elementName);
+	    			$this->escreveAddValidatorElemento($resourceArquivo, $identacao, $componenteValidator, $validatorOptions, $elementName);
 	    		}
     		}
     	}

@@ -127,15 +127,15 @@ class Basico_OPController_ValidatorOPController extends Basico_AbstractOPControl
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 22/08/2012
 	 */
-	public function retornaAttribsValidatorPorIdValidator($idValidator)
+	public function retornaOptionsValidatorPorIdValidator($idValidator)
 	{
 		// recuperando o id componente do validator
-		$arrayDadosValidator = $this->_retornaArrayDadosObjetoPorId($idValidator, array('attribs'));
+		$arrayDadosValidator = $this->_retornaArrayDadosObjetoPorId($idValidator, array('options'));
 		
 		// verificando se o validator foi encontrada
 		if (is_array($arrayDadosValidator)) {
 			// retornando attribs do validator
-			return $arrayDadosValidator['attribs'];
+			return $arrayDadosValidator['options'];
 		}
 		
 		return null;

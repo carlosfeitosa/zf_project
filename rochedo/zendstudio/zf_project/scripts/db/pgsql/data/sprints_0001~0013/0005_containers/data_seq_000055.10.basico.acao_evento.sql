@@ -15,7 +15,7 @@ SELECT c.id AS id_categoria,
 	   'VERIFICA_DISPONIBILIDADE_LOGIN' AS nome,
 	   'NOME_ACAO_EVENTO_VERIFICA_DISPONIBILIDADE_LOGIN' AS constante_textual,
 	   'DESCRICAO_ACAO_EVENTO_VERIFICA_DISPONIBILIDADE_LOGIN' AS constante_textual_descricao,
-	   'verificaDisponibilidade(''login'', ''login'', this.value, document.getElementById(''idPessoa'').value ,dijit.byId(''BasicoCadastrarUsuarioValidadoNome'').getValue(), dijit.byId(''BasicoCadastrarUsuarioValidadoDataNascimento'').getValue(), ''" . Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(''/basico/login/verificadisponibilidadelogin'') . "'')' AS acao,
+	   'validaString(this, ''login''); verificaDisponibilidade(''login'', ''login'', this.value, document.getElementById(''idPessoa'').value ,dijit.byId(''BasicoCadastrarUsuarioValidadoNome'').getValue(), dijit.byId(''BasicoCadastrarUsuarioValidadoDataNascimento'').getValue(), ''" . Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(''/basico/login/verificadisponibilidadelogin'') . "'')' AS acao,
 	   true AS ativo,
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.categoria c

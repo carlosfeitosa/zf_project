@@ -51,7 +51,7 @@ SELECT (SELECT g.id
 		 FROM basico_formulario.decorator d
 		 LEFT JOIN basico.categoria c ON (d.id_categoria = c.id)
 		 WHERE c.nome = 'FORMULARIO_ELEMENTO_DECORATOR_HTML_ZF'
-		 AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT_CLEAR_BOTH') AS id_decorator,
+		 AND d.nome = 'FORM_FIELD_DIV_FLOAT_LEFT') AS id_decorator,
 		1 AS ordem,
 		'SYSTEM_STARTUP' AS rowinfo;
 		
