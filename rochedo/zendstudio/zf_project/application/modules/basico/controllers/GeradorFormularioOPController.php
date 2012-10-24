@@ -139,6 +139,15 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 21/06/2012
 	 */
 	const TAG_SUBSTITUICAO_NOME_FORMULARIO = TAG_NOME_FORMULARIO;
+	/**
+	 * Tag de substituicao do baseUrl
+	 * 
+	 * @var String
+	 * 
+	* @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 22/10/2012
+	 */
+	const TAG_SUBSTITUICAO_BASE_URL = TAG_BASE_URL;
 
 	/**
 	 * Tag de substituicao do método do formulário
@@ -1133,6 +1142,11 @@ class Basico_OPController_GeradorFormularioOPController
 		// recuperando dados sobre a versão do formulário
 		$arrayDadosVersao = $this->_formularioOPController->retornaArrayDadosVersaoFormularioPorIdFormulario($idFormulario);
 
+		// recuperando subformularios do formulario
+		$subFormularios = $this->_formularioOPController->retornaArrayIdsSubFormulariosPorIdFormulario($idFormulario);
+		
+		  
+		
 		// gerando um nome de arquivo válido
 		$nomeArquivoFormularioTemporario = $this->geraNomeArquivoFormularioTemporarioValido();
 
@@ -1232,12 +1246,27 @@ class Basico_OPController_GeradorFormularioOPController
 					// recuperando o nome do arquivo do lastKnowGood
 					$lkgNome = APPLICATION_MODULES_PATH . "/" . $nomeModulo . "/forms/_lkg/" . $arrayDadosFormulario['formName'] . ".php";
 					
+					// recuperando conteudo do last know good
+					$conteudoLkg = file_get_contents($formModulePath);
+					
+					// verificando se conseguiu recuperar o conteudo do arquivo
+					if (!$conteudoLkg) {
+						// retornando mensagen de erro
+						return array('Não foi possível recuperar o conteudo do arquivo para copia "last know good" (path: {$lkgNome}).');
+					}
+					
 					// criando/atualizando o arquivo do lastKnowGood
-					file_put_contents($lkgNome, file_get_contents($formModulePath));
+					if (!file_put_contents($lkgNome, $conteudoLkg)) {
+						// retornando mensagen de erro
+						return array('Não foi possível escrever o arquivo do "last know good" (path: {$lkgNome}).');
+					}
 				}
 				
 				// criando ou atualizando arquivo 
-				file_put_contents($formModulePath, $copiaConteudoArquivo);
+				if (!file_put_contents($formModulePath, $copiaConteudoArquivo)) {
+					// retornando mensagen de erro
+					return array('Não foi possível escrever o arquivo do formulario (path: {$formModulePath}).');
+				}
 			}
 
 		} catch (Exception $e) {
@@ -2763,7 +2792,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	$this->escreveSetAttribsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementAttribs'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo eventos do elemento
-	    	$this->escreveEventosElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['eventos'], $arrayDadosMontagemElemento['elementName']);
+	    	$this->escreveEventosElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['eventos'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escrevendo chamada ao metodo setOrder do elemento
 	    	$this->escreveSetOrderElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['ordem'], $arrayDadosMontagemElemento['elementName']);
@@ -3533,6 +3562,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
 	 * @param Int $identacao
+	 * @param String $nomeFormulario
 	 * @param Array $arrayEventos - array com os dados das associacoes (default e especializacao) dos eventos com o elemento
 	 * @param String $elementName - Nome do elemento que tera o attrib do evento setado
 	 * 
@@ -3541,7 +3571,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 05/09/2012
 	 */
-	private function escreveEventosElemento($resourceArquivo, $identacao, $arrayEventos, $elementName)
+	private function escreveEventosElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayEventos, $elementName)
 	{
 		// verificando se as chaves obrigatorias estao no array de eventos
     	if (isset($arrayEventos['default']) && isset($arrayEventos['especializacao'])) {
@@ -3565,7 +3595,7 @@ class Basico_OPController_GeradorFormularioOPController
     			}else{
     					
     				// escrevendo metodo addFilter
-    				$this->escreveSetAttribElemento($resourceArquivo, $identacao, $stringEvento, $stringAcaoEvento, $elementName);
+    				$this->escreveSetAttribElemento($resourceArquivo, $identacao, $nomeFormulario, $stringEvento, $stringAcaoEvento, $elementName);
     			}
     				
     		}
@@ -3608,6 +3638,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
 	 * @param Int $identacao
+	 * @param $nomeFormulario
 	 * @param String $attrib - atributo a ser adicionado no elemento
 	 * @param String $attribValue - string com o valor do atributo a ser adicionado
 	 * @param String $elementName - Nome do elemento que tera o atributo adicionado
@@ -3617,7 +3648,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 06/09/2012
 	 */
-	private function escreveSetAttribElemento($resourceArquivo, $identacao, $attrib, $attribValue, $elementName)
+	private function escreveSetAttribElemento($resourceArquivo, $identacao, $nomeFormulario, $attrib, $attribValue, $elementName)
 	{
 		// verificando se conseguiu recuperar attrib
     	if (null !== $attrib) {
@@ -3625,6 +3656,10 @@ class Basico_OPController_GeradorFormularioOPController
     		// montando string do validator
     		$stringAttrib 	   = Basico_OPController_UtilOPController::retornaStringEntreCaracter($attrib, '"');
     		$stringAttribValue = Basico_OPController_UtilOPController::retornaStringEntreCaracter($attribValue, '"');
+    		
+    		// substituindo possiveis flags na string da acaoEvento
+    		$stringAttribValue = str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . $nomeFormulario, $stringAttribValue);
+    		$stringAttribValue = str_replace(self::TAG_SUBSTITUICAO_BASE_URL, Basico_OPController_UtilOPController::retornaBaseUrl(), $stringAttribValue);
     		
 	    	// montando string do addValidator do elemento
 	    	$addAttrib = str_replace(self::TAG_SUBSTITUICAO_ATTRIB_NAME, $stringAttrib, self::CHAMADA_SET_ATTRIB);
@@ -3990,11 +4025,11 @@ class Basico_OPController_GeradorFormularioOPController
     				// verificando se o grupo eh para remocao
     				if ($assocclDecorator['removeFlag'] == true) {
     					// escrevendo metodo removeDecorator dp formulario 
-    					$this->escreveRemoveDecoratorFormulario($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+    					$this->escreveRemoveDecoratorFormulario($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias']);
     				}else{
     					
     					// escrevendo metodo addDecorator do formulario
-    					$this->escreveAddDecoratorFormulario($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias'], $elementName);
+    					$this->escreveAddDecoratorFormulario($resourceArquivo, $arrayDadosDecorator[$assocclDecorator['idDecorator']]['componente'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['attribs'], $arrayDadosDecorator[$assocclDecorator['idDecorator']]['alias']);
     				}
     			}
     				

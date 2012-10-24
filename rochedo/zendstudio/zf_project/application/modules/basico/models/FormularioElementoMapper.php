@@ -35,7 +35,6 @@ class Basico_Model_FormularioElementoMapper extends Basico_AbstractMapper_Roched
 		$this->_arrayMapper['constanteTextual']			 = 'constante_textual';
 		$this->_arrayMapper['constanteTextualDescricao'] = 'constante_textual_descricao';
 		$this->_arrayMapper['constanteTextualLabel']	 = 'constante_textual_label';
-		$this->_arrayMapper['element']					 = 'element';
 		$this->_arrayMapper['elementName']				 = 'element_name';
 		$this->_arrayMapper['elementOptions']			 = 'element_options';
 		$this->_arrayMapper['elementAttribs']			 = 'element_attribs';

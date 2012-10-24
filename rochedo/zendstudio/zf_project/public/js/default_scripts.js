@@ -166,7 +166,7 @@ function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
 	thisdialog.show();
 }
 
-function hideDialog(dialogId, urlRedirectHide)
+function hideDialog(dialogId, baseUrl)
 {
 	// localizando o dialog
 	var dlg = dijit.byId(dialogId);
@@ -175,8 +175,8 @@ function hideDialog(dialogId, urlRedirectHide)
 	if (dlg != null) {
 		// verificando se o dialog possui o hidden urlRedirect
 		hiddenUrlRedirect = document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0];
-		if (hiddenUrlRedirect && urlRedirectHide)
-			window.location = urlRedirectHide;
+		if (hiddenUrlRedirect && baseUrl)
+			window.location = baseUrl;
 		dlg.hide();
 	}
 }

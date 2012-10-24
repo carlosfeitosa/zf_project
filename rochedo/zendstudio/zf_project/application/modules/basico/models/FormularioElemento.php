@@ -41,10 +41,6 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	/**
 	 * @var String
 	 */
-	protected $_element;
-	/**
-	 * @var String
-	 */
 	protected $_elementName;
 	/**
 	 * @var String
@@ -257,29 +253,6 @@ class Basico_Model_FormularioElemento extends Basico_AbstractModel_RochedoPersis
 	public function getConstanteTextualLabel()
 	{
 		return $this->_constanteTextualLabel;
-	}
-     
-	/**
-	* Set element
-	* 
-	* @param String $element 
-	* 
-	* @return String
-	*/
-	public function setElement($element)
-	{
-		$this->_element = Basico_OPController_UtilOPController::retornaValorTipado($element, TIPO_STRING,true);
-		return $this;
-	}
-
-	/**
-	* Get element
-	* 
-	* @return null|String
-	*/
-	public function getElement()
-	{
-		return $this->_element;
 	}
 	
 	/**

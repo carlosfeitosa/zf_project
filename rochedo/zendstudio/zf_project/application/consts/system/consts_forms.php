@@ -104,6 +104,7 @@ define('TAG_CONSTANTE_TEXTUAL', '@constanteTextual');
 define('TAG_INSTANCIA_FORMULARIO', '$this');
 define("TAG_TITLE", '@title');
 define("TAG_MESSAGE", '@message');
+define('TAG_BASE_URL', '@baseUrl');
 
 
 // constantes de comentarios de metodos ou chamadas de metodos

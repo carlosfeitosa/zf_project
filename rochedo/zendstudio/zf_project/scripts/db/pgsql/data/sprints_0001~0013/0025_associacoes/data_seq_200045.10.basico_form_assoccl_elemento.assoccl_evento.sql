@@ -70,3 +70,45 @@ SELECT (SELECT fcle.id
 	    AND c2.nome = 'ACAO_EVENTO') AS id_acao_evento,
 	   1 AS ordem,
 	   'SYSTEM_STARTUP' AS rowinfo;	   
+	   
+INSERT INTO basico_form_assoccl_elemento.assoccl_evento (id_assoccl_elemento, id_evento, id_acao_evento, ordem, rowinfo)
+SELECT (SELECT fcle.id
+        FROM basico_formulario.assoccl_elemento fcle
+        LEFT JOIN basico.formulario f ON (f.id = fcle.id_formulario)
+        LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
+        WHERE f.nome = 'FORM_AUTENTICACAO_USUARIO'
+        AND e.nome = 'FORM_BUTTON_RESET'
+        AND fcle.ordem = 8) AS id_assoccl_elemento,
+	   (SELECT e.id
+	    FROM basico.evento e
+	    LEFT JOIN basico.categoria c ON (e.id_categoria = c.id)
+	    WHERE e.nome = 'HTML_ONCLICK'
+	    AND c.nome = 'EVENTO_HTML_MOUSE')  AS id_evento,
+	   (SELECT ae.id
+	    FROM basico.acao_evento ae
+	    LEFT JOIN basico.categoria c2 ON (ae.id_categoria = c2.id)
+	    WHERE ae.nome = 'OCULTAR_DIALOG_BASE_URL'
+	    AND c2.nome = 'ACAO_EVENTO') AS id_acao_evento,
+	   1 AS ordem,
+	   'SYSTEM_STARTUP' AS rowinfo;
+	   
+INSERT INTO basico_form_assoccl_elemento.assoccl_evento (id_assoccl_elemento, id_evento, id_acao_evento, ordem, rowinfo)
+SELECT (SELECT fcle.id
+        FROM basico_formulario.assoccl_elemento fcle
+        LEFT JOIN basico.formulario f ON (f.id = fcle.id_formulario)
+        LEFT JOIN basico_formulario.elemento e ON (e.id = fcle.id_elemento)
+        WHERE f.nome = 'FORM_DIALOG_SUGESTAO_LOGIN'
+        AND e.nome = 'FORM_BUTTON_CLOSE_DIALOG'
+        AND fcle.ordem = 4) AS id_assoccl_elemento,
+	   (SELECT e.id
+	    FROM basico.evento e
+	    LEFT JOIN basico.categoria c ON (e.id_categoria = c.id)
+	    WHERE e.nome = 'HTML_ONCLICK'
+	    AND c.nome = 'EVENTO_HTML_MOUSE')  AS id_evento,
+	   (SELECT ae.id
+	    FROM basico.acao_evento ae
+	    LEFT JOIN basico.categoria c2 ON (ae.id_categoria = c2.id)
+	    WHERE ae.nome = 'OCULTAR_DIALOG'
+	    AND c2.nome = 'ACAO_EVENTO') AS id_acao_evento,
+	   1 AS ordem,
+	   'SYSTEM_STARTUP' AS rowinfo;	   

@@ -200,7 +200,7 @@ SELECT (SELECT fe.id
         AND c.nome = 'FORMULARIO_ELEMENTO_VALIDATOR_ZF'
         AND cpai.nome = 'FORMULARIO_ELEMENTO_VALIDATOR'
         AND fev.nome = 'IDENTICO') AS id_formulario_elemento_validator,
-        '''token'' => ''@nomeModuloCadastrarUsuarioValidadoSenha'', ''invalidMessage'' => $this->getView()->tradutor(''FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO'')' AS options,
+        '''token'' => ''@nomeModuloCadastrarUsuarioValidadoSenha''' AS options,
        'SYSTEM_STARTUP' AS rowinfo;
        
 INSERT INTO basico_formulario_elemento.assoccl_validator (id_elemento, id_validator, rowinfo)

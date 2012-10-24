@@ -3000,7 +3000,8 @@ class Basico_OPController_UtilOPController
 										Zend_Validate_Hostname::INVALID_HOSTNAME        => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_HOSTNAME', null, false),
 										Zend_Validate_Hostname::INVALID_LOCAL_NAME      => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_INVALID_LOCAL_NAME', null, false),
 										Zend_Validate_Hostname::LOCAL_NAME_NOT_ALLOWED  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_LOCAL_NAME_NOT_ALLOWED', null, false),
-										Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE', null, false)
+										Zend_Validate_Hostname::CANNOT_DECODE_PUNYCODE  => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_HOSTNAME_CANNOT_DECODE_PUNYCODE', null, false),
+										Zend_Validate_Identical::NOT_SAME               => Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO', null, false)
                                     );
                                 
         // recuperando objeto Zend_Translate
