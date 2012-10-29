@@ -1048,11 +1048,17 @@ class Basico_OPController_DBUtilOPController
     {
     	// recuperando resource do bando de dados.
 		$auxDb = Basico_OPController_PersistenceOPController::bdRecuperaBDSessao();
-		// verificando se a tabela existe
-    	if (count($auxDb->describeTable($nomeTabela, $schema)) > 0) {
-    		// retornando verdadeiro
-    		return true;
-    	}
+
+		try {
+			// verificando se a tabela existe
+	    	if (count($auxDb->describeTable($nomeTabela, $schema)) > 0) {
+	    		// retornando verdadeiro
+	    		return true;
+	    	}
+		} catch (Exception $e) {
+	    	// retornando falso
+	    	return false;
+		}
 
     	// retornando falso
     	return false;
