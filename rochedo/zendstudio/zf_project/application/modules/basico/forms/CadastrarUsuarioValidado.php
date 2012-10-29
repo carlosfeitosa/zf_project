@@ -4,7 +4,7 @@
 * Formulário CadastrarUsuarioValidado
 *
 * Formulário gerado pelo gerador RF.
-* em: 01/10/2012 17:25:34
+* em: 29/10/2012 15:05:00
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 26/09/2012 14:44:53
+* @version    1: 29/10/2012 08:55:29
 *
 * @author SYSTEM
-* @since 01/10/2012 17:25:34
+* @since 29/10/2012 15:05:00
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 01/10/2012 17:25:34
+* @since 29/10/2012 15:05:00
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 01/10/2012 17:25:34
+    * @since 29/10/2012 15:05:00
     */
     public function __construct($options = null)
     {
@@ -55,26 +55,29 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 01/10/2012 17:25:34
+    * @since 29/10/2012 15:05:00
     */
     private function initForm()
     {
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
+        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
 
+        // Adicionando atributos ao formulário
+        $this->setAttribs(array('onSubmit'=>"return(validateForm('BasicoCadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         // Setando o nome do formulário
         $this->setName('BasicoCadastrarUsuarioValidado');
         // Setando o método do formulário
         $this->setMethod('post');
         // Setando a ação do formulário
-        $this->setAction('/basico/login/salvarUsuarioValidado');
-        // Adicionando atributos ao formulário
-        $this->setAttribs(array('onSubmit'=>"return(validateForm('BasicoCadastrarUsuarioValidado', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(Basico_OPController_UtilOPController::retornaBaseUrl() . '/basico/login/salvarUsuarioValidado'));
         // Adicionando decorators ao formulário
         $this->adicionaDecorators();
         // Adicionando elementos ao formulário
         $this->adicionaElementos();
+        // Adicionando display groups ao formulario
+        $this->adicionaDisplayGroups();
     }
 
     /**
@@ -83,7 +86,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 01/10/2012 17:25:34
+    * @since 29/10/2012 15:05:00
     */
     private function adicionaDecorators()
     {
@@ -100,39 +103,40 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 01/10/2012 17:25:35
+    * @since 29/10/2012 15:05:01
     */
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
         $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadoNome');
-        $this->BasicoCadastrarUsuarioValidadoNome->setLabel($this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1)</script></button>');
-        $this->BasicoCadastrarUsuarioValidadoNome->setAttribs('size' => 100, 'style' => 'width: 300px;');
+        $this->BasicoCadastrarUsuarioValidadoNome->setLabel($this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoNome->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $this->BasicoCadastrarUsuarioValidadoNome->setOrder(1);
         $this->BasicoCadastrarUsuarioValidadoNome->setRequired(true);
         $this->BasicoCadastrarUsuarioValidadoNome->addFilter('StringTrim');
         $this->BasicoCadastrarUsuarioValidadoNome->addFilter('StripTags');
-        $this->BasicoCadastrarUsuarioValidadoNome->addValidator('NotEmpty');
+        $this->BasicoCadastrarUsuarioValidadoNome->addValidator('NotEmpty', false);
         $this->BasicoCadastrarUsuarioValidadoNome->addDecorator('Label');
         $this->BasicoCadastrarUsuarioValidadoNome->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
         $this->BasicoCadastrarUsuarioValidadoNome->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoNome->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('DateTextBox', 'BasicoCadastrarUsuarioValidadoDataNascimento');
-        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setLabel($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA')) . '\', 1)</script></button>');
-        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setAttribs('style' => 'width: 70px;');
+        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setLabel($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setAttribs(array('style' => 'width: 70px;'));
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->setOrder(2);
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->setRequired(true);
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->addFilter('StringTrim');
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->addFilter('StripTags');
-        $this->BasicoCadastrarUsuarioValidadoDataNascimento->addValidator('NotEmpty');
+        $this->BasicoCadastrarUsuarioValidadoDataNascimento->addValidator('NotEmpty', false);
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->addDecorator('Label');
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('RadioButton', 'BasicoCadastrarUsuarioValidadoSexo');
-        $this->BasicoCadastrarUsuarioValidadoSexo->setLabel($this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1)</script></button>');
+        $this->BasicoCadastrarUsuarioValidadoSexo->setLabel($this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoSexo->setOptions(array('separator' => " "));
         $this->BasicoCadastrarUsuarioValidadoSexo->setOrder(3);
         $this->BasicoCadastrarUsuarioValidadoSexo->setRequired(true);
         $this->BasicoCadastrarUsuarioValidadoSexo->addDecorator('Label');
@@ -141,56 +145,53 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoSexo->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadoLogin');
-        $this->BasicoCadastrarUsuarioValidadoLogin->setLabel($this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1)</script></button>');
-        $this->BasicoCadastrarUsuarioValidadoLogin->addAttrib("onblur", "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), '" . Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/basico/login/verificadisponibilidadelogin') . "')");
-        $this->BasicoCadastrarUsuarioValidadoLogin->addAttrib("onkeyup", "validaString(this, 'login')");
-        $this->BasicoCadastrarUsuarioValidadoLogin->addAttrib("onblur", "validaString(this, 'login')");
+        $this->BasicoCadastrarUsuarioValidadoLogin->setLabel($this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoLogin->setAttrib("onblur", "validaString(this, 'login'); verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), '" . Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/basico/login/verificadisponibilidadelogin') . "')");
+        $this->BasicoCadastrarUsuarioValidadoLogin->setAttrib("onkeyup", "validaString(this, 'login')");
         $this->BasicoCadastrarUsuarioValidadoLogin->setOrder(4);
         $this->BasicoCadastrarUsuarioValidadoLogin->setRequired(true);
         $this->BasicoCadastrarUsuarioValidadoLogin->addFilter('StringTrim');
         $this->BasicoCadastrarUsuarioValidadoLogin->addFilter('StripTags');
-        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('Regex');
-        $this->BasicoCadastrarUsuarioValidadoLogin->getValidator('Regex')->setAttribs(array('pattern' => '/^[(a-zA-Z)]+[(a-zA-Z0-9_@.)]*$/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'))));
-        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('StringLength');
-        $this->BasicoCadastrarUsuarioValidadoLogin->getValidator('StringLength')->setAttribs(array(3, 100));
-        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('NotEmpty');
+        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('Regex', false, array('pattern' => '/^[(a-zA-Z)]+[(a-zA-Z0-9_@.)]*$/', 'messages' => array(Zend_Validate_Regex::NOT_MATCH => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_REGEX_ERROR_MESSAGE'))));
+        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('StringLength', false, array(3, 100));
+        $this->BasicoCadastrarUsuarioValidadoLogin->addValidator('NotEmpty', false);
         $this->BasicoCadastrarUsuarioValidadoLogin->addDecorator('Label');
         $this->BasicoCadastrarUsuarioValidadoLogin->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
         $this->BasicoCadastrarUsuarioValidadoLogin->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoLogin->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
         $this->addElement('Html', 'BasicoCadastrarUsuarioValidadoLoginDisponivel');
+        $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->setOptions(array('value' => ""));
         $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->setOrder(5);
         $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->setRequired(false);
         $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
         $this->addElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenha');
-        $this->BasicoCadastrarUsuarioValidadoSenha->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1)</script></button>');
-        $this->BasicoCadastrarUsuarioValidadoSenha->addAttrib("onkeyup", "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")");
+        $this->BasicoCadastrarUsuarioValidadoSenha->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoSenha->setAttrib("onkeyup", "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")");
         $this->BasicoCadastrarUsuarioValidadoSenha->setOrder(6);
         $this->BasicoCadastrarUsuarioValidadoSenha->setRequired(true);
-        $this->BasicoCadastrarUsuarioValidadoSenha->addValidator('NotEmpty');
-        $this->BasicoCadastrarUsuarioValidadoSenha->addValidator('StringLength');
-        $this->BasicoCadastrarUsuarioValidadoSenha->getValidator('StringLength')->setAttribs(array(6, 100));
+        $this->BasicoCadastrarUsuarioValidadoSenha->addValidator('NotEmpty', false);
+        $this->BasicoCadastrarUsuarioValidadoSenha->addValidator('StringLength', false, array(6, 100));
         $this->BasicoCadastrarUsuarioValidadoSenha->addDecorator('Label');
         $this->BasicoCadastrarUsuarioValidadoSenha->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
         $this->BasicoCadastrarUsuarioValidadoSenha->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoSenha->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('Html', 'BasicoCadastrarUsuarioValidadoPasswordStrengthChecker');
+        $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setOptions(array('value' => "<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>"));
         $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setOrder(7);
         $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setRequired(false);
         $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
         $this->addElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenhaConfirmacao');
-        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA')) . '\', 1)</script></button>');
+        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setOrder(8);
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setRequired(true);
-        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addValidator('Identical');
-        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setAttribs(array('token' => '@identicalElementName', 'invalidMessage' => '@identicalInvalidMessage'));
-        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addValidator('NotEmpty');
+        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addValidator('Identical', false, array('token' => 'BasicoCadastrarUsuarioValidadoSenha'));
+        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addValidator('NotEmpty', false);
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addDecorator('Label');
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addDecorator(array('row' => 'HtmlTag'));
@@ -204,14 +205,30 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoEnviar->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
     }
+
+    /**
+    * Adiciona diplayGroups ao Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 29/10/2012 15:05:05
+    */
+    private function adicionaDisplayGroups()
+    {
         // Adicionando displays groups.
-        $this->addDisplayGroup(array('BasicoCadastrarUsuarioValidadoNome','BasicoCadastrarUsuarioValidadoDataNascimento','BasicoCadastrarUsuarioValidadoSexo'), 'dados_usuario_dados_pessoais', array('legend' => FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_PESSOAIS'), 'order' => 1));
+        $this->addDisplayGroup(array('BasicoCadastrarUsuarioValidadoNome','BasicoCadastrarUsuarioValidadoDataNascimento','BasicoCadastrarUsuarioValidadoSexo'), 'dados_usuario_dados_pessoais', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_PESSOAIS'), 'order' => 1));
         $dados_usuario_dados_pessoais = $this->getDisplayGroup('dados_usuario_dados_pessoais');
         $dados_usuario_dados_pessoais->removeDecorator('DtDdWrapper');
+        $dados_usuario_dados_pessoais->addDecorator(array('row' => 'HtmlTag'));
+        $dados_usuario_dados_pessoais->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
         // Adicionando displays groups.
-        $this->addDisplayGroup(array('BasicoCadastrarUsuarioValidadoLogin','BasicoCadastrarUsuarioValidadoLoginDisponivel','BasicoCadastrarUsuarioValidadoSenha','BasicoCadastrarUsuarioValidadoPasswordStrengthChecker','BasicoCadastrarUsuarioValidadoSenhaConfirmacao'), 'dados_usuario_dados_usuario', array('legend' => FORM_GERADOR_FORM_ELEMENT_TRADUTOR_CALL('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO'), 'order' => 4));
+        $this->addDisplayGroup(array('BasicoCadastrarUsuarioValidadoLogin','BasicoCadastrarUsuarioValidadoLoginDisponivel','BasicoCadastrarUsuarioValidadoSenha','BasicoCadastrarUsuarioValidadoPasswordStrengthChecker','BasicoCadastrarUsuarioValidadoSenhaConfirmacao'), 'dados_usuario_dados_usuario', array('legend' => $this->getView()->tradutor('FORM_DISPLAY_GROUP_LABEL_INFORMACOES_USUARIO'), 'order' => 4));
         $dados_usuario_dados_usuario = $this->getDisplayGroup('dados_usuario_dados_usuario');
         $dados_usuario_dados_usuario->removeDecorator('DtDdWrapper');
+        $dados_usuario_dados_usuario->addDecorator(array('row' => 'HtmlTag'));
+        $dados_usuario_dados_usuario->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
+    }
 }
 ?>

@@ -37,6 +37,9 @@ define("CAPTCHA_FONT_SIZE", 50);
 define("CAPTCHA_EXPIRATION", 300);
 define("CAPTCHA_GCFREQ", 100);
 
+// constantes globais
+define("FORM_GERADOR_SET_LABEL_REQUIRED_HTML", "'<span title=\'Campo requerido (required field)\' class=\'labelRequiredSymbol\'>* </span>' . ");
+
 // constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '@identacaopublic function __construct($options = null)');
 define("FORM_GERADOR_CONSTRUCTOR_INHERITS", '@identacaoparent::__construct($options);');
@@ -56,7 +59,7 @@ define("FORM_GERADOR_ADDDECORATOR", '@identacao@instancia->addDecorator(@decorat
 define("FORM_GERADOR_REMOVEDECORATOR", '@identacao@instancia->removeDecorator(@decorator);');
 define("FORM_GERADOR_FORM_ADDELEMENT", '@identacao@instancia->addElement(@elemento);');
 define("FORM_GERADOR_FORM_REMOVEELEMENT", '@identacao@instancia->removeElement(@elemento);');
-define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel($this->getView()->tradutor(@label)@ajudaButton);');
+define("FORM_GERADOR_SETLABEL", '@identacao@instancia->setLabel(@elementRequiredSymbol$this->getView()->tradutor(@label)@ajudaButton);');
 define("FORM_GERADOR_SETATTRIBS", '@identacao@instancia->setAttribs(@attribs);');
 define("FORM_GERADOR_SETOPTIONS", '@identacao@instancia->setOptions(@options);');
 define("FORM_GERADOR_SETATTRIB", '@identacao@instancia->setAttrib(@attribName, @attribValue);');
@@ -67,7 +70,7 @@ define("FORM_GERADOR_REMOVEFILTER", '@identacao@instancia->removeFilter(@filter)
 define("FORM_GERADOR_ADDFILTER", '@identacao@instancia->addFilter(@filter);');
 define("FORM_GERADOR_REMOVEVALIDATOR", '@identacao@instancia->removeValidator(@validator);');
 define("FORM_GERADOR_ADDVALIDATOR", '@identacao@instancia->addValidator(@validator, false, @attribs);');
-define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button dojoType=\"dijit.form.Button\" type=\"button\" tabindex=\"-1\">?<script type=\"dojo/method\" event=\"onClick\" args=\"evt\">showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1)</script></button>'");
+define("FORM_GERADOR_AJUDA_BUTTON_SCRIPT", "'&nbsp;<button type=\"button\" tabindex=\"-1\" class=\"helpButton\" onClick=\"showDialogAlert(\'@nomeFormulario\', \'' . \$this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP(\$this->getView()->tradutor('@constanteTextual')) . '\', 1);\"></button>'");
 define("TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_GETELEMENTS", '@identacao@instancia->getElements()');
 define("FORM_GERADOR_CHECK_DEVELOP", 'if (!Basico_OPController_UtilOPController::ambienteDesenvolvimento()) {');
@@ -105,6 +108,7 @@ define('TAG_INSTANCIA_FORMULARIO', '$this');
 define("TAG_TITLE", '@title');
 define("TAG_MESSAGE", '@message');
 define('TAG_BASE_URL', '@baseUrl');
+define('TAG_ELEMENT_REQUIRED_SYMBOL', '@elementRequiredSymbol');
 
 
 // constantes de comentarios de metodos ou chamadas de metodos

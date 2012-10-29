@@ -298,6 +298,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 09/07/2012
 	 */
 	const TAG_SUBSTITUICAO_INSTANCIA = TAG_INSTANCIA;
+
+	/**
+	 * Tag de substituicao de simbolo de elemento requerido (label)
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 29/10/2012
+	 */
+	const TAG_SUBSTITUICAO_ELEMENT_REQUIRED_SYMBOL = TAG_ELEMENT_REQUIRED_SYMBOL;
 	
 	/**
 	 * Tag de substituicao de label
@@ -2783,7 +2793,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	$this->escreveAddElement($resourceArquivo, $identacao, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escreve chamada ao metodo setLabel do elemento
-	    	$this->escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['idAjuda']);
+	    	$this->escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['idAjuda']);
 	    	
 	    	// escrevendo chamada ao metodo setAttribs do elemento
 	    	$this->escreveSetOptionsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementOptions'], $arrayDadosMontagemElemento['elementName']);
@@ -2999,6 +3009,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @param String $nomeFormulario - nome do formulario para ser usado na montagem do botao de ajuda
 	 * @param String $constanteTextualLabel - Constante textual a ser traduzida para o label do elemento
 	 * @param String $elementName - Nome do elemento que tera o label setado
+	 * @param Boolean $elementRequired - Booleano para identificar se o campo é requerido
 	 * @param String $idAjuda - id da ajuda que sera exibida
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não conseguir
@@ -3006,7 +3017,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $constanteTextualLabel, $elementName, $idAjuda = null)
+	private function escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $constanteTextualLabel, $elementName, $elementRequired, $idAjuda = null)
 	{
 		// verificando se conseguiu recuperar um label
     	if (null !== $constanteTextualLabel) {
@@ -3026,12 +3037,22 @@ class Basico_OPController_GeradorFormularioOPController
 	    			$ajudaButton = str_replace(self::TAG_SUBSTITUICAO_CONSTANTE_TEXTUAL, $constanteTextualAjuda, $ajudaButton);
     			}	
     		}
-    		
+
+    		// inicializando variáveis
+    		$elementRequiredHtml = '';
+
+    		// verificando se o label deve imprimir o símbolo de campo requerido
+    		if ($elementRequired) {
+    			// setando variável
+    			$elementRequiredHtml = FORM_GERADOR_SET_LABEL_REQUIRED_HTML;
+    		}
+
 	    	// montando string do setLabel do elemento
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_LABEL, "'{$constanteTextualLabel}'", self::CHAMADA_SET_LABEL);
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_AJUDA_BUTTON, $ajudaButton, $setLabel);
 	    	$setLabel = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setLabel);
 			$setLabel = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setLabel);
+			$setLabel = str_replace(self::TAG_SUBSTITUICAO_ELEMENT_REQUIRED_SYMBOL, $elementRequiredHtml, $setLabel);
 	    	
 	    	// escrevendo linha que adiciona o setLabel do elemento
 	    	return Basico_OPController_UtilOPController::escreveLinhaFileResource($resourceArquivo, $setLabel, true);

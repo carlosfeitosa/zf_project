@@ -4,7 +4,7 @@
 * Formulário AceiteTermosUso
 *
 * Formulário gerado pelo gerador RF.
-* em: 02/10/2012 15:31:22
+* em: 29/10/2012 13:28:32
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 26/09/2012 14:44:52
+* @version    1: 29/10/2012 08:55:28
 *
 * @author SYSTEM
-* @since 02/10/2012 15:31:22
+* @since 29/10/2012 13:28:32
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 02/10/2012 15:31:22
+* @since 29/10/2012 13:28:32
 */
 class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 02/10/2012 15:31:22
+    * @since 29/10/2012 13:28:32
     */
     public function __construct($options = null)
     {
@@ -55,19 +55,20 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 02/10/2012 15:31:22
+    * @since 29/10/2012 13:28:32
     */
     private function initForm()
     {
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
+        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
+        // Adicionando atributos ao formulário
+        $this->setAttribs(array('onSubmit'=>"return(validateForm('BasicoAceiteTermosUso', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         // Setando o nome do formulário
         $this->setName('BasicoAceiteTermosUso');
         // Setando o método do formulário
         $this->setMethod('post');
-        // Adicionando atributos ao formulário
-        $this->setAttribs(array('onSubmit'=>"return(validateForm('BasicoAceiteTermosUso', '{$this->getView()->tradutor('FORM_VALIDATION_TITLE')}', '{$this->getView()->tradutor('FORM_VALIDATION_MESSAGE')}'))"));
         // Adicionando decorators ao formulário
         $this->adicionaDecorators();
         // Adicionando elementos ao formulário
@@ -82,7 +83,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 02/10/2012 15:31:22
+    * @since 29/10/2012 13:28:32
     */
     private function adicionaDecorators()
     {
@@ -99,13 +100,15 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 02/10/2012 15:31:22
+    * @since 29/10/2012 13:28:33
     */
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
         $this->addElement('SimpleTextarea', 'BasicoAceiteTermosUsoTermosUso');
-        $this->BasicoAceiteTermosUsoTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_TERMOS_USO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TERMOS_USO_AJUDA')) . '\', 1)</script></button>');
+        $this->BasicoAceiteTermosUsoTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TERMOS_USO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoAceiteTermosUsoTermosUso->setOptions(array('readOnly' => true));
+        $this->BasicoAceiteTermosUsoTermosUso->setAttribs(array('style' => 'width: 472px;'));
         $this->BasicoAceiteTermosUsoTermosUso->setOrder(1);
         $this->BasicoAceiteTermosUsoTermosUso->setRequired(false);
         $this->BasicoAceiteTermosUsoTermosUso->addFilter('StringTrim');
@@ -116,13 +119,14 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
         $this->BasicoAceiteTermosUsoTermosUso->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('Html', 'BasicoAceiteTermosUsoLinks');
+        $this->BasicoAceiteTermosUsoLinks->setOptions(array('value' => ""));
         $this->BasicoAceiteTermosUsoLinks->setOrder(2);
         $this->BasicoAceiteTermosUsoLinks->setRequired(false);
         $this->BasicoAceiteTermosUsoLinks->addDecorator(array('row' => 'HtmlTag'));
         $this->BasicoAceiteTermosUsoLinks->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('ValidationTextBox', 'BasicoAceiteTermosUsoAceiteTermosUso');
-        $this->BasicoAceiteTermosUsoAceiteTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO') . '&nbsp;<button dojoType="dijit.form.Button" type="button" tabindex="-1">?<script type="dojo/method" event="onClick" args="evt">showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO_AJUDA')) . '\', 1)</script></button>');
+        $this->BasicoAceiteTermosUsoAceiteTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAceiteTermosUsoAceiteTermosUso->setOrder(3);
         $this->BasicoAceiteTermosUsoAceiteTermosUso->setRequired(true);
         $this->BasicoAceiteTermosUsoAceiteTermosUso->addFilter('StringTrim');
@@ -154,7 +158,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 02/10/2012 15:31:23
+    * @since 29/10/2012 13:28:34
     */
     private function adicionaDisplayGroups()
     {

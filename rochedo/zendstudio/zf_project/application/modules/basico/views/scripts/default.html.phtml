@@ -27,11 +27,39 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 				
 				// verifica se existe objetos do tipo formulário na view
 				if (is_object($conteudo) and is_subclass_of($conteudo, 'Zend_Form')) {
-			
+
+					// recuperando elementos do formulário
 					$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $conteudo->render());
 
-					// setando o foco para o primeiro elemento do formulario
-					$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($conteudo)));
+					// recuperando elementos do formulário, com informações sobre erro
+					$arrayElementosComError = $conteudo->getErrors();
+
+					// verificando se o formulário possui elementos marcados com erro
+					if (count($arrayElementosComError)) {
+						// loop para descobrir o primeiro elemento com erro
+						foreach ($arrayElementosComError as $chaveElementoError => $valorElementoError) {
+							// verificando se o elemento possui erro
+							if (count($valorElementoError)) {
+								// recuperando o nome do primeiro elemento com erro
+								$nomePrimeiroElementoComErro = $chaveElementoError;
+
+								// parando o loop
+								break;
+							}
+
+							// limpando memoria
+							unset($chaveElementoError, $valorElementoError);
+						}
+					}
+
+					// verificando se existe erro no formulário, através do nome do primeiro elemento com erro
+					if (isset($nomePrimeiroElementoComErro)) {
+						// setando o foco para o primeiro elemento com erro do formulario
+						$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($nomePrimeiroElementoComErro));
+					} else {	
+						// setando o foco para o primeiro elemento do formulario
+						$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript(Basico_OPController_UtilOPController::retornaNomePrimeiroElementoFormulario($conteudo)));
+					}
 				
 					// recuperando o tipo de container que agraga os subformularios do formulario, caso o formulario possuia filhos
 					$tipoContainerFormulario = Basico_OPController_UtilOPController::retornaTipoContainerFormulario($conteudo);
@@ -39,9 +67,10 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 					// verificando se eh preciso setar funcao para setar focus
 					if ($tipoContainerFormulario) {
 						// setando funcao para setar o focus para o primeiro elemento de uma aba selecionada, para um formulario com subformularios
-						$scriptFocuAba =  Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
-						$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $scriptFocuAba);
+						$scriptFocusAba =  Basico_OPController_UtilOPController::setaFocusPrimeiroElementoFormularioEmSelectChildFormularioComAbasViaDojoJavaScript($conteudo->getName(), $tipoContainerFormulario);
+						$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $scriptFocusAba);
 					}
+					
 				}				
 			}		
 		}
@@ -57,6 +86,9 @@ foreach ($this->getVars() as $keyVarView => $valueVarView){
 		// adicionando o conteúdo da variável da view no array de elementos html
 		$arrayHtmlElements = Basico_OPController_UtilOPController::concatenaConteudoChaveArray($arrayHtmlElements, $keyVarView, $valueVarView);
 	}
+
+	// limpando memoria
+	unset($arrayElementosComError);
 
 	if ($keyVarView === 'scripts')
 		continue;

@@ -266,3 +266,8 @@ dd
 {
 	margin-bottom: 4px;
 }
+
+.labelRequiredSymbol
+{
+	color: blue;
+}

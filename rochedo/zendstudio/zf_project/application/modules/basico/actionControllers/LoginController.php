@@ -139,26 +139,9 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
     	// removendo labels dos elementos hidden
 	    $formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
 		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
-		
-		//adicionando chamada a função do password strength checker para o campo senha
-		//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")"));
-		
+
 		//adicionando multi-options para o radioButton sexo
 	    $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));
-	    
-	    // setando mensagens do validator Identical para o campo senhaConfirmacao
-	    //$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
-	    // setando o campo que tem que ser identico ao campo senhaConfirmacao
-		//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
-		
-		// capturando a url do metodo que retorna se o login esta disponivel ou nao 
-	    //$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
-	    	
-	    // adicionando a chamada da função que verifica a disponibilidade do login a ser utilizado.
-	   //$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
-	    
-	    // colocando o div do password strenght checker
-	   // $formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->setValue("<div id='scorebarBorder'><div id='score'>0%</div><div id='scorebar'>&nbsp;</div></div><div id='complexity'></div>");
     }
 
     /**
@@ -493,9 +476,11 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
     	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO'));
     	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
     	$content[] = $form;
+//    	$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript('BasicoCadastrarUsuarioNaoValidadoEmail');
           
 	    // enviado conteúdo para a view
 		$this->view->content = $content;
+//		$this->view->scripts = $scripts;
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();        

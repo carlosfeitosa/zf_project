@@ -693,8 +693,8 @@ class Basico_OPController_UtilOPController
 		$tempReturn = $string;
 		
 		// escapando caracteres
-		$tempReturn = str_replace("'", "\\'", $tempReturn);
-		$tempReturn = str_replace('"', '\\"', $tempReturn);
+		$tempReturn = str_replace("'", "\x27", $tempReturn);
+		$tempReturn = str_replace('"', '\x22', $tempReturn);
 		
 		// retornando o resultado
 		return $tempReturn;
