@@ -248,3 +248,21 @@ fieldset
 {
 	margin: 5px;
 }
+
+.helpButton
+{
+	border: none;
+	width:  15px;
+	height: 15px;
+	background: transparent;
+	background-image: url('../images/icons/help.png');
+	background-size: 100% Auto;
+	cursor: pointer;
+	vertical-align: middle;
+	margin-bottom: 4px;
+}
+
+dd
+{
+	margin-bottom: 4px;
+}
