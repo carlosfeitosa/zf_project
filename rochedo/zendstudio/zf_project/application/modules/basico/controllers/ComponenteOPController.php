@@ -119,10 +119,14 @@ class Basico_OPController_ComponenteOPController extends Basico_AbstractOPContro
 				$nomeCategoriaComponenteNaoZF = ucfirst(strtolower(str_replace('COMPONENTE_', '', $nomeCategoriaComponenteNaoZF)));
 			}
 			
-			
-			
-			// preenchendo array de resultados
-			$arrayRetorno[] = array(COMPONENTE_NAO_ZF_PREFIX => "{$nomeCategoriaComponenteNaoZF}_Form", COMPONENTE_NAO_ZF_PATH => "{$nomeCategoriaComponenteNaoZF}/Form");
+			// montando string do prefix path
+			$prefixPath = array(COMPONENTE_NAO_ZF_PREFIX => "{$nomeCategoriaComponenteNaoZF}_Form", COMPONENTE_NAO_ZF_PATH => "{$nomeCategoriaComponenteNaoZF}/Form");
+
+			// verificando se prefixpath ja foi adicionado
+			if (array_search($prefixPath, $arrayRetorno) === false) {
+				// preenchendo array de resultados com a string do prefixPath
+				$arrayRetorno[] = $prefixPath;
+			}	
 		}
 
 		// retornando array de resultados

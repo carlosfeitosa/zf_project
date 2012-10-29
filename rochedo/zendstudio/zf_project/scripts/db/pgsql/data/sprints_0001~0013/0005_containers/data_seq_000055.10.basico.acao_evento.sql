@@ -38,7 +38,7 @@ AND tc.nome = 'ACAO';
 
 INSERT INTO basico.acao_evento (id_categoria, nome, constante_textual, constante_textual_descricao, acao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   'VALIDA_STRING' AS nome,
+	   ' ' AS nome,
 	   'NOME_ACAO_EVENTO_VALIDA_STRING' AS constante_textual,
 	   'DESCRICAO_ACAO_EVENTO_VALIDA_STRING' AS constante_textual_descricao,
 	   'validaString(this, ''login'')' AS acao,
@@ -68,6 +68,19 @@ SELECT c.id AS id_categoria,
 	   'NOME_ACAO_EVENTO_OCULTAR_DIALOG_BASE_URL' AS constante_textual,
 	   'DESCRICAO_ACAO_EVENTO_OCULTAR_DIALOG_BASE_URL' AS constante_textual_descricao,
 	   'hideDialog(''@nomeFormulario'', ''@baseUrl'')' AS acao,
+	   true AS ativo,
+	   'SYSTEM_STARTUP' AS rowinfo
+FROM basico.categoria c
+LEFT JOIN basico.tipo_categoria tc ON (c.id_tipo_categoria = tc.id)
+WHERE c.nome = 'ACAO_EVENTO'
+AND tc.nome = 'ACAO';
+
+INSERT INTO basico.acao_evento (id_categoria, nome, constante_textual, constante_textual_descricao, acao, ativo, rowinfo)
+SELECT c.id AS id_categoria,
+	   'VALIDAR_FORM' AS nome,
+	   'NOME_ACAO_EVENTO_VALIDAR_FORM' AS constante_textual,
+	   'DESCRICAO_ACAO_EVENTO_VALIDAR_FORM' AS constante_textual_descricao,
+	   'return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))' AS acao,
 	   true AS ativo,
 	   'SYSTEM_STARTUP' AS rowinfo
 FROM basico.categoria c
