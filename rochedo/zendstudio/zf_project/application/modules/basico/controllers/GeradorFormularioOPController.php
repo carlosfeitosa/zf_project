@@ -918,7 +918,27 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 12/07/2012
 	 */
 	const SCRIPT_AJUDA_BUTTON = FORM_GERADOR_AJUDA_BUTTON_SCRIPT;
-	
+
+	/**
+	 * Script para montagem do label
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 30/10/2012
+	 */
+	const HTML_ELEMENT_REQUIRED = FORM_GERADOR_SET_LABEL_REQUIRED_HTML;
+
+	/**
+	 * Script para montagem da ajuda
+	 * 
+	 * @var String
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+	 * @since 30/10/2012
+	 */
+	const HTML_ELEMENT_REQUIRED_AJUDA = FORM_GERADOR_SET_AJUDA_REQUIRED_HTML;
+
 	/**
 	 * Instancia do controlador
 	 * 
@@ -3025,6 +3045,17 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// verificando se conseguiu recuperar um label
     	if (null !== $constanteTextualLabel) {
+
+    	    // inicializando variáveis
+    		$elementRequiredHtml = '';
+    		$elementRequiredHtmlAjuda = '';
+
+    		// verificando se o label deve imprimir o símbolo de campo requerido
+    		if (($nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT || $nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT_CAPTCHA) && $elementRequired) {
+    			// setando variável
+    			$elementRequiredHtml = self::HTML_ELEMENT_REQUIRED;
+    			$elementRequiredHtmlAjuda = self::HTML_ELEMENT_REQUIRED_AJUDA;
+    		}
     		
     		// inicializando variaveis
     		$ajudaButton = "";
@@ -3040,15 +3071,6 @@ class Basico_OPController_GeradorFormularioOPController
 	    			$ajudaButton = " . " . str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, self::SCRIPT_AJUDA_BUTTON);
 	    			$ajudaButton = str_replace(self::TAG_SUBSTITUICAO_CONSTANTE_TEXTUAL, $constanteTextualAjuda, $ajudaButton);
     			}	
-    		}
-
-    		// inicializando variáveis
-    		$elementRequiredHtml = '';
-
-    		// verificando se o label deve imprimir o símbolo de campo requerido
-    		if (($nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT || $nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT_CAPTCHA) && $elementRequired) {
-    			// setando variável
-    			$elementRequiredHtml = FORM_GERADOR_SET_LABEL_REQUIRED_HTML;
     		}
 
 	    	// montando string do setLabel do elemento

@@ -270,4 +270,10 @@ dd
 .labelRequiredSymbol
 {
 	color: blue;
+	cursor: pointer;
+}
+
+.required
+{
+	cursor: pointer;
 }
