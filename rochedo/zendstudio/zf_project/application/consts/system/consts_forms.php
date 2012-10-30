@@ -39,6 +39,9 @@ define("CAPTCHA_GCFREQ", 100);
 
 // constantes globais
 define("FORM_GERADOR_SET_LABEL_REQUIRED_HTML", "'<span title=\'Campo requerido (required field)\' class=\'labelRequiredSymbol\'>* </span>' . ");
+define("CATEGORIA_ELEMENTO_INPUT", "FORMULARIO_ELEMENTO");
+define("CATEGORIA_ELEMENTO_INPUT_CAPTCHA", "FORMULARIO_ELEMENTO_CAPTCHA");
+
 
 // constantes de assinatura e chamada de metodos
 define("FORM_GERADOR_CONSTRUCTOR_CALL", '@identacaopublic function __construct($options = null)');

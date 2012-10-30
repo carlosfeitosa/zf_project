@@ -4,7 +4,7 @@
 * Formulário CadastrarUsuarioNaoValidado
 *
 * Formulário gerado pelo gerador RF.
-* em: 29/10/2012 15:41:32
+* em: 30/10/2012 09:50:38
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 29/10/2012 08:55:29
+* @version    1: 24/10/2012 13:23:41
 *
 * @author SYSTEM
-* @since 29/10/2012 15:41:32
+* @since 30/10/2012 09:50:38
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 29/10/2012 15:41:32
+* @since 30/10/2012 09:50:38
 */
 class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:41:32
+    * @since 30/10/2012 09:50:38
     */
     public function __construct($options = null)
     {
@@ -55,7 +55,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:41:32
+    * @since 30/10/2012 09:50:38
     */
     private function initForm()
     {
@@ -84,7 +84,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:41:32
+    * @since 30/10/2012 09:50:38
     */
     private function adicionaDecorators()
     {
@@ -101,7 +101,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:41:32
+    * @since 30/10/2012 09:50:39
     */
     private function adicionaElementos()
     {
@@ -153,7 +153,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         }
 
         $this->addElement('SubmitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
-        $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setLabel('<span title=\'Campo requerido (required field)\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT'));
+        $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT'));
         $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setOrder(4);
         $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setRequired(false);
 
@@ -165,7 +165,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:41:34
+    * @since 30/10/2012 09:50:40
     */
     private function adicionaDisplayGroups()
     {

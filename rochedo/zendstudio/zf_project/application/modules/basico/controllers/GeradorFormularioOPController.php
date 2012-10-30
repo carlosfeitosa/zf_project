@@ -2793,7 +2793,7 @@ class Basico_OPController_GeradorFormularioOPController
 	    	$this->escreveAddElement($resourceArquivo, $identacao, $arrayDadosMontagemElemento['componente'], $arrayDadosMontagemElemento['elementName']);
 	    	
 	    	// escreve chamada ao metodo setLabel do elemento
-	    	$this->escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['idAjuda']);
+	    	$this->escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $arrayDadosMontagemElemento['constanteTextualLabel'], $arrayDadosMontagemElemento['elementName'], $arrayDadosMontagemElemento['elementRequired'], $arrayDadosMontagemElemento['nomeCategoria'], $arrayDadosMontagemElemento['idAjuda']);
 	    	
 	    	// escrevendo chamada ao metodo setAttribs do elemento
 	    	$this->escreveSetOptionsElemento($resourceArquivo, $identacao, $arrayDadosMontagemElemento['elementOptions'], $arrayDadosMontagemElemento['elementName']);
@@ -2852,6 +2852,9 @@ class Basico_OPController_GeradorFormularioOPController
 	 */
 	private function retornaArrayDadosMontagemElemento($idElemento, $nomeFormulario, $arrayDadosElementosFormulario, $arrayDadosElemento)
 	{
+		// recuperando categoria do elemento
+		$arrayResultado['nomeCategoria'] = $this->_categoriaOPController->retornaNomeCategoriaPorIdCategoria($arrayDadosElemento['idCategoria']);
+		
 		// recuperando o componente do elemento
     	$arrayResultado['componente'] = $this->_componenteOPController->retornaComponentePorIdComponente($arrayDadosElemento['idComponente']);
     	
@@ -3010,6 +3013,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @param String $constanteTextualLabel - Constante textual a ser traduzida para o label do elemento
 	 * @param String $elementName - Nome do elemento que tera o label setado
 	 * @param Boolean $elementRequired - Booleano para identificar se o campo é requerido
+	 * @param String $nomeCategoriaElemento - String do nome da categoria do elemento para verificar se o simbolo de required se aplica ao elemento
 	 * @param String $idAjuda - id da ajuda que sera exibida
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não conseguir
@@ -3017,7 +3021,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 11/07/2012
 	 */
-	private function escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $constanteTextualLabel, $elementName, $elementRequired, $idAjuda = null)
+	private function escreveSetLabelElemento($resourceArquivo, $identacao, $nomeFormulario, $constanteTextualLabel, $elementName, $elementRequired, $nomeCategoriaElemento, $idAjuda = null)
 	{
 		// verificando se conseguiu recuperar um label
     	if (null !== $constanteTextualLabel) {
@@ -3042,7 +3046,7 @@ class Basico_OPController_GeradorFormularioOPController
     		$elementRequiredHtml = '';
 
     		// verificando se o label deve imprimir o símbolo de campo requerido
-    		if ($elementRequired) {
+    		if (($nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT || $nomeCategoriaElemento == CATEGORIA_ELEMENTO_INPUT_CAPTCHA) && $elementRequired) {
     			// setando variável
     			$elementRequiredHtml = FORM_GERADOR_SET_LABEL_REQUIRED_HTML;
     		}
