@@ -1460,6 +1460,60 @@ class Basico_OPController_UtilOPController
     		throw new Exception(MSG_ERRO_TIPO_NAO_TRATADO);
     	}
     }
+    
+    /**
+     * Retorna a data passada no formato passado como parametro
+     * 
+     * @param String $data
+     * @param String $formato
+     * 
+     * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 30/10/2012
+     */
+    public static function retornaStringDataFormatada($data, $userLocale = DEFAULT_SYSTEM_LANGUAGE)
+    {
+    	// recuperando objeto Zend_Date da data passada como parametro
+    	$data = new Zend_Date($data, Basico_OPController_DBUtilOPController::retornaFormatoDateTimeDB(), DEFAULT_SYSTEM_DATETIME_LOCALE);
+    	
+    	// setando formato da data atraves do locale passado transformado em locale zend valido
+    	switch (self::retornaZendLocalePorUserLanguage($userLocale)) {
+    		case DEFAULT_SYSTEM_DATETIME_LOCALE_PT_BR:
+    			$formatoData = DEFAULT_DATETIME_FORMAT_PT_BR;
+    			break;
+    		case DEFAULT_SYSTEM_DATETIME_LOCALE_EN_US:
+    			$formatoData = DEFAULT_DATETIME_FORMAT_EN_US;
+    			break;
+    		default:
+    			$formatoData = DEFAULT_DATABASE_DATETIME_FORMAT;
+    			break;	
+    		
+    	}
+    	
+    	// retornando data no formato passado como parametro
+    	return $data->toString($formatoData);
+    }
+    
+    /**
+     * Retorna o zend locale pelo codigo da linguagem passado como parametro
+     * 
+     * @param String $userLanguage
+     * 
+     * @return String
+     * 
+     * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 30/10/2012
+     */
+    public static function retornaZendLocalePorUserLanguage($userLanguage)
+    {
+    	// substituindo hifen por underscore
+    	$stringRetorno = str_replace('-', '_', $userLanguage);
+    	
+    	// tornando ultimos caracteres da string maiusculos
+    	$stringRetorno = str_replace(substr($stringRetorno, strpos($stringRetorno, '_') + 1), strtoupper(substr($stringRetorno, strpos($stringRetorno, '_') + 1)), $stringRetorno);
+    
+    	// retornando string resultado
+    	return $stringRetorno;
+    }
 
     /**
      * Retorna um array filtrado

@@ -680,6 +680,35 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
 		}	
 	}
+	
+	/**
+	 * Retorna a datahoraCriacao do login da pessoa passada
+	 * 
+	 * @param Int $idPessoa
+	 * 
+	 * @return String
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 30/10/2012
+	 */
+	public function retornaDataHoraCriacaoLoginPorIdPessoa($idPessoa)
+	{
+	    // verificando se o id é valido
+		if ((Int) $idPessoa > 0) {
+			// recuperando o objeto dados pessoais da pessoa
+			$objLogin = $this->_retornaObjetosPorParametros("id_pessoa = {$idPessoa}", null, 1, 0);
+			
+			// verificando se o objeto foi recuperado
+			if (is_object($objLogin))
+				// retorna o o objeto dados pessoais
+	    	    return $objLogin->datahoraCriacao;
+	    	    
+	    	throw new Exception(MSG_ERRO_DADOS_PESSOAIS_NAO_ENCONTRADO_NO_SISTEMA);
+	    	
+		} else {
+			throw new Exception(MSG_ERRO_PARAMETRO_ID_INVALIDO);
+		}	
+	}
 
 	/**
 	 * Retorna o id da pessoa relacionada ao login passado por parametro
@@ -1142,6 +1171,10 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
         
 		// recuperando o login do usuario
 		$loginUsuario   = $this->retornaLoginPorIdPessoa($idPessoa);
+		
+		// recuperando a datahoraCriacao do login da pessoa e formatando para a lingua setada na aplicacao
+		$datahoraCriacaoLogin = Basico_OPController_UtilOPController::retornaStringDataFormatada($this->retornaDataHoraCriacaoLoginPorIdPessoa($idPessoa));
+		
 		// recuperando o sexo do usuario
 		$sexoUsuario    = Basico_OPController_DadosBiometricosOPController::getInstance()->retornaSexoPorIdPessoa($idPessoa);
 		
@@ -1152,10 +1185,11 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 		    $pronomeTratamento = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('MENSAGEM_TEXTO_TAG_TRATAMENTO_FEMININO');
 		
 		// substituindo tags
-        $arrayTagsValoresMensagem = array(MENSAGEM_TAG_TRATAMENTO           => $pronomeTratamento,
-        								  MENSAGEM_TAG_NOME                 => $nomeDestinatario,
-        								  MENSAGEM_TAG_LOGIN                => $loginUsuario, 
-        								  MENSAGEM_TAG_ASSINATURA_MENSAGEM  => $assinatura);
+        $arrayTagsValoresMensagem = array(MENSAGEM_TAG_DATA_HORA_FINALIZACAO_CADASTRO_BASICO => $datahoraCriacaoLogin,
+        								  MENSAGEM_TAG_TRATAMENTO           				 => $pronomeTratamento,
+        								  MENSAGEM_TAG_NOME                 				 => $nomeDestinatario,
+        								  MENSAGEM_TAG_LOGIN                				 => $loginUsuario, 
+        								  MENSAGEM_TAG_ASSINATURA_MENSAGEM  				 => $assinatura);
 		
 		// preenchendo a template e salvando a mensagem
 		$novaMensagemConfirmacao = Basico_OPController_MensagemOPController::getInstance()->retornaModeloMensagemTemplateViaArrayIdsDestinatarios($idCategoriaMensagemTemplate, $idMensagemTemplate, array($idPessoa), null, $arrayTagsValoresMensagem);

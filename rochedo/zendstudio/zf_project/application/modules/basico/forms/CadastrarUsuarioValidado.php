@@ -4,7 +4,7 @@
 * Formulário CadastrarUsuarioValidado
 *
 * Formulário gerado pelo gerador RF.
-* em: 29/10/2012 15:05:00
+* em: 30/10/2012 13:58:54
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 29/10/2012 08:55:29
+* @version    1: 30/10/2012 11:57:37
 *
 * @author SYSTEM
-* @since 29/10/2012 15:05:00
+* @since 30/10/2012 13:58:54
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 29/10/2012 15:05:00
+* @since 30/10/2012 13:58:54
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:05:00
+    * @since 30/10/2012 13:58:54
     */
     public function __construct($options = null)
     {
@@ -55,12 +55,11 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:05:00
+    * @since 30/10/2012 13:58:54
     */
     private function initForm()
     {
         // Adicionando paths para localizacao de componentes nao ZF.
-        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Ajaxterceiros_Form', 'Ajaxterceiros/Form');
 
@@ -86,7 +85,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:05:00
+    * @since 30/10/2012 13:58:54
     */
     private function adicionaDecorators()
     {
@@ -103,13 +102,13 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:05:01
+    * @since 30/10/2012 13:58:54
     */
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
         $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadoNome');
-        $this->BasicoCadastrarUsuarioValidadoNome->setLabel($this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoNome->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoNome->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
         $this->BasicoCadastrarUsuarioValidadoNome->setOrder(1);
         $this->BasicoCadastrarUsuarioValidadoNome->setRequired(true);
@@ -122,7 +121,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoNome->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('DateTextBox', 'BasicoCadastrarUsuarioValidadoDataNascimento');
-        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setLabel($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoDataNascimento->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_DATA_NASCIMENTO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->setAttribs(array('style' => 'width: 70px;'));
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->setOrder(2);
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->setRequired(true);
@@ -135,7 +134,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoDataNascimento->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('RadioButton', 'BasicoCadastrarUsuarioValidadoSexo');
-        $this->BasicoCadastrarUsuarioValidadoSexo->setLabel($this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoSexo->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SEXO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SEXO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoSexo->setOptions(array('separator' => " "));
         $this->BasicoCadastrarUsuarioValidadoSexo->setOrder(3);
         $this->BasicoCadastrarUsuarioValidadoSexo->setRequired(true);
@@ -145,7 +144,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoSexo->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioValidadoLogin');
-        $this->BasicoCadastrarUsuarioValidadoLogin->setLabel($this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoLogin->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoLogin->setAttrib("onblur", "validaString(this, 'login'); verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), '" . Basico_OPController_UtilOPController::retornaServerHost() . Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl('/basico/login/verificadisponibilidadelogin') . "')");
         $this->BasicoCadastrarUsuarioValidadoLogin->setAttrib("onkeyup", "validaString(this, 'login')");
         $this->BasicoCadastrarUsuarioValidadoLogin->setOrder(4);
@@ -168,7 +167,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoLoginDisponivel->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
         $this->addElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenha');
-        $this->BasicoCadastrarUsuarioValidadoSenha->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoSenha->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoSenha->setAttrib("onkeyup", "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, " . Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker() . ")");
         $this->BasicoCadastrarUsuarioValidadoSenha->setOrder(6);
         $this->BasicoCadastrarUsuarioValidadoSenha->setRequired(true);
@@ -187,7 +186,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioValidadoPasswordStrengthChecker->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left'));
 
         $this->addElement('PasswordTextBox', 'BasicoCadastrarUsuarioValidadoSenhaConfirmacao');
-        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setLabel($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_CONFIRMACAO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setOrder(8);
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->setRequired(true);
         $this->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->addValidator('Identical', false, array('token' => 'BasicoCadastrarUsuarioValidadoSenha'));
@@ -212,7 +211,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 15:05:05
+    * @since 30/10/2012 13:58:58
     */
     private function adicionaDisplayGroups()
     {

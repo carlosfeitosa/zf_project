@@ -4,7 +4,7 @@
 * Formulário AceiteTermosUso
 *
 * Formulário gerado pelo gerador RF.
-* em: 29/10/2012 13:28:32
+* em: 30/10/2012 13:58:20
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 29/10/2012 08:55:28
+* @version    1: 30/10/2012 11:57:36
 *
 * @author SYSTEM
-* @since 29/10/2012 13:28:32
+* @since 30/10/2012 13:58:20
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 29/10/2012 13:28:32
+* @since 30/10/2012 13:58:20
 */
 class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 13:28:32
+    * @since 30/10/2012 13:58:20
     */
     public function __construct($options = null)
     {
@@ -55,12 +55,11 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 13:28:32
+    * @since 30/10/2012 13:58:20
     */
     private function initForm()
     {
         // Adicionando paths para localizacao de componentes nao ZF.
-        $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
         // Adicionando atributos ao formulário
@@ -83,7 +82,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 13:28:32
+    * @since 30/10/2012 13:58:20
     */
     private function adicionaDecorators()
     {
@@ -100,13 +99,13 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 13:28:33
+    * @since 30/10/2012 13:58:20
     */
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
         $this->addElement('SimpleTextarea', 'BasicoAceiteTermosUsoTermosUso');
-        $this->BasicoAceiteTermosUsoTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TERMOS_USO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoAceiteTermosUsoTermosUso->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_TERMOS_USO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAceiteTermosUsoTermosUso->setOptions(array('readOnly' => true));
         $this->BasicoAceiteTermosUsoTermosUso->setAttribs(array('style' => 'width: 472px;'));
         $this->BasicoAceiteTermosUsoTermosUso->setOrder(1);
@@ -126,7 +125,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
         $this->BasicoAceiteTermosUsoLinks->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
         $this->addElement('ValidationTextBox', 'BasicoAceiteTermosUsoAceiteTermosUso');
-        $this->BasicoAceiteTermosUsoAceiteTermosUso->setLabel($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO_AJUDA')) . '\', 1);"></button>');
+        $this->BasicoAceiteTermosUsoAceiteTermosUso->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AceiteTermosUso\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_ACEITE_TERMOS_USO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAceiteTermosUsoAceiteTermosUso->setOrder(3);
         $this->BasicoAceiteTermosUsoAceiteTermosUso->setRequired(true);
         $this->BasicoAceiteTermosUsoAceiteTermosUso->addFilter('StringTrim');
@@ -158,7 +157,7 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 29/10/2012 13:28:34
+    * @since 30/10/2012 13:58:22
     */
     private function adicionaDisplayGroups()
     {

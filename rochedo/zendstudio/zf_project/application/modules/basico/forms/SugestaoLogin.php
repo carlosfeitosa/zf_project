@@ -1,82 +1,147 @@
 <?php
 /**
-* Rochedo Framework
+* Classe Basico_Form_SugestaoLogin
+* Formulário SugestaoLogin
 *
-* Formulário gerado automáticamente pelo Gerador rochedo
-* em: 20/10/2011 10:28:12
+* Formulário gerado pelo gerador RF.
+* em: 30/10/2012 13:59:11
 *
 * LICENÇA DE USO
 *
-* (implementar licença)
+* Texto do termo de uso do sistema.
 *
 *
-* @category   RochedoProject
-* @package    BASICO
-* @copyright  Copyright (c) 2010 Rochedo Project. (http://www.rochedoproject.com)
-* @license    (implementar)
-* @version    1: 20/10/2011 10:21:47
+* @category   RochedoFrameworkForm
+* @package    Basico
+* @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
+* @license    (ainda não implementado)
+* @version    1: 30/10/2012 11:57:36
+*
+* @author SYSTEM
+* @since 30/10/2012 13:59:11
+*/
+
+/**
+* Formulário para sugestão de login
+* 
+*
+* @author SYSTEM
+* @since 30/10/2012 13:59:11
 */
 class Basico_Form_SugestaoLogin extends Zend_Dojo_Form
 {
     /**
-    * Constructor do Form
-    * @param array $options
-    * @return Basico_Form_SugestaoLogin
+    * Construtor do Formulário
+    * 
+    * @param array $options - array com opções para construção do formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 30/10/2012 13:59:11
     */
     public function __construct($options = null)
     {
-        // Inicializando o formulário.
+        // Chamando o construtor parent do formulário
         parent::__construct($options);
 
-        $this->setName('BasicoSugestaoLogin');
-        $this->setMethod('post');
+        // Chamando método de inicialização do formulário
+        $this->initForm();
+    }
 
+    /**
+    * Inicializa o Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 30/10/2012 13:59:11
+    */
+    private function initForm()
+    {
         // Adicionando paths para localizacao de componentes nao ZF.
         $this->addPrefixPath('Rochedo_Form', 'Rochedo/Form');
 
-        // Criando array de elementos.
-        $elements = array();
+        // Setando o nome do formulário
+        $this->setName('BasicoSugestaoLogin');
+        // Setando o método do formulário
+        $this->setMethod('post');
+        // Adicionando decorators ao formulário
+        $this->adicionaDecorators();
+        // Adicionando elementos ao formulário
+        $this->adicionaElementos();
+        // Adicionando display groups ao formulario
+        $this->adicionaDisplayGroups();
+    }
 
-        $elements[2] = $this->createElement('RadioButton', 'BasicoSugestaoLoginSugestaoLogin', array('separator' => "<br>"));
-        $elements[2]->setOrder(2);
-        $elements[2]->setRequired(false);
-        $elements[2]->addDecorator('Label', array('escape' => false, 'disableFor' => true));
-        $elements[2]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-left-clear-both',));
-        $elements[2]->setLabel('' . $this->getView()->tradutor('FORM_FIELD_SUGESTAO_LOGIN') . '');
-        if (($options!=null) and (isset($options['BasicoSugestaoLoginSugestaoLogin'])))
-            $elements[2]->setValue($options['BasicoSugestaoLoginSugestaoLogin']);
+    /**
+    * Adiciona decorators ao Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 30/10/2012 13:59:11
+    */
+    private function adicionaDecorators()
+    {
+        $this->addDecorator('AjaxForm');
+    }
 
-        $elements[3] = $this->createElement('html', 'BasicoSugestaoLoginLinhaHorizontal', array('value' => '<hr>'));
-        $elements[3]->setOrder(3);
-        $elements[3]->setRequired(false);
-        $elements[3]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'width100percent-clear-both'));
-        $elements[3]->removeDecorator('DtDdWrapper');
+    /**
+    * Adiciona elementos ao Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 30/10/2012 13:59:11
+    */
+    private function adicionaElementos()
+    {
+        // Adicionando elementos do formulário
+        $this->addElement('RadioButton', 'BasicoSugestaoLoginSugestaoLogin');
+        $this->BasicoSugestaoLoginSugestaoLogin->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SUGESTAO_LOGIN'));
+        $this->BasicoSugestaoLoginSugestaoLogin->setOptions(array('separator' => '<br>'));
+        $this->BasicoSugestaoLoginSugestaoLogin->setOrder(1);
+        $this->BasicoSugestaoLoginSugestaoLogin->setRequired(false);
+        $this->BasicoSugestaoLoginSugestaoLogin->addDecorator('Label');
+        $this->BasicoSugestaoLoginSugestaoLogin->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
+        $this->BasicoSugestaoLoginSugestaoLogin->addDecorator(array('row' => 'HtmlTag'));
+        $this->BasicoSugestaoLoginSugestaoLogin->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-left-clear-both'));
 
-        $elements[4] = $this->createElement('button', 'BasicoSugestaoLoginEnviar');
-        $elements[4]->setOrder(4);
-        $elements[4]->setRequired(false);
-        $elements[4]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right-clear-both',));
-        $elements[4]->removeDecorator('DtDdWrapper');
-        $elements[4]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_SUBMIT') . '');
+        $this->addElement('Html', 'BasicoSugestaoLoginLinhaHorizontal');
+        $this->BasicoSugestaoLoginLinhaHorizontal->setOptions(array('value' => '<hr>'));
+        $this->BasicoSugestaoLoginLinhaHorizontal->setOrder(2);
+        $this->BasicoSugestaoLoginLinhaHorizontal->setRequired(false);
+        $this->BasicoSugestaoLoginLinhaHorizontal->addDecorator(array('row' => 'HtmlTag'));
+        $this->BasicoSugestaoLoginLinhaHorizontal->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'width100percent-clear-both'));
 
-        $elements[5] = $this->createElement('button', 'BasicoSugestaoLoginFechar', array('onClick' => 'hideDialog(\"Basico_Form_SugestaoLogin\");'));
-        $elements[5]->setOrder(5);
-        $elements[5]->setRequired(false);
-        $elements[5]->addDecorator(array('row' => 'HtmlTag'), array('tag' => 'div', 'id' => 'float-right',));
-        $elements[5]->setAttribs(array('onClick' => "hideDialog('Basico_Form_SugestaoLogin');"));
-        $elements[5]->removeDecorator('DtDdWrapper');
-        $elements[5]->setLabel('' . $this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG') . '');
+        $this->addElement('Button', 'BasicoSugestaoLoginEnviar');
+        $this->BasicoSugestaoLoginEnviar->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT'));
+        $this->BasicoSugestaoLoginEnviar->setOrder(3);
+        $this->BasicoSugestaoLoginEnviar->setRequired(false);
+        $this->BasicoSugestaoLoginEnviar->addDecorator(array('row' => 'HtmlTag'));
+        $this->BasicoSugestaoLoginEnviar->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-right-clear-both'));
 
-        $elements[6] = $this->createElement('hash', 'BasicoSugestaoLoginCsrf', array('ignore' => true, 'salt' => 'unique',  'errorMessages' => array('Identical' => $this->getView()->tradutor('FORM_ELEMENT_VALIDATOR_INVALID_CSRF'),),));
-        $elements[6]->setOrder(6);
-        $elements[6]->setRequired(false);
-        $elements[6]->removeDecorator('Label');
+        $this->addElement('Button', 'BasicoSugestaoLoginFechar');
+        $this->BasicoSugestaoLoginFechar->setLabel($this->getView()->tradutor('FORM_BUTTON_CLOSE_DIALOG'));
+        $this->BasicoSugestaoLoginFechar->setAttrib("onclick", "hideDialog('BasicoSugestaoLogin')");
+        $this->BasicoSugestaoLoginFechar->setOrder(4);
+        $this->BasicoSugestaoLoginFechar->setRequired(false);
+        $this->BasicoSugestaoLoginFechar->addDecorator(array('row' => 'HtmlTag'));
+        $this->BasicoSugestaoLoginFechar->getDecorator('row')->setOptions(array('tag' => 'div', 'id' => 'float-right'));
 
-        // Removendo escapes das mensagens de erro dos elementos do formulario.
-        Basico_OPController_UtilOPController::removeEscapeMensagensErrosZendFormElements($elements);
+    }
 
-        // Adicionando elementos ao formulario.
-        $this->addElements($elements);
+    /**
+    * Adiciona diplayGroups ao Formulário
+    *
+    * @return void - não espera retorno
+    *
+    * @author SYSTEM
+    * @since 30/10/2012 13:59:12
+    */
+    private function adicionaDisplayGroups()
+    {
     }
 }
 ?>

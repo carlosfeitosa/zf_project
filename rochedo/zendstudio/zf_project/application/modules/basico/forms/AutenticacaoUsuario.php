@@ -4,7 +4,7 @@
 * Formulário AutenticacaoUsuario
 *
 * Formulário gerado pelo gerador RF.
-* em: 30/10/2012 13:23:50
+* em: 30/10/2012 13:58:04
 *
 * LICENÇA DE USO
 *
@@ -18,7 +18,7 @@
 * @version    1: 30/10/2012 11:57:37
 *
 * @author SYSTEM
-* @since 30/10/2012 13:23:50
+* @since 30/10/2012 13:58:04
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 30/10/2012 13:23:50
+* @since 30/10/2012 13:58:04
 */
 class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:23:50
+    * @since 30/10/2012 13:58:04
     */
     public function __construct($options = null)
     {
@@ -55,7 +55,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:23:50
+    * @since 30/10/2012 13:58:04
     */
     private function initForm()
     {
@@ -85,7 +85,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:23:50
+    * @since 30/10/2012 13:58:04
     */
     private function adicionaDecorators()
     {
@@ -102,13 +102,13 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:23:50
+    * @since 30/10/2012 13:58:04
     */
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
         $this->addElement('ValidationTextBox', 'BasicoAutenticacaoUsuarioLogin');
-        $this->BasicoAutenticacaoUsuarioLogin->setLabel('<span title=\'' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA) . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA)) . '\', 1);"></button>');
+        $this->BasicoAutenticacaoUsuarioLogin->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_LOGIN') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_LOGIN_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAutenticacaoUsuarioLogin->setOrder(1);
         $this->BasicoAutenticacaoUsuarioLogin->setRequired(true);
         $this->BasicoAutenticacaoUsuarioLogin->addFilter('StringTrim');
@@ -120,14 +120,14 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
         $this->BasicoAutenticacaoUsuarioLogin->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
 
         $this->addElement('PasswordTextBox', 'BasicoAutenticacaoUsuarioSenha');
-        $this->BasicoAutenticacaoUsuarioSenha->setLabel('<span title=\'' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA) . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA)) . '\', 1);"></button>');
+        $this->BasicoAutenticacaoUsuarioSenha->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_SENHA') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_SENHA_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAutenticacaoUsuarioSenha->setOrder(2);
         $this->BasicoAutenticacaoUsuarioSenha->setRequired(true);
         $this->BasicoAutenticacaoUsuarioSenha->addDecorator('Label');
         $this->BasicoAutenticacaoUsuarioSenha->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
 
         $this->addElement('CheckBox', 'BasicoAutenticacaoUsuarioLoginManterLogado');
-        $this->BasicoAutenticacaoUsuarioLoginManterLogado->setLabel('<span title=\'' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA) . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor(REQUIRED_ELEMENT_TEXTO_AJUDA)) . '\', 1);"></button>');
+        $this->BasicoAutenticacaoUsuarioLoginManterLogado->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'AutenticacaoUsuario\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_CHECKBOX_LOGIN_MANTER_LOGADO_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
         $this->BasicoAutenticacaoUsuarioLoginManterLogado->setOptions(array('disableLoadDefaultDecorators' => true, 'decorators' => array('DijitElement', 'Errors', 'Description')));
         $this->BasicoAutenticacaoUsuarioLoginManterLogado->setOrder(3);
         $this->BasicoAutenticacaoUsuarioLoginManterLogado->setRequired(false);
@@ -184,7 +184,7 @@ class Basico_Form_AutenticacaoUsuario extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:23:52
+    * @since 30/10/2012 13:58:06
     */
     private function adicionaDisplayGroups()
     {
