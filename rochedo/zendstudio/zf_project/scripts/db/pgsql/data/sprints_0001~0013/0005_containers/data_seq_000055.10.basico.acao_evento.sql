@@ -38,7 +38,7 @@ AND tc.nome = 'ACAO';
 
 INSERT INTO basico.acao_evento (id_categoria, nome, constante_textual, constante_textual_descricao, acao, ativo, rowinfo)
 SELECT c.id AS id_categoria,
-	   ' ' AS nome,
+	   'VALIDA_STRING' AS nome,
 	   'NOME_ACAO_EVENTO_VALIDA_STRING' AS constante_textual,
 	   'DESCRICAO_ACAO_EVENTO_VALIDA_STRING' AS constante_textual_descricao,
 	   'validaString(this, ''login'')' AS acao,

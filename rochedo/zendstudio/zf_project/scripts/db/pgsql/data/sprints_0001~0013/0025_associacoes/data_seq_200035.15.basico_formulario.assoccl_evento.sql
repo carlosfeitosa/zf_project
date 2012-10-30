@@ -9,9 +9,9 @@
 */
 
 INSERT INTO basico_formulario.assoccl_evento (id_formulario, id_evento, id_acao_evento, ordem, rowinfo)
-SELECT (SELECT fcle.id
+SELECT (SELECT f.id
         FROM basico.formulario f
-        LEFT JOIN basico.categoria c ON (f.id = c.id)
+        LEFT JOIN basico.categoria c ON (f.id_categoria = c.id)
         WHERE f.nome = 'FORM_AUTENTICACAO_USUARIO'
         AND c.nome = 'FORMULARIO_INPUT_LOGIN') AS id_assoccl_elemento,
 	   (SELECT e.id
