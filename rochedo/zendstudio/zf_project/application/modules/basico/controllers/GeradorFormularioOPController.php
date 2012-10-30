@@ -938,6 +938,16 @@ class Basico_OPController_GeradorFormularioOPController
 	 * @since 30/10/2012
 	 */
 	const HTML_ELEMENT_REQUIRED_AJUDA = FORM_GERADOR_SET_AJUDA_REQUIRED_HTML;
+	
+	/**
+	 * Tag para substituicao pelo texto de elemento requerido na ajuda
+	 * 
+	 * @var String
+	 * 
+	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 30/10/2012
+	 */
+	const TAG_SUBSTITUICAO_HTML_ELEMENT_REQUIRED_AJUDA = TAG_ELEMENT_REQUIRED_HTML_AJUDA;
 
 	/**
 	 * Instancia do controlador
@@ -3070,6 +3080,7 @@ class Basico_OPController_GeradorFormularioOPController
     				// montando string do botao de ajuda
 	    			$ajudaButton = " . " . str_replace(self::TAG_SUBSTITUICAO_NOME_FORMULARIO, $nomeFormulario, self::SCRIPT_AJUDA_BUTTON);
 	    			$ajudaButton = str_replace(self::TAG_SUBSTITUICAO_CONSTANTE_TEXTUAL, $constanteTextualAjuda, $ajudaButton);
+	    			$ajudaButton = str_replace(self::TAG_SUBSTITUICAO_HTML_ELEMENT_REQUIRED_AJUDA, FORM_GERADOR_SET_AJUDA_REQUIRED_HTML , $ajudaButton);
     			}	
     		}
 
