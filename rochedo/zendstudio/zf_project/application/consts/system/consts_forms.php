@@ -40,7 +40,7 @@ define("CAPTCHA_GCFREQ", 100);
 // constantes globais
 define("TRADUTOR_CALL", '$this->getView()->tradutor');
 define("FORM_GERADOR_SET_LABEL_REQUIRED_SYMBOL", '* ');
-define("FORM_GERADOR_SET_LABEL_REQUIRED_HTML", "'<span title=\'Campo requerido (required field)\' class=\'labelRequiredSymbol\'>" . FORM_GERADOR_SET_LABEL_REQUIRED_SYMBOL . "</span>' . ");
+define("FORM_GERADOR_SET_LABEL_REQUIRED_HTML", "'<span title=\'' . " . TRADUTOR_CALL . "(REQUIRED_ELEMENT_TEXTO_AJUDA)" . " . '\' class=\'labelRequiredSymbol\'>" . FORM_GERADOR_SET_LABEL_REQUIRED_SYMBOL . "</span>' . ");
 define("FORM_GERADOR_SET_AJUDA_REQUIRED_HTML", " . '<br><br>" . FORM_GERADOR_SET_LABEL_REQUIRED_SYMBOL . "= ' . " . TRADUTOR_CALL . "(REQUIRED_ELEMENT_TEXTO_AJUDA)");
 define("CATEGORIA_ELEMENTO_INPUT", "FORMULARIO_ELEMENTO");
 define("CATEGORIA_ELEMENTO_INPUT_CAPTCHA", "FORMULARIO_ELEMENTO_CAPTCHA");
