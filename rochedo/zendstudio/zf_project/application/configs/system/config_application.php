@@ -84,10 +84,11 @@ define("EMAIL_CHARSET", "utf-8");
 
 // definições do DOJO
 define("DOJO_LOCAL_PATH", "/js/library/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", "/js/library/dijit/themes/rochedo/rochedo.css");
+define("DOJO_STYLE_SHEET_PATH", "/js/library/dijit/themes/claro/rochedo.css");
 define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
 
 // definições de javascripts
+define("DEFAULT_BROWSER_DETECTION_JAVASCRIPT_FILE_PATH", "/js/browser_detection_scripts.js");
 define("DEFAULT_JAVASCRIPT_FILE_PATH", "/js/default_scripts.js");
 define("DEFAULT_AJAX_JAVASCRIPT_FILE_PATH", "/js/ajax_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");

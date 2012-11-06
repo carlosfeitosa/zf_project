@@ -148,6 +148,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		$this->view->headLink()->appendStylesheet($applicationHttpCSSHome);
 
 		// adicionando arquivos javascript padrao
+		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_BROWSER_DETECTION_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_AJAX_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->appendFile($this->view->baseUrl(DEFAULT_JAVASCRIPT_MASKS_FILE_PATH));

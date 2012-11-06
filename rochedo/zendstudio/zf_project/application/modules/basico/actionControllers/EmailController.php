@@ -138,34 +138,26 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
 				// instanciando o formulario de cadastrar usuario validado
 				$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
 				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
-				//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoLogin->setAttribs(array('onBlur' => "verificaDisponibilidade('login', 'login', this.value, document.getElementById('idPessoa').value ,dijit.byId('BasicoCadastrarUsuarioValidadoNome').getValue(), dijit.byId('BasicoCadastrarUsuarioValidadoDataNascimento').getValue(), {$urlMetodo})", 'onkeyup' => "validaString(this, 'login')", 'onblur' => "validaString(this, 'login')"));
-				
+
 				// recuperando mensagem do componente password strenght checker
 				$mensagensPasswordStrenghtChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
-				
-	            //adicionando chamada a função do password strength checker para o campo senha
-			    //$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenha->setAttribs(array('onKeyUp' => "chkPass(document.forms['BasicoCadastrarUsuarioValidado'].BasicoCadastrarUsuarioValidadoSenha.value, {$mensagensPasswordStrenghtChecker})"));
-				
+
 				//adicionando multiOptions do radioButton sexo
 				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));
-	
+
 				// setando valores dos hiddens do formulario
 				$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
 				$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
-				
+
 				$formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
 				$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
-				
-				//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setMessages(array(Zend_Validate_Identical::NOT_SAME => $this->view->tradutor('FORM_ELEMENT_VALIDATOR_INDETICAL_NOT_SAME_SENHA_CONFIRMACAO')));
-				//$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSenhaConfirmacao->getValidator('Identical')->setToken('BasicoCadastrarUsuarioValidadoSenha');
-				
-				
+
 				// carregando o array de conteúdo da página
 		    	$content[] = $formCadastrarUsuarioValidado;
-		    	
+
 				// enviado conteúdo para a view
 				$this->view->content = $content;
-				
+
 				// renderizando a view
 				$this->_helper->Renderizar->renderizar();
 	    	}else{

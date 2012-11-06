@@ -1,3 +1,4 @@
+// importando classes
 dojo.require("dijit.Dialog");
 dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
@@ -41,12 +42,30 @@ function validaString(inputObject, filterType)
     }
 }
 
+/**
+ * Função para travar os elementos da página enquanto exista "carga" de conteúdo
+ */
 function loading() 
 {
+	// carregando camada "carregando"
     underlay = new dijit.DialogUnderlay({'class': 'loading'});
+    // mostrando a camada
     underlay.show();
 }
 
+/**
+ * Função para exibir conteúdo dentro de um dialog
+ * @param dialogName - nome do dialog
+ * @param content - conteudo
+ * @param title - título
+ * @param urlRedirect - url para redirecionamento no sucesso
+ * @param urlRedirectHide - url para redirecionamento no fracasso
+ * @param formAction - acao do formulário
+ * @param onLoadValues - carga dos elementos
+ * @param errorMessage - mensgem de erro
+ * @param errorTitle - título da menasgem de erro
+ * @param errorElements - elementos com erro
+ */
 function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements)
 {
 	// procurando se o dialog ja existe na sessao do usuario
@@ -102,9 +121,29 @@ function exibirDialogConteudo(dialogName, content, title, urlRedirect, urlRedire
 
 	// mostrando dialog
 	dialog.show();
+	// verificando se a plataforma é "mobile"
+	if (isMobile.any() !== null) {
+		// marcando o posicionamento em um ponto fixo
+		dialog._relativePosition = document.getElementsByTagName('content');
+	}
 }
 
-function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements,formPai)
+/**
+ * Função para exibir dialog através de uma url
+ * 
+ * @param dialogName - nome do dialog
+ * @param url - url para carga de conteúdo
+ * @param title - título
+ * @param urlRedirect - url para redirecionamento no sucesso
+ * @param urlRedirectHide - url para redirecionamento no fracasso
+ * @param formAction - acao do formulário
+ * @param onLoadValues - carga dos elementos
+ * @param errorMessage - mensgem de erro
+ * @param errorTitle - título da menasgem de erro
+ * @param errorElements - elementos com erro
+ * @param formPai - nome do formulário pai
+ */
+function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, formAction, onLoadValues, errorMessage, errorTitle, errorElements, formPai)
 {    
 	// verificando se o formulario tem form pai 
 	if(formPai != null){
@@ -146,26 +185,70 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
     // carregando o conteudo da url no dialog
     dojo.xhrGet(xhrArgs);
 
-    if (typeof initRascunho == 'function') {	
+    // verificando a necessidade de iniciar o rascunho
+    if (typeof initRascunho == 'function') {
+    	// inicializando o rascunho
         initRascunho();
     }
 }
 
-function showDialogAlert(txtDialogId, txtTitle, txtContent, botaoFechar)
+/**
+ * Mostra um dialog do tipo "alert"
+ * @param dialogId
+ * @param dialogTitle
+ * @param dialogContent
+ * @param botaoFechar
+ */
+function showDialogAlert(dialogId, dialogTitle, dialogContent, dialogBotaoFechar)
 {
-	if (botaoFechar == 1)
-	{
-	    var botaoFechar = "<br><br><center><button dojoType='dijit.form.Button' type='submit' onclick='hideDialog('"+ txtDialogId +"')'>OK</button></center>";
-	}else{
+	// setando a duração do fade
+	var fadeTime = 500;
+	// setando um nome para o dialog
+	var realDialogId = 'dialog' + dialogId.charAt(0).toUpperCase() + dialogId.slice(1);
+
+	// verificando se deve incluir o botão de fechar
+	if (dialogBotaoFechar == 1) {
+		// variável com o conteúdo do botão fechar
+	    var botaoFechar = "<br><br><center><button dojoType='dijit.form.Button' onClick='hideDialog(\x22" + realDialogId + "\x22);'>OK</button></center>";
+	} else {
+		// setando variável para vazio
 		var botaoFechar = "";	
 	}
-	var thisdialog = new dijit.Dialog({ title: txtTitle, content: txtContent+botaoFechar});
-	dojo.body().appendChild(thisdialog.domNode);
-	thisdialog.closeButtonNode.style.display='none';
-    thisdialog.startup();
-	thisdialog.show();
+
+	// instanciando dialog
+	var alertDialog = new dijit.Dialog({id: realDialogId, title: dialogTitle, content: dialogContent + botaoFechar});
+	// verificando se existirá o botão de fechar
+	if (dialogBotaoFechar == 1) {
+		// escondendo o botão de fechar, na barra de título
+		alertDialog.closeButtonNode.style.display='none';
+	}
+	// inserindo o dialog na arvore do dom
+	dojo.body().appendChild(alertDialog.domNode);
+	// setando duração do fade
+	alertDialog.duration = fadeTime;
+	// setando evento onHide para destruir o dialog apos se esconder
+	alertDialog.connect(alertDialog, 'onHide', function() {
+		setTimeout(function() {
+			alertDialog.destroyRecursive();
+		}, fadeTime);
+	});
+	// inicializando dialog
+	alertDialog.startup();
+	// mostrando dialog
+	alertDialog.show();
+	// verificando se a plataforma é "mobile"
+	if (isMobile.any() !== null) {
+		// marcando o posicionamento em um ponto fixo
+		alertDialog._relativePosition = document.getElementsByTagName('content');
+	}
 }
 
+/**
+ * Função para fechar (destruir) um dialog
+ * 
+ * @param dialogId - nome do dialog
+ * @param baseUrl - url para redirecionamento
+ */
 function hideDialog(dialogId, baseUrl)
 {
 	// localizando o dialog
@@ -175,12 +258,21 @@ function hideDialog(dialogId, baseUrl)
 	if (dlg != null) {
 		// verificando se o dialog possui o hidden urlRedirect
 		hiddenUrlRedirect = document.getElementsByName('BasicoAutenticacaoUsuarioUrlRedirect')[0];
-		if (hiddenUrlRedirect && baseUrl)
+		if (hiddenUrlRedirect && baseUrl) {
+			// redirecionando
 			window.location = baseUrl;
+		}
+
+		// escondendo e destruindo o dialog
 		dlg.hide();
 	}
 }
 
+/**
+ * Função para carregar os valores dos elementos
+ * 
+ * @param stringParametrosJson - array contendo chaves e valores dos elementos
+ */
 function carregaValoresElementos(stringParametrosJson) {
 	// loop para atribuir os valores dos elementos
 	for (chave in stringParametrosJson) {
@@ -203,6 +295,14 @@ function carregaValoresElementos(stringParametrosJson) {
 	}
 }
 
+/**
+ * Função para adicionar mensagens de erro a um dialog
+ * 
+ * @param dialogName - nome do dialog
+ * @param errorMessage - mensagem de erro
+ * @param errorTitle - título da mensagem de erro
+ * @param renderizarPrimeiroElemento - cria um div contendo uma mensagem de erro, com primeiro elemento
+ */
 function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, renderizarPrimeiroElemento)
 {
 	// inicializando variaveis
@@ -213,11 +313,12 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, rend
 
 	// verificando se o dialog foi recuperado
 	if (dialog) {
-
 		// verificando se a mensagem de erro eh um array
 		if ((errorMessage instanceof Array) === false)
+			// adicionando mensgem de erro ao array
 			arrayErrorMessages[0] = errorMessage;
 		else
+			// recuperando mensagem de erro
 			arrayErrorMessages = errorMessage;
 
 		// criando elemento container div
@@ -253,7 +354,9 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, rend
 			containerUlErrorMessage.appendChild(itemErrorMessage);
 		}
 
+		// verificando se é encessário renderizar o primeiro elemento, com as mensagens de erro
 		if (renderizarPrimeiroElemento) {
+			// adicionando o elemento de erro no dialog
 			dojo.place(containerDivErrorMessage, dialog.id,  "first");
 		} else {
 			// adicionando o elemento container ul no dialog
@@ -262,6 +365,11 @@ function adicionaElementoMensagemErro(dialogName, errorMessage, errorTitle, rend
 	}
 }
 
+/**
+ * Marca elementos com erro
+ * 
+ * @param errorElements
+ */
 function marcaElementosErro(errorElements)
 {
 	// loop nos elementos com erro
@@ -276,6 +384,11 @@ function marcaElementosErro(errorElements)
 	}
 }
 
+/**
+ * Seta foco do formulário em um elemento
+ * 
+ * @param nomeElemento - nome do elemento
+ */
 function setaFocoElemento(nomeElemento)
 {
 	// recupernado o elemento via dojo
@@ -288,6 +401,11 @@ function setaFocoElemento(nomeElemento)
 	}
 }
 
+/**
+ * Seta foco no primeiro elemento do formulário
+ * 
+ * @param nomeFormulario - nome do formulário
+ */
 function setaFocoPrimeiroElementoFormulario(nomeFormulario)
 {
 	// recupernado o elemento via dojo
@@ -311,6 +429,11 @@ function setaFocoPrimeiroElementoFormulario(nomeFormulario)
 	}
 }
 
+/**
+ * Recupera elemento (via dijit)
+ * 
+ * @param nomeElemento - nome do elemento
+ */
 function recuperaElemento(nomeElemento)
 {
 	// recupernado o elemento via dojo
@@ -325,6 +448,14 @@ function recuperaElemento(nomeElemento)
 	return elemento;
 }
 
+/**
+ * Valida um formulário
+ * 
+ * @param formId - id do formulário
+ * @param titulo - título da mensagem caso não validado
+ * @param mensagem - mensagem caso não validado
+ * @param baseUrl - base url da aplicação
+ */
 function validateForm(formId, titulo, message, baseUrl) 
 {
 	// recuperando o formulario
@@ -335,18 +466,28 @@ function validateForm(formId, titulo, message, baseUrl)
     {
     	// mostando mensagem de erro ao tentar submeter o formulario
 	    showDialogAlert(formId, titulo, message, 1);
-	    
-	    // verificando se o underlay esta setado
-	    if (underlay !== undefined) {
-		    // desabilitando underlay
-		    underlay.hide();
-	    }
+
+	    // retornando fracasso
         return false;
     }
 
+    // chamando camada "loading"
+    loading();
+
+    // retornando sucesso
     return true;
 }
-	
+
+/**
+ * Verifica disponibilidade de uma string no banco de dados
+ * @param nomeTabela - nome da tabela
+ * @param nomeCampo - nome do campo
+ * @param stringPesquisa - string para pesquisa
+ * @param idPessoa - id da pessoa
+ * @param nome - nome da pessoa
+ * @param dataNascimento - data de nasicmento
+ * @param urlMetodo - url do método
+ */
 function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa, nome, dataNascimento, urlMetodo)
 {	
 	if (stringPesquisa != "") {
@@ -371,6 +512,11 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa
 	}
 }
 
+/**
+ * Exibe mensagem
+ * 
+ * @param mensagem - mensagem a exibir
+ */
 function exibirMensagem(mensagem)
 {
 	humanMsg.displayMsg('<span class="indent">' + mensagem + '</span>');

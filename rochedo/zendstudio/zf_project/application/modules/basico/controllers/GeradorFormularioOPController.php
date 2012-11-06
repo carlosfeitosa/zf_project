@@ -2892,10 +2892,10 @@ class Basico_OPController_GeradorFormularioOPController
     	$arrayResultado['elementName'] = self::TAG_SUBSTITUICAO_NOME_MODULO_FORMULARIO . ucfirst($nomeFormulario);
     	
     	// recuperando o valor do campo elementRequired
-    	$arrayResultado['elementRequired'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementRequired'], true);
+    	$arrayResultado['elementRequired'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementRequired']);
     	
     	// recuperando o valor do campo elementReloadable
-    	$arrayResultado['elementReloadable'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementReloadable'], true);
+    	$arrayResultado['elementReloadable'] = Basico_OPController_DBUtilOPController::retornaBooleanDB($arrayDadosElementosFormulario[$idElemento]['elementReloadable']);
 
     	// recuperando o valor do campo ordem    	
     	$arrayResultado['ordem'] = $arrayDadosElementosFormulario[$idElemento]['ordem'];
@@ -3190,7 +3190,7 @@ class Basico_OPController_GeradorFormularioOPController
 	 * 
 	 * @param Stream Resource $resourceArquivo - resource do arquivo que será escrito
 	 * @param Int $identacao
-	 * @param String $required - required do elemento
+	 * @param Boolean $required - required do elemento
 	 * @param String $elementName - Nome do elemento que tera os attribs setados
 	 * 
 	 * @return Boolean - true se conseguir escrever, false se não conseguir
@@ -3202,8 +3202,16 @@ class Basico_OPController_GeradorFormularioOPController
 	{
 		// verificando se conseguiu recuperar attribs
     	if (null !== $required) {
+    		// verificando se o campo é requerido
+    		if ($required) {
+    			// criando variável
+    			$requiredString = 'true';
+    		} else {
+    			// criando variável
+    			$requiredString = 'false';
+    		}
 	    	// montando string do setAttribs do elemento
-	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_REQUIRED, $required, self::CHAMADA_SET_REQUIRED);
+	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_REQUIRED, $requiredString, self::CHAMADA_SET_REQUIRED);
 	    	$setRequired = str_replace(self::TAG_SUBSTITUICAO_IDENTACAO, Basico_OPController_UtilOPController::retornaIdentacao($identacao), $setRequired);
 			$setRequired = str_replace(self::TAG_SUBSTITUICAO_INSTANCIA, self::INSTANCIA_FORMULARIO . "->" . $elementName, $setRequired);
 	    	

@@ -220,7 +220,7 @@ div#divContainerError
 
 ul#errorUl 
 {
-	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
+	list-style-image: url('../js/library/dijit/themes/rochedo/images/warning.png');
 }
 
 ul.errors
@@ -230,7 +230,7 @@ ul.errors
 	background-color: #FFFFCC;
 	font-weight: bold;
 	font-size: 11px;
-	list-style-image: url('../js/dijit/themes/rochedo/images/warning.png');
+	list-style-image: url('../js/library/dijit/themes/rochedo/images/warning.png');
 }
 
 div#descricaoElementoFormulario
@@ -256,7 +256,8 @@ fieldset
 	height: 15px;
 	background: transparent;
 	background-image: url('../images/icons/help.png');
-	background-size: 100% Auto;
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
 	cursor: pointer;
 	vertical-align: middle;
 	margin-bottom: 4px;
