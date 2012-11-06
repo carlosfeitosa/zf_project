@@ -1,0 +1,117 @@
+
+.rochedo .dijitCalendarIncrementControl {
+	
+	width:15px;
+	height:15px;
+	background-image: url("images/spriteRoundedIconsSmall.png");
+	background-repeat: no-repeat
+}
+.dj_ie6 .rochedo .dijitCalendarIncrementControl {
+	font-size:.1em;
+	background-image: url("images/spriteRoundedIconsSmall.gif");
+}
+.rochedo .dijitA11ySideArrow {
+	display: none;
+}
+.rochedo .dijitCalendarDecrease {
+	background-position: top left;
+}
+.rochedo .dijitCalendarIncrease {
+	background-position: -30px top;
+}
+.rochedo table.dijitCalendarContainer {
+	font-size: 100%;
+	border-spacing: 0;
+	border-collapse: separate;
+	border: 1px solid #ccc;
+	margin: 0;
+}
+.rochedo .dijitCalendarMonthContainer th {
+	
+	background:#d3d3d3 url("images/titleBar.png") repeat-x top;
+	padding-top:.3em;
+	padding-bottom:.2em;
+	text-align:center;
+}
+.dj_ie6 .rochedo .dijitCalendarMonthContainer th {
+	padding-top:.2em;
+	padding-bottom:.1em;
+}
+.rochedo .dijitCalendarDayLabelTemplate {
+	
+	background:#fefefe;
+	font-weight:normal;
+	padding-top:.15em;
+	padding-bottom:.2em;
+	border-bottom: 1px solid #eeeeee;
+	color:#293a4b;
+	text-align:center;
+}
+.rochedo .dijitCalendarBodyContainer {
+	border-bottom: 1px solid #eeeeee;
+}
+.rochedo .dijitCalendarMonthLabel {
+	color:#293a4b;
+	font-weight: bold;
+}
+.rochedo .dijitCalendarDateTemplate {
+	
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+	padding: 0.3em 0.3em 0.05em 0.3em;
+	letter-spacing: 1px;
+	background-color: #fdfdfd;
+	border:#fdfdfd solid 1px !important;
+}
+.dj_ie .rochedo .dijitCalendarDateTemplate {
+	padding: 0.1em .33em 0.02em .33em;
+}
+.rochedo .dijitCalendarPreviousMonth,
+.rochedo .dijitCalendarNextMonth 		{
+	
+	color:#999999;
+	background-color:#f5f5f5 !important;
+	border:#f5f5f5 solid 1px !important;
+}
+.rochedo .dijitCalendarCurrentMonth {
+	
+}
+.rochedo .dijitCalendarDisabledDate {
+	text-decoration:line-through !important;
+}
+.rochedo .dijitCalendarCurrentDate {
+	
+	text-decoration:underline;
+	font-weight:bold;
+}
+.rochedo .dijitCalendarSelectedDate {
+	
+	background-color:#ffe284 !important;
+	color:black !important;
+	border:#f7c95c solid 1px !important;
+}
+.rochedo .dijitCalendarYearContainer {
+	
+	background:white url("images/titleBar.png") repeat-x top;
+}
+.rochedo .dijitCalendarYearLabel {
+	
+	margin:0;
+	padding:0.4em 0 0.25em 0;
+	text-align:center;
+}
+.rochedo .dijitCalendarSelectedYear {
+	
+	color:black;
+	padding:0.2em;
+	padding-bottom:0.1em;
+	background-color:#ffe284 !important;
+	border:#f7c95c solid 1px !important;
+}
+.rochedo .dijitCalendarNextYear,
+.rochedo .dijitCalendarPreviousYear {
+	
+	color:black !important;
+	font-weight:normal;
+}
