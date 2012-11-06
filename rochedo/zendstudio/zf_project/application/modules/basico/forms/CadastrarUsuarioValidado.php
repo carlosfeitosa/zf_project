@@ -4,7 +4,7 @@
 * Formulário CadastrarUsuarioValidado
 *
 * Formulário gerado pelo gerador RF.
-* em: 30/10/2012 13:58:54
+* em: 05/11/2012 15:54:33
 *
 * LICENÇA DE USO
 *
@@ -15,10 +15,10 @@
 * @package    Basico
 * @copyright  Copyright (c) 2010~2012 Rochedo Project. (http://www.rochedoframework.com)
 * @license    (ainda não implementado)
-* @version    1: 30/10/2012 11:57:37
+* @version    1: 30/10/2012 16:07:22
 *
 * @author SYSTEM
-* @since 30/10/2012 13:58:54
+* @since 05/11/2012 15:54:33
 */
 
 /**
@@ -26,7 +26,7 @@
 * 
 *
 * @author SYSTEM
-* @since 30/10/2012 13:58:54
+* @since 05/11/2012 15:54:33
 */
 class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
 {
@@ -38,7 +38,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:58:54
+    * @since 05/11/2012 15:54:33
     */
     public function __construct($options = null)
     {
@@ -55,7 +55,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:58:54
+    * @since 05/11/2012 15:54:33
     */
     private function initForm()
     {
@@ -85,7 +85,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:58:54
+    * @since 05/11/2012 15:54:33
     */
     private function adicionaDecorators()
     {
@@ -102,7 +102,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:58:54
+    * @since 05/11/2012 15:54:34
     */
     private function adicionaElementos()
     {
@@ -211,7 +211,7 @@ class Basico_Form_CadastrarUsuarioValidado extends Zend_Dojo_Form
     * @return void - não espera retorno
     *
     * @author SYSTEM
-    * @since 30/10/2012 13:58:58
+    * @since 05/11/2012 15:54:38
     */
     private function adicionaDisplayGroups()
     {
