@@ -202,7 +202,7 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
 function showDialogAlert(dialogId, dialogTitle, dialogContent, dialogBotaoFechar)
 {
 	// setando a duração do fade
-	var fadeTime = 500;
+	var fadeTime = 150;
 	// setando um nome para o dialog
 	var realDialogId = 'dialog' + dialogId.charAt(0).toUpperCase() + dialogId.slice(1);
 

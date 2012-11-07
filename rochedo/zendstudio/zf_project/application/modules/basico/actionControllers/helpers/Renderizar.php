@@ -177,7 +177,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		}
 
 		// setando parametros do dojo
-		$this->view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true))
+		$this->view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true, 'async' => false))
 		        			->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
 		                    // registrando path local do dojo
 		        			->setLocalPath($applicationHttpBaseUrl . DOJO_LOCAL_PATH)

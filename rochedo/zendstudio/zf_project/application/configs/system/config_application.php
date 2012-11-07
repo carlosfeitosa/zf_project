@@ -84,7 +84,7 @@ define("EMAIL_CHARSET", "utf-8");
 
 // definições do DOJO
 define("DOJO_LOCAL_PATH", "/js/library/dojo/dojo.js");
-define("DOJO_STYLE_SHEET_PATH", "/js/library/dijit/themes/claro/rochedo.css");
+define("DOJO_STYLE_SHEET_PATH", "/js/library/dijit/themes/rochedo/rochedo.css");
 define("DOJO_STYLE_SHEET_MODULE", "dijit.themes.rochedo");
 
 // definições de javascripts

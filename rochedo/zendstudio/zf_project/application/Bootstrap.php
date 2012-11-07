@@ -97,7 +97,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
         Zend_Dojo::enableView($view);
-        Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
+        //Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
 
