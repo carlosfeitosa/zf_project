@@ -28,7 +28,7 @@
 * @author SYSTEM
 * @since 01/11/2012 15:09:17
 */
-class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
+class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Form
 {
     /**
     * Construtor do Formulário
@@ -91,7 +91,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->addDecorator('FormElements');
         $this->addDecorator('HtmlTag');
         $this->getDecorator('HtmlTag')->setOptions(array('tag' => 'dl'));
-        $this->addDecorator('DijitForm');
+        //$this->addDecorator('DijitForm');
         $this->addDecorator('AjaxForm');
     }
 
@@ -106,9 +106,10 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
     private function adicionaElementos()
     {
         // Adicionando elementos do formulário
-        $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoNome');
+        $this->addElement('Text', 'BasicoCadastrarUsuarioNaoValidadoNome');
         $this->BasicoCadastrarUsuarioNaoValidadoNome->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_NOME') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_NOME_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
-        $this->BasicoCadastrarUsuarioNaoValidadoNome->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
+        //$this->BasicoCadastrarUsuarioNaoValidadoNome->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
+        $this->BasicoCadastrarUsuarioNaoValidadoNome->setAttribs(array('size' => 100, 'style' => 'width: 300px;', 'required' => true));
         $this->BasicoCadastrarUsuarioNaoValidadoNome->setOrder(1);
         $this->BasicoCadastrarUsuarioNaoValidadoNome->setRequired(true);
         $this->BasicoCadastrarUsuarioNaoValidadoNome->addFilter('StringTrim');
@@ -117,9 +118,10 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
         $this->BasicoCadastrarUsuarioNaoValidadoNome->addDecorator('Label');
         $this->BasicoCadastrarUsuarioNaoValidadoNome->getDecorator('Label')->setOptions(array('escape' => false, 'disableFor' => true));
 
-        $this->addElement('ValidationTextBox', 'BasicoCadastrarUsuarioNaoValidadoEmail');
+        $this->addElement('Text', 'BasicoCadastrarUsuarioNaoValidadoEmail');
         $this->BasicoCadastrarUsuarioNaoValidadoEmail->setLabel('<span title=\'' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA') . '\' class=\'labelRequiredSymbol\'>* </span>' . $this->getView()->tradutor('FORM_FIELD_EMAIL') . '&nbsp;<button type="button" tabindex="-1" class="helpButton" onClick="showDialogAlert(\'CadastrarUsuarioNaoValidado\', \'' . $this->getView()->tradutor('DIALOG_HELP_TITLE') . '\', \'' . Basico_OPController_UtilOPController::escapaAspasStringJavascriptPHP($this->getView()->tradutor('FORM_FIELD_EMAIL_AJUDA') . '<br><br>* = ' . $this->getView()->tradutor('REQUIRED_ELEMENT_TEXTO_AJUDA')) . '\', 1);"></button>');
-        $this->BasicoCadastrarUsuarioNaoValidadoEmail->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
+        //$this->BasicoCadastrarUsuarioNaoValidadoEmail->setAttribs(array('size' => 100, 'style' => 'width: 300px;'));
+        $this->BasicoCadastrarUsuarioNaoValidadoEmail->setAttribs(array('size' => 100, 'style' => 'width: 300px;', 'required' => true));
         $this->BasicoCadastrarUsuarioNaoValidadoEmail->setOrder(2);
         $this->BasicoCadastrarUsuarioNaoValidadoEmail->setRequired(true);
         $this->BasicoCadastrarUsuarioNaoValidadoEmail->addFilter('StringTrim');
@@ -152,7 +154,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Dojo_Form
             $this->BasicoCadastrarUsuarioNaoValidadoVerificador6digitos->getDecorator('row')->setOptions(array('tag' => 'div', 'style' => 'width: 300px;'));
         }
 
-        $this->addElement('SubmitButton', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
+        $this->addElement('Submit', 'BasicoCadastrarUsuarioNaoValidadoEnviar');
         $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setLabel($this->getView()->tradutor('FORM_BUTTON_SUBMIT'));
         $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setOrder(4);
         $this->BasicoCadastrarUsuarioNaoValidadoEnviar->setRequired(false);

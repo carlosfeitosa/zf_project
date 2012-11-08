@@ -197,7 +197,10 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 			$chaveArrayPool = self::processaHash($form);
 			// localizando e processando os elementos ocultos
 			$elementosOcultos = self::processaElementosOcultos($form);
-			
+
+			// processando UI para o form
+			self::processaUiElementosFormulario($form);
+
 			// verificando se existe a $chaveArrayPool e elementos no array de elementos ocultos.
 			if (isset($chaveArrayPool) and count($elementosOcultos) > 0) {
 				// registrando elementos na sessão			
@@ -206,6 +209,46 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 
 			// verificando se existe rascunho no form
 			Basico_OPController_TemplateOPController::getInstance()->processaRascunho($view, $form, $permiteRascunho);
+		}
+	}
+
+	/**
+	 * Processa os elementos de um formulário de acordo com a UI padrão do sistema
+	 * 
+	 * @param Zend_Form $objFormulario - objeto do formulário (por referencia) que deve ser processado
+	 * 
+	 * @return Boolean
+	 * 
+	 * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasoncelos@rochedoframework.com)
+	 * @since 07/11/2012
+	 */
+	private static function processaUiElementosFormulario(Zend_Form &$objFormulario)
+	{
+		// forcando a UI para DOJO
+		$defaultUI = 'DOJO';
+
+		// mapeamento dos elementos do dojo
+		$arrayDojoTypeElements = array('Zend_Form_Element_Text' => 'dijit.form.ValidationTextBox',
+									   'Zend_Form_Element_Submit' => 'dijit.form.Button');
+
+		// loop para processar os elementos do formulário
+		foreach ($objFormulario->getElements() as $objElement) {
+			// verificando a UI padrão
+			switch ($defaultUI) {
+				case 'DOJO':
+					// adicionando atributo ao elemento
+					$objElement->setAttrib('dojoType', $arrayDojoTypeElements[$objElement->getType()]);
+
+					// verificando se o elemento precisa adicionar o atributo label
+					if ('Zend_Form_Element_Submit' === $objElement->getType()) {
+						// adicionando o atributo label
+						$objElement->setAttrib('label', $objElement->getLabel());
+					}
+				break;
+				case 'JQUERY':
+					
+				break;
+			}
 		}
 	}
 

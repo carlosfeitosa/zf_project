@@ -176,6 +176,18 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		    $this->view->headTitle("[ MVC: {$request->getModuleName()}/{$request->getControllerName()}/{$request->getActionName()} ]"); 
 		}
 
+		// habilitando a view do dojo e jquery
+		Zend_Dojo::enableView($this->view);
+		ZendX_JQuery::enableView($this->view);
+
+		// verificando a UI
+		switch (self::retornaDefaultUi()) {
+			case 'DOJO':
+				// usando o modo declarativo do dojo
+		        Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
+			break;
+		}
+
 		// setando parametros do dojo
 		$this->view->dojo()->setDjConfig(array('usePlainJson' => true, 'locale' => Basico_OPController_PessoaOPController::retornaLinguaUsuario(), 'parseOnLoad'=> true, 'async' => true))
 		        			->addStylesheetModule(DOJO_STYLE_SHEET_MODULE)
@@ -249,5 +261,19 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				}
 			}
 		}
+    }
+
+    /**
+     * Retorna a UI default do sistema
+     * 
+     * @return String
+     * 
+     * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
+     * @since 07/11/2012
+     */
+    private static function retornaDefaultUi()
+    {
+		// forçando a UI padrão
+		return 'DOJO';
     }
 }

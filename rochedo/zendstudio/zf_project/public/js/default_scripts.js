@@ -1,5 +1,5 @@
 // importando classes
-dojo.require("dijit.Dialog");
+
 dojo.require("dijit.form.Form");
 dojo.require("dijit.form.Button");
 dojo.require("dijit.form.TextBox");
@@ -201,6 +201,9 @@ function exibirDialogUrl(dialogName, url, title, urlRedirect, urlRedirectHide, f
  */
 function showDialogAlert(dialogId, dialogTitle, dialogContent, dialogBotaoFechar)
 {
+	// incluindo modulo dojo
+	dojo.require("dijit.Dialog");
+
 	// setando a duração do fade
 	var fadeTime = 150;
 	// setando um nome para o dialog

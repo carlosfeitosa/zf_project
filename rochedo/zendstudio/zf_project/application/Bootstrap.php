@@ -93,11 +93,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         if (file_exists(BASICO_VIEW_HELPERS_PATH))
             $view->addHelperPath(BASICO_VIEW_HELPERS_PATH, 'Basico_View_Helper');
 
+        // setando helper path do ZendX
+        $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_Jquery_View_Helper");
+
         // inicializando a view
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-        Zend_Dojo::enableView($view);
-        //Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
         $viewRender = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRender->setView($view);
 
