@@ -17,3 +17,4 @@ require_once "error/consts_error.php";
 require_once "system/consts_log.php";
 require_once "system/consts_system.php";
 require_once "system/consts_forms.php";
+require_once "system/ui/consts_ui.php";

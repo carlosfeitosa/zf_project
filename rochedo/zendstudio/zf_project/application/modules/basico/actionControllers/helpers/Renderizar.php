@@ -109,10 +109,10 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
     private function inicializaContextoHtml()
     {
 		// adicionando Jquery
+		$this->view->headScript()->prependFile($this->view->baseUrl(JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->prependFile($this->view->baseUrl(JQUERY_JAVASCRIPT_FILE_PATH));
 		
 		// adicionando plugin Jquery Datepicker
-		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_SLIDER_ACCESS_JAVASCRIPT_FILE_PATH));
 		$this->view->headScript()->appendFile($this->view->baseUrl(JQUERY_DATETIMEPICKER_ADDON_JAVASCRIPT_FILE_PATH));
 		
@@ -181,7 +181,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 		ZendX_JQuery::enableView($this->view);
 
 		// verificando a UI
-		switch (self::retornaDefaultUi()) {
+		switch (Basico_OPController_UiOPController::DEFAULT_UI) {
 			case 'DOJO':
 				// usando o modo declarativo do dojo
 		        Zend_Dojo_View_Helper_Dojo::setUseDeclarative(true);
@@ -247,6 +247,7 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 							
 							// adicionando script para inicializacao do rascunho
 							$scriptInicializacaoRascunho = "<script type='text/javascript'> $(function() { initRascunho(); timer(10000,'salvarRascunho(\"{$urlSalvarRascunho}\", false, null)') });</script>";
+							
 							// verificando se a view não possui scripts
 							if (!isset($this->view->scripts)) {
 								// setando scripts da view
@@ -261,19 +262,5 @@ class Basico_Controller_Action_Helper_Renderizar extends Zend_Controller_Action_
 				}
 			}
 		}
-    }
-
-    /**
-     * Retorna a UI default do sistema
-     * 
-     * @return String
-     * 
-     * @author Carlos Feitosa / João Vasconcelos (carlos.feitosa@rochedoframework.com / joao.vasconcelos@rochedoframework.com)
-     * @since 07/11/2012
-     */
-    private static function retornaDefaultUi()
-    {
-		// forçando a UI padrão
-		return 'DOJO';
     }
 }
