@@ -1407,11 +1407,22 @@ class Basico_OPController_UtilOPController
 
     		break;
     	case TIPO_BOOLEAN:
-    		// transformando o valor em boolean, para comparacao
-    		$valorBoolean = (Boolean) $valor;
+    		
+    		// verificando tipo do valor informado
+    		if (is_string($valor)) {
+    			// verificando se a string e true
+    			if ('true' === strtolower($valor) or '1' === $valor) {
+    				$valorBoolean = true;
+    			}else{
+    				$valorBoolean = false;
+    			} 	
+    		}else if (is_int($valor) or is_bool($valor)) {
+	    		// transformando o valor em boolean, para comparacao
+	    		$valorBoolean = (Boolean) $valor;
+    		}
 
     		// verificando se o valor eh do tipo informado
-    		if ((!is_bool($valorBoolean)) or ($valorBoolean != $valor))
+    		if (!isset($valorBoolean) or !is_bool($valorBoolean))
     			throw new Exception(MSG_ERRO_TIPO_ERRADO_TIPO_BOOLEAN);
 
     		// verificando nulidade do valor
