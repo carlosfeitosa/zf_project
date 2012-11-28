@@ -315,6 +315,7 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractOPC
     {
     	// criando novo objeto email
 		$novoEmail = $this->_retornaNovoObjetoModelo();
+		
 		// setando o idGenericoProprietario
         $novoEmail->idGenericoProprietario = $idGenericoProprietario;
         // setando o uniqueId 
@@ -324,11 +325,12 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractOPC
         // setando o email
         $novoEmail->email     			   = $email;
         // setando o email como não validado
-        $novoEmail->validado  			   = false;
+        $novoEmail->validado  			   = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
         // setando o email como nao ativo
-        $novoEmail->ativo     			   = false;
+        $novoEmail->ativo     			   = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
+        
         // salvando o objeto email
-        parent::_salvarObjeto($novoEmail, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_EMAIL), LOG_MSG_NOVO_EMAIL);
+        $this->_salvarObjeto($novoEmail, Basico_OPController_CategoriaOPController::retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPaiViaSQL(LOG_NOVO_EMAIL), LOG_MSG_NOVO_EMAIL);
 
         // retornando o id
         return $novoEmail->id;
@@ -362,8 +364,8 @@ class Basico_OPController_ContatoCpgEmailOPController extends Basico_AbstractOPC
     		
     	// validando o e-mail no objeto
 	    $email->datahoraUltimaValidacao = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-	    $email->validado = 1;
-	    $email->ativo    = 1;
+	    $email->validado = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
+	    $email->ativo    = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
 	    	
 	    // salvando o objeto e-mail no banco de dados
 	    parent::_salvarObjeto($email, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_EMAIL, true), LOG_MSG_UPDATE_EMAIL, $versaoUpdateEmail);

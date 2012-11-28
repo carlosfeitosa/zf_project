@@ -481,7 +481,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 			// verificando se o limite de tentativas invalidas foi atingido (para travar)
 			if ($objLogin->tentativasFalhas >= QUANTIDADE_TENTATIVAS_LOGIN_MAX) {
 				// travando o login
-				$objLogin->travado = true;
+				$objLogin->travado = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
 			}
 
 			// verificando se o limite de tentativas invalidas foi atingido (para banir o ip)
@@ -526,7 +526,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 			// limpando a quantidade de tentativas falhas
 			$objLogin->tentativasFalhas = 0;
 			// setando o login como destravado
-			$objLogin->travado = false;
+			$objLogin->travado = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
 
 			// salvando o objeto
 			parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, $versaoUpdate);
@@ -1264,12 +1264,12 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
     	// setando atributos do login do usuario 
     	$novoLogin->idPessoa               = $arrayPost['idPessoa'];
     	$novoLogin->tentativasFalhas       = 0;
-    	$novoLogin->travado                = false;
-    	$novoLogin->resetado               = false;
-    	$novoLogin->podeExpirar            = true;
+    	$novoLogin->travado                = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
+    	$novoLogin->resetado               = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
+    	$novoLogin->podeExpirar            = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
     	$novoLogin->login                  = trim(strtolower($arrayPost['BasicoCadastrarUsuarioValidadoLogin']));
     	$novoLogin->senha                  = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(trim($arrayPost['BasicoCadastrarUsuarioValidadoSenha']));
-    	$novoLogin->ativo                  = true;
+    	$novoLogin->ativo                  = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
     	$novoLogin->datahoraAceiteTermoUso = $arrayPost['dataAceite'];
     	
     	// salvando o objeto login
@@ -1292,7 +1292,7 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 			throw new Exception(MSG_ERRO_LOGIN_NAO_ENCONTRADO);
 			
 		// ativando o login
-		$objLogin->ativo = true;
+		$objLogin->ativo = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
 		
 		// salvando o login
 		parent::_salvarObjeto($objLogin, Basico_OPController_CategoriaOPController::retornaIdCategoriaLogPorNomeCategoriaViaSQL(LOG_UPDATE_LOGIN), LOG_MSG_UPDATE_LOGIN, Basico_OPController_CVCOPController::getInstance()->retornaUltimaVersao($objLogin));
@@ -1340,12 +1340,12 @@ class Basico_OPController_PessoaLoginOPController extends Basico_AbstractOPContr
 	    	// populando objeto
 	    	$objLoginAdmin->idPessoa         	   = $idPessoaAdmin;
 	    	$objLoginAdmin->tentativasFalhas 	   = 0;
-	    	$objLoginAdmin->travado         	   = false;
-	    	$objLoginAdmin->resetado 		 	   = false;
-	    	$objLoginAdmin->podeExpirar 	 	   = true;
+	    	$objLoginAdmin->travado         	   = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
+	    	$objLoginAdmin->resetado 		 	   = Basico_OPController_DBUtilOPController::retornaBooleanDB(false);
+	    	$objLoginAdmin->podeExpirar 	 	   = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
 	    	$objLoginAdmin->login 			 	   = ADMIN_LOGIN_NAME_DATABASE_RESET;
 	    	$objLoginAdmin->senha			 	   = Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5(ADMIN_LOGIN_NAME_DATABASE_RESET);
-	    	$objLoginAdmin->ativo 			 	   = true;
+	    	$objLoginAdmin->ativo 			 	   = Basico_OPController_DBUtilOPController::retornaBooleanDB(true);
 	    	$objLoginAdmin->datahoraExpiracaoSenha = Basico_OPController_UtilOPController::retornaDateTimeAtual();
 
 	    	// salvando o objeto login
