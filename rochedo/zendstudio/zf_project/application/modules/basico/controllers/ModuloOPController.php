@@ -114,6 +114,31 @@ class Basico_OPController_ModuloOPController extends Basico_AbstractOPController
 	}
 	
 	/**
+	 * Retorna o id do modulo nomeado pelo parametro passado
+	 * 
+	 * @param String $nomeModulo
+	 * 
+	 * @return null|Basico_Model_Modulo
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/11/2012
+	 */
+	public function retornaIdModuloPorNome($nomeModulo)
+	{
+		// transformando a string contendo o nome do modulo em UPPERCASE
+		$nomeModulo = strtoupper($nomeModulo);
+
+		// recuperando objeto
+		$arrayDadosModulo = $this->_retornaArrayDadosObjetosPorParametros("nome = '{$nomeModulo}'", null, 1, 0, array('id'));
+
+		// verificando resultado da recuperacao
+		if (count($arrayDadosModulo))
+			return $arrayDadosModulo[0]['id'];
+
+		return null;
+	}
+	
+	/**
 	 * Retorna o nome do modulo pelo id passado como parametro
 	 * 
 	 * @param Int $idModulo

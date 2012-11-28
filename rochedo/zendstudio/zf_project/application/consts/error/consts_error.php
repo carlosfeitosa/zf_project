@@ -47,6 +47,7 @@ define("MSG_ERRO_OBJETO_NAO_ESPERADO_CONTROLADOR", "O objeto não representa o o
 define("MSG_ERRO_SAVE_UPDATE_VERSAO_DESATUALIZADA", "Não é possivel atualizar este objeto pois existe uma versão mais atualizada no banco de dados.");
 define("MSG_ERRO_SAVE_UPDATE_SEM_INFORMACAO_SOBRE_VERSAO", "Para realizar uma operação de update é preciso informar a versão da tupla.");
 define("MSG_ERRO_SAVE_UPDATE_SEM_PERSISTENCIA", "Não é possivel atualizar este objeto pois ele não existe mais no banco de dados.");
+define("MSG_ERRO_SAVE_SQL_ERROR", "Houve um problema com o insert/update.");
 define("MSG_ERRO_CVC_FALHOU", "Nao foi possivel versionar este objeto: ");
 define("MSG_ERRO_TIPO_CATEGORIA_CVC", "Tipo de categoria de CVC não encontrada no banco de dados");
 define("MSG_ERRO_CATEGORIA_CVC", "Categoria de CVC não encontrada no banco de dados");
@@ -189,3 +190,6 @@ define("MSG_ERRO_UTILIZANDO_LINGUA_PADRAO_TRADUCAO_NAO_ENCONTRADA", "(Translatio
 
 // definições de erros do rascunho
 define("MSG_ERRO_SALVAR_RASCUNHO", "Erro ao salvar rascunho: ");
+
+// definicoes de erro de acao_aplicacao
+define("MSG_ERRO_ACAO_APLICACAO_NAO_ENCONTRADA", "Acao aplicacao nao encontrada.");

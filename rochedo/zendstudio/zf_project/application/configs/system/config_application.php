@@ -18,6 +18,11 @@ define("APPLICATION_CVC_USER_RESOLVE_CONFLICT", true);
 define("RESOURCE_TYPE_BASICO_PLUGINS", "plugins");
 define("RESOURCE_PATH_BASICO_PLUGINS", "actionControllers/plugins");
 define("RESOURCE_NAMESPACE_BASICO_PLUGINS", "Controller_Plugin");
+
+define("RESOURCE_TYPE_BASICO_PLUGINS_INTERFACES", "interfacesPlugins");
+define("RESOURCE_PATH_BASICO_PLUGINS_INTERFACES", "actionControllers/plugins/interfaces");
+define("RESOURCE_NAMESPACE_BASICO_PLUGINS_INTERFACES", "Controller_Plugin_Interface");
+
 define("RESOURCE_TYPE_BASICO_OPCONTROLLERS_ABSTRACTS", "abstractsOPControllers");
 define("RESOURCE_PATH_BASICO_OPCONTROLLERS_ABSTRACTS", "controllers/abstracts");
 define("RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS_ABSTRACTS", "AbstractOPController_");
@@ -94,21 +99,6 @@ define("DEFAULT_AJAX_JAVASCRIPT_FILE_PATH", "/js/ajax_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_FILE_PATH", "/js/default_masks_scripts.js");
 define("DEFAULT_JAVASCRIPT_MASKS_JQUERY_FILE_PATH", "/js/library/plugins/jquery/maskMoney/jquery.maskMoney.js");
 define("DEFAULT_JAVASCRIPT_JQUERY_RASCUNHO", "/js/rascunho.js");
-define("JQGRID_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/jquery.jqGrid.min.js");
-define("JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/i18n/grid.locale-pt-br.js");
-define("JQGRID_JAVASCRIPT_DEBUG_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/grid.loader.js");
-define("JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/rochedo.custom.jqgrid.js");
-
-// jQuery
-define("JQUERY_JAVASCRIPT_FILE_PATH", "/js/library/jquery/jquery-1.7.2.min.js");
-define("JQUERY_UI_CUSTOM_JAVASCRIPT_FILE_PATH", "/js/library/jquery/ui/jquery-ui-1.8.16.custom.min.js");
-define("JQUERY_DATETIMEPICKER_ADDON_JAVASCRIPT_FILE_PATH", "/js/library/jquery/ui/jquery.ui.datepicker.addon.js");
-define("JQUERY_SLIDER_ACCESS_JAVASCRIPT_FILE_PATH", "/js/library/jquery/ui/jquery.ui.sliderAccess.js");
-
-// definições de css
-define("JQGRID_CSS_FILE_PATH", "/js/library/plugins/jquery/jqGrid/css/ui.jqgrid.css");
-define("JQUERY_UI_CSS_FILE_PATH", "/js/library/jquery/ui/jquery-ui-1.8.18.custom.css");
-define("JQUERY_DATETIMEPICKER_ADDON_CSS_FILE_PATH", "/js/library/jquery/ui/jquery.ui.datepicker.addon.css");
 
 // definições de sugestão de login
 define("NUMERO_SUGESTOES_LOGIN_TOTAL", 6);

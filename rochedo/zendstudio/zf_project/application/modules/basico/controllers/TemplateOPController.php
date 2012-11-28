@@ -104,10 +104,10 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function desabilitaLayoutView($actionController)
+	public static function desabilitaLayoutView()
 	{
 		// desabilitando o layout
-		$actionController->getHelper('layout')->disableLayout(true);
+		Zend_Controller_Action_HelperBroker::getExistingHelper('Layout')->disableLayout(true);
 	}
 
 	/**
@@ -120,10 +120,10 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * @author Carlos Feitosa (carlos.feitosa@rochedoframework.com)
 	 * @since 03/04/2012
 	 */
-	public static function habilitaLayoutView($actionController)
+	public static function habilitaLayoutView()
 	{
 		// desabilitando o layout
-		$actionController->getHelper('layout')->disableLayout(false);
+		Zend_Controller_Action_HelperBroker::getExistingHelper('Layout')->disableLayout(false);
 	}
 	
 	/**
@@ -136,10 +136,10 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 13/04/2012
 	 */
-	public static function desabilitaViewRenderer($actionController)
+	public static function desabilitaViewRenderer()
 	{
 		// desabilitando o layout
-		$actionController->getHelper('viewRenderer')->setNoRender(true);
+		Zend_Controller_Action_HelperBroker::getExistingHelper('viewRenderer')->setNoRender(true);
 	}
 	
 	/**
@@ -152,10 +152,10 @@ class Basico_OPController_TemplateOPController extends Basico_AbstractOPControll
 	 * @author João Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 13/04/2012
 	 */
-	public static function habilitaViewRenderer($actionController)
+	public static function habilitaViewRenderer()
 	{
 		// desabilitando o layout
-		$actionController->getHelper('viewRenderer')->setNoRender(false);
+		Zend_Controller_Action_HelperBroker::getExistingHelper('viewRenderer')->setNoRender(false);
 	}
 
 	/**

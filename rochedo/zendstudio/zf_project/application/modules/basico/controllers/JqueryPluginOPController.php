@@ -31,8 +31,8 @@ class Basico_OPController_JqueryPluginOPController
 	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
 	 * @since 08/11/2012
 	 */
-	const PLUGIN_UNIFORM   = JQUERY_FORM_PLUGIN_UNIFORM;
-	const PLUGIN_IDEALFORM = JQUERY_FORM_PLUGIN_IDEALFORM;
+	const PLUGIN_UNIFORM   = UI_JQUERY_FORM_PLUGIN_UNIFORM;
+	const PLUGIN_IDEALFORM = UI_JQUERY_FORM_PLUGIN_IDEALFORM;
 	
 	/**
 	 * Constantes de configuracao do plugin JQuery UNIFORM

@@ -68,6 +68,8 @@ class Basico_Form_AceiteTermosUso extends Zend_Dojo_Form
         $this->setName('BasicoAceiteTermosUso');
         // Setando o método do formulário
         $this->setMethod('post');
+         // Setando a ação do formulário
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(Basico_OPController_UtilOPController::retornaBaseUrl() . '/basico/login/salvaraceitetermosuso'));
         // Adicionando decorators ao formulário
         $this->adicionaDecorators();
         // Adicionando elementos ao formulário

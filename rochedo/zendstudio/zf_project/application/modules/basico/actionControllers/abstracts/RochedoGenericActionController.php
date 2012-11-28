@@ -43,6 +43,8 @@ abstract class Basico_AbstractActionController_RochedoGenericActionController ex
 	{
 		// inicializando controladores
 		$this->_initControllers();
+		// desligando renderizacao automatica
+		$this->_helper->viewRenderer->setNoRender();
 	}
 
 	/**

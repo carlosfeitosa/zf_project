@@ -20,6 +20,7 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
 
         // adicionando resources
         $autoloader->addResourceType(RESOURCE_TYPE_BASICO_PLUGINS, RESOURCE_PATH_BASICO_PLUGINS, RESOURCE_NAMESPACE_BASICO_PLUGINS)
+        		   ->addResourceType(RESOURCE_TYPE_BASICO_PLUGINS_INTERFACES, RESOURCE_PATH_BASICO_PLUGINS_INTERFACES, RESOURCE_NAMESPACE_BASICO_PLUGINS_INTERFACES)
                    ->addResourceType(RESOURCE_TYPE_BASICO_OPCONTROLLERS_ABSTRACTS, RESOURCE_PATH_BASICO_OPCONTROLLERS_ABSTRACTS, RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS_ABSTRACTS)
                    ->addResourceType(RESOURCE_TYPE_BASICO_ACTIONCONTROLLERS_ABSTRACTS, RESOURCE_PATH_BASICO_ACTIONCONTROLLERS_ABSTRACTS, RESOURCE_NAMESPACE_BASICO_ACTIONCONTROLLERS_ABSTRACTS)
                    ->addResourceType(RESOURCE_TYPE_BASICO_OPCONTROLLERS, RESOURCE_PATH_BASICO_OPCONTROLLERS, RESOURCE_NAMESPACE_BASICO_OPCONTROLLERS)
@@ -73,5 +74,9 @@ class Basico_Bootstrap extends Zend_Application_Module_Bootstrap
 		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerAccessControlHandler());
 		// registrando o plugin de controle do dicionário de dados
 		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerDicionarioDadosHandler());
+		// registrando o plugin de controle de metadados
+		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerMetadataHandler());
+		// registrando o plugin de controle de renderizacao
+		$frontController->registerPlugin(new Basico_Controller_Plugin_ActionControllerRenderControlHandler());
     }
 }

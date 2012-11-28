@@ -91,13 +91,10 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     				
     			} else {
 			    	// setando o titulo da view
-			    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!');
+			    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!'));
 
 					// setando subtitulo da view
-		    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado nao existe.");
-
-		    	    // setando o conteudo na view
-					$this->view->content = $content;
+		    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado nao existe."));
 			
 					// renderizando a view
 					$this->_helper->Renderizar->renderizar();
@@ -107,12 +104,9 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     		}
     	} else {
 	    	// setando o titulo da view
-	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!');
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar regerar checksum!'));
 			// setando subtitulo da view
-    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Nao foi informado o modelo para regeracao.");
-
-    	    // setando o conteudo na view
-			$this->view->content = $content;
+    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Nao foi informado o modelo para regeracao."));
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
@@ -121,13 +115,10 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     	}
 
     	// setando o titulo e subtitulo da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Sucesso ao regerar checksum!');
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Sucesso ao regerar checksum!'));
 		// setando subtitulo da view
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("O modelo {$nomeModelo} teve seu checksum regerado com sucesso.");
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("O modelo {$nomeModelo} teve seu checksum regerado com sucesso."));
 	
-		// setando o cabecalho na view
-		$this->view->content = $content;
-
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -170,11 +161,8 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
         // criando o usuario admin
         Basico_OPController_PessoaLoginOPController::getInstance()->criaLoginAdmin();
 
-    	// carregando o titulo
-	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO'));
-
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
+    	// carregando o titulo na view
+	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ADMIN_BD_RESET_SUCESSO')));
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -203,14 +191,12 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
 
     			// verificando o resultado do crud
     			if (false === $retornoCrud) {
-			    	// setando o titulo da view
-			    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+
+    				// setando o titulo da view
+			    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!'));
 	
 			    	// setando subtitulo da view
-		    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Erro no retorno do método de processamento do crud.");
-	
-		    	    // setando o conteudo na view
-					$this->view->content = $content;
+		    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Erro no retorno do método de processamento do crud."));
 	
 					// renderizando a view
 					$this->_helper->Renderizar->renderizar();
@@ -220,14 +206,14 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     				// verificando se foi retornando algum conteúdo
     				if (isset($retornoCrud['content'])) {
     					// setando conteúdo na view
-    					$this->view->content = $retornoCrud['content'];
-    					$this->view->content[] = 'SQL log:<br>';
-    					$this->view->content[] = Basico_OPController_UtilOPController::retornaTextAreaSqlCrud();
+    					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $retornoCrud['content']);
+    					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, 'SQL log:<br>');
+    					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextAreaSqlCrud());
     				}
     				// verificando se foi retornando algum script
     				if (isset($retornoCrud['scripts'])) {
     					// setando scripts na view
-    					$this->view->scripts = $retornoCrud['scripts'];
+    					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, $retornoCrud['scripts']);
     				}
 
     				// verificando se a ação é do tipo "dados"
@@ -248,13 +234,10 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
 
     		} else {
 		    	// setando o titulo da view
-		    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+		    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!'));
 
 		    	// setando subtitulo da view
-	    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado não existe.");
-
-	    	    // setando o conteudo na view
-				$this->view->content = $content;
+	    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Modelo informado não existe."));
 
 				// renderizando a view
 				$this->_helper->Renderizar->renderizar();
@@ -264,12 +247,9 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     		
     	} else {
  	    	// setando o titulo da view
-	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!');
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o crud!'));
 			// setando subtitulo da view
-    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado o modelo para manipulação.");
-
-    	    // setando o conteudo na view
-			$this->view->content = $content;
+    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado o modelo para manipulação."));
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
@@ -299,12 +279,9 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     		// verificando se a classe existe
     		if (!class_exists($nomeClasse, true)) {
 	 	    	// setando o titulo da view
-		    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!');
+		    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!'));
 				// setando subtitulo da view
-	    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("A classe informada não existe.");
-	
-	    	    // setando o conteudo na view
-				$this->view->content = $content;
+	    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("A classe informada não existe."));
 	
 				// renderizando a view
 				$this->_helper->Renderizar->renderizar();
@@ -313,13 +290,10 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
     		}
 
  	    	// setando o titulo da view
-	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Reflection da classe ' . $nomeClasse);
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Reflection da classe ' . $nomeClasse));
 
     		// recuperando o reflection da classe
-    		$content[] = Basico_OPController_ReflectionOPController::retornaReflectionClass($nomeClasse);
-
-    	    // setando o conteudo na view
-			$this->view->content = $content;
+    		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_ReflectionOPController::retornaReflectionClass($nomeClasse));
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();
@@ -327,12 +301,9 @@ class Basico_AdministradorController extends Basico_AbstractActionController_Roc
 			return;
     	} else {
  	    	// setando o titulo da view
-	    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!');
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo('Problemas ao tentar realizar o reflection!'));
 			// setando subtitulo da view
-    	    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado a classe para recuperação do reflection.");
-
-    	    // setando o conteudo na view
-			$this->view->content = $content;
+    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo("Não foi informado a classe para recuperação do reflection."));
 
 			// renderizando a view
 			$this->_helper->Renderizar->renderizar();

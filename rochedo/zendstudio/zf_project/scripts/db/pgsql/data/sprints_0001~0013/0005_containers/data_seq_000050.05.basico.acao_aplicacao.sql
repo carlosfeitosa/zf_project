@@ -14,7 +14,7 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'email' AS controller, 'errotokeninvalido' AS action, 'ACAO_ERRO_TOKEN_INVALIDO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'token' AS controller, 'errotokeninvalido' AS action, 'ACAO_ERRO_TOKEN_INVALIDO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -34,7 +34,7 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'email' AS controller, 'errotokenexpirado' AS action, 'ACAO_ERRO_TOKEN_EXPIRADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'token' AS controller, 'errotokenexpirado' AS action, 'ACAO_ERRO_TOKEN_EXPIRADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -44,7 +44,17 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
+SELECT m.id AS id_modulo, 'login' AS controller, 'exibirformcadastrousuariovalidado' AS action, 'ACAO_EXIBIR_FORM_CADASTRO_USUARIO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
 SELECT m.id AS id_modulo, 'login' AS controller, 'exibirformaceitetermosuso' AS action, 'ACAO_EXIBIR_FORM_ACEITE' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.modulo m
+WHERE m.nome = 'BASICO';
+
+INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
+SELECT m.id AS id_modulo, 'login' AS controller, 'salvaraceitetermosuso' AS action, 'ACAO_SALVAR_ACEITE_TERMOS_USO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -64,7 +74,7 @@ FROM basico.modulo m
 WHERE m.nome = 'DEFAULT';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'cadastrarUsuarioNaoValidado' AS action, 'ACAO_CADASTRAR_USUARIO_NAO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'cadastrarusuarionaovalidado' AS action, 'ACAO_CADASTRAR_USUARIO_NAO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -74,22 +84,22 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'SucessoSalvarUsuarioNaoValidado' AS action, 'ACAO_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'sucessosalvarusuarionaovalidado' AS action, 'ACAO_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'erroemailnaovalidadoexistentenosistema' AS action, 'ACAO_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'email' AS controller, 'erroemailnaovalidadoexistentenosistema' AS action, 'ACAO_ERRO_EMAIL_NAO_VALIDADO_EXISTENTE_NO_SISTEMA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'erroemailvalidadoexistentenosistema' AS action, 'ACAO_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'email' AS controller, 'erroemailvalidadoexistentenosistema' AS action, 'ACAO_ERRO_EMAIL_VALIDADO_EXISTENTE_NO_SISTEMA' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'salvarUsuarioValidado' AS action, 'ACAO_SALVAR_USUARIO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'salvarusuariovalidado' AS action, 'ACAO_SALVAR_USUARIO_VALIDADO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -104,7 +114,7 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'login' AS controller, 'verificaNovoLogin' AS action, 'ACAO_VERIFICA_NOVO_LOGIN' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'login' AS controller, 'verificanovologin' AS action, 'ACAO_VERIFICA_NOVO_LOGIN' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
@@ -114,7 +124,7 @@ FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 
 INSERT into basico.acao_aplicacao (id_modulo, controller, action, constante_textual, ativo, rowinfo)
-SELECT m.id AS id_modulo, 'autenticador' AS controller, 'verificaAutenticacaoUsuario' AS action, 'ACAO_VERIFICA_AUTENTICACAO_USUARIO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+SELECT m.id AS id_modulo, 'autenticador' AS controller, 'verificaautenticacaousuario' AS action, 'ACAO_VERIFICA_AUTENTICACAO_USUARIO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.modulo m
 WHERE m.nome = 'BASICO';
 

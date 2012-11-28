@@ -7,14 +7,14 @@
  *
  */
 
-class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zend_Controller_Plugin_Abstract
+class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zend_Controller_Plugin_Abstract implements Basico_Controller_Plugin_Interface_RochedoPluginGenerico
 {
 	/**
 	 * Atributo para ativacao do plugin
 	 * 
 	 * @var Boolean
 	 */
-	protected $_pluginAtivo = true;
+	protected static $_pluginAtivo = true;
 
 	/**
 	 * Metodo que roda antes do dispacho
@@ -26,8 +26,44 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 */
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
+		// verificando se processa o request
+		if (self::checaProcessamento($request)) {
+			// processando o request
+			self::processa($request);
+		}
+
+		
+	}
+	
+	/**
+	 * posDispatch - Metodo que roda depois do dispacho do plugin de metadados
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::posDispatch()
+	 * 
+	 * @return void
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public function postDispatch(Zend_Controller_Request_Abstract $request)
+	{
+		;
+	}
+	
+	/**
+	 * metodo que checa se o request eh para ser processado pelo plugin
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::posDispatch()
+	 * 
+	 * @return Boolean - Retorna se pode processar o request ou nao
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public static function checaProcessamento(Zend_Controller_Request_Abstract $request)
+	{
 		// verificando se o request pode ser executado
-		if (!$this->verificaRequestPossivel($request)) {
+		if (!self::verificaRequestPossivel($request)) {
 			// transformando o request
 			$request->setModuleName('basico');
 			$request->setControllerName('controleacesso');
@@ -35,9 +71,26 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 		}
 
 		// verificando se o request deve ser processado
-		if (!$this->verificaSeProcessaRequest($request))
-			return;
-
+		if (!self::verificaSeProcessaRequest($request)) {
+			return false;
+		}
+		
+		return true;
+			
+	}
+	
+	/**
+	 * metodo que processa o request
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::processa()
+	 * 
+	 * @return void
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public static function processa(Zend_Controller_Request_Abstract $request)
+	{
 		// controlando o request
 		self::controlaRequest($request);
 	}
@@ -224,11 +277,11 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
+	private static function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando se o request deve ser processado
-		return (($this->_pluginAtivo) and
-				($this->verificaRequestTokenDecode($request)));
+		return ((self::$_pluginAtivo) and
+				(self::verificaRequestTokenDecode($request)));
 	}
 
 	/**
@@ -238,7 +291,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaRequestTokenDecode(Zend_Controller_Request_Abstract $request)
+	private static function verificaRequestTokenDecode(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador token, acao decode
 		return (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'token') and (($request->getActionName() === 'decode') || ($request->getActionName() === 'validate')));
@@ -251,7 +304,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaRequestIndexAplicacao(Zend_Controller_Request_Abstract $request)
+	private static function verificaRequestIndexAplicacao(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador index, acao index
 		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'index') and ($request->getActionName() === 'index'));
@@ -264,7 +317,7 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaRequestErrorAplicacao(Zend_Controller_Request_Abstract $request)
+	private static function verificaRequestErrorAplicacao(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo default, controlador error, acao error
 		return (($request->getModuleName() === 'default') and ($request->getControllerName() === 'error') and ($request->getActionName() === 'error'));
@@ -277,12 +330,12 @@ class Basico_Controller_Plugin_ActionControllerRequestControlHandler extends Zen
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaRequestPossivel(Zend_Controller_Request_Abstract $request)
+	private static function verificaRequestPossivel(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request nao eh do tipo decode token, index da aplicacao, controlador de erros e checagem de ambiente de desenvolvimento
-		return !((!$this->verificaRequestIndexAplicacao($request)) and 
-		         (!$this->verificaRequestErrorAplicacao($request)) and 
-		         (!$this->verificaRequestTokenDecode($request)) and 
+		return !((!self::verificaRequestIndexAplicacao($request)) and 
+		         (!self::verificaRequestErrorAplicacao($request)) and 
+		         (!self::verificaRequestTokenDecode($request)) and 
 		         (!Basico_OPController_UtilOPController::ambienteDesenvolvimento()));
 	}
 }

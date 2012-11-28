@@ -1012,6 +1012,12 @@ SELECT t.id AS id_tipo_categoria, 1 AS nivel,
 FROM basico.tipo_categoria t
 WHERE t.nome = 'VISAO';
 
+INSERT into basico.categoria (id_tipo_categoria, nivel, nome, constante_textual, ativo, rowinfo)
+SELECT t.id AS id_tipo_categoria, 1 AS nivel, 
+    'VISAO_FORM_CADASTRAR_USUARIO' AS nome, 'VISAO_FORM_CADASTRAR_USUARIO' AS constante_textual, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
+FROM basico.tipo_categoria t
+WHERE t.nome = 'VISAO';
+
 INSERT into basico.categoria (id_tipo_categoria, id_categoria_pai, nivel, nome, ativo, rowinfo)
 SELECT t.id AS id_tipo_categoria, c.id AS id_categoria, 2 AS nivel, 'FORMULARIO_DECORATOR_GRUPO' AS nome, true AS ativo, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t

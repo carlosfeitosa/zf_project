@@ -171,19 +171,55 @@ class Basico_OPController_AcaoAplicacaoOPController extends Basico_AbstractOPCon
 			return null;
 		
 		// recuperando o id do modulo
-		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule)->id;
+		$objModulo = Basico_OPController_ModuloOPController::getInstance()->retornaObjetoModuloPorNome($nomeModule);
 
-		// recuperando objeto acao aplicacao
-		$objsAcaoAplicacao = $this->_retornaObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+		
+		if (null != $objModulo) {
+			// recuperando objeto acao aplicacao
+			$objsAcaoAplicacao = $this->_retornaObjetosPorParametros("id_modulo = {$objModulo->id} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0);
+		
 
-		// verificando se o objeto foi carregado com sucesso
-		if (is_object($objsAcaoAplicacao))
-			// retornando o objeto
-			return $objsAcaoAplicacao;
-
+			// verificando se o objeto foi carregado com sucesso
+			if (is_object($objsAcaoAplicacao))
+				// retornando o objeto
+				return $objsAcaoAplicacao;
+		}
+		
 		return null;
 	}
 
+	/**
+	 * Retorna o id da acao_aplicacao pelo nome do module, controller e acao
+	 * 
+	 * @param string $nomeModule
+	 * @param string $nomeController
+	 * @param string $nomeAction
+	 * 
+	 * @return Int
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 09/11/2012
+	 */
+	public function retornaIdAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($nomeModule, $nomeController, $nomeAction)
+	{
+		// verificando se todos os parametros foram passados corretamente
+		if ($nomeModule == null || $nomeController == null || $nomeAction == null)
+			return null;
+		
+		// recuperando o id do modulo
+		$idModulo = Basico_OPController_ModuloOPController::getInstance()->retornaIdModuloPorNome($nomeModule);
+
+		// recuperando objeto acao aplicacao
+		$objsAcaoAplicacao = $this->_retornaArrayDadosObjetosPorParametros("id_modulo = {$idModulo} and controller = '{$nomeController}' and action = '{$nomeAction}'", null, 1, 0, array('id'));
+
+		// verificando se o objeto foi carregado com sucesso
+		if (count($objsAcaoAplicacao))
+			// retornando o objeto
+			return $objsAcaoAplicacao[0]['id'];
+
+		return null;
+	}
+	
 	/**
 	 * Verifica se a acao existe atraves do request
 	 * 

@@ -85,7 +85,7 @@ TEXT;
 TEXT;
 
 		// enviando conteúdo do erro para a view
-		$this->view->content = $localContent;
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $localContent);
 
 		// renderizando a view
        	$this->getHelper('renderizar')->renderizar();

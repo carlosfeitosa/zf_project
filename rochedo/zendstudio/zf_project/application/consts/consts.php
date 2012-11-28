@@ -18,3 +18,4 @@ require_once "system/consts_log.php";
 require_once "system/consts_system.php";
 require_once "system/consts_forms.php";
 require_once "system/ui/consts_ui.php";
+require_once "system/view/consts_view.php";

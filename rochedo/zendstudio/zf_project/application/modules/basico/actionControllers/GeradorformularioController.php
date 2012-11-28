@@ -16,11 +16,8 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
     public function init()
     {
         // carregando titulo e subtitulo da view
-        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO'));
-        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO'));
-        
-        // enviado conteúdo para a view
-        $this->view->content = $content;
+        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_TITULO')));
+        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUBTITULO')));
     }
 
     /**
@@ -70,13 +67,10 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
 		if (Basico_OPController_GeradorOPController::geradorFormularioGerarTodosFormularios()) {
 
 	        // carregando o titulo e subtitulo da view
-	        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO'));
-			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIOS_SUBTITULO'));
+	        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO')));
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIOS_SUBTITULO')));
 
-	        // enviado conteúdo para a view
-	        $this->view->content = $content;
-
-			// renderizando a view
+	    	// renderizando a view
 			$this->_helper->Renderizar->renderizar();
                 
             return true;
@@ -140,11 +134,8 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
             if (true === $respostaGerador) {
 
                 // carregando o titulo e subtitulo da view
-                $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO'));
-		        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO'));
-
-		    	// enviado conteúdo para a view
-		    	$this->view->content = $content;
+                Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_TITULO')));
+		        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_GERADOR_FORMULARIO_SUCESSO_GERAR_FORMULARIO_SUBTITULO')));
 
 		        // renderizando a view
                 $this->_helper->Renderizar->renderizar();
@@ -156,10 +147,7 @@ class Basico_GeradorFormularioController extends Basico_AbstractActionController
         }
         
         // carregando o array de conteúdo da página
-		$content[] = $formGeradorFormulario;
-
-        // enviado conteúdo para a view
-        $this->view->content = array_merge($this->view->content, $content);        
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formGeradorFormulario);
 
         // renderizando a view
         $this->_helper->Renderizar->renderizar();

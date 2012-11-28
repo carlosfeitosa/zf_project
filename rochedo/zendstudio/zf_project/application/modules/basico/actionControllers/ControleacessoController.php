@@ -55,14 +55,11 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         // substituindo a tag do link pelo link
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
-	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
+			   
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -97,14 +94,11 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         // substituindo a tag do link pelo link
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
-	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
+	    
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -147,14 +141,11 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         // substituindo a tag do link pelo link
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
-	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
+	    
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -189,10 +180,10 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         // substituindo a tag do link pelo link
         $mensagemView = str_replace(TAG_LINK, $linkPaginaAnterior, $mensagemView);
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
 	            
 	    // setando o cabecalho na view
 		$this->view->content = $content;
@@ -224,14 +215,11 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_SUBTITULO'));
         $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_IP_USUARIO_DIFERENTE_IP_USUARIO_AUTENTICADO_SESSAO_MENSAGEM'));
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
-	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
+	    
 		// efetuando logoff
 		Basico_OPController_PessoaLoginOPController::removeRegistroIdLoginUsuarioSessao();
 
@@ -268,14 +256,11 @@ class Basico_ControleacessoController extends Basico_AbstractActionController_Ro
         $subtituloView = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_SUBTITULO'));
         $mensagemView  = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_CONTROLE_ACESSO_HOST_BANIDO_MENSAGEM'));
 
-    	// carregando array do cabecalho da view
-		$content[] = $tituloView;
-		$content[] = $subtituloView;
-		$content[] = $mensagemView;
-	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-
+    	// carregando cabecalho da view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
+	    
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }

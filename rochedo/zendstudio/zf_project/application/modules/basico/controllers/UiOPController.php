@@ -79,8 +79,12 @@ class Basico_OPController_UiOPController
 			// verificando a UI padrão
 			switch ($defaultUI) {
 				case self::DOJO:
-					// adicionando atributo ao elemento
-					$objElement->setAttrib('dojoType', $arrayDojoTypeElements[$objElement->getType()]);
+					
+					// verificando se o tipo do elemento existe no array de mapeamento dos dojotypes
+					if (isset($arrayDojoTypeElements[$objElement->getType()])) {
+						// adicionando atributo ao elemento
+						$objElement->setAttrib('dojoType', $arrayDojoTypeElements[$objElement->getType()]);
+					}
 
 					// verificando se o elemento precisa adicionar o atributo label
 					if ('Zend_Form_Element_Submit' === $objElement->getType()) {

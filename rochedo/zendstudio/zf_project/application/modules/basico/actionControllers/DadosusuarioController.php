@@ -141,27 +141,18 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
         // verificando se deve setar uma aba
 		if (isset($nomeSubFormSetarAba)) {
 			// selecionando a aba do subform perfil padrao
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $nomeSubFormSetarAba);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $nomeSubFormSetarAba));
 		}
 
 		// verificando se deve sobrescrever as informacoes de um objeto
 		if ($sobrescreverAtualizacao) {
 			// chamando metodo que submete o formulario
-			$scripts[] = Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::submeteDojoFormViaDojoJavaScript($nomeSubFormSetarAba));
 		}
 		
-		//$formDadosUsuario->isValid($_POST);
-		$content[] = $formDadosUsuario;
+		// adicionando formulario na view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formDadosUsuario);
 		
-		// enviado conteúdo para a view
-		$this->view->content = $content;
-
-		// verificando se deve setar os scripts na view
-		if (isset($scripts)) {
-			// adicionando scripts na view
-			$this->view->scripts = $scripts;
-		}
-
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -219,10 +210,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
     	}
     	    	
     	// carregando formulário para a view
-		$content[] = $formDadosUsuario;
-
-		// enviado conteúdo para a view
-		$this->view->content = $content;
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formDadosUsuario);
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -268,19 +256,16 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 				$arrayElementosErros = array('CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaSenhaAtual');
 				
 				// marcando os elementos com erro
-				$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 
 				// selecionando a aba do subform conta
-				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName()));
 				
 				// setando foco no primeiro elemento com erro
-				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]));
 
 		    	// enviando script para o cliente para limpar o password strength checker
-		    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
-
-				// setando os scripts na view
-				$this->view->scripts = $scripts;
+		    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::limpaPasswordStrengthChecker());
 
 	    		return false;
 			} else {
@@ -300,19 +285,15 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
 											 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
 				// marcando os elementos com erro
-				$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 
 				// selecionando a aba do subform conta
-				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
-
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName()));
 				// setando foco no primeiro elemento com erro
-				$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]));
 
 		    	// enviando script para o cliente para limpar o password strength checker
-		    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
-
-				// setando scripts na view
-				$this->view->scripts = $scripts;
+		    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::limpaPasswordStrengthChecker());
 
 	    		return false;
 			}
@@ -326,7 +307,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
     	// validando o sub formulario
     	if (!$subFormConta->isValid($arrayPost)) {
 			// selecionando a aba do subform conta
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName()));
 
 			// limpando as senhas digitadas
 			$subFormConta->BasicoCadastrarDadosUsuarioContaSenhaAtual->setValue(null);
@@ -338,16 +319,13 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
 										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
 			// marcando os elementos com erro
-			$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 
 			// setando foco no primeiro elemento com erro
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]));
 
 	    	// enviando script para o cliente para limpar o password strength checker
-	    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
-
-			// setando scripts na view
-			$this->view->scripts = $scripts;
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::limpaPasswordStrengthChecker());
 
     		return false;
     	}
@@ -366,19 +344,16 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaNovaSenha',
 										 'CadastrarDadosUsuarioConta-BasicoCadastrarDadosUsuarioContaConfirmacaoNovaSenha');
 			// marcando os elementos com erro
-			$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 
 			// selecionando a aba do subform conta
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName()));
 
 			// setando foco no primeiro elemento com erro
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]);
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript($arrayElementosErros[0]));
 
 	    	// enviando script para o cliente para limpar o password strength checker
-	    	$scripts[] = Basico_OPController_UtilOPController::limpaPasswordStrengthChecker();
-
-			// setando scripts na view
-			$this->view->scripts = $scripts;
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::limpaPasswordStrengthChecker());
 
     		return false;
     	}
@@ -410,7 +385,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 	    	// setando o perfil padrao do usuario
 	    	if (Basico_OPController_PessoaOPController::getInstance()->atualizaPerfilPadraoPessoaViaFormCadastrarDadosUsuarioConta($idPessoa, $arrayPost)) {
 				// selecionando a aba do subform perfil padrao
-				$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName());
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormConta->getName()));
 	
 	    		// atualizando o perfil padrao do usuario na sessao
 	    		Basico_OPController_PessoaOPController::registraIdPerfilPadraoUsuarioSessao(Basico_OPController_UtilOPController::retornaValorTipado($arrayPost['CadastrarDadosUsuarioConta']['BasicoCadastrarDadosUsuarioContaPerfisVinculadosDisponiveis'], TIPO_INTEIRO, true));
@@ -422,10 +397,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 	    		$this->adicionaElementoHiddenVersaoObjetoPessoa($formDadosUsuario, $versaoObjetoPessoa);
 	
 		        // exibindo mensagem de sucesso
-		        $scripts[] =  Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO"));
-
-				// setando scripts na view
-				$this->view->scripts = $scripts;
+		        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("FORM_ELEMENT_MESSAGE_DADOS_CONTA_SALVOS_COM_SUCESSO")));
 	    	}   	
 
     		// salvando a transacao
@@ -453,9 +425,6 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
      */
     private function salvarDadosBiometricos($idPessoa, $arrayPost, Basico_Form_CadastrarDadosUsuario &$formDadosUsuario)
     {
-    	// inicializando array de javascripts de retorno para o cliente
-    	$scripts = array();
-
     	// se a requisição nao vier do form dados Biometricos retorne
     	if (!array_key_exists('CadastrarDadosUsuarioDadosBiometricos', $arrayPost))
     	    return null;
@@ -476,17 +445,14 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 			//$this->view->content = array($formDadosUsuario);
 
     		// selecionando a aba do subform DadosBiometricos
-			$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
-
-			// setando os scripts na view
-			$this->view->scripts = $scripts;
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName()));
 			
     		return false;
     	}
 
     	if (Basico_OPController_DadosBiometricosOPController::getInstance()->salvarDadosBiometricosViaFormCadastrarDadosUsuarioDadosBiometricos($idPessoa, $arrayPost)) {
 	    	// selecionando a aba do subform DadosBiometricos
-	    	$scripts[] = Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName());
+	    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusAbaTabContainerDojoFormViaJavaScript($formDadosUsuario->getName(), $subFormDadosBiometricos->getName()));
 	
 	    	// recuperando ultima versao do obj dadosBiometricos da pessoa
 	        $versaoObjetoDadosBiometricosAssocPessoa = Basico_OPController_DadosBiometricosAssocPessoaOPController::getInstance()->retornaUltimaVersaoObjetoDadosBiometricosAssocPessoaPorIdPessoa($idPessoa);
@@ -495,11 +461,8 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 	        $this->adicionaElementoOcultoVersaoObjetoDadosBiometricos($formDadosUsuario, $versaoObjetoDadosBiometricosAssocPessoa);
 
 	        // setando mensagem
-			$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS"));
-	        
-			// setando os scripts na view
-			$this->view->scripts = $scripts;
-			
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("VIEW_MESSAGEM_SUCESSO_SALVAR_DADOS_BIOMETRICOS")));
+	    	
 			// processando rascunho
 			$this->_helper->Rascunho->processar();
 			
@@ -840,9 +803,9 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 		// verificando se nao trata-se de um post
 		if (!$this->getRequest()->isPost()) {
 			// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO')));
 			// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-			$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO')));
 
 			// verificando se existe url para redirect
 			if ($urlRedirect) {
@@ -851,7 +814,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 			}
 
 			// incluindo o formulario de troca de senha no conteudo que sera renderizado
-			$content[] = $formTrocaDeSenha;
+			Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formTrocaDeSenha);
 		} else {
 			// recuperando o post
 			$post = $this->getRequest()->getPost();
@@ -874,7 +837,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 					// criando array com os elementos que devem ser marcados como erro
 					$arrayElementosErros = array('BasicoTrocaDeSenhaSenhaAtual');
 					// marcando os elementos com erro
-					$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 	
 					// limpando os campos de senha
 					$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
@@ -882,9 +845,9 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 					$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 
 					// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO')));
 					// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-					$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO')));
 
 					// verificando se existe url para redirect
 					if ($urlRedirect) {
@@ -893,7 +856,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 					}
 				
 					// incluindo o formulario de troca de senha no conteudo que sera renderizado
-					$content[] = $formTrocaDeSenha;
+					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formTrocaDeSenha);
 				} else { // trocando a senha do usuario
 					// recuperando a nova senha
 		    		$novaSenha = $post['BasicoTrocaDeSenhaNovaSenha'];
@@ -901,18 +864,18 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 		    		// verificando se a senha nova eh igual a senha antiga
 		    		if ($senhaAtual === Basico_OPController_UtilOPController::retornaStringEncriptadaCryptMd5($novaSenha)) {
 						// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+						Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO')));
 						// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+						Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO')));
 						// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
-						$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM'));
+						Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM')));
 
 						// marcando o elemento do formulario com invalido
 						$formTrocaDeSenha->BasicoTrocaDeSenhaNovaSenha->addError($this->view->tradutor('VIEW_TROCA_DE_SENHA_SENHAS_IGUAIS_MENSAGEM'));
 						// criando array com os elementos que devem ser marcados como erro
 						$arrayElementosErros = array('BasicoTrocaDeSenhaNovaSenha');
 						// marcando os elementos com erro
-						$scripts[] = Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros);
+						Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::marcaElementosComErroViaDojoJavaScript($arrayElementosErros));
 
 						// limpando os campos de senha
 						$formTrocaDeSenha->BasicoTrocaDeSenhaSenhaAtual->setValue(null);
@@ -926,7 +889,7 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 						}
 					
 						// incluindo o formulario de troca de senha no conteudo que sera renderizado
-						$content[] = $formTrocaDeSenha;
+						Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formTrocaDeSenha);
 		    		} else { // senhas diferentes (nova e antiga)
 			    		// recuperando a versao do objeto login
 			    		$versaoObjetoLogin = $loginOpController->retornaVersaoObjetoLoginPorIdPessoa($idPessoa);
@@ -948,11 +911,11 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 								$this->_redirect($realUrlRedirect);
 			    			} else {
 								// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+								Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO')));
 								// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_SUBTITULO'));
+								Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_SUBTITULO')));
 								// incluindo a mensagem da view de troca de senha no conteudo que sera renderizado
-								$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM'));
+								Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUCESSO_MENSAGEM')));
 			    			}
 			    		}
 		    		}
@@ -965,9 +928,9 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 				$formTrocaDeSenha->BasicoTrocaDeSenhaConfirmacaoNovaSenha->setValue(null);
 
 				// incluindo o titulo da view de troca de senha no conteudo que sera renderizado
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO'));
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_TITULO')));
 				// incluindo o subtitulo da view de troca de senha no conteudo que sera renderizado
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO'));
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_TROCA_DE_SENHA_SUBTITULO')));
 
 				// verificando se existe url para redirect
 				if ($urlRedirect) {
@@ -976,19 +939,11 @@ class Basico_DadosusuarioController extends Basico_AbstractActionController_Roch
 				}
 			
 				// incluindo o formulario de troca de senha no conteudo que sera renderizado
-				$content[] = $formTrocaDeSenha;
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formTrocaDeSenha);
 			}
 		}
 
-		// passando o conteudo para a view
-		$this->view->content = $content;
-
-		$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript('BasicoTrocaDeSenhaSenhaAtual');
-
-		// verificando se existem scripts para inclusao na view
-		if (isset($scripts)) {
-			$this->view->scripts = $scripts;
-		}
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript('BasicoTrocaDeSenhaSenhaAtual'));
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();

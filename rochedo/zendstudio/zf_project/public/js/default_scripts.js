@@ -498,8 +498,8 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa
 		var urlRequest = urlMetodo + '/stringPesquisa/' +stringPesquisa + "/idPessoa/" + idPessoa + "/nome/" + nome + "/dataNascimento/" + dataNascimento; 
 
 		// processando requisicao
-		var deferred = dojoRequestAjaxAbstract('get', {url: urlRequest, handleAs: 'text', idLoadingLocation: 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element'});
-
+		var deferred = dojoRequestAjaxAbstract('get', {url: urlRequest, handleAs: 'text', idLoadingLocation: 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element', handleFunctionData: 'processaResponseDojoFormRequest'});
+		/*
 		// Adicionando callback adicional 
 		deferred.addCallback(function(data) {
             //Replace newlines with nice HTML tags.
@@ -509,7 +509,8 @@ function verificaDisponibilidade(nomeTabela, nomeCampo, stringPesquisa, idPessoa
             data = data.replace(/\t/g, "&nbsp;&nbsp;&nbsp;");
 
             dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = data;
-        });		
+        });
+        */		
 	}else{
 		dojo.byId("BasicoCadastrarUsuarioValidadoLoginDisponivel-element").innerHTML = "";
 	}

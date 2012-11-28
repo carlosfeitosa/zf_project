@@ -69,7 +69,7 @@ class Basico_Form_CadastrarUsuarioNaoValidado extends Zend_Form
         // Setando o método do formulário
         $this->setMethod('post');
         // Setando a ação do formulário
-        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(Basico_OPController_UtilOPController::retornaBaseUrl() . '/basico/login/verificaNovoLogin'));
+        $this->setAction(Basico_OPController_CpgTokenOPController::getInstance()->gerarTokenPorUrl(Basico_OPController_UtilOPController::retornaBaseUrl() . '/basico/login/verificanovologin'));
         // Adicionando decorators ao formulário
         $this->adicionaDecorators();
         // Adicionando elementos ao formulário

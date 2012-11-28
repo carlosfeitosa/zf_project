@@ -1019,16 +1019,16 @@ class Basico_OPController_CrudOPController
 	private static function retornaJavaScriptCrud()
 	{
 		// adicionando arquivo de linguagem do jgGrid 
-		$scriptRetorno = Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH);
+		$scriptRetorno = Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH);
 		
 		// adicionando arquivo js do jqGrid
-		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_FILE_PATH);
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_FILE_PATH);
 		
 		// adicionando arquivo js do debug do jqGrid
-		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_JAVASCRIPT_DEBUG_FILE_PATH);
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_DEBUG_FILE_PATH);
 		
 		// adicionando arquivo js do rochedo customizado para jqGrid
-		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH);
+		$scriptRetorno .= Basico_OPController_UtilOPController::retornaJavaScriptSourceEntreTagsScriptHtml(Basico_OPController_UtilOPController::retornaBaseUrl() . UI_JQUERY_PLUGIN_JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH);
 		
 		return $scriptRetorno;
 	}

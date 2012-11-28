@@ -35,15 +35,8 @@ class Basico_TokenController extends Basico_AbstractActionController_RochedoGene
      *  @return void
      */
     public function errotokeninvalidoAction() 
-    {
-    	// carregando titulo, link para re-cadastro e mensagem
-        $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_INVALIDO'));
-    
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
+    {	
+    	
     }
     
 	/**
@@ -54,20 +47,14 @@ class Basico_TokenController extends Basico_AbstractActionController_RochedoGene
     public function errotokenexpiradoAction() 
     {
     	// carregando titulo, link para re-cadastro e mensagem
-        $tituloView            = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO'));
+        //$tituloView            = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('MSG_TOKEN_EMAIL_VALIDACAO_EXPIRADO'));
         $linkRecomecarCadastro = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('LINK_FORM_CADASTRO_USUARIO_NAO_VALIDADO'));
         $urlLinkCadastro       = $this->view->urlEncryptModuleControllerAction($this->view->url(array('module' => 'basico', 'controller' => 'login', 'action' => 'cadastrarUsuarioNaoValidado')));
         $mensagemView          = "<br><a href='{$urlLinkCadastro}'>{$linkRecomecarCadastro}</a>";
         
         // carregando array com o cabecalho da view
-    	$content[] = $tituloView;
-    	$content[] = $mensagemView;
-    
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
+    	//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $mensagemView);
     }
 
     /**

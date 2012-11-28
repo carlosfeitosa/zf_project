@@ -1018,23 +1018,27 @@ class Basico_OPController_SessionOPController
    	 	$arrayParametrosUltimoRequest = self::retornaArrayParametrosUrlAtualPoolRequests();
     	 	
    	 	// recuperando id da acao_aplicacao responsavel por exibir o formulario
-   	 	$idAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao'])->id;
+   	 	$objAcaoAplicacaoOrigem = Basico_OPController_AcaoAplicacaoOPController::getInstance()->retornaObjetoAcaoAplicacaoPorNomeModuloNomeControladorNomeAcao($arrayParametrosUltimoRequest['modulo'], $arrayParametrosUltimoRequest['controlador'], $arrayParametrosUltimoRequest['acao']);
 
-   	 	// recuperando a assoc visao
-   	 	$objAcaoAplicacaoAssocVisao = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance()->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($idAcaoAplicacaoOrigem);
-
-   	 	// verificando se existe uma visao vinculada a acao
-   	 	if ($objAcaoAplicacaoAssocVisao) {
-
-   	 		// verificando se a visao é diferente da que ja foi guardada
-   	 		if (!isset($sessaoUsuario->$sessionArrayUltimaVisao['id']) || ($objAcaoAplicacaoAssocVisao->id != $sessaoUsuario->$sessionArrayUltimaVisao['id'])) {
-		   	 	// montando array para guardar na sessao
-		   	 	$arrayUltimaVisao = array('id'  => $objAcaoAplicacaoAssocVisao->id,
-		   	 							  'url' => "{$arrayParametrosUltimoRequest['modulo']}/{$arrayParametrosUltimoRequest['controlador']}/{$arrayParametrosUltimoRequest['acao']}");
-		   	 	
-				// registrando a chave do post do ultimo request
-				$sessaoUsuario->$sessionArrayUltimaVisao = $arrayUltimaVisao;
-   	 		}
+   	 	// verificando se conseguiu recuperar o id da acaoAplicacao
+   	 	if (null != $objAcaoAplicacaoOrigem) {
+   	 	
+	   	 	// recuperando a assoc visao
+	   	 	$objAcaoAplicacaoAssocVisao = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::getInstance()->retornaObjetoAcaoAplicacaoAssocVisaoPorIdAcaoAplicacao($objAcaoAplicacaoOrigem->id);
+	
+	   	 	// verificando se existe uma visao vinculada a acao
+	   	 	if ($objAcaoAplicacaoAssocVisao) {
+	
+	   	 		// verificando se a visao é diferente da que ja foi guardada
+	   	 		if (!isset($sessaoUsuario->$sessionArrayUltimaVisao['id']) || ($objAcaoAplicacaoAssocVisao->id != $sessaoUsuario->$sessionArrayUltimaVisao['id'])) {
+			   	 	// montando array para guardar na sessao
+			   	 	$arrayUltimaVisao = array('id'  => $objAcaoAplicacaoAssocVisao->id,
+			   	 							  'url' => "{$arrayParametrosUltimoRequest['modulo']}/{$arrayParametrosUltimoRequest['controlador']}/{$arrayParametrosUltimoRequest['acao']}");
+			   	 	
+					// registrando a chave do post do ultimo request
+					$sessaoUsuario->$sessionArrayUltimaVisao = $arrayUltimaVisao;
+	   	 		}
+	   	 	}
    	 	}
 		return;
 	}

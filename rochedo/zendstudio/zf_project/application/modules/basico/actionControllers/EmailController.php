@@ -59,7 +59,7 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
     		Basico_OPController_ContatoCpgEmailOPController::getInstance()->validarEmail($email);
     		
     		// carregando mensagem na view
-    		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO"));
+    		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO")));
     		
     		// renderizando a view
     		$this->_helper->Renderizar->renderizar();
@@ -92,88 +92,41 @@ class Basico_EmailController extends Basico_AbstractActionController_RochedoGene
 	    	// se a submissao nao foi feita do form de aceite dos termos de uso, carrega o form de aceite dos termos
 	    	if (!isset($_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) {
 
-	    		// carregando array do cabecalho da view
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
-					    
-				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
-					    
-			    // carregando form na view
-			    $content[] = $form;
-			    $this->view->content = $content;
-		
-			    $this->_helper->Renderizar->renderizar();
-			    
-			    return;
-			    
-	    	}
-	    	
-	    	// recuperando a string de confirmação do aceite
-	    	$stringConfirmacao = Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO"));
-	    	
-	    	// verificando a digitação do aceite
-	    	if (strtoupper(Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), $_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) === strtoupper($stringConfirmacao)) {
-	    		
-	    		// registrando data do aceite na sessao
-		    	$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
-		    	$session->dataAceite = Basico_OPController_UtilOPController::retornaDateTimeAtual();
-		    	
-		    	// recuperando dadosPessoais da pessoa
-		    	$dadosPessoais = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($proprietarioEmail->id);
-		    	
-		    	// recuperando a versao da tupla de dadosPessoais
-		    	$versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
-	    	
-	    	    // carregando o titulo e subtitulo da view
-			    $tituloView     = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
-			    $subtituloView  = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
-	
-			    // carregando o array de conteúdo da página
-		    	$content[] = $tituloView;
-		    	$content[] = $subtituloView;
-			    
-				// formando a url do metodo que verifica disponibilidade de login via json
-				$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
-	
-				// instanciando o formulario de cadastrar usuario validado
-				$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
-				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
-
-				// recuperando mensagem do componente password strenght checker
-				$mensagensPasswordStrenghtChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
-
-				//adicionando multiOptions do radioButton sexo
-				$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));
-
-				// setando valores dos hiddens do formulario
-				$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
-				$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
-
-				$formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
-				$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
-
-				// carregando o array de conteúdo da página
-		    	$content[] = $formCadastrarUsuarioValidado;
-
-				// enviado conteúdo para a view
-				$this->view->content = $content;
-
-				// renderizando a view
-				$this->_helper->Renderizar->renderizar();
-	    	}else{
-	    		// carregando array do cabecalho da view
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
-	
-				// recuperando form inicializado
-				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($proprietarioEmail->id);
-	
-		    	// carregando form na view
-		    	$content[] = $form;
-		    	$this->view->content = $content;
-		    	
-		    	$this->_helper->Renderizar->renderizar();
+	    		// encaminhando para a acao que exibe formulario de aceite dos termos de uso do sistema
+	    		return $this->forward('exibirformaceitetermosuso', 'login', 'basico');
 	    	}
     	}
-    }   
+    }
+    
+	/**
+	 * Redireciona para view erroemailvalidadoexistentenosistemaAction
+	 * 
+	 * @return void
+	 */
+    public function erroemailvalidadoexistentenosistemaAction()
+    {
+        // carregando o titulo, subtitulo e mensagem da view
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM')));
+	    
+	    // renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
+    
+	/**
+	 * Redireciona para view erroemailnaovalidadoexistentenosistemaAction
+	 * 
+	 * @return void
+	 */
+    public function erroemailnaovalidadoexistentenosistemaAction()
+    {
+		// carregando o titulo, subtitulo e mensagem da view
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM')));
+		
+		// renderizando a view
+		$this->_helper->Renderizar->renderizar();
+    }
 }

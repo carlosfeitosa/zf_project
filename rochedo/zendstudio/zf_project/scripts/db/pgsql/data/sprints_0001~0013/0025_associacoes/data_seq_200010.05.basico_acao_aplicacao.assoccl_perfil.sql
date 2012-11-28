@@ -32,7 +32,7 @@ SELECT (SELECT p.id
         from basico.acao_aplicacao a
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
-        AND a.controller = 'email'
+        AND a.controller = 'token'
         AND a.action = 'errotokeninvalido') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
         
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
@@ -84,7 +84,7 @@ SELECT (SELECT p.id
         from basico.acao_aplicacao a
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
-        AND a.controller = 'email'
+        AND a.controller = 'token'
         AND a.action = 'errotokenexpirado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
@@ -176,7 +176,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'cadastrarUsuarioNaoValidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'cadastrarusuarionaovalidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -202,7 +202,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'SucessoSalvarUsuarioNaoValidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'sucessosalvarusuarionaovalidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -214,7 +214,7 @@ SELECT (SELECT p.id
         from basico.acao_aplicacao a
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
-        AND a.controller = 'login'
+        AND a.controller = 'email'
         AND a.action = 'erroemailnaovalidadoexistentenosistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
@@ -227,7 +227,7 @@ SELECT (SELECT p.id
         from basico.acao_aplicacao a
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
-        AND a.controller = 'login'
+        AND a.controller = 'email'
 		AND a.action = 'erroemailvalidadoexistentenosistema') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
@@ -241,7 +241,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'salvarUsuarioValidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'salvarusuariovalidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -280,7 +280,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'login'
-        AND a.action = 'verificaNovoLogin') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'verificanovologin') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -306,7 +306,7 @@ SELECT (SELECT p.id
         LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'autenticador'
-        AND a.action = 'verificaAutenticacaoUsuario') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        AND a.action = 'verificaautenticacaousuario') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
 
 INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
 SELECT (SELECT p.id
@@ -606,3 +606,29 @@ SELECT (SELECT p.id
         WHERE m.NOME = 'BASICO'
         AND a.controller = 'cvc'
         AND a.action = 'resolveconflitoversaoobjeto') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;
+        
+INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM basico.perfil p
+        LEFT join basico.categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_PUBLICO') AS id_perfil,
+       (SELECT a.id
+        from basico.acao_aplicacao a
+        LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'login'
+        AND a.action = 'salvaraceitetermosuso') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo; 
+        
+INSERT into basico_acao_aplicacao.assoccl_perfil (id_perfil, id_acao_aplicacao, rowinfo)
+SELECT (SELECT p.id
+        FROM basico.perfil p
+        LEFT join basico.categoria c ON (p.id_categoria = c.id)
+        WHERE c.nome = 'PERFIL_USUARIO'
+        AND p.nome   = 'USUARIO_PUBLICO') AS id_perfil,
+       (SELECT a.id
+        from basico.acao_aplicacao a
+        LEFT JOIN basico.modulo m ON (a.id_modulo = m.id)
+        WHERE m.NOME = 'BASICO'
+        AND a.controller = 'login'
+        AND a.action = 'exibirformcadastrousuariovalidado') AS id_acao_aplicacao, 'SYSTEM_STARTUP' AS rowinfo;        

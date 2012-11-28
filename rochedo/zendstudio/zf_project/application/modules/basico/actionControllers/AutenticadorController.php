@@ -86,7 +86,7 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 		$urlRedirect = Basico_OPController_UtilOPController::decodificaBarrasUrl(Basico_OPController_UtilOPController::retornaUserRequest()->getParam('urlRedirect'));
 
     	// carregando título
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO')));
 
 		// recuperando o formulario de autenticacao
 		$idCategoriaFormularioAutenticacao = Basico_OPController_CategoriaOPController::getInstance()->retornaIdCategoriaAtivaPorNomeCategoriaIdTipoCategoriaIdCategoriaPai(CATEGORIA_FORMULARIO_INPUT_LOGIN);
@@ -96,13 +96,7 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);
 
     	// carregando os script
-    	$scripts[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao);
-
-    	// enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// enviado script para a view
-		$this->view->scripts = $scripts;
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $urlRedirect, $actionFormularioAutenticao));
 
     	// renderizando
     	$this->_helper->Renderizar->renderizar();
@@ -242,16 +236,10 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 		$actionFormularioAutenticao = $this->view->urlEncrypt($actionFormularioAutenticao);		
 
 		// carregando título na view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO'));
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_AGUARDANDO_AUTENTICACAO_TITULO')));
 		
 		// carregando scripts 
-		$scripts[] = Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError));
-		
-		// enviado o conteúdo para a view
-		$this->view->content = $content;
-		
-		// enviado os scripts para a view
-		$this->view->scripts = $scripts;
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_AutenticadorOPController::retornaHTMLJavaScriptExibirDialogUrlAutenticacaoUsuario(Basico_OPController_PessoaOPController::retornaLinguaUsuario(), $this->view->tradutor('VIEW_LOGIN_AUTENTICACAO_USUARIO_TITULO'), $this->getRequest()->getParam('urlRedirect'), $actionFormularioAutenticao, Basico_OPController_UtilOPController::codificaArrayJson($arrayParametros), Basico_OPController_UtilOPController::codificaArrayJson($arrayElementosError)));
 
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
@@ -274,13 +262,10 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 		$htmlLinkDocumentacaoOnline = "<a href='{$linkDocumentacaoOnLine}'>Clique aqui para ir para a documentacao online onde eh explicado como tentar resolver estes problemas</a>";
 
 		// carregando as mensagens
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem(TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_TITULO')));
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_AUTENTICAR_USUARIO_PROBLEMAS_LOGIN_SUBTITULO')));
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem(TAG_ABRE_LISTA_NAO_ORDENADA_ERROR . $errorMessage . TAG_FECHA_LISTA_NAO_ORDENADA . QUEBRA_DE_LINHA_HTML . QUEBRA_DE_LINHA_HTML . $htmlLinkDocumentacaoOnline));
 
-		// enviado conteúdo para a view
-		$this->view->content = $content;
-		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
 	}
@@ -307,7 +292,7 @@ class Basico_AutenticadorController extends Basico_AbstractActionController_Roch
 		$formAutenticacao = $this->retornaFormularioAutenticacao();
 
 		// setando o conteudo da resposta
-		$this->view->content = array($formAutenticacao);
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formAutenticacao);
 
 		// renderizando a resposta
 		$this->_helper->Renderizar->renderizar('default.html.phtml', true);

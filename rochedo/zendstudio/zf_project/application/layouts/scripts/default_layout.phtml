@@ -19,8 +19,15 @@
 	
     echo $this->headScript();
     
+    // recuperando variaveis da view
+    $scripts  = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::SCRIPTS;
+    $content  = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::CONTENT;
+    $metadata = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::METADATA;
+    $header   = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::HEADER;
+    $footer   = Basico_OPController_AcaoAplicacaoAssocVisaoOPController::FOOTER;
+    
     // recuperando os scripts incluidos na view
-   	$scriptsContent = $this->scripts;
+   	$scriptsContent = $this->$scripts;
 
    	// verificando se o scripts eh array
 	if (is_array($scriptsContent)) {
@@ -49,7 +56,7 @@
 	}
 
 
-	$scriptsContent = $this->header;
+	$scriptsContent = $this->$header;
 	
 	if (is_array($scriptsContent)) {
 		foreach ($scriptsContent as $key => $value) {
@@ -63,22 +70,18 @@
 </div>
 <div id="content">
 <?php
-	// recupera o conteudo do placeholder headerMenu
-	$content = $this->placeholder("content")->getValue();
+	// recupera o conteudo do placeholder content
+	$metadataValue = $this->placeholder($metadata)->getValue();
 	// verifica se algo foi escrito
-	if(!empty($content)) {
-		echo $this->placeholder("content");
+	if(!empty($metadataValue)) {
+		echo $this->placeholder($metadata);
 	}
 
-
-	$scriptsContent = $this->content;
-	
-	if (is_array($scriptsContent)) {
-		foreach ($scriptsContent as $key => $value) {
-			//echo $value;		
-		}
-	} else {
-		//echo $scriptsContent;
+	// recupera o conteudo do placeholder content
+	$contentValue = $this->placeholder($content)->getValue();
+	// verifica se algo foi escrito
+	if(!empty($contentValue)) {
+		echo $this->placeholder($content);
 	}
 ?>
 </div>
@@ -87,7 +90,7 @@
 <div id="footer">
 <?php 
 
-	$scriptsContent = $this->footer;
+	$scriptsContent = $this->$footer;
 	
 	if (is_array($scriptsContent)) {
 		foreach ($scriptsContent as $key => $value) {
@@ -97,10 +100,10 @@
 		echo $scriptsContent;
 	}
 	// recupera o conteudo do placeholder footer
-	$footer = $this->placeholder("footer")->getValue();
+	$footerValue = $this->placeholder($footer)->getValue();
 	// verifica se algo foi escrito
-	if(!empty($footer)) {
-		echo $this->placeholder("footer");
+	if(!empty($footerValue)) {
+		echo $this->placeholder($footer);
 	}
 ?>   
 </div>

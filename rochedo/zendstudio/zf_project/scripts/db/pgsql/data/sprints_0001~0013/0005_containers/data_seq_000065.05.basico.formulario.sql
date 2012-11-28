@@ -51,7 +51,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, ativo, nivel, nome,
 	    1 AS nivel,
         'FORM_ACEITE_TERMOS_USO' AS nome,
         'FORM_ACEITE_TERMOS_USO' AS constante_textual,
-        'AceiteTermosUso' AS form_name, 'post' AS form_method, NULL AS form_action, 
+        'AceiteTermosUso' AS form_name, 'post' AS form_method, 'basico/login/salvaraceitetermosuso' AS form_action, 
         '''onSubmit''=>"return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))"' AS form_attribs, 
         false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
@@ -538,7 +538,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, ativo, nivel, nome,
 	   1 AS nivel,
        'FORM_CADASTRAR_USUARIO_NAO_VALIDADO' AS nome,
        'FORM_CADASTRAR_USUARIO_NAO_VALIDADO' AS constante_textual,
-       'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificaNovoLogin' AS form_action, 
+       'CadastrarUsuarioNaoValidado' AS form_name, 'post' AS form_method, '/basico/login/verificanovologin' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -561,7 +561,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, ativo, nivel, nome,
 	   1 AS nivel,
        'FORM_CADASTRAR_USUARIO_VALIDADO' AS nome,
        'FORM_CADASTRAR_USUARIO_VALIDADO' AS constante_textual,
-       'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, '/basico/login/salvarUsuarioValidado' AS form_action, 
+       'CadastrarUsuarioValidado' AS form_name, 'post' AS form_method, '/basico/login/salvarusuariovalidado' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -630,7 +630,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, ativo, nivel, nome,
 	    1 AS nivel,
         'FORM_AUTENTICACAO_USUARIO' AS nome,
         'FORM_AUTENTICACAO_USUARIO' AS constante_textual,
-        'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaAutenticacaoUsuario' AS form_action, 
+        'AutenticacaoUsuario' AS form_name, 'post' AS form_method, '/basico/autenticador/verificaautenticacaousuario' AS form_action, 
         '''onSubmit''=>"return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)
@@ -939,7 +939,7 @@ INSERT INTO basico.formulario  (id_componente, id_categoria, ativo, nivel, nome,
 	   1 AS nivel,
        'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS nome,
        'FORM_RESOLVEDOR_CONFLITO_VERSAO_OBJETO' AS constante_textual,
-       'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveConflitoVersaoObjeto' AS form_action, 
+       'ResolvedorConflitoVersaoObjeto' AS form_name, 'post' AS form_method, '/basico/cvc/resolveconflitoversaoobjeto' AS form_action, 
        '''onSubmit''=>"return(validateForm(''@nomeFormulario'', ''@title'', ''@message''))"' AS form_attribs, false AS permite_rascunho, 'SYSTEM_STARTUP' AS rowinfo
 FROM basico.tipo_categoria t
 LEFT join basico.categoria c ON (t.id = c.id_tipo_categoria)

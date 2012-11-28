@@ -160,14 +160,11 @@ class Basico_CvcController extends Basico_AbstractActionController_RochedoGeneri
     	$formResolucaoConflitoVersao->BasicoResolvedorConflitoVersaoObjetoHtmlButtonCancelarFormResolvedorConflitoVersaoObjeto->setAttrib('onClick', $jsCancelar);
 
     	// carregando array do cabecalho da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO'));
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('FORM_TITLE_RESOLVEDOR_CONFLITO_VERSAO_OBJETO')));
     	
     	// carregando o formulário
-    	$content[] = $formResolucaoConflitoVersao;
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formResolucaoConflitoVersao);
     	
-    	// enviado conteúdo para a view
-		$this->view->content = $content;
-
     	// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }

@@ -52,12 +52,9 @@ class Basico_RascunhoController extends Basico_AbstractActionController_RochedoG
     	// chamando metodo que salva o rascunho
     	if (Basico_OPController_FormularioRascunhoOPController::getInstance()->salvarRascunho($this->getRequest(),$forceSave)) {
 			// inicializa o rascunho no cliente
-    	    $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho(); ");
+    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptEntreTagsScriptHtml("initRascunho(); "));
        		// escreve mensagem de sucesso para o usuario
-    	    $scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_SALVAR"));
-    	    
-    	    // setando scripts na view    	
-    		$this->view->scripts = $scripts;
+    	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_SALVAR")));
     	}
 		
     	// rederizando resposta
@@ -73,14 +70,11 @@ class Basico_RascunhoController extends Basico_AbstractActionController_RochedoG
     	// removendo rascunho
     	if (Basico_OPController_FormularioRascunhoOPController::getInstance()->excluirRascunho($this->getRequest())) {
     		// setando script na view
-    		$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR"));
+    		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_SUCESSO_EXCLUIR")));
     	}else{
     		// setando script na view    		
-    		$scripts[] = Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_ERRO_EXCLUIR"));
+    		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaScriptVisao($this->view, Basico_OPController_UtilOPController::retornaJavaScriptDojoPopMessage(Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL("RASCUNHO_MENSAGEM_ERRO_EXCLUIR")));
     	}
-    	
-   		// setando script na view    	
-    	$this->view->scripts = $scripts;
     	
     	// renderizando resultado
     	$this->_helper->Renderizar->renderizar();
@@ -99,7 +93,7 @@ class Basico_RascunhoController extends Basico_AbstractActionController_RochedoG
     	$form = new Basico_Form_AdminRascunhos();
     	
     	// escrevendo form
-    	$this->view->content = array($form);
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $form);
     	
     	// rederizando a view
     	$this->_helper->Renderizar->renderizar('default.html.phtml');

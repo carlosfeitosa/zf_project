@@ -868,12 +868,13 @@ class Basico_OPController_DBUtilOPController
     public static function retornaBooleanDB($boolean, $comoString = false)
     {
     	// verificando se eh preciso fazer conversao
-    	if (self::retornaPdoTypeConexaoAtiva() === 'MSSQL')
+    	if (self::retornaPdoTypeConexaoAtiva() === 'MSSQL') {
     		// retornando valor booleano convertido para inteiro
     		$tempReturn = Basico_OPController_UtilOPController::retornaValorTipado($boolean, TIPO_INTEIRO);
-		else
+    	} else {
 			// retorna o booleano caso nao haja conversao
     		$tempReturn = Basico_OPController_UtilOPController::retornaValorTipado($boolean, TIPO_BOOLEAN);
+		}
 
     	// verificando se eh preciso converter para string
     	if ($comoString) {

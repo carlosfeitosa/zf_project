@@ -127,9 +127,6 @@ function processaResponseDojoFormRequest(data)
 				// Adicionando conteúdo ao elemento.
 				dojo.byId(idElemento).innerHTML = jsonResponse.view.html[idElemento];
 
-				// verifica se existe scripts no html para serem processados
-				console.warn('verifica se existe scripts no html para serem processados');
-				//processaScript(jsonResponse.view.html[idElemento]);
 			}
 		}  
 	    
@@ -342,7 +339,7 @@ function dojoRequestAjaxAbstract(method, arrayParametros){
 			    	var resultHandleFunction = eval(handleFunction);
 				}
 			    if (handleFunctionData != undefined) {
-			    	console.debug('handle FunctionData: ', handleFunctionData +'(dataResponse)');
+			    	console.debug('handle FunctionData: ', handleFunctionData + "(" + ioargs.xhr.responseText + ")");
 			    	var nomeFunctionHandleData = handleFunctionData + "(" + ioargs.xhr.responseText + ")";
 			    	console.debug('iniciando handleFunctionData function...');
 			    	var resultHandleFunctionData = eval(nomeFunctionHandleData);

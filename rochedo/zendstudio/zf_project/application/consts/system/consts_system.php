@@ -76,6 +76,7 @@ define("ARRAY_TABLE_DEPENDENCIES_FK_COLUMN", "fk_column");
 define("ARRAY_TABLE_DEPENDENCIES_PK_TABLE", "pk_table");
 define("ARRAY_TABLE_DEPENDENCIES_PK_COLUMN", "pk_column");
 define("ARRAY_TABLE_DEPENDENCIES_CONSTRAINT_NAME", "constraint_name");
+define("USE_SQL_PROFILER", true);
 
 // definições de arrays
 define("ARRAY_FILTER_EXCLUDE_POSITION_BEGIN", 21);

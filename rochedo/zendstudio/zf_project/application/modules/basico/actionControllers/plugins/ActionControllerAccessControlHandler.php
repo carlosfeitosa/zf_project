@@ -7,14 +7,14 @@
  *
  */
 
-class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend_Controller_Plugin_Abstract
+class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend_Controller_Plugin_Abstract implements Basico_Controller_Plugin_Interface_RochedoPluginGenerico
 {
 	/**
 	 * Atributo para ativacao do plugin
 	 * 
 	 * @var Boolean
 	 */
-	protected $_pluginAtivo = true;
+	protected static $_pluginAtivo = true;
 
 	/**
 	 * Metodo de pre-despacho
@@ -25,14 +25,59 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o request deve ser processado
-		if ((!Basico_OPController_DBUtilOPController::checaBancoLevantado()) or (!$this->verificaSeProcessaRequest($request))) {
-			return;
+		if (self::checaProcessamento($request)) {
+			// verificando o acesso
+			self::processa($request);
 		}
+	}
+	
+	/**
+	 * posDispatch - Metodo que roda depois do dispacho do plugin de controle de acesso
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::posDispatch()
+	 * 
+	 * @return void
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public function postDispatch(Zend_Controller_Request_Abstract $request)
+	{
+		;
+	}
 
+	/**
+	 * metodo que checa se o request eh para ser processado pelo plugin
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::posDispatch()
+	 * 
+	 * @return Boolean - Retorna se pode processar o request ou nao
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public static function checaProcessamento(Zend_Controller_Request_Abstract $request)
+	{
+		// retornando resultado da verificacao para checar se o plugin vai processar o request
+		return !( (!Basico_OPController_DBUtilOPController::checaBancoLevantado()) or (!self::verificaSeProcessaRequest($request)) );
+	}
+	
+	/**
+	 * metodo que processa o request
+	 * 
+	 * @see Basico_Controller_Plugin_Interface_RochedoPluginGenerico::processa()
+	 * 
+	 * @return void
+	 * 
+	 * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+	 * @since 21/11/2012
+	 */
+	public static function processa(Zend_Controller_Request_Abstract $request)
+	{
 		// verificando o acesso
 		self::verificaAcessoRequest($request);
 	}
-
+	
 	/**
 	 * Verifica o acesso ao request
 	 * 
@@ -209,10 +254,10 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 	 * 
 	 * @return Boolean
 	 */
-	private function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
+	private static function verificaSeProcessaRequest(Zend_Controller_Request_Abstract $request)
 	{
 		// retornando se o request deve ser processado
-		return (($this->_pluginAtivo) and 
+		return ((self::$_pluginAtivo) and 
 				(Basico_OPController_ControleAcessoOPController::getInstance()->verificaRequestCadastrado($request, true)) and
 				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoErrorErrorControllerPorRequest($request)) and
 				(!Basico_OPController_AcaoAplicacaoOPController::getInstance()->verificaAcaoDecodeTokenControllerPorRequest($request)) and
@@ -232,7 +277,7 @@ class Basico_Controller_Plugin_ActionControllerAccessControlHandler extends Zend
 		// retornando o resultado da verificacao se o request esta relacionado ao modulo basico, controlador login, acao cadastrarUsuarioNaoValidado ou verificaNovoLogin
 		return ((($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'cadastrarUsuarioNaoValidado')) or 
 			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'verificaNovoLogin')) or
-			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'login') and ($request->getActionName() === 'erroemailvalidadoexistentenosistema')));
+			    (($request->getModuleName() === 'basico') and ($request->getControllerName() === 'email') and ($request->getActionName() === 'erroemailvalidadoexistentenosistema')));
 	}
 
 	/**

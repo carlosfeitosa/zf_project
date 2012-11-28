@@ -184,8 +184,17 @@ abstract class Basico_AbstractMapper_RochedoMapper implements Basico_InterfaceMa
     		// recuperando metodo de recuperação do atributo
     		$metodoAtributo = 'get' . ucfirst($atributo);
 
+    		// recuperando valor do atributo
+    		$valorAtributo = $object->$metodoAtributo();
+
+    		// verificando se o valor do atributo eh do tipo boleano
+    		if (is_bool($valorAtributo)) {
+    			// transformando o valor do atributo para o tipo esperado pelo banco de dados
+    			$valorAtributo = Basico_OPController_PersistenceOPController::bdRetornaBoolean($valorAtributo, true);
+    		}
+
     		// motando array de dados
-    		$data[$campo] = $object->$metodoAtributo();
+    		$data[$campo] = $valorAtributo;
 
     		// limpando memória
     		unset($metodoAtributo);

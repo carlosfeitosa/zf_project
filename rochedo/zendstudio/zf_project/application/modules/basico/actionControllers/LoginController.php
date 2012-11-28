@@ -91,7 +91,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
         // verificando se o formulario passou pela validacao
 		if (!$formEntrada->isValid($this->getRequest()->getPost())) {
 			// recuperando o formulario
-            $this->view->content = array($formEntrada);
+            Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formEntrada);
             
             return;
         }
@@ -106,7 +106,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
     public function indexAction()
     {
     	// setando o form na view
-        $this->view->content = array($this->getForm());
+        Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $this->getForm());
     }
     
     /**
@@ -115,17 +115,10 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	 * @return void 
 	 */
     public function cadastrarusuarionaovalidadoAction()
-    {   
-        // carregando o titulo e subtitulo da view
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO'));
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
-
+    {       	
     	// carrega o formulario na view
-    	$content[] = $this->getFormCadastroUsuarioLoginNaoValidado();
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $this->getFormCadastroUsuarioLoginNaoValidado());
 		
-    	// enviado conteúdo para a view
-    	$this->view->content = $content; 
-    	
 		// renderiza a view no script default
 		$this->_helper->Renderizar->renderizar();
     }
@@ -166,8 +159,8 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		    	if (!Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $this->getRequest()->getParam('BasicoCadastrarUsuarioValidadoLogin'))) {
 		    		
 		    		// carregando array do cabecalho da view
-				    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
-				    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+				    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO')));
+				    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO')));
 		    		
 		    		// recuperando o titulo do dialog
 			   		$tituloDialogSugestaoLogin = Basico_OPController_DicionarioExpressaoOPController::retornaTraducaoViaSQL('FORM_TITLE_SUGESTAO_LOGIN');
@@ -185,11 +178,8 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 							str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', {$urlSugestaoLogin}, '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
 							"</span>");
 					
-					$content[] = $formCadastrarUsuarioValidado;
+					Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formCadastrarUsuarioValidado);
 					
-					// enviado conteúdo para a view
-		    		$this->view->content = $content;
-		    		
 		    		// retorna para salvarusuariovalidadoAction
 		    		return false;
 		    	}
@@ -230,17 +220,14 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	    	}else{
 	    		
 	    		// carregando array do cabecalho da view
-			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO')); 
-			    $content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+			    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'))); 
+			    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO')));
 			    
 			    // inicializando o formulario
 	    		$this->initFormCadastrarUsuarioValidado($formCadastrarUsuarioValidado, $arrayPost['idPessoa'], $arrayPost['versaoDadosPessoais']);
 			    
 	    		// carregando form na view
-	    		$content[] = $formCadastrarUsuarioValidado;
-	    		
-	    		// enviado conteúdo para a view
-	    		$this->view->content = $content;
+	    		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formCadastrarUsuarioValidado);
 	    		
 	    		// retornando para salvarusuariovalidadoAction
 	    		return false;
@@ -290,16 +277,14 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	        	
     		}else{
     			// carregando array do cabecalho da view
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO')); 
-				$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO'));
+				//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_TITULO'))); 
+				//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_ACEITE_TERMOS_USO_SUBTITULO')));
 	
 				// recuperando form inicializado
 				$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($idPessoa);
 	
 		    	// carregando form e conteudo na view
-		    	$content[] = $form;
-		    	$this->view->content = $content;
-		    	
+		    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $form);
     		}
 		        
     		// renderizando a view
@@ -314,15 +299,12 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 	public function sucessosalvarusuariovalidadoAction()
 	{
 		// carregando array do cabelho
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO"));
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO"));
-    	$content[] = str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
+    	//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_TITULO")));
+    	//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_SUBTITULO")));
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, str_replace(MENSAGEM_TAG_LINK_MEU_PERFIL , 
     	                                                       "<a href='{$this->view->urlEncrypt($this->_helper->url('index', 'dadosusuario', 'basico'))}'>{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>",
     	                                                       Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor("VIEW_LOGIN_CADASTRAR_USUARIO_VALIDADO_SUCESSO_MENSAGEM"))
-    	                                                       );
-
-		// enviado conteúdo para a view
-        $this->view->content = $content;
+    	                                                       ));
 
 		// renderiza a view no script default
 		$this->_helper->Renderizar->renderizar();
@@ -338,15 +320,11 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
     	$post = $this->getRequest()->getParams();
     	
     	if ($post['stringPesquisa'] != "") {
-	    	//desabilitando layout e render
-	    	$this->_helper->layout()->disableLayout();
-	        $this->_helper->viewRenderer->setNoRender(true);
-	
+    		
 	        //checando a disponibilidade do login
 	    	$loginDisponivel = Basico_OPController_DBCheckOPController::checaDisponibilidadeString('basico_pessoa.login', 'login', $post['stringPesquisa']);
 	    	
-	    	
-	    	
+	    	// verificando se o login esta disponivel
 	    	if (!$loginDisponivel) {
 	    		
 	    		// recuperando o titulo do dialog
@@ -360,20 +338,15 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		   		// montando url para recuperacao das sugestoes de login
 		   		$urlSugestaoLogin = Basico_OPController_UtilOPController::retornaStringEntreCaracter($this->view->urlEncryptModuleControllerAction('basico', 'login', 'exibirformsugestaologin', $arrayParametros), "'");
 	    		
-	    		// escrevendo mensagem de login nao disponivel	
-				echo "<span style='color: red; font-weight: bold;'>" .
+	    		// adicionando content a view
+				Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, "<span style='color: red; font-weight: bold;'>" .
 					 	str_replace(MENSAGEM_TAG_LINK_SUGESTOES_LOGIN, "<a href='#' onclick=\"exibirDialogUrl('Basico_Form_SugestaoLogin', {$urlSugestaoLogin}, '{$tituloDialogSugestaoLogin}');\">{$this->view->tradutor("MENSAGEM_TEXTO_LINK_AQUI")}</a>", $this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_NAO_DISPONIVEL')) .
-				     "</span>";
-				
+				     "</span>", 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element');
 			}else{
 				// escrevendo mensagem de login disponivel
-			    echo "<span style='color: green; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL')}</span>";
-			    
+			    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, "<span style='color: green; font-weight: bold;'>{$this->view->tradutor('LOGIN_DISPONIBILIDADE_LABEL_LOGIN_DISPONIVEL')}</span>", 'BasicoCadastrarUsuarioValidadoLoginDisponivel-element');
 			}
-    	}else{
-    		echo "";
     	}
-    	
     }
     
     /**
@@ -418,7 +391,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			        Basico_OPController_MensageiroOPController::getInstance()->enviar($novaMensagem, Basico_OPController_PessoaAssocclPerfilOPController::retornaIdPessoaPerfilSistemaViaSQL(), array($idPessoaPerfil));
 			            
 	            	// encaminhado para a ação erroemailvalidadoexistentenosistema
-	            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailvalidadoexistentenosistema', null, true));
+	            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'email', 'erroemailvalidadoexistentenosistema', null, true));
 				}else {
 	            	// iniciando a transacao
            			Basico_OPController_PersistenceOPController::bdControlaTransacao();
@@ -457,7 +430,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 			            Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_COMMIT_TRANSACTION);
 
 		            	// encaminhado para a ação erroemailnaovalidadoexistentenosistema
-		            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'erroemailnaovalidadoexistentenosistema', null, true));	                
+		            	return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'email', 'erroemailnaovalidadoexistentenosistema', null, true));	                
 	            	}catch(Exception $e) {
 	            		// cancelando a transacao
 	            		Basico_OPController_PersistenceOPController::bdControlaTransacao(DB_ROLLBACK_TRANSACTION);
@@ -473,14 +446,9 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
         }       	
        	
 		// carregando o titulo e subtitulo da view
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO'));
-    	$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
-    	$content[] = $form;
-//    	$scripts[] = Basico_OPController_UtilOPController::setaFocusElementoFormularioViaDojoJavaScript('BasicoCadastrarUsuarioNaoValidadoEmail');
-          
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-//		$this->view->scripts = $scripts;
+    	//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_TITULO')));
+    	//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_CADASTRAR_USUARIO_NAO_VALIDADO_SUBTITULO')));
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $form);
 		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();        
@@ -556,7 +524,7 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
         }
 
         // encaminhado para a ação SucessoSalvarUsuarioNaoValidado
-	    return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'SucessoSalvarUsuarioNaoValidado', null, true));
+	    return $this->_redirect($this->view->urlEncryptModuleControllerAction('basico', 'login', 'sucessosalvarusuarionaovalidado', null, true));
     }
     
     /**
@@ -567,51 +535,10 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
     public function sucessosalvarusuarionaovalidadoAction()
     {
         // carregando o titulo, subtitulo e mensagem da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM'));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO')));
+		//Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM')));
 	            
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
-    }
-	
-    /**
-	 * Redireciona para view erroemailvalidadoexistentenosistemaAction
-	 * 
-	 * @return void
-	 */
-    public function erroemailvalidadoexistentenosistemaAction()
-    {
-        // carregando o titulo, subtitulo e mensagem da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM'));
-	    
-	    // enviado conteúdo para a view
-		$this->view->content = $content;
-		
-		// renderizando a view
-		$this->_helper->Renderizar->renderizar();
-    }
-    
-    /**
-	 * Redireciona para view erroemailnaovalidadoexistentenosistemaAction
-	 * 
-	 * @return void
-	 */
-    public function erroemailnaovalidadoexistentenosistemaAction()
-    {
-		// carregando o titulo, subtitulo e mensagem da view
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_TITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_SUBTITULO'));
-		$content[] = Basico_OPController_UtilOPController::retornaTextoFormatadoMensagem($this->view->tradutor('VIEW_LOGIN_SUCESSO_SALVAR_USUARIO_NAO_VALIDADO_MENSAGEM'));
-		
-		// enviado conteúdo para a view
-		$this->view->content = $content;
-		
 		// renderizando a view
 		$this->_helper->Renderizar->renderizar();
     }
@@ -646,8 +573,139 @@ class Basico_LoginController extends Basico_AbstractActionController_RochedoGene
 		//$form->BasicoSugestaoLoginFechar->setAttribs(array('onClick' => "hideDialog('Basico_Form_SugestaoLogin');"));
 		
 		// escrevendo o form
-    	$this->view->content = array($form);
+    	Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $form);
     	
     	$this->_helper->Renderizar->renderizar('default.html.phtml', true);
+    }
+    
+    /**
+     * Acao que exibe o formulario de aceite dos termos de uso do sistema
+     * 
+     * @return void
+     * 
+     * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 21/11/2012
+     */
+    public function exibirformaceitetermosusoAction()
+    {
+    	// verificando se ja existe o id do proprietario do email no post
+    	if (null != $this->getRequest()->getParam('idPessoa')) {
+			$idProprietarioEmail = $this->getRequest()->getParam('idPessoa');    		
+    	}else {
+			// recuperando o token da sessao
+	    	$token = $this->getRequest()->getParam('t');
+	
+	    	// recuperando o objeto token e-mail
+	    	$tokenObj = Basico_OPController_CpgTokenOPController::getInstance()->retornaObjetoTokenEmailPorToken($token);
+	
+	    	// verificando se o objeto existe
+	    	if ($tokenObj == null){
+	    		// encaminhado para a ação de erro token invalido
+	    		return $this->_redirect($this->view->urlEncrypt($this->view->url(array('module' => 'basico', 'controller' => 'token', 'action' => 'errotokeninvalido', null, true)), true));
+	    	}
+	    	
+	    	// recuperando o e-mail
+	    	$email   = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoEmailPorId($tokenObj->idGenericoProprietario);
+	    	
+	    	// recuperando o objeto pessoa do dono do email
+		   	$proprietarioEmail = Basico_OPController_ContatoCpgEmailOPController::getInstance()->retornaObjetoProprietarioEmail($email);
+    		
+		   	// recuperando id do proprietario do email
+		   	$idProprietarioEmail = $proprietarioEmail->id;
+    	}
+    	    	
+    	// inicializando formulario de aceite dos termos de uso do sistema
+		$form = Basico_OPController_PessoaLoginOPController::getInstance()->initFormAceiteTermosUso($idProprietarioEmail);
+				    
+		// carregando form na view
+		Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $form);
+		    
+		$this->_helper->Renderizar->renderizar();
+		    
+		return;
+    }
+    
+    /**
+     * Acao para salvar o aceite dos termos de uso do sistema
+     * 
+     * @return void
+     * 
+     * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 21/11/2012
+     */
+    public function salvaraceitetermosusoAction()
+    {
+    	// recuperando a string de confirmação do aceite
+    	$stringConfirmacao = Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), Basico_OPController_DicionarioExpressaoOPController::getInstance()->retornaTraducaoViaSQL("FORM_ACEITE_TERMOS_USO_STRING_CONFIRMACAO"));
+    	
+    	// verificando a digitação do aceite
+    	if (strtoupper(Basico_OPController_UtilOPController::removeCaracteresString(array('"', " "), $_POST['BasicoAceiteTermosUsoAceiteTermosUso'])) === strtoupper($stringConfirmacao)) {
+    		
+    		// registrando data do aceite na sessao
+	    	$session = Basico_OPController_SessionOPController::registraSessaoUsuario();
+	    	$session->dataAceite = Basico_OPController_UtilOPController::retornaDateTimeAtual();
+	    	
+	    	// encaminhando para a acao que exibe o formulario de cadastro de usuario validado
+	    	$this->forward('exibirformcadastrousuariovalidado', 'login', 'basico', $this->getRequest()->getParams());
+	    	
+    	}else{
+    		//echo "teste"; exit;
+    		
+    		// encaminhando para a acao que exibe o formulario de aceite dos termos de uso do sistema
+    		$this->forward('exibirformaceitetermosuso', 'login', 'basico', $this->getRequest()->getParams());
+    		return;
+    	}
+    }
+    
+    
+    /**
+     * Acao que exibe o formulario de cadastro de usuario validado pelo sistema
+     * 
+     * @return void
+     * 
+     * @author Joao Vasconcelos (joao.vasconcelos@rochedoframework.com)
+     * @since 23/11/2012
+     */
+    public function exibirformcadastrousuariovalidadoAction()
+    {
+    	// recuperando dadosPessoais da pessoa
+	    $dadosPessoais = Basico_OPController_PessoaAssocDadosOPController::getInstance()->retornaObjetoDadosPessoaisPorIdPessoa($this->getRequest()->getParam('idPessoa'));
+	    	
+	    // recuperando a versao da tupla de dadosPessoais
+	    $versaoDadosPessoais = Basico_OPController_PersistenceOPController::bdRetornaUltimaVersaoCVC($dadosPessoais, true);
+    	
+    	// carregando o titulo e subtitulo da view
+		$tituloView     = Basico_OPController_UtilOPController::retornaTextoFormatadoTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_TITULO'));
+		$subtituloView  = Basico_OPController_UtilOPController::retornaTextoFormatadoSubTitulo($this->view->tradutor('VIEW_LOGIN_SUCESSO_VALIDAR_EMAIL_SUBTITULO'));
+
+		// carregando o array de conteúdo da página
+	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $tituloView);
+	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $subtituloView);
+		    
+		// formando a url do metodo que verifica disponibilidade de login via json
+		$urlMetodo = Basico_OPController_UtilOPController::retornaStringEntreCaracter(Basico_OPController_UtilOPController::retornaServerHost() . $this->view->urlEncryptModuleControllerAction('basico', 'login', 'verificadisponibilidadelogin'), "'");
+
+		// instanciando o formulario de cadastrar usuario validado
+		$formCadastrarUsuarioValidado = new Basico_Form_CadastrarUsuarioValidado();
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoNome->setValue($dadosPessoais->nome);
+
+		// recuperando mensagem do componente password strenght checker
+		$mensagensPasswordStrenghtChecker = Basico_OPController_UtilOPController::retornaJsonMensagensPasswordStrengthChecker();
+
+		//adicionando multiOptions do radioButton sexo
+		$formCadastrarUsuarioValidado->BasicoCadastrarUsuarioValidadoSexo->addMultiOptions(array(0 => $this->view->tradutor('GENERO_MASCULINO'), 1 => $this->view->tradutor('GENERO_FEMININO')));
+
+		// setando valores dos hiddens do formulario
+		$formCadastrarUsuarioValidado->addElement('hidden', 'idPessoa', array('value' => $proprietarioEmail->id));
+		$formCadastrarUsuarioValidado->addElement('hidden', 'versaoDadosPessoais', array('value' => $versaoDadosPessoais));
+
+		$formCadastrarUsuarioValidado->idPessoa->removeDecorator('Label');
+		$formCadastrarUsuarioValidado->versaoDadosPessoais->removeDecorator('Label');
+
+		// carregando o array de conteúdo da página
+	    Basico_OPController_AcaoAplicacaoAssocVisaoOPController::adicionaContentVisao($this->view, $formCadastrarUsuarioValidado);
+
+	    // renderizando a view
+		$this->_helper->Renderizar->renderizar();
     }
 }

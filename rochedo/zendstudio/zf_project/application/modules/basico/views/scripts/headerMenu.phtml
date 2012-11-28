@@ -12,7 +12,7 @@ $applicationHttpHome = $this->urlEncrypt($this->url(array('controller'=>'index')
 	<div id="header-navigation">
 		<?php if (!Basico_OPController_PessoaLoginOPController::existeUsuarioLogado()) { ?>
         <a onClick="loading()" href="<?php echo $this->urlEncrypt($this->url(
-                                                         array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarUsuarioNaoValidado'), 
+                                                         array('module'=>'basico', 'controller'=>'login', 'action'=>'cadastrarusuarionaovalidado'), 
                                                          null, 
                                                          true)) ?>"><?php echo $this->tradutor('MENU_ITEM_REGISTRE_SE', null, false) ?></a> |
 		<?php }?>

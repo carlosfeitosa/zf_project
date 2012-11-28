@@ -11,11 +11,11 @@
  */
 
 // DEFINICAO DE CONSTANTES QUE REPRESENTAM PLUGINS JQUERY
-define("JQUERY_FORM_PLUGIN_UNIFORM", "UNIFORM");
-define("JQUERY_FORM_PLUGIN_IDEALFORM", "IDEALFORM");
+define("UI_JQUERY_FORM_PLUGIN_UNIFORM", "UNIFORM");
+define("UI_JQUERY_FORM_PLUGIN_IDEALFORM", "IDEALFORM");
 
 // constante que define o plugin default de FORMULARIOS da UI JQuery
-define("UI_JQUERY_PLUGIN_FORM_DEFAULT", JQUERY_FORM_PLUGIN_IDEALFORM);
+define("UI_JQUERY_PLUGIN_FORM_DEFAULT", UI_JQUERY_FORM_PLUGIN_IDEALFORM);
 
 // constantes de configuracao do plugin UNIFORM
 define("UI_JQUERY_PLUGIN_UNIFORM_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/uniform/js/jquery.uniform.js");
@@ -24,3 +24,10 @@ define("UI_JQUERY_PLUGIN_UNIFORM_CSS_FILE_PATH", "/js/library/plugins/jquery/uni
 // constantes de configuracao do plugin IDEALFORM
 define("UI_JQUERY_PLUGIN_IDEALFORM_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/idealform/js/jquery.idealforms.min.js");
 define("UI_JQUERY_PLUGIN_IDEALFORM_CSS_FILE_PATH", "/js/library/plugins/jquery/idealform/css/jquery.idealforms.min.css");
+
+// constantes de configuracao do plugin JQGRID
+define("UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/jquery.jqGrid.min.js");
+define("UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_LANGUAGE_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/i18n/grid.locale-pt-br.js");
+define("UI_JQUERY_PLUGIN_JQGRID_JAVASCRIPT_DEBUG_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/grid.loader.js");
+define("UI_JQUERY_PLUGIN_JQGRID_ROCHEDO_CUSTOM_JAVASCRIPT_FILE_PATH", "/js/library/plugins/jquery/jqGrid/js/rochedo.custom.jqgrid.js");
+define("UI_JQGRID_CSS_FILE_PATH", "/js/library/plugins/jquery/jqGrid/css/ui.jqgrid.css");

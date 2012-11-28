@@ -224,7 +224,7 @@ class Basico_OPController_DBSaveOPController
 	 * 
 	 * @return true
 	 */
-	private static function saveObjectDbTable(&$objeto, $utilizarProfiler = false)
+	private static function saveObjectDbTable(&$objeto, $utilizarProfiler = USE_SQL_PROFILER)
 	{
 		// verificando se foi passado um objeto, por parametro
 		if (!is_object($objeto))
@@ -239,8 +239,21 @@ class Basico_OPController_DBSaveOPController
 				$objeto->getMapper()->getDbTable()->habilitaProfiler();
 			}
 
-			// salvando o objeto
-			$objeto->getMapper()->save($objeto);
+			try { 
+				// salvando o objeto
+				$objeto->getMapper()->save($objeto);
+			} catch (Exception $e) {
+				// verificando se é preciso desligar o profiler
+				if ($utilizarProfiler) {
+					// recupernado a ultima query e desligando o profiler
+					$queryExecutada = $objeto->getMapper()->getDbTable()->recuperaUltimaQueryExecutada(false);
+	
+					// salvando a query no pool de sqls
+					Basico_OPController_SessionOPController::registraSqlPoolSql($queryExecutada);
+				}	
+				
+				throw new Exception(MSG_ERRO_SAVE_SQL_ERROR . QUEBRA_DE_LINHA . $e->getMessage());
+			}
 
 			// verificando se é preciso desligar o profiler
 			if ($utilizarProfiler) {
