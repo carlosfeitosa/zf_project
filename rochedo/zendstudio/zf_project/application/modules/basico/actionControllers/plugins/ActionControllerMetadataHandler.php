@@ -68,7 +68,7 @@ class Basico_Controller_Plugin_ActionControllerMetadataHandler extends Zend_Cont
 	public static function checaProcessamento(Zend_Controller_Request_Abstract $request)
 	{
 		// verificando se o plugin esta ativo
-		if (!self::$_pluginAtivo) {
+		if ((!self::$_pluginAtivo) or (!Basico_OPController_DBUtilOPController::tabelaExiste('dicionario_expressao', 'basico'))) {
 			return false;
 		}
 		
